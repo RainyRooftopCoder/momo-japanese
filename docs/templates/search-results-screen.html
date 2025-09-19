@@ -1,0 +1,85 @@
+<div class="screen search-results-screen" id="searchResultsScreen">
+    <!-- 검색 결과 헤더 -->
+    <div class="search-results-header">
+        <div class="search-info">
+            <h1 class="search-query" id="searchQuery">검색 결과</h1>
+            <p class="search-stats" id="searchStats">0개의 결과</p>
+        </div>
+        <button class="back-btn" id="backToMainBtn">
+            <span class="back-icon"><img src="./icon/arrow_left_black_icon.png" alt="뒤로가기" /></span>
+            <!-- <span class="back-icon">←</span> -->
+            <!-- <span class="back-text">돌아가기</span> -->
+        </button>
+    </div>
+
+    <!-- 검색 결과가 없을 때 -->
+    <div class="no-results" id="noResults" style="display: none">
+        <div class="no-results-icon">🔍</div>
+        <h3>검색 결과가 없습니다</h3>
+        <p>다른 검색어를 시도해보세요</p>
+        <div class="search-suggestions">
+            <h4>검색 팁:</h4>
+            <ul>
+                <li>한자, 히라가나, 뜻, 예문에서 검색할 수 있습니다</li>
+                <li>부분 검색도 가능합니다</li>
+                <li>띄어쓰기 없이 입력해보세요</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 검색 결과 리스트 -->
+    <div class="search-results-list" id="searchResultsList">
+        <!-- 검색 결과 아이템들이 동적으로 추가됩니다 -->
+    </div>
+
+    <!-- 로딩 표시 -->
+    <div class="search-loading" id="searchLoading" style="display: none">
+        <div class="loading-spinner"></div>
+        <p>검색 중...</p>
+    </div>
+
+    <!-- 더 보기 버튼 -->
+    <div class="load-more-container" id="loadMoreContainer" style="display: none">
+        <button class="load-more-btn" id="loadMoreBtn">더 많은 결과 보기</button>
+    </div>
+</div>
+
+<!-- 검색 결과 아이템 템플릿 -->
+<template id="searchResultItemTemplate">
+    <div class="search-result-item" data-word-id="">
+        <div class="result-main">
+            <div class="result-hanja"></div>
+            <div class="result-content">
+                <div class="result-hiragana"></div>
+                <div class="result-meaning"></div>
+            </div>
+        </div>
+
+        <div class="result-details">
+            <div class="result-info">
+                <span class="result-jlpt"></span>
+                <span class="result-pos"></span>
+                <span class="result-themes"></span>
+            </div>
+            <div class="result-actions">
+                <button class="expand-btn" title="예문 보기">
+                    <span class="expand-icon">▼</span>
+                </button>
+                <button class="study-btn" title="학습하기">
+                    <span class="study-icon">📖</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="result-examples" style="display: none">
+            <div class="example-item">
+                <div class="jp-example"></div>
+                <div class="ko-example"></div>
+            </div>
+            <div class="example-item example-item-2" style="display: none">
+                <div class="jp-example-2"></div>
+                <div class="ko-example-2"></div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -11,6 +11,7 @@ class ThreeStepNavigation {
             sub: 'subCategoryScreen',
             word: 'wordScreen',
             character: 'characterScreen',
+            searchResults: 'searchResultsScreen',
         };
         this.isInitialized = false;
 
@@ -68,7 +69,7 @@ class ThreeStepNavigation {
         await renderTemplate('header-container', 'components/header');
 
         // 화면 템플릿들 렌더링
-        const templates = ['main-category-screen', 'sub-category-screen', 'word-screen'];
+        const templates = ['main-category-screen', 'sub-category-screen', 'word-screen', 'search-results-screen'];
 
         let combinedHTML = '';
         for (const template of templates) {
@@ -121,6 +122,9 @@ class ThreeStepNavigation {
 
         // 하단 네비게이션 이벤트 바인딩
         this.bindBottomNavEvents();
+
+        // 검색 이벤트 바인딩
+        this.bindSearchEvents();
 
         console.log('Navigation events bound successfully');
     }
@@ -295,6 +299,9 @@ class ThreeStepNavigation {
             targetScreen.classList.add('active');
             console.log(`Added 'active' class to ${targetScreenId}`);
 
+            // 스크롤 위치를 상단으로 리셋
+            this.resetScreenScroll(targetScreen);
+
             // 페이드인 효과
             targetScreen.classList.add('fade-in');
             setTimeout(() => {
@@ -307,7 +314,502 @@ class ThreeStepNavigation {
         // JPG 버튼 표시/숨기기 제어
         this.toggleJpgButton(screenName);
 
+        // 헤더 제목 업데이트
+        this.updateHeaderTitle(screenName);
+
+        // 검색 결과 화면인 경우 스와이프 이벤트 바인딩
+        if (screenName === 'searchResults') {
+            // 약간의 지연을 두어 DOM이 완전히 렌더링된 후 바인딩
+            setTimeout(() => {
+                this.bindSearchSwipeEvents();
+            }, 100);
+        }
+
         console.log(`Switched to screen: ${screenName}`);
+    }
+
+    /**
+     * 화면 스크롤 위치 리셋
+     */
+    resetScreenScroll(screen) {
+        // 메인 화면 스크롤 리셋
+        screen.scrollTop = 0;
+
+        // 전체 페이지 스크롤 리셋
+        window.scrollTo(0, 0);
+
+        // 화면 내의 모든 스크롤 가능한 요소들 리셋
+        const scrollableElements = screen.querySelectorAll('.scrollable, .content, .category-list, .search-results-list');
+        scrollableElements.forEach(element => {
+            element.scrollTop = 0;
+        });
+
+        console.log('Screen scroll positions reset');
+    }
+
+    /**
+     * 헤더 제목 업데이트
+     */
+    updateHeaderTitle(screenName) {
+        const appTitle = document.getElementById('app-title');
+        if (!appTitle) return;
+
+        let title = 'もも 일본어 단어장'; // 기본 제목
+
+        if (screenName === 'sub') {
+            // 2번째 화면: 메인 카테고리에 따른 제목
+            const categoryTitles = {
+                'jpCharacter': '일본어 문자',
+                'grammar': '문법',
+                'jlpt': 'JLPT 단어',
+                'partOfSpeech': '품사별 단어',
+                'theme': '주제별 단어'
+            };
+            title = categoryTitles[this.currentMainCategory] || title;
+        } else if (screenName === 'word') {
+            // 3번째 화면: 서브 카테고리에 따른 제목
+            if (this.currentMainCategory === 'jlpt') {
+                title = `JLPT ${this.currentSubCategory}`;
+            } else if (this.currentMainCategory === 'partOfSpeech') {
+                title = `${this.currentSubCategory} 단어`;
+            } else if (this.currentMainCategory === 'theme') {
+                title = `${this.currentSubCategory} 단어`;
+            } else if (this.currentMainCategory === 'grammar') {
+                title = `${this.currentSubCategory}`;
+            }
+        } else if (screenName === 'character') {
+            // 문자 학습 화면: 선택된 문자 타입
+            title = this.currentSubCategory || '일본어 문자';
+        }
+
+        appTitle.textContent = title;
+        console.log(`Header title updated to: ${title}`);
+    }
+
+    /**
+     * 검색 이벤트 바인딩
+     */
+    bindSearchEvents() {
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-execute-btn');
+        const backToMainBtn = document.getElementById('backToMainBtn');
+
+        if (searchInput && searchBtn) {
+            // 검색 버튼 클릭 이벤트
+            searchBtn.addEventListener('click', () => {
+                this.performSearch();
+            });
+
+            // Enter 키 검색
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.performSearch();
+                }
+            });
+
+            console.log('Search events bound successfully');
+        }
+
+        // 검색 결과 화면의 뒤로가기 버튼
+        if (backToMainBtn) {
+            backToMainBtn.addEventListener('click', () => {
+                this.showScreen('main');
+            });
+        }
+
+        // 검색 화면 스와이프 이벤트 바인딩
+        this.bindSearchSwipeEvents();
+    }
+
+    /**
+     * 검색 화면 스와이프 이벤트 바인딩
+     */
+    bindSearchSwipeEvents() {
+        const searchResultsScreen = document.getElementById('searchResultsScreen');
+        if (!searchResultsScreen) {
+            console.log('Search results screen not found, will bind swipe events later');
+            return;
+        }
+
+        // 이미 바인딩된 경우 중복 방지
+        if (searchResultsScreen.dataset.swipeBound) {
+            return;
+        }
+
+        let startX = 0;
+        let startY = 0;
+        let endX = 0;
+        let endY = 0;
+        let isSwipingHorizontally = false;
+
+        console.log('Binding swipe events to search results screen');
+
+        // 터치 시작
+        searchResultsScreen.addEventListener(
+            'touchstart',
+            (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwipingHorizontally = false;
+                console.log('Search touch start:', startX, startY);
+            },
+            { passive: true }
+        );
+
+        // 터치 이동 중
+        searchResultsScreen.addEventListener(
+            'touchmove',
+            (e) => {
+                if (!startX) return;
+
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const diffX = currentX - startX;
+                const diffY = currentY - startY;
+
+                // 왼쪽에서 오른쪽 스와이프만 허용 (이전 화면으로)
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10 && diffX > 0) {
+                    isSwipingHorizontally = true;
+                    e.preventDefault();
+
+                    // 시각적 피드백 - 전체 화면에 적용 (오른쪽 스와이프만)
+                    const movePercent = Math.min(diffX / 150, 0.3);
+                    const opacity = 1 - movePercent;
+
+                    searchResultsScreen.style.transform = `translateX(${diffX * 0.2}px)`;
+                    searchResultsScreen.style.opacity = opacity;
+                }
+            },
+            { passive: false }
+        );
+
+        // 터치 종료
+        searchResultsScreen.addEventListener(
+            'touchend',
+            (e) => {
+                if (e.changedTouches && e.changedTouches.length > 0) {
+                    endX = e.changedTouches[0].clientX;
+                    endY = e.changedTouches[0].clientY;
+                }
+
+                // 화면 원래 상태로 복원
+                searchResultsScreen.style.transform = '';
+                searchResultsScreen.style.opacity = '';
+                searchResultsScreen.style.transition = 'all 0.3s ease';
+
+                setTimeout(() => {
+                    searchResultsScreen.style.transition = '';
+                }, 300);
+
+                // 스와이프 처리 (왼쪽→오른쪽만)
+                if (isSwipingHorizontally) {
+                    this.handleSearchSwipe(startX, endX);
+                }
+
+                // 초기화
+                startX = 0;
+                startY = 0;
+                endX = 0;
+                endY = 0;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
+
+        // 터치 취소
+        searchResultsScreen.addEventListener(
+            'touchcancel',
+            (e) => {
+                searchResultsScreen.style.transform = '';
+                searchResultsScreen.style.opacity = '';
+                startX = 0;
+                startY = 0;
+                endX = 0;
+                endY = 0;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
+
+        // 중복 바인딩 방지 마크 설정
+        searchResultsScreen.dataset.swipeBound = 'true';
+    }
+
+    /**
+     * 검색 화면 스와이프 처리 (왼쪽→오른쪽만, 이전 화면으로)
+     */
+    handleSearchSwipe(startX, endX) {
+        const deltaX = endX - startX;
+
+        console.log('Handling search swipe:', {
+            deltaX,
+            startX,
+            endX,
+        });
+
+        // 최소 스와이프 거리
+        const minSwipeDistance = 50;
+
+        // 왼쪽에서 오른쪽 스와이프만 처리 (이전 화면으로)
+        if (deltaX > minSwipeDistance) {
+            console.log('Swiping right - going back to main screen');
+            // 메인 화면으로 돌아가기
+            this.showScreen('main');
+        }
+    }
+
+    /**
+     * 검색 실행
+     */
+    async performSearch() {
+        const searchInput = document.getElementById('search-input');
+        const searchTerm = searchInput?.value?.trim();
+
+        if (!searchTerm) {
+            alert('검색어를 입력해주세요.');
+            return;
+        }
+
+        try {
+            // 로딩 표시
+            this.showSearchLoading(true);
+
+            // 검색 실행
+            const dbManager = window.wordAppV3?.dbManager;
+            if (!dbManager) {
+                throw new Error('데이터베이스가 준비되지 않았습니다.');
+            }
+
+            const searchResults = await dbManager.searchWords(searchTerm, { limit: 50 });
+
+            // 검색 히스토리 저장 (선택적)
+            try {
+                await dbManager.saveSearchHistory(searchTerm, searchResults.length);
+            } catch (historyError) {
+                console.warn('Failed to save search history:', historyError);
+                // 검색 히스토리 저장 실패해도 검색은 계속 진행
+            }
+
+            // 검색 결과 표시
+            await this.showSearchResults(searchTerm, searchResults);
+
+        } catch (error) {
+            console.error('Search error:', error);
+            alert('검색 중 오류가 발생했습니다: ' + error.message);
+        } finally {
+            this.showSearchLoading(false);
+        }
+    }
+
+    /**
+     * 검색 결과 화면 표시
+     */
+    async showSearchResults(searchTerm, results) {
+        // 검색 결과 화면으로 전환
+        this.showScreen('searchResults');
+
+        // 검색 정보 업데이트
+        const searchQuery = document.getElementById('searchQuery');
+        const searchStats = document.getElementById('searchStats');
+
+        if (searchQuery) {
+            searchQuery.textContent = `"${searchTerm}" 검색 결과`;
+        }
+
+        if (searchStats) {
+            searchStats.textContent = `${results.length}개의 결과`;
+        }
+
+        // 결과 표시
+        const searchResultsList = document.getElementById('searchResultsList');
+        const noResults = document.getElementById('noResults');
+
+        if (results.length === 0) {
+            // 결과 없음
+            if (searchResultsList) searchResultsList.style.display = 'none';
+            if (noResults) noResults.style.display = 'flex';
+        } else {
+            // 결과 있음
+            if (noResults) noResults.style.display = 'none';
+            if (searchResultsList) {
+                searchResultsList.style.display = 'flex';
+                this.renderSearchResults(results);
+            }
+        }
+    }
+
+    /**
+     * 검색 결과 렌더링
+     */
+    renderSearchResults(results) {
+        const searchResultsList = document.getElementById('searchResultsList');
+        const template = document.getElementById('searchResultItemTemplate');
+
+        if (!searchResultsList || !template) {
+            console.error('Search results elements not found');
+            return;
+        }
+
+        // 기존 결과 클리어
+        searchResultsList.innerHTML = '';
+
+        results.forEach((result, index) => {
+            const clone = template.content.cloneNode(true);
+
+            // 데이터 설정
+            const item = clone.querySelector('.search-result-item');
+            item.dataset.wordId = result.id;
+
+            // 텍스트 내용 설정
+            const resultHanja = clone.querySelector('.result-hanja');
+            const resultHiragana = clone.querySelector('.result-hiragana');
+            const resultMeaning = clone.querySelector('.result-meaning');
+            const resultJlpt = clone.querySelector('.result-jlpt');
+            const resultPos = clone.querySelector('.result-pos');
+            const matchType = clone.querySelector('.match-type');
+            const matchScore = clone.querySelector('.match-score');
+
+            if (resultHanja) resultHanja.textContent = result.hanja || '-';
+            if (resultHiragana) resultHiragana.textContent = result.hiragana || '';
+            if (resultMeaning) resultMeaning.textContent = result.mean || '';
+            if (resultJlpt) resultJlpt.textContent = result.jlptLevel || '';
+            if (resultPos) resultPos.textContent = result.partOfSpeech || '';
+
+            // 주제 정보 추가
+            const resultThemes = clone.querySelector('.result-themes');
+            if (resultThemes && result.themes && result.themes.length > 0) {
+                resultThemes.textContent = result.themes.slice(0, 2).join(', '); // 최대 2개만 표시
+            }
+
+            // 매치 정보 (주석 처리 - 필요 없는 기능)
+            // if (matchType && result.matchType?.length > 0) {
+            //     matchType.textContent = this.getMatchTypeLabel(result.matchType[0]);
+            // }
+            // if (matchScore) {
+            //     matchScore.textContent = `점수: ${result.matchScore}`;
+            // }
+
+            // 예문 설정
+            const resultExamples = clone.querySelector('.result-examples');
+            const hasExample1 = result.jpExample1 || result.koExample1;
+            const hasExample2 = result.jpExample2 || result.koExample2;
+
+            if (hasExample1 || hasExample2) {
+                // 첫 번째 예문
+                if (hasExample1) {
+                    const jpExample = clone.querySelector('.jp-example');
+                    const koExample = clone.querySelector('.ko-example');
+
+                    if (jpExample) jpExample.textContent = result.jpExample1 || '';
+                    if (koExample) koExample.textContent = result.koExample1 || '';
+                }
+
+                // 두 번째 예문
+                if (hasExample2) {
+                    const jpExample2 = clone.querySelector('.jp-example-2');
+                    const koExample2 = clone.querySelector('.ko-example-2');
+                    const exampleItem2 = clone.querySelector('.example-item-2');
+
+                    if (jpExample2) jpExample2.textContent = result.jpExample2 || '';
+                    if (koExample2) koExample2.textContent = result.koExample2 || '';
+                    if (exampleItem2) exampleItem2.style.display = 'block';
+                }
+            } else {
+                if (resultExamples) resultExamples.style.display = 'none';
+            }
+
+            // 이벤트 바인딩
+            this.bindSearchResultEvents(clone, result);
+
+            searchResultsList.appendChild(clone);
+        });
+
+        console.log(`Rendered ${results.length} search results`);
+    }
+
+    /**
+     * 검색 결과 아이템 이벤트 바인딩
+     */
+    bindSearchResultEvents(element, wordData) {
+        const expandBtn = element.querySelector('.expand-btn');
+        const studyBtn = element.querySelector('.study-btn');
+        const resultExamples = element.querySelector('.result-examples');
+
+        // 예문 펼치기/접기
+        if (expandBtn && resultExamples) {
+            expandBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isExpanded = resultExamples.style.display !== 'none';
+
+                if (isExpanded) {
+                    resultExamples.style.display = 'none';
+                    expandBtn.classList.remove('expanded');
+                } else {
+                    resultExamples.style.display = 'block';
+                    expandBtn.classList.add('expanded');
+                }
+            });
+        }
+
+        // 학습하기 버튼
+        if (studyBtn) {
+            studyBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.startWordStudyFromSearch(wordData);
+            });
+        }
+
+        // 아이템 클릭으로 예문 토글
+        const item = element.querySelector('.search-result-item');
+        if (item) {
+            item.addEventListener('click', () => {
+                if (expandBtn) expandBtn.click();
+            });
+        }
+    }
+
+    /**
+     * 검색 결과에서 단어 학습 시작
+     */
+    async startWordStudyFromSearch(wordData) {
+        try {
+            // 단어 배열 형태로 변환
+            const wordArray = [wordData];
+
+            // WordApp에 단어 전달
+            if (window.wordAppV3) {
+                await window.wordAppV3.setWordsAndStart(wordArray);
+                this.showScreen('word');
+            } else {
+                throw new Error('WordApp이 준비되지 않았습니다.');
+            }
+        } catch (error) {
+            console.error('Error starting word study from search:', error);
+            alert('단어 학습을 시작할 수 없습니다: ' + error.message);
+        }
+    }
+
+    /**
+     * 매치 타입 라벨 반환
+     */
+    getMatchTypeLabel(matchType) {
+        const labels = {
+            'exact': '정확',
+            'startsWith': '시작',
+            'includes': '포함',
+            'theme': '주제'
+        };
+        return labels[matchType] || matchType;
+    }
+
+    /**
+     * 검색 로딩 표시/숨김
+     */
+    showSearchLoading(show) {
+        const searchLoading = document.getElementById('searchLoading');
+        if (searchLoading) {
+            searchLoading.style.display = show ? 'flex' : 'none';
+        }
     }
 
     /**
