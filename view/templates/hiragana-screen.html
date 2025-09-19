@@ -1,0 +1,295 @@
+<div class="character-learning-screen" id="hiraganaScreen">
+    <!-- 헤더 -->
+    <div class="character-header">
+        <h2 class="character-title">히라가나 (ひらがな)</h2>
+    </div>
+
+    <!-- 메인 문자 표시 영역 -->
+    <div class="character-card" id="hiraganaCard">
+        <!-- 큰 문자 표시 -->
+        <div class="character-display">
+            <span class="main-character" id="mainHiragana">あ</span>
+        </div>
+
+        <!-- 로마자 & 발음 안내 (가로 배치) -->
+        <div class="romaji-pronunciation-container">
+            <div class="romaji-display">
+                <span class="romaji" id="hiraganaRomaji">a</span>
+            </div>
+            <div class="pronunciation-guide">
+                <span class="korean-sound" id="hiraganaKoreanSound">아</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문자 그리드 -->
+    <div class="character-grid" id="hiraganaGrid">
+        <!-- 기본 히라가나 50음 -->
+        <div class="grid-section">
+            <h3>기본 50음</h3>
+
+            <!-- あ행 -->
+            <div class="row-section">
+                <h4 class="row-title">あ행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="あ" data-romaji="a" data-sound="아">
+                        <span class="grid-char">あ</span>
+                        <span class="grid-romaji">a</span>
+                    </div>
+                    <div class="character-item" data-char="い" data-romaji="i" data-sound="이">
+                        <span class="grid-char">い</span>
+                        <span class="grid-romaji">i</span>
+                    </div>
+                    <div class="character-item" data-char="う" data-romaji="u" data-sound="우">
+                        <span class="grid-char">う</span>
+                        <span class="grid-romaji">u</span>
+                    </div>
+                    <div class="character-item" data-char="え" data-romaji="e" data-sound="에">
+                        <span class="grid-char">え</span>
+                        <span class="grid-romaji">e</span>
+                    </div>
+                    <div class="character-item" data-char="お" data-romaji="o" data-sound="오">
+                        <span class="grid-char">お</span>
+                        <span class="grid-romaji">o</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- か행 -->
+            <div class="row-section">
+                <h4 class="row-title">か행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="か" data-romaji="ka" data-sound="카">
+                        <span class="grid-char">か</span>
+                        <span class="grid-romaji">ka</span>
+                    </div>
+                    <div class="character-item" data-char="き" data-romaji="ki" data-sound="키">
+                        <span class="grid-char">き</span>
+                        <span class="grid-romaji">ki</span>
+                    </div>
+                    <div class="character-item" data-char="く" data-romaji="ku" data-sound="쿠">
+                        <span class="grid-char">く</span>
+                        <span class="grid-romaji">ku</span>
+                    </div>
+                    <div class="character-item" data-char="け" data-romaji="ke" data-sound="케">
+                        <span class="grid-char">け</span>
+                        <span class="grid-romaji">ke</span>
+                    </div>
+                    <div class="character-item" data-char="こ" data-romaji="ko" data-sound="코">
+                        <span class="grid-char">こ</span>
+                        <span class="grid-romaji">ko</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- さ행 -->
+            <div class="row-section">
+                <h4 class="row-title">さ행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="さ" data-romaji="sa" data-sound="사">
+                        <span class="grid-char">さ</span>
+                        <span class="grid-romaji">sa</span>
+                    </div>
+                    <div class="character-item" data-char="し" data-romaji="shi" data-sound="시">
+                        <span class="grid-char">し</span>
+                        <span class="grid-romaji">shi</span>
+                    </div>
+                    <div class="character-item" data-char="す" data-romaji="su" data-sound="수">
+                        <span class="grid-char">す</span>
+                        <span class="grid-romaji">su</span>
+                    </div>
+                    <div class="character-item" data-char="せ" data-romaji="se" data-sound="세">
+                        <span class="grid-char">せ</span>
+                        <span class="grid-romaji">se</span>
+                    </div>
+                    <div class="character-item" data-char="そ" data-romaji="so" data-sound="소">
+                        <span class="grid-char">そ</span>
+                        <span class="grid-romaji">so</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- た행 -->
+            <div class="row-section">
+                <h4 class="row-title">た행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="た" data-romaji="ta" data-sound="타">
+                        <span class="grid-char">た</span>
+                        <span class="grid-romaji">ta</span>
+                    </div>
+                    <div class="character-item" data-char="ち" data-romaji="chi" data-sound="치">
+                        <span class="grid-char">ち</span>
+                        <span class="grid-romaji">chi</span>
+                    </div>
+                    <div class="character-item" data-char="つ" data-romaji="tsu" data-sound="츠">
+                        <span class="grid-char">つ</span>
+                        <span class="grid-romaji">tsu</span>
+                    </div>
+                    <div class="character-item" data-char="て" data-romaji="te" data-sound="테">
+                        <span class="grid-char">て</span>
+                        <span class="grid-romaji">te</span>
+                    </div>
+                    <div class="character-item" data-char="と" data-romaji="to" data-sound="토">
+                        <span class="grid-char">と</span>
+                        <span class="grid-romaji">to</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- な행 -->
+            <div class="row-section">
+                <h4 class="row-title">な행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="な" data-romaji="na" data-sound="나">
+                        <span class="grid-char">な</span>
+                        <span class="grid-romaji">na</span>
+                    </div>
+                    <div class="character-item" data-char="に" data-romaji="ni" data-sound="니">
+                        <span class="grid-char">に</span>
+                        <span class="grid-romaji">ni</span>
+                    </div>
+                    <div class="character-item" data-char="ぬ" data-romaji="nu" data-sound="누">
+                        <span class="grid-char">ぬ</span>
+                        <span class="grid-romaji">nu</span>
+                    </div>
+                    <div class="character-item" data-char="ね" data-romaji="ne" data-sound="네">
+                        <span class="grid-char">ね</span>
+                        <span class="grid-romaji">ne</span>
+                    </div>
+                    <div class="character-item" data-char="の" data-romaji="no" data-sound="노">
+                        <span class="grid-char">の</span>
+                        <span class="grid-romaji">no</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- は행 -->
+            <div class="row-section">
+                <h4 class="row-title">は행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="は" data-romaji="ha" data-sound="하">
+                        <span class="grid-char">は</span>
+                        <span class="grid-romaji">ha</span>
+                    </div>
+                    <div class="character-item" data-char="ひ" data-romaji="hi" data-sound="히">
+                        <span class="grid-char">ひ</span>
+                        <span class="grid-romaji">hi</span>
+                    </div>
+                    <div class="character-item" data-char="ふ" data-romaji="fu" data-sound="후">
+                        <span class="grid-char">ふ</span>
+                        <span class="grid-romaji">fu</span>
+                    </div>
+                    <div class="character-item" data-char="へ" data-romaji="he" data-sound="헤">
+                        <span class="grid-char">へ</span>
+                        <span class="grid-romaji">he</span>
+                    </div>
+                    <div class="character-item" data-char="ほ" data-romaji="ho" data-sound="호">
+                        <span class="grid-char">ほ</span>
+                        <span class="grid-romaji">ho</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ま행 -->
+            <div class="row-section">
+                <h4 class="row-title">ま행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="ま" data-romaji="ma" data-sound="마">
+                        <span class="grid-char">ま</span>
+                        <span class="grid-romaji">ma</span>
+                    </div>
+                    <div class="character-item" data-char="み" data-romaji="mi" data-sound="미">
+                        <span class="grid-char">み</span>
+                        <span class="grid-romaji">mi</span>
+                    </div>
+                    <div class="character-item" data-char="む" data-romaji="mu" data-sound="무">
+                        <span class="grid-char">む</span>
+                        <span class="grid-romaji">mu</span>
+                    </div>
+                    <div class="character-item" data-char="め" data-romaji="me" data-sound="메">
+                        <span class="grid-char">め</span>
+                        <span class="grid-romaji">me</span>
+                    </div>
+                    <div class="character-item" data-char="も" data-romaji="mo" data-sound="모">
+                        <span class="grid-char">も</span>
+                        <span class="grid-romaji">mo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- や행 -->
+            <div class="row-section">
+                <h4 class="row-title">や행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="や" data-romaji="ya" data-sound="야">
+                        <span class="grid-char">や</span>
+                        <span class="grid-romaji">ya</span>
+                    </div>
+                    <div class="character-item placeholder"></div>
+                    <div class="character-item" data-char="ゆ" data-romaji="yu" data-sound="유">
+                        <span class="grid-char">ゆ</span>
+                        <span class="grid-romaji">yu</span>
+                    </div>
+                    <div class="character-item placeholder"></div>
+                    <div class="character-item" data-char="よ" data-romaji="yo" data-sound="요">
+                        <span class="grid-char">よ</span>
+                        <span class="grid-romaji">yo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ら행 -->
+            <div class="row-section">
+                <h4 class="row-title">ら행</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="ら" data-romaji="ra" data-sound="라">
+                        <span class="grid-char">ら</span>
+                        <span class="grid-romaji">ra</span>
+                    </div>
+                    <div class="character-item" data-char="り" data-romaji="ri" data-sound="리">
+                        <span class="grid-char">り</span>
+                        <span class="grid-romaji">ri</span>
+                    </div>
+                    <div class="character-item" data-char="る" data-romaji="ru" data-sound="루">
+                        <span class="grid-char">る</span>
+                        <span class="grid-romaji">ru</span>
+                    </div>
+                    <div class="character-item" data-char="れ" data-romaji="re" data-sound="레">
+                        <span class="grid-char">れ</span>
+                        <span class="grid-romaji">re</span>
+                    </div>
+                    <div class="character-item" data-char="ろ" data-romaji="ro" data-sound="로">
+                        <span class="grid-char">ろ</span>
+                        <span class="grid-romaji">ro</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- わ행 & ん -->
+            <div class="row-section">
+                <h4 class="row-title">わ행 & ん</h4>
+                <div class="character-row-container">
+                    <div class="character-item" data-char="わ" data-romaji="wa" data-sound="와">
+                        <span class="grid-char">わ</span>
+                        <span class="grid-romaji">wa</span>
+                    </div>
+                    <div class="character-item placeholder"></div>
+                    <div class="character-item" data-char="を" data-romaji="wo" data-sound="오">
+                        <span class="grid-char">を</span>
+                        <span class="grid-romaji">wo</span>
+                    </div>
+                    <div class="character-item placeholder"></div>
+                    <div class="character-item" data-char="ん" data-romaji="n" data-sound="응">
+                        <span class="grid-char">ん</span>
+                        <span class="grid-romaji">n</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 네비게이션 힌트 -->
+    <div class="navigation-hint">
+        <p>← 이전 화면으로 가려면 왼쪽에서 오른쪽으로 스와이프하세요</p>
+    </div>
+</div>

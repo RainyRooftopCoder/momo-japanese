@@ -1,0 +1,219 @@
+<div class="character-learning-screen" id="dakutenScreen">
+    <!-- 헤더 -->
+    <div class="character-header">
+        <h2 class="character-title">
+            탁음 & 반탁음<br />
+            (濁音・半濁音)
+        </h2>
+    </div>
+
+    <!-- 메인 문자 표시 영역 -->
+    <div class="character-card" id="dakutenCard">
+        <!-- 큰 문자 표시 -->
+        <div class="character-display">
+            <span class="main-character" id="mainDakuten">が</span>
+        </div>
+
+        <!-- 로마자 & 발음 안내 (가로 배치) -->
+        <div class="romaji-pronunciation-container">
+            <div class="romaji-display">
+                <span class="romaji" id="dakutenRomaji">ga</span>
+            </div>
+            <div class="pronunciation-guide">
+                <div class="pronunciation-horizontal">
+                    <span class="korean-sound" id="dakutenKoreanSound">가</span>
+                    <span class="base-character">← か + ゛</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문자 그리드 -->
+    <div class="character-grid" id="dakutenGrid">
+        <!-- 탁음 -->
+        <div class="grid-section">
+            <h3>탁음 (濁音) - ゛</h3>
+            <div class="character-grid-container">
+                <!-- が행 -->
+                <div class="character-item" data-char="が" data-romaji="ga" data-sound="가" data-base="か">
+                    <span class="grid-char">が</span>
+                    <span class="grid-romaji">ga</span>
+                    <span class="grid-base">← か</span>
+                </div>
+                <div class="character-item" data-char="ぎ" data-romaji="gi" data-sound="기" data-base="き">
+                    <span class="grid-char">ぎ</span>
+                    <span class="grid-romaji">gi</span>
+                    <span class="grid-base">← き</span>
+                </div>
+                <div class="character-item" data-char="ぐ" data-romaji="gu" data-sound="구" data-base="く">
+                    <span class="grid-char">ぐ</span>
+                    <span class="grid-romaji">gu</span>
+                    <span class="grid-base">← く</span>
+                </div>
+                <div class="character-item" data-char="げ" data-romaji="ge" data-sound="게" data-base="け">
+                    <span class="grid-char">げ</span>
+                    <span class="grid-romaji">ge</span>
+                    <span class="grid-base">← け</span>
+                </div>
+                <div class="character-item" data-char="ご" data-romaji="go" data-sound="고" data-base="こ">
+                    <span class="grid-char">ご</span>
+                    <span class="grid-romaji">go</span>
+                    <span class="grid-base">← こ</span>
+                </div>
+
+                <!-- ざ행 -->
+                <div class="character-item" data-char="ざ" data-romaji="za" data-sound="자" data-base="さ">
+                    <span class="grid-char">ざ</span>
+                    <span class="grid-romaji">za</span>
+                    <span class="grid-base">← さ</span>
+                </div>
+                <div class="character-item" data-char="じ" data-romaji="ji" data-sound="지" data-base="し">
+                    <span class="grid-char">じ</span>
+                    <span class="grid-romaji">ji</span>
+                    <span class="grid-base">← し</span>
+                </div>
+                <div class="character-item" data-char="ず" data-romaji="zu" data-sound="즈" data-base="す">
+                    <span class="grid-char">ず</span>
+                    <span class="grid-romaji">zu</span>
+                    <span class="grid-base">← す</span>
+                </div>
+                <div class="character-item" data-char="ぜ" data-romaji="ze" data-sound="제" data-base="せ">
+                    <span class="grid-char">ぜ</span>
+                    <span class="grid-romaji">ze</span>
+                    <span class="grid-base">← せ</span>
+                </div>
+                <div class="character-item" data-char="ぞ" data-romaji="zo" data-sound="조" data-base="そ">
+                    <span class="grid-char">ぞ</span>
+                    <span class="grid-romaji">zo</span>
+                    <span class="grid-base">← そ</span>
+                </div>
+
+                <!-- だ행 -->
+                <div class="character-item" data-char="だ" data-romaji="da" data-sound="다" data-base="た">
+                    <span class="grid-char">だ</span>
+                    <span class="grid-romaji">da</span>
+                    <span class="grid-base">← た</span>
+                </div>
+                <div class="character-item" data-char="ぢ" data-romaji="ji" data-sound="지" data-base="ち">
+                    <span class="grid-char">ぢ</span>
+                    <span class="grid-romaji">ji</span>
+                    <span class="grid-base">← ち</span>
+                </div>
+                <div class="character-item" data-char="づ" data-romaji="zu" data-sound="즈" data-base="つ">
+                    <span class="grid-char">づ</span>
+                    <span class="grid-romaji">zu</span>
+                    <span class="grid-base">← つ</span>
+                </div>
+                <div class="character-item" data-char="で" data-romaji="de" data-sound="데" data-base="て">
+                    <span class="grid-char">で</span>
+                    <span class="grid-romaji">de</span>
+                    <span class="grid-base">← て</span>
+                </div>
+                <div class="character-item" data-char="ど" data-romaji="do" data-sound="도" data-base="と">
+                    <span class="grid-char">ど</span>
+                    <span class="grid-romaji">do</span>
+                    <span class="grid-base">← と</span>
+                </div>
+
+                <!-- ば행 -->
+                <div class="character-item" data-char="ば" data-romaji="ba" data-sound="바" data-base="は">
+                    <span class="grid-char">ば</span>
+                    <span class="grid-romaji">ba</span>
+                    <span class="grid-base">← は</span>
+                </div>
+                <div class="character-item" data-char="び" data-romaji="bi" data-sound="비" data-base="ひ">
+                    <span class="grid-char">び</span>
+                    <span class="grid-romaji">bi</span>
+                    <span class="grid-base">← ひ</span>
+                </div>
+                <div class="character-item" data-char="ぶ" data-romaji="bu" data-sound="부" data-base="ふ">
+                    <span class="grid-char">ぶ</span>
+                    <span class="grid-romaji">bu</span>
+                    <span class="grid-base">← ふ</span>
+                </div>
+                <div class="character-item" data-char="べ" data-romaji="be" data-sound="베" data-base="へ">
+                    <span class="grid-char">べ</span>
+                    <span class="grid-romaji">be</span>
+                    <span class="grid-base">← へ</span>
+                </div>
+                <div class="character-item" data-char="ぼ" data-romaji="bo" data-sound="보" data-base="ほ">
+                    <span class="grid-char">ぼ</span>
+                    <span class="grid-romaji">bo</span>
+                    <span class="grid-base">← ほ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 반탁음 -->
+        <div class="grid-section">
+            <h3>반탁음 (半濁音) - ゜</h3>
+            <div class="character-grid-container">
+                <!-- ぱ행 -->
+                <div class="character-item" data-char="ぱ" data-romaji="pa" data-sound="파" data-base="は">
+                    <span class="grid-char">ぱ</span>
+                    <span class="grid-romaji">pa</span>
+                    <span class="grid-base">← は</span>
+                </div>
+                <div class="character-item" data-char="ぴ" data-romaji="pi" data-sound="피" data-base="ひ">
+                    <span class="grid-char">ぴ</span>
+                    <span class="grid-romaji">pi</span>
+                    <span class="grid-base">← ひ</span>
+                </div>
+                <div class="character-item" data-char="ぷ" data-romaji="pu" data-sound="푸" data-base="ふ">
+                    <span class="grid-char">ぷ</span>
+                    <span class="grid-romaji">pu</span>
+                    <span class="grid-base">← ふ</span>
+                </div>
+                <div class="character-item" data-char="ぺ" data-romaji="pe" data-sound="페" data-base="へ">
+                    <span class="grid-char">ぺ</span>
+                    <span class="grid-romaji">pe</span>
+                    <span class="grid-base">← へ</span>
+                </div>
+                <div class="character-item" data-char="ぽ" data-romaji="po" data-sound="포" data-base="ほ">
+                    <span class="grid-char">ぽ</span>
+                    <span class="grid-romaji">po</span>
+                    <span class="grid-base">← ほ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 가타카나 탁음 -->
+        <div class="grid-section">
+            <h3>가타카나 탁음</h3>
+            <div class="character-grid-container">
+                <!-- ガ행 -->
+                <div class="character-item" data-char="ガ" data-romaji="ga" data-sound="가" data-base="カ">
+                    <span class="grid-char">ガ</span>
+                    <span class="grid-romaji">ga</span>
+                    <span class="grid-base">← カ</span>
+                </div>
+                <div class="character-item" data-char="ギ" data-romaji="gi" data-sound="기" data-base="キ">
+                    <span class="grid-char">ギ</span>
+                    <span class="grid-romaji">gi</span>
+                    <span class="grid-base">← キ</span>
+                </div>
+                <div class="character-item" data-char="グ" data-romaji="gu" data-sound="구" data-base="ク">
+                    <span class="grid-char">グ</span>
+                    <span class="grid-romaji">gu</span>
+                    <span class="grid-base">← ク</span>
+                </div>
+                <div class="character-item" data-char="ゲ" data-romaji="ge" data-sound="게" data-base="ケ">
+                    <span class="grid-char">ゲ</span>
+                    <span class="grid-romaji">ge</span>
+                    <span class="grid-base">← ケ</span>
+                </div>
+                <div class="character-item" data-char="ゴ" data-romaji="go" data-sound="고" data-base="コ">
+                    <span class="grid-char">ゴ</span>
+                    <span class="grid-romaji">go</span>
+                    <span class="grid-base">← コ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 네비게이션 힌트 -->
+    <div class="navigation-hint">
+        <p>← 이전 화면으로 가려면 왼쪽에서 오른쪽으로 스와이프하세요</p>
+        <p>탁음표(゛)는 청음을 탁음으로, 반탁음표(゜)는 は행을 파행음으로 변화시킵니다</p>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JLPT 단어장 V3 - Template 기반</title>
+
+        <!-- CSS 파일들 -->
+        <link rel="stylesheet" href="../css/reset.css" />
+        <link rel="stylesheet" href="../css/style-glassmorphism.css" />
+        <link rel="stylesheet" href="../css/three-step-navigation.css" />
+
+        <!-- JavaScript 파일들 -->
+        <script defer src="../js/indexedDB-v3.js"></script>
+        <script defer src="../js/script-v3.js"></script>
+        <script defer src="../js/template-loader.js"></script>
+        <script defer src="../js/navigation.js"></script>
+    </head>
+    <body>
+        <div class="app-container">
+            <!-- 헤더 컨테이너 (템플릿으로 로드됨) -->
+            <div id="header-container"></div>
+
+            <!-- 메인 콘텐츠 (템플릿들이 동적으로 로드됨) -->
+            <main class="main-content" id="main-content">
+                <!-- 3단계 화면 템플릿들이 여기에 로드됩니다 -->
+            </main>
+
+            <!-- 하단 네비게이션 바 -->
+            <div class="nav-container">
+                <nav class="bottom-nav">
+                    <div class="botton-group">
+                        <button class="nav-btn" id="home-btn">
+                            <span class="nav-icon"><img src="../icon/home_black_icon.png" alt="홈" /></span>
+                            <!-- <span class="nav-label">홈</span> -->
+                        </button>
+                        <button class="nav-btn" id="more-btn">
+                            <span class="nav-icon"><img src="../icon/setting_black_icon.png" alt="" /></span>
+                            <!-- <span class="nav-label">더보기</span> -->
+                        </button>
+                        <button class="nav-btn" id="more-btn">
+                            <span class="nav-icon"><img src="../icon/setting_black_icon.png" alt="설정" /></span>
+                            <!-- <span class="nav-label">더보기</span> -->
+                        </button>
+                    </div>
+                    <div class="botton-search">
+                        <button class="nav-btn nav-search" id="search-btn">
+                            <span class="nav-icon"><img src="../icon/search_black_icon.png" alt="검색" /></span>
+                            <!-- <span class="nav-label">검색</span> -->
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,5147 @@
+[
+  {
+    "id": 1001,
+    "hanja": "部長",
+    "hiragana": "ぶちょう",
+    "mean": "부장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "직업",
+      "인간관계"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "部長を見ました。",
+    "koExample1": "부장을 봤습니다.",
+    "jpExample2": "部長があります。",
+    "koExample2": "부장이 있습니다."
+  },
+  {
+    "id": 1002,
+    "hanja": "課長",
+    "hiragana": "かちょう",
+    "mean": "과장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "직업",
+      "인간관계"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "課長を見ました。",
+    "koExample1": "과장을 봤습니다.",
+    "jpExample2": "課長があります。",
+    "koExample2": "과장이 있습니다."
+  },
+  {
+    "id": 1003,
+    "hanja": "容器",
+    "hiragana": "ようき",
+    "mean": "용기",
+    "partOfSpeech": "명사",
+    "themes": [
+      "도구",
+      "그릇"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "薬を飲みます。",
+    "koExample1": "약을 먹습니다.",
+    "jpExample2": "薬をもらいました。",
+    "koExample2": "약을 받았습니다."
+  },
+  {
+    "id": 1004,
+    "hanja": "看護師",
+    "hiragana": "かんごし",
+    "mean": "간호사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "직업",
+      "건강"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "看護師を見ました。",
+    "koExample1": "간호사을 봤습니다.",
+    "jpExample2": "看護師があります。",
+    "koExample2": "간호사이 있습니다."
+  },
+  {
+    "id": 1005,
+    "hanja": "警察官",
+    "hiragana": "けいさつかん",
+    "mean": "경찰관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "직업"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "警察官を見ました。",
+    "koExample1": "경찰관을 봤습니다.",
+    "jpExample2": "警察官があります。",
+    "koExample2": "경찰관이 있습니다."
+  },
+  {
+    "id": 1006,
+    "hanja": "留学生",
+    "hiragana": "りゅうがくせい",
+    "mean": "유학생",
+    "partOfSpeech": "명사",
+    "themes": [
+      "교육"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "留学生を見ました。",
+    "koExample1": "유학생을 봤습니다.",
+    "jpExample2": "留学生があります。",
+    "koExample2": "유학생이 있습니다."
+  },
+  {
+    "id": 1007,
+    "hanja": "先輩",
+    "hiragana": "せんぱい",
+    "mean": "선배",
+    "partOfSpeech": "명사",
+    "themes": [
+      "인간관계"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "先輩を見ました。",
+    "koExample1": "선배을 봤습니다.",
+    "jpExample2": "先輩があります。",
+    "koExample2": "선배이 있습니다."
+  },
+  {
+    "id": 1008,
+    "hanja": "後輩",
+    "hiragana": "こうはい",
+    "mean": "후배",
+    "partOfSpeech": "명사",
+    "themes": [
+      "인간관계"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "後輩を見ました。",
+    "koExample1": "후배을 봤습니다.",
+    "jpExample2": "後輩があります。",
+    "koExample2": "후배이 있습니다."
+  },
+  {
+    "id": 1009,
+    "hanja": "親戚",
+    "hiragana": "しんせき",
+    "mean": "친척",
+    "partOfSpeech": "명사",
+    "themes": [
+      "가족"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "親戚を見ました。",
+    "koExample1": "친척을 봤습니다.",
+    "jpExample2": "親戚があります。",
+    "koExample2": "친척이 있습니다."
+  },
+  {
+    "id": 1010,
+    "hanja": "夫婦",
+    "hiragana": "ふうふ",
+    "mean": "부부",
+    "partOfSpeech": "명사",
+    "themes": [
+      "가족"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "夫婦を見ました。",
+    "koExample1": "부부을 봤습니다.",
+    "jpExample2": "夫婦があります。",
+    "koExample2": "부부이 있습니다."
+  },
+  {
+    "id": 1011,
+    "hanja": "怪我",
+    "hiragana": "けが",
+    "mean": "부상",
+    "partOfSpeech": "명사",
+    "themes": [
+      "의료",
+      "사고"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "怪我をしました。",
+    "koExample1": "부상을 당했습니다.",
+    "jpExample2": "怪我が痛いです。",
+    "koExample2": "부상이 아픕니다."
+  },
+  {
+    "id": 1012,
+    "hanja": "市役所",
+    "hiragana": "しやくしょ",
+    "mean": "시청",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "행정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "市役所を見ました。",
+    "koExample1": "시청을 봤습니다.",
+    "jpExample2": "市役所があります。",
+    "koExample2": "시청이 있습니다."
+  },
+  {
+    "id": 1013,
+    "hanja": "区役所",
+    "hiragana": "くやくしょ",
+    "mean": "구청",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "행정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "区役所を見ました。",
+    "koExample1": "구청을 봤습니다.",
+    "jpExample2": "区役所があります。",
+    "koExample2": "구청이 있습니다."
+  },
+  {
+    "id": 1014,
+    "hanja": "役所",
+    "hiragana": "やくしょ",
+    "mean": "관공서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "행정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "役所を見ました。",
+    "koExample1": "관공서을 봤습니다.",
+    "jpExample2": "役所があります。",
+    "koExample2": "관공서이 있습니다."
+  },
+  {
+    "id": 1015,
+    "hanja": "下着",
+    "hiragana": "したぎ",
+    "mean": "속옷",
+    "partOfSpeech": "명사",
+    "themes": [
+      "의복",
+      "일상"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "母を手伝います。",
+    "koExample1": "어머니를 도와드립니다.",
+    "jpExample2": "手伝ってください。",
+    "koExample2": "도와주세요."
+  },
+  {
+    "id": 1016,
+    "hanja": "和服",
+    "hiragana": "わふく",
+    "mean": "화복",
+    "partOfSpeech": "명사",
+    "themes": [
+      "의복",
+      "전통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "よく借りるます。",
+    "koExample1": "자주 빌리다니다.",
+    "jpExample2": "昨日借りるました。",
+    "koExample2": "어제 빌리다었습니다."
+  },
+  {
+    "id": 1017,
+    "hanja": "博物館",
+    "hiragana": "はくぶつかん",
+    "mean": "박물관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "문화"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "博物館を見ました。",
+    "koExample1": "박물관을 봤습니다.",
+    "jpExample2": "博物館があります。",
+    "koExample2": "박물관이 있습니다."
+  },
+  {
+    "id": 1018,
+    "hanja": "美術館",
+    "hiragana": "びじゅつかん",
+    "mean": "미술관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "문화"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "美術館を見ました。",
+    "koExample1": "미술관을 봤습니다.",
+    "jpExample2": "美術館があります。",
+    "koExample2": "미술관이 있습니다."
+  },
+  {
+    "id": 1019,
+    "hanja": "動物園",
+    "hiragana": "どうぶつえん",
+    "mean": "동물원",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "여가"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "動物園を見ました。",
+    "koExample1": "동물원을 봤습니다.",
+    "jpExample2": "動物園があります。",
+    "koExample2": "동물원이 있습니다."
+  },
+  {
+    "id": 1020,
+    "hanja": "植物園",
+    "hiragana": "しょくぶつえん",
+    "mean": "식물원",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "여가"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "植物園を見ました。",
+    "koExample1": "식물원을 봤습니다.",
+    "jpExample2": "植物園があります。",
+    "koExample2": "식물원이 있습니다."
+  },
+  {
+    "id": 1021,
+    "hanja": "水族館",
+    "hiragana": "すいぞくかん",
+    "mean": "수족관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "여가"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "水族館を見ました。",
+    "koExample1": "수족관을 봤습니다.",
+    "jpExample2": "水族館があります。",
+    "koExample2": "수족관이 있습니다."
+  },
+  {
+    "id": 1022,
+    "hanja": "郵便局員",
+    "hiragana": "ゆうびんきょくいん",
+    "mean": "우체국 직원",
+    "partOfSpeech": "명사",
+    "themes": [
+      "직업",
+      "서비스"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "郵便局員を見ました。",
+    "koExample1": "우체국 직원을 봤습니다.",
+    "jpExample2": "郵便局員があります。",
+    "koExample2": "우체국 직원이 있습니다."
+  },
+  {
+    "id": 1023,
+    "hanja": "返す",
+    "hiragana": "かえす",
+    "mean": "돌려주다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "행동",
+      "일상"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "よく返すます。",
+    "koExample1": "자주 돌려주다니다.",
+    "jpExample2": "昨日返すました。",
+    "koExample2": "어제 돌려주다었습니다."
+  },
+  {
+    "id": 1024,
+    "hanja": "港",
+    "hiragana": "みなと",
+    "mean": "항구",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "港を見ました。",
+    "koExample1": "항구을 봤습니다.",
+    "jpExample2": "港があります。",
+    "koExample2": "항구이 있습니다."
+  },
+  {
+    "id": 1025,
+    "hanja": "旅館",
+    "hiragana": "りょかん",
+    "mean": "여관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "숙박"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "旅館を見ました。",
+    "koExample1": "여관을 봤습니다.",
+    "jpExample2": "旅館があります。",
+    "koExample2": "여관이 있습니다."
+  },
+  {
+    "id": 1026,
+    "hanja": "民宿",
+    "hiragana": "みんしゅく",
+    "mean": "민박",
+    "partOfSpeech": "명사",
+    "themes": [
+      "숙박"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "民宿を見ました。",
+    "koExample1": "민박을 봤습니다.",
+    "jpExample2": "民宿があります。",
+    "koExample2": "민박이 있습니다."
+  },
+  {
+    "id": 1027,
+    "hanja": "温泉",
+    "hiragana": "おんせん",
+    "mean": "온천",
+    "partOfSpeech": "명사",
+    "themes": [
+      "여가",
+      "장소"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "温泉を見ました。",
+    "koExample1": "온천을 봤습니다.",
+    "jpExample2": "温泉があります。",
+    "koExample2": "온천이 있습니다."
+  },
+  {
+    "id": 1028,
+    "hanja": "入口",
+    "hiragana": "いりぐち",
+    "mean": "입구",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "入口を見ました。",
+    "koExample1": "입구을 봤습니다.",
+    "jpExample2": "入口があります。",
+    "koExample2": "입구이 있습니다."
+  },
+  {
+    "id": 1029,
+    "hanja": "出口",
+    "hiragana": "でぐち",
+    "mean": "출구",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "出口を見ました。",
+    "koExample1": "출구을 봤습니다.",
+    "jpExample2": "出口があります。",
+    "koExample2": "출구이 있습니다."
+  },
+  {
+    "id": 1030,
+    "hanja": "間違える",
+    "hiragana": "まちがえる",
+    "mean": "틀리다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "행동",
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "よく間違えるます。",
+    "koExample1": "자주 틀리다니다.",
+    "jpExample2": "昨日間違えるました。",
+    "koExample2": "어제 틀리다었습니다."
+  },
+  {
+    "id": 1031,
+    "hanja": "忘れ物",
+    "hiragana": "わすれもの",
+    "mean": "분실물",
+    "partOfSpeech": "명사",
+    "themes": [
+      "일상",
+      "물건"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "忘れ物を見ました。",
+    "koExample1": "분실물을 봤습니다.",
+    "jpExample2": "忘れ物があります。",
+    "koExample2": "분실물이 있습니다."
+  },
+  {
+    "id": 1032,
+    "hanja": "背広",
+    "hiragana": "せびろ",
+    "mean": "배광",
+    "partOfSpeech": "명사",
+    "themes": [
+      "의복",
+      "정장"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "宿題を見ました。",
+    "koExample1": "숙제을 봤습니다.",
+    "jpExample2": "宿題があります。",
+    "koExample2": "숙제이 있습니다."
+  },
+  {
+    "id": 1033,
+    "hanja": "駐車場",
+    "hiragana": "ちゅうしゃじょう",
+    "mean": "주차장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "駐車場を見ました。",
+    "koExample1": "주차장을 봤습니다.",
+    "jpExample2": "駐車場があります。",
+    "koExample2": "주차장이 있습니다."
+  },
+  {
+    "id": 1034,
+    "hanja": "駐輪場",
+    "hiragana": "ちゅうりんじょう",
+    "mean": "자전거 주차장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소",
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "駐輪場を見ました。",
+    "koExample1": "자전거 주차장을 봤습니다.",
+    "jpExample2": "駐輪場があります。",
+    "koExample2": "자전거 주차장이 있습니다."
+  },
+  {
+    "id": 1035,
+    "hanja": "地震",
+    "hiragana": "じしん",
+    "mean": "지진",
+    "partOfSpeech": "명사",
+    "themes": [
+      "자연",
+      "재해"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "地震を見ました。",
+    "koExample1": "지진을 봤습니다.",
+    "jpExample2": "地震があります。",
+    "koExample2": "지진이 있습니다."
+  },
+  {
+    "id": 1036,
+    "hanja": "火事",
+    "hiragana": "かじ",
+    "mean": "화재",
+    "partOfSpeech": "명사",
+    "themes": [
+      "재해"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "火事を見ました。",
+    "koExample1": "화재을 봤습니다.",
+    "jpExample2": "火事があります。",
+    "koExample2": "화재이 있습니다."
+  },
+  {
+    "id": 1037,
+    "hanja": "事故",
+    "hiragana": "じこ",
+    "mean": "사고",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사건",
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "事故を見ました。",
+    "koExample1": "사고을 봤습니다.",
+    "jpExample2": "事故があります。",
+    "koExample2": "사고이 있습니다."
+  },
+  {
+    "id": 1038,
+    "hanja": "予約",
+    "hiragana": "よやく",
+    "mean": "예약",
+    "partOfSpeech": "명사",
+    "themes": [
+      "서비스"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "予約を見ました。",
+    "koExample1": "예약을 봤습니다.",
+    "jpExample2": "予約があります。",
+    "koExample2": "예약이 있습니다."
+  },
+  {
+    "id": 1039,
+    "hanja": "将来",
+    "hiragana": "しょうらい",
+    "mean": "장래",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "将来を見ました。",
+    "koExample1": "장래을 봤습니다.",
+    "jpExample2": "将来があります。",
+    "koExample2": "장래이 있습니다."
+  },
+  {
+    "id": 1040,
+    "hanja": "過去",
+    "hiragana": "かこ",
+    "mean": "과거",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "過去を見ました。",
+    "koExample1": "과거을 봤습니다.",
+    "jpExample2": "過去があります。",
+    "koExample2": "과거이 있습니다."
+  },
+  {
+    "id": 1041,
+    "hanja": "最初",
+    "hiragana": "さいしょ",
+    "mean": "처음",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "最初を見ました。",
+    "koExample1": "처음을 봤습니다.",
+    "jpExample2": "最初があります。",
+    "koExample2": "처음이 있습니다."
+  },
+  {
+    "id": 1042,
+    "hanja": "最後",
+    "hiragana": "さいご",
+    "mean": "마지막",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "最後を見ました。",
+    "koExample1": "마지막을 봤습니다.",
+    "jpExample2": "最後があります。",
+    "koExample2": "마지막이 있습니다."
+  },
+  {
+    "id": 1043,
+    "hanja": "途中",
+    "hiragana": "とちゅう",
+    "mean": "도중",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "途中を見ました。",
+    "koExample1": "도중을 봤습니다.",
+    "jpExample2": "途中があります。",
+    "koExample2": "도중이 있습니다."
+  },
+  {
+    "id": 1044,
+    "hanja": "締切",
+    "hiragana": "しめきり",
+    "mean": "마감",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "締切を見ました。",
+    "koExample1": "마감을 봤습니다.",
+    "jpExample2": "締切があります。",
+    "koExample2": "마감이 있습니다."
+  },
+  {
+    "id": 1045,
+    "hanja": "期限",
+    "hiragana": "きげん",
+    "mean": "기한",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "期限を見ました。",
+    "koExample1": "기한을 봤습니다.",
+    "jpExample2": "期限があります。",
+    "koExample2": "기한이 있습니다."
+  },
+  {
+    "id": 1046,
+    "hanja": "日記",
+    "hiragana": "にっき",
+    "mean": "일기",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간",
+      "기록"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "日記を見ました。",
+    "koExample1": "일기을 봤습니다.",
+    "jpExample2": "日記があります。",
+    "koExample2": "일기이 있습니다."
+  },
+  {
+    "id": 1047,
+    "hanja": "以外",
+    "hiragana": "いがい",
+    "mean": "이외",
+    "partOfSpeech": "명사",
+    "themes": [
+      "양",
+      "비교"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "以外を見ました。",
+    "koExample1": "이외을 봤습니다.",
+    "jpExample2": "以外があります。",
+    "koExample2": "이외이 있습니다."
+  },
+  {
+    "id": 1048,
+    "hanja": "以上",
+    "hiragana": "いじょう",
+    "mean": "이상",
+    "partOfSpeech": "명사",
+    "themes": [
+      "양",
+      "비교"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "以上を見ました。",
+    "koExample1": "이상을 봤습니다.",
+    "jpExample2": "以上があります。",
+    "koExample2": "이상이 있습니다."
+  },
+  {
+    "id": 1049,
+    "hanja": "以下",
+    "hiragana": "いか",
+    "mean": "이하",
+    "partOfSpeech": "명사",
+    "themes": [
+      "양",
+      "비교"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "以下を見ました。",
+    "koExample1": "이하을 봤습니다.",
+    "jpExample2": "以下があります。",
+    "koExample2": "이하이 있습니다."
+  },
+  {
+    "id": 1050,
+    "hanja": "以内",
+    "hiragana": "いない",
+    "mean": "이내",
+    "partOfSpeech": "명사",
+    "themes": [
+      "양",
+      "비교"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "以内を見ました。",
+    "koExample1": "이내을 봤습니다.",
+    "jpExample2": "以内があります。",
+    "koExample2": "이내이 있습니다."
+  },
+  {
+    "id": 1051,
+    "hanja": "合計",
+    "hiragana": "ごうけい",
+    "mean": "합계",
+    "partOfSpeech": "명사",
+    "themes": [
+      "수학"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "合計を見ました。",
+    "koExample1": "합계을 봤습니다.",
+    "jpExample2": "合計があります。",
+    "koExample2": "합계이 있습니다."
+  },
+  {
+    "id": 1052,
+    "hanja": "増加",
+    "hiragana": "ぞうか",
+    "mean": "증가",
+    "partOfSpeech": "명사",
+    "themes": [
+      "변화"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "増加を見ました。",
+    "koExample1": "증가을 봤습니다.",
+    "jpExample2": "増加があります。",
+    "koExample2": "증가이 있습니다."
+  },
+  {
+    "id": 1053,
+    "hanja": "減少",
+    "hiragana": "げんしょう",
+    "mean": "감소",
+    "partOfSpeech": "명사",
+    "themes": [
+      "변화"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "減少を見ました。",
+    "koExample1": "감소을 봤습니다.",
+    "jpExample2": "減少があります。",
+    "koExample2": "감소이 있습니다."
+  },
+  {
+    "id": 1054,
+    "hanja": "間に合う",
+    "hiragana": "まにあう",
+    "mean": "시간에 맞다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日間に合う（まにあう）ようにしています。",
+    "koExample1": "매일 시간에 맞다하려고 합니다.",
+    "jpExample2": "昨日は間に合う（まにあう）ことにしました。",
+    "koExample2": "어제는 시간에 맞다하기로 했습니다."
+  },
+  {
+    "id": 1055,
+    "hanja": "集める",
+    "hiragana": "あつめる",
+    "mean": "모으다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "행동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日集める（あつめる）ようにしています。",
+    "koExample1": "매일 모으다하려고 합니다.",
+    "jpExample2": "昨日は集める（あつめる）ことにしました。",
+    "koExample2": "어제는 모으다하기로 했습니다."
+  },
+  {
+    "id": 1056,
+    "hanja": "集まる",
+    "hiragana": "あつまる",
+    "mean": "모이다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "행동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日集まる（あつまる）ようにしています。",
+    "koExample1": "매일 모이다하려고 합니다.",
+    "jpExample2": "昨日は集まる（あつまる）ことにしました。",
+    "koExample2": "어제는 모이다하기로 했습니다."
+  },
+  {
+    "id": 1057,
+    "hanja": "決める",
+    "hiragana": "きめる",
+    "mean": "정하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "결정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日決める（きめる）ようにしています。",
+    "koExample1": "매일 정하다하려고 합니다.",
+    "jpExample2": "昨日は決める（きめる）ことにしました。",
+    "koExample2": "어제는 정하다하기로 했습니다."
+  },
+  {
+    "id": 1058,
+    "hanja": "決まる",
+    "hiragana": "きまる",
+    "mean": "정해지다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "결정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日決まる（きまる）ようにしています。",
+    "koExample1": "매일 정해지다하려고 합니다.",
+    "jpExample2": "昨日は決まる（きまる）ことにしました。",
+    "koExample2": "어제는 정해지다하기로 했습니다."
+  },
+  {
+    "id": 1059,
+    "hanja": "続く",
+    "hiragana": "つづく",
+    "mean": "계속되다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "행동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日続く（つづく）ようにしています。",
+    "koExample1": "매일 계속되다하려고 합니다.",
+    "jpExample2": "昨日は続く（つづく）ことにしました。",
+    "koExample2": "어제는 계속되다하기로 했습니다."
+  },
+  {
+    "id": 1060,
+    "hanja": "並ぶ",
+    "hiragana": "ならぶ",
+    "mean": "줄 서다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "행동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日並ぶ（ならぶ）ようにしています。",
+    "koExample1": "매일 줄 서다하려고 합니다.",
+    "jpExample2": "昨日は並ぶ（ならぶ）ことにしました。",
+    "koExample2": "어제는 줄 서다하기로 했습니다."
+  },
+  {
+    "id": 1061,
+    "hanja": "並べる",
+    "hiragana": "ならべる",
+    "mean": "늘어놓다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "행동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日並べる（ならべる）ようにしています。",
+    "koExample1": "매일 늘어놓다하려고 합니다.",
+    "jpExample2": "昨日は並べる（ならべる）ことにしました。",
+    "koExample2": "어제는 늘어놓다하기로 했습니다."
+  },
+  {
+    "id": 1062,
+    "hanja": "片付ける",
+    "hiragana": "かたづける",
+    "mean": "정리하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "집안일"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日片付ける（かたづける）ようにしています。",
+    "koExample1": "매일 정리하다하려고 합니다.",
+    "jpExample2": "昨日は片付ける（かたづける）ことにしました。",
+    "koExample2": "어제는 정리하다하기로 했습니다."
+  },
+  {
+    "id": 1063,
+    "hanja": "準備する",
+    "hiragana": "じゅんびする",
+    "mean": "준비하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "행동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日準備する（じゅんびする）ようにしています。",
+    "koExample1": "매일 준비하다하려고 합니다.",
+    "jpExample2": "昨日は準備する（じゅんびする）ことにしました。",
+    "koExample2": "어제는 준비하다하기로 했습니다."
+  },
+  {
+    "id": 1064,
+    "hanja": "連絡する",
+    "hiragana": "れんらくする",
+    "mean": "연락하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日連絡する（れんらくする）ようにしています。",
+    "koExample1": "매일 연락하다하려고 합니다.",
+    "jpExample2": "昨日は連絡する（れんらくする）ことにしました。",
+    "koExample2": "어제는 연락하다하기로 했습니다."
+  },
+  {
+    "id": 1065,
+    "hanja": "相談する",
+    "hiragana": "そうだんする",
+    "mean": "상담하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日相談する（そうだんする）ようにしています。",
+    "koExample1": "매일 상담하다하려고 합니다.",
+    "jpExample2": "昨日は相談する（そうだんする）ことにしました。",
+    "koExample2": "어제는 상담하다하기로 했습니다."
+  },
+  {
+    "id": 1066,
+    "hanja": "説明する",
+    "hiragana": "せつめいする",
+    "mean": "설명하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日説明する（せつめいする）ようにしています。",
+    "koExample1": "매일 설명하다하려고 합니다.",
+    "jpExample2": "昨日は説明する（せつめいする）ことにしました。",
+    "koExample2": "어제는 설명하다하기로 했습니다."
+  },
+  {
+    "id": 1067,
+    "hanja": "紹介する",
+    "hiragana": "しょうかいする",
+    "mean": "소개하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日紹介する（しょうかいする）ようにしています。",
+    "koExample1": "매일 소개하다하려고 합니다.",
+    "jpExample2": "昨日は紹介する（しょうかいする）ことにしました。",
+    "koExample2": "어제는 소개하다하기로 했습니다."
+  },
+  {
+    "id": 1068,
+    "hanja": "案内する",
+    "hiragana": "あんないする",
+    "mean": "안내하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日案内する（あんないする）ようにしています。",
+    "koExample1": "매일 안내하다하려고 합니다.",
+    "jpExample2": "昨日は案内する（あんないする）ことにしました。",
+    "koExample2": "어제는 안내하다하기로 했습니다."
+  },
+  {
+    "id": 1069,
+    "hanja": "出発する",
+    "hiragana": "しゅっぱつする",
+    "mean": "출발하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "이동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日出発する（しゅっぱつする）ようにしています。",
+    "koExample1": "매일 출발하다하려고 합니다.",
+    "jpExample2": "昨日は出発する（しゅっぱつする）ことにしました。",
+    "koExample2": "어제는 출발하다하기로 했습니다."
+  },
+  {
+    "id": 1070,
+    "hanja": "到着する",
+    "hiragana": "とうちゃくする",
+    "mean": "도착하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "이동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日到着する（とうちゃくする）ようにしています。",
+    "koExample1": "매일 도착하다하려고 합니다.",
+    "jpExample2": "昨日は到着する（とうちゃくする）ことにしました。",
+    "koExample2": "어제는 도착하다하기로 했습니다."
+  },
+  {
+    "id": 1071,
+    "hanja": "引っ越す",
+    "hiragana": "ひっこす",
+    "mean": "이사하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "주거"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日引っ越す（ひっこす）ようにしています。",
+    "koExample1": "매일 이사하다하려고 합니다.",
+    "jpExample2": "昨日は引っ越す（ひっこす）ことにしました。",
+    "koExample2": "어제는 이사하다하기로 했습니다."
+  },
+  {
+    "id": 1072,
+    "hanja": "移動する",
+    "hiragana": "いどうする",
+    "mean": "이동하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "이동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日移動する（いどうする）ようにしています。",
+    "koExample1": "매일 이동하다하려고 합니다.",
+    "jpExample2": "昨日は移動する（いどうする）ことにしました。",
+    "koExample2": "어제는 이동하다하기로 했습니다."
+  },
+  {
+    "id": 1073,
+    "hanja": "予約する",
+    "hiragana": "よやくする",
+    "mean": "예약하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "서비스"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日予約する（よやくする）ようにしています。",
+    "koExample1": "매일 예약하다하려고 합니다.",
+    "jpExample2": "昨日は予約する（よやくする）ことにしました。",
+    "koExample2": "어제는 예약하다하기로 했습니다."
+  },
+  {
+    "id": 1074,
+    "hanja": "約束する",
+    "hiragana": "やくそくする",
+    "mean": "약속하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "인간관계"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日約束する（やくそくする）ようにしています。",
+    "koExample1": "매일 약속하다하려고 합니다.",
+    "jpExample2": "昨日は約束する（やくそくする）ことにしました。",
+    "koExample2": "어제는 약속하다하기로 했습니다."
+  },
+  {
+    "id": 1075,
+    "hanja": "思い出す",
+    "hiragana": "おもいだす",
+    "mean": "떠올리다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "생각"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日思い出す（おもいだす）ようにしています。",
+    "koExample1": "매일 떠올리다하려고 합니다.",
+    "jpExample2": "昨日は思い出す（おもいだす）ことにしました。",
+    "koExample2": "어제는 떠올리다하기로 했습니다."
+  },
+  {
+    "id": 1076,
+    "hanja": "履物",
+    "hiragana": "はきもの",
+    "mean": "신발",
+    "partOfSpeech": "명사",
+    "themes": [
+      "의복",
+      "신발"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "公園で散歩します。",
+    "koExample1": "공원에서 산책합니다.",
+    "jpExample2": "散歩が好きです。",
+    "koExample2": "산책을 좋아합니다."
+  },
+  {
+    "id": 1077,
+    "hanja": "慣れる",
+    "hiragana": "なれる",
+    "mean": "익숙해지다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日慣れる（なれる）ようにしています。",
+    "koExample1": "매일 익숙해지다하려고 합니다.",
+    "jpExample2": "昨日は慣れる（なれる）ことにしました。",
+    "koExample2": "어제는 익숙해지다하기로 했습니다."
+  },
+  {
+    "id": 1078,
+    "hanja": "決して",
+    "hiragana": "けっして",
+    "mean": "결코",
+    "partOfSpeech": "부사",
+    "themes": [
+      "부정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "決して働きます。",
+    "koExample1": "결코 일합니다.",
+    "jpExample2": "決して頑張ります。",
+    "koExample2": "결코 노력합니다."
+  },
+  {
+    "id": 1079,
+    "hanja": "必ず",
+    "hiragana": "かならず",
+    "mean": "반드시",
+    "partOfSpeech": "부사",
+    "themes": [
+      "확신"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "必ず働きます。",
+    "koExample1": "반드시 일합니다.",
+    "jpExample2": "必ず頑張ります。",
+    "koExample2": "반드시 노력합니다."
+  },
+  {
+    "id": 1080,
+    "hanja": "ただ",
+    "hiragana": "ただ",
+    "mean": "그냥/무료로",
+    "partOfSpeech": "부사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "ただ働きます。",
+    "koExample1": "그냥/무료로 일합니다.",
+    "jpExample2": "ただ頑張ります。",
+    "koExample2": "그냥/무료로 노력합니다."
+  },
+  {
+    "id": 1081,
+    "hanja": "まず",
+    "hiragana": "まず",
+    "mean": "우선",
+    "partOfSpeech": "부사",
+    "themes": [
+      "순서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "まず働きます。",
+    "koExample1": "우선 일합니다.",
+    "jpExample2": "まず頑張ります。",
+    "koExample2": "우선 노력합니다."
+  },
+  {
+    "id": 1082,
+    "hanja": "ずっと",
+    "hiragana": "ずっと",
+    "mean": "줄곧/훨씬",
+    "partOfSpeech": "부사",
+    "themes": [
+      "비교"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "ずっと働きます。",
+    "koExample1": "줄곧/훨씬 일합니다.",
+    "jpExample2": "ずっと頑張ります。",
+    "koExample2": "줄곧/훨씬 노력합니다."
+  },
+  {
+    "id": 1083,
+    "hanja": "大事",
+    "hiragana": "だいじ",
+    "mean": "중요하다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても大事（だいじ）です。",
+    "koExample1": "이 방은 아주 중요하다.",
+    "jpExample2": "大事（だいじ）人になりたいです。",
+    "koExample2": "중요하다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1084,
+    "hanja": "洋服",
+    "hiragana": "ようふく",
+    "mean": "양복",
+    "partOfSpeech": "명사",
+    "themes": [
+      "의복",
+      "패션"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "買い物を見ました。",
+    "koExample1": "쇼핑을 봤습니다.",
+    "jpExample2": "買い物があります。",
+    "koExample2": "쇼핑이 있습니다."
+  },
+  {
+    "id": 1085,
+    "hanja": "定期券",
+    "hiragana": "ていきけん",
+    "mean": "정기권",
+    "partOfSpeech": "명사",
+    "themes": [
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "定期券を見ました。",
+    "koExample1": "정기권을 봤습니다.",
+    "jpExample2": "定期券があります。",
+    "koExample2": "정기권이 있습니다."
+  },
+  {
+    "id": 1086,
+    "hanja": "洗濯",
+    "hiragana": "せんたく",
+    "mean": "세탁",
+    "partOfSpeech": "명사",
+    "themes": [
+      "일상",
+      "청소"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "洗濯を見ました。",
+    "koExample1": "세탁을 봤습니다.",
+    "jpExample2": "洗濯があります。",
+    "koExample2": "세탁이 있습니다."
+  },
+  {
+    "id": 1087,
+    "hanja": "番地",
+    "hiragana": "ばんち",
+    "mean": "번지",
+    "partOfSpeech": "명사",
+    "themes": [
+      "생활"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "番地を見ました。",
+    "koExample1": "번지을 봤습니다.",
+    "jpExample2": "番地があります。",
+    "koExample2": "번지이 있습니다."
+  },
+  {
+    "id": 1088,
+    "hanja": "建物",
+    "hiragana": "たてもの",
+    "mean": "건물",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "建物を見ました。",
+    "koExample1": "건물을 봤습니다.",
+    "jpExample2": "建物があります。",
+    "koExample2": "건물이 있습니다."
+  },
+  {
+    "id": 1089,
+    "hanja": "通り",
+    "hiragana": "とおり",
+    "mean": "거리/길",
+    "partOfSpeech": "명사",
+    "themes": [
+      "장소"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "通りを見ました。",
+    "koExample1": "거리/길을 봤습니다.",
+    "jpExample2": "通りがあります。",
+    "koExample2": "거리/길이 있습니다."
+  },
+  {
+    "id": 1090,
+    "hanja": "装飾",
+    "hiragana": "そうしょく",
+    "mean": "장식",
+    "partOfSpeech": "명사",
+    "themes": [
+      "미술",
+      "장식"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "料理を作ります。",
+    "koExample1": "요리를 만듭니다.",
+    "jpExample2": "料理が上手です。",
+    "koExample2": "요리를 잘합니다."
+  },
+  {
+    "id": 1091,
+    "hanja": "横",
+    "hiragana": "よこ",
+    "mean": "옆/가로",
+    "partOfSpeech": "명사",
+    "themes": [
+      "방향"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "横を見ました。",
+    "koExample1": "옆/가로을 봤습니다.",
+    "jpExample2": "横があります。",
+    "koExample2": "옆/가로이 있습니다."
+  },
+  {
+    "id": 1092,
+    "hanja": "縦",
+    "hiragana": "たて",
+    "mean": "세로",
+    "partOfSpeech": "명사",
+    "themes": [
+      "방향"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "縦を見ました。",
+    "koExample1": "세로을 봤습니다.",
+    "jpExample2": "縦があります。",
+    "koExample2": "세로이 있습니다."
+  },
+  {
+    "id": 1093,
+    "hanja": "向かい",
+    "hiragana": "むかい",
+    "mean": "맞은편",
+    "partOfSpeech": "명사",
+    "themes": [
+      "방향"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "向かいを見ました。",
+    "koExample1": "맞은편을 봤습니다.",
+    "jpExample2": "向かいがあります。",
+    "koExample2": "맞은편이 있습니다."
+  },
+  {
+    "id": 1094,
+    "hanja": "周り",
+    "hiragana": "まわり",
+    "mean": "주위",
+    "partOfSpeech": "명사",
+    "themes": [
+      "방향"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "周りを見ました。",
+    "koExample1": "주위을 봤습니다.",
+    "jpExample2": "周りがあります。",
+    "koExample2": "주위이 있습니다."
+  },
+  {
+    "id": 1095,
+    "hanja": "器具",
+    "hiragana": "きぐ",
+    "mean": "기구",
+    "partOfSpeech": "명사",
+    "themes": [
+      "도구",
+      "기기"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "掃除を見ました。",
+    "koExample1": "청소을 봤습니다.",
+    "jpExample2": "掃除があります。",
+    "koExample2": "청소이 있습니다."
+  },
+  {
+    "id": 1096,
+    "hanja": "湖",
+    "hiragana": "みずうみ",
+    "mean": "호수",
+    "partOfSpeech": "명사",
+    "themes": [
+      "자연"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "湖を見ました。",
+    "koExample1": "호수을 봤습니다.",
+    "jpExample2": "湖があります。",
+    "koExample2": "호수이 있습니다."
+  },
+  {
+    "id": 1097,
+    "hanja": "砂漠",
+    "hiragana": "さばく",
+    "mean": "사막",
+    "partOfSpeech": "명사",
+    "themes": [
+      "자연"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "砂漠を見ました。",
+    "koExample1": "사막을 봤습니다.",
+    "jpExample2": "砂漠があります。",
+    "koExample2": "사막이 있습니다."
+  },
+  {
+    "id": 1098,
+    "hanja": "文化",
+    "hiragana": "ぶんか",
+    "mean": "문화",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "文化を見ました。",
+    "koExample1": "문화을 봤습니다.",
+    "jpExample2": "文化があります。",
+    "koExample2": "문화이 있습니다."
+  },
+  {
+    "id": 1099,
+    "hanja": "歴史",
+    "hiragana": "れきし",
+    "mean": "역사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "歴史を見ました。",
+    "koExample1": "역사을 봤습니다.",
+    "jpExample2": "歴史があります。",
+    "koExample2": "역사이 있습니다."
+  },
+  {
+    "id": 1100,
+    "hanja": "社会",
+    "hiragana": "しゃかい",
+    "mean": "사회",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "社会を見ました。",
+    "koExample1": "사회을 봤습니다.",
+    "jpExample2": "社会があります。",
+    "koExample2": "사회이 있습니다."
+  },
+  {
+    "id": 1101,
+    "hanja": "会場",
+    "hiragana": "かいじょう",
+    "mean": "회장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "会場を見ました。",
+    "koExample1": "회장을 봤습니다.",
+    "jpExample2": "会場があります。",
+    "koExample2": "회장이 있습니다."
+  },
+  {
+    "id": 1102,
+    "hanja": "資料",
+    "hiragana": "しりょう",
+    "mean": "자료",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "資料を見ました。",
+    "koExample1": "자료을 봤습니다.",
+    "jpExample2": "資料があります。",
+    "koExample2": "자료이 있습니다."
+  },
+  {
+    "id": 1103,
+    "hanja": "説明書",
+    "hiragana": "せつめいしょ",
+    "mean": "설명서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "説明書を見ました。",
+    "koExample1": "설명서을 봤습니다.",
+    "jpExample2": "説明書があります。",
+    "koExample2": "설명서이 있습니다."
+  },
+  {
+    "id": 1104,
+    "hanja": "注意書き",
+    "hiragana": "ちゅういがき",
+    "mean": "주의사항",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "注意書きを見ました。",
+    "koExample1": "주의사항을 봤습니다.",
+    "jpExample2": "注意書きがあります。",
+    "koExample2": "주의사항이 있습니다."
+  },
+  {
+    "id": 1105,
+    "hanja": "規則",
+    "hiragana": "きそく",
+    "mean": "규칙",
+    "partOfSpeech": "명사",
+    "themes": [
+      "규범"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "規則を見ました。",
+    "koExample1": "규칙을 봤습니다.",
+    "jpExample2": "規則があります。",
+    "koExample2": "규칙이 있습니다."
+  },
+  {
+    "id": 1106,
+    "hanja": "法律",
+    "hiragana": "ほうりつ",
+    "mean": "법률",
+    "partOfSpeech": "명사",
+    "themes": [
+      "규범"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "法律を見ました。",
+    "koExample1": "법률을 봤습니다.",
+    "jpExample2": "法律があります。",
+    "koExample2": "법률이 있습니다."
+  },
+  {
+    "id": 1107,
+    "hanja": "税金",
+    "hiragana": "ぜいきん",
+    "mean": "세금",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "税金を見ました。",
+    "koExample1": "세금을 봤습니다.",
+    "jpExample2": "税金があります。",
+    "koExample2": "세금이 있습니다."
+  },
+  {
+    "id": 1108,
+    "hanja": "料金",
+    "hiragana": "りょうきん",
+    "mean": "요금",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "料金を見ました。",
+    "koExample1": "요금을 봤습니다.",
+    "jpExample2": "料金があります。",
+    "koExample2": "요금이 있습니다."
+  },
+  {
+    "id": 1109,
+    "hanja": "家賃",
+    "hiragana": "やちん",
+    "mean": "집세",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "家賃を見ました。",
+    "koExample1": "집세을 봤습니다.",
+    "jpExample2": "家賃があります。",
+    "koExample2": "집세이 있습니다."
+  },
+  {
+    "id": 1110,
+    "hanja": "給料",
+    "hiragana": "きゅうりょう",
+    "mean": "월급",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "給料を見ました。",
+    "koExample1": "월급을 봤습니다.",
+    "jpExample2": "給料があります。",
+    "koExample2": "월급이 있습니다."
+  },
+  {
+    "id": 1111,
+    "hanja": "値段",
+    "hiragana": "ねだん",
+    "mean": "가격",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "値段を見ました。",
+    "koExample1": "가격을 봤습니다.",
+    "jpExample2": "値段があります。",
+    "koExample2": "가격이 있습니다."
+  },
+  {
+    "id": 1112,
+    "hanja": "物価",
+    "hiragana": "ぶっか",
+    "mean": "물가",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "物価を見ました。",
+    "koExample1": "물가을 봤습니다.",
+    "jpExample2": "物価があります。",
+    "koExample2": "물가이 있습니다."
+  },
+  {
+    "id": 1113,
+    "hanja": "小銭",
+    "hiragana": "こぜに",
+    "mean": "잔돈",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "小銭を見ました。",
+    "koExample1": "잔돈을 봤습니다.",
+    "jpExample2": "小銭があります。",
+    "koExample2": "잔돈이 있습니다."
+  },
+  {
+    "id": 1114,
+    "hanja": "両替",
+    "hiragana": "りょうがえ",
+    "mean": "환전",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "両替を見ました。",
+    "koExample1": "환전을 봤습니다.",
+    "jpExample2": "両替があります。",
+    "koExample2": "환전이 있습니다."
+  },
+  {
+    "id": 1115,
+    "hanja": "銀行口座",
+    "hiragana": "ぎんこうこうざ",
+    "mean": "은행계좌",
+    "partOfSpeech": "명사",
+    "themes": [
+      "금융"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "銀行口座を見ました。",
+    "koExample1": "은행계좌을 봤습니다.",
+    "jpExample2": "銀行口座があります。",
+    "koExample2": "은행계좌이 있습니다."
+  },
+  {
+    "id": 1116,
+    "hanja": "送金",
+    "hiragana": "そうきん",
+    "mean": "송금",
+    "partOfSpeech": "명사",
+    "themes": [
+      "금융"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "送金を見ました。",
+    "koExample1": "송금을 봤습니다.",
+    "jpExample2": "送金があります。",
+    "koExample2": "송금이 있습니다."
+  },
+  {
+    "id": 1117,
+    "hanja": "健康",
+    "hiragana": "けんこう",
+    "mean": "건강",
+    "partOfSpeech": "명사",
+    "themes": [
+      "건강"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "健康を見ました。",
+    "koExample1": "건강을 봤습니다.",
+    "jpExample2": "健康があります。",
+    "koExample2": "건강이 있습니다."
+  },
+  {
+    "id": 1118,
+    "hanja": "体温",
+    "hiragana": "たいおん",
+    "mean": "체온",
+    "partOfSpeech": "명사",
+    "themes": [
+      "건강"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "体温を見ました。",
+    "koExample1": "체온을 봤습니다.",
+    "jpExample2": "体温があります。",
+    "koExample2": "체온이 있습니다."
+  },
+  {
+    "id": 1119,
+    "hanja": "血圧",
+    "hiragana": "けつあつ",
+    "mean": "혈압",
+    "partOfSpeech": "명사",
+    "themes": [
+      "건강"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "血圧を見ました。",
+    "koExample1": "혈압을 봤습니다.",
+    "jpExample2": "血圧があります。",
+    "koExample2": "혈압이 있습니다."
+  },
+  {
+    "id": 1120,
+    "hanja": "症状",
+    "hiragana": "しょうじょう",
+    "mean": "증상",
+    "partOfSpeech": "명사",
+    "themes": [
+      "건강"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "症状を見ました。",
+    "koExample1": "증상을 봤습니다.",
+    "jpExample2": "症状があります。",
+    "koExample2": "증상이 있습니다."
+  },
+  {
+    "id": 1121,
+    "hanja": "治療",
+    "hiragana": "ちりょう",
+    "mean": "치료",
+    "partOfSpeech": "명사",
+    "themes": [
+      "건강"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "治療を見ました。",
+    "koExample1": "치료을 봤습니다.",
+    "jpExample2": "治療があります。",
+    "koExample2": "치료이 있습니다."
+  },
+  {
+    "id": 1122,
+    "hanja": "薬局",
+    "hiragana": "やっきょく",
+    "mean": "약국",
+    "partOfSpeech": "명사",
+    "themes": [
+      "건강"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "薬局を見ました。",
+    "koExample1": "약국을 봤습니다.",
+    "jpExample2": "薬局があります。",
+    "koExample2": "약국이 있습니다."
+  },
+  {
+    "id": 1123,
+    "hanja": "受付",
+    "hiragana": "うけつけ",
+    "mean": "접수처",
+    "partOfSpeech": "명사",
+    "themes": [
+      "서비스"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "受付を見ました。",
+    "koExample1": "접수처을 봤습니다.",
+    "jpExample2": "受付があります。",
+    "koExample2": "접수처이 있습니다."
+  },
+  {
+    "id": 1124,
+    "hanja": "順番",
+    "hiragana": "じゅんばん",
+    "mean": "순서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "일상"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "順番を見ました。",
+    "koExample1": "순서을 봤습니다.",
+    "jpExample2": "順番があります。",
+    "koExample2": "순서이 있습니다."
+  },
+  {
+    "id": 1125,
+    "hanja": "複雑",
+    "hiragana": "ふくざつ",
+    "mean": "복잡하다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても複雑（ふくざつ）です。",
+    "koExample1": "이 방은 아주 복잡하다.",
+    "jpExample2": "複雑（ふくざつ）人になりたいです。",
+    "koExample2": "복잡하다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1126,
+    "hanja": "丁寧",
+    "hiragana": "ていねい",
+    "mean": "정중하다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "태도"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても丁寧（ていねい）です。",
+    "koExample1": "이 방은 아주 정중하다.",
+    "jpExample2": "丁寧（ていねい）人になりたいです。",
+    "koExample2": "정중하다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1127,
+    "hanja": "自由",
+    "hiragana": "じゆう",
+    "mean": "자유롭다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても自由（じゆう）です。",
+    "koExample1": "이 방은 아주 자유롭다.",
+    "jpExample2": "自由（じゆう）人になりたいです。",
+    "koExample2": "자유롭다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1128,
+    "hanja": "真面目",
+    "hiragana": "まじめ",
+    "mean": "성실하다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "성격"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても真面目（まじめ）です。",
+    "koExample1": "이 방은 아주 성실하다.",
+    "jpExample2": "真面目（まじめ）人になりたいです。",
+    "koExample2": "성실하다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1129,
+    "hanja": "意外",
+    "hiragana": "いがい",
+    "mean": "의외다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても意外（いがい）です。",
+    "koExample1": "이 방은 아주 의외다.",
+    "jpExample2": "意外（いがい）人になりたいです。",
+    "koExample2": "의외다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1130,
+    "hanja": "熱心",
+    "hiragana": "ねっしん",
+    "mean": "열심이다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "성격"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても熱心（ねっしん）です。",
+    "koExample1": "이 방은 아주 열심이다.",
+    "jpExample2": "熱心（ねっしん）人になりたいです。",
+    "koExample2": "열심이다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1131,
+    "hanja": "十分",
+    "hiragana": "じゅうぶん",
+    "mean": "충분하다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても十分（じゅうぶん）です。",
+    "koExample1": "이 방은 아주 충분하다.",
+    "jpExample2": "十分（じゅうぶん）人になりたいです。",
+    "koExample2": "충분하다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1132,
+    "hanja": "恥ずかしい",
+    "hiragana": "はずかしい",
+    "mean": "부끄럽다",
+    "partOfSpeech": "い형용사",
+    "themes": [
+      "감정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても恥ずかしい（はずかしい）です。",
+    "koExample1": "이 방은 아주 부끄럽다.",
+    "jpExample2": "恥ずかしい（はずかしい）人になりたいです。",
+    "koExample2": "부끄럽다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1133,
+    "hanja": "硬い",
+    "hiragana": "かたい",
+    "mean": "딱딱하다",
+    "partOfSpeech": "い형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても硬い（かたい）です。",
+    "koExample1": "이 방은 아주 딱딱하다.",
+    "jpExample2": "硬い（かたい）人になりたいです。",
+    "koExample2": "딱딱하다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1134,
+    "hanja": "柔らかい",
+    "hiragana": "やわらかい",
+    "mean": "부드럽다",
+    "partOfSpeech": "い형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても柔らかい（やわらかい）です。",
+    "koExample1": "이 방은 아주 부드럽다.",
+    "jpExample2": "柔らかい（やわらかい）人になりたいです。",
+    "koExample2": "부드럽다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1135,
+    "hanja": "深い",
+    "hiragana": "ふかい",
+    "mean": "깊다",
+    "partOfSpeech": "い형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても深い（ふかい）です。",
+    "koExample1": "이 방은 아주 깊다.",
+    "jpExample2": "深い（ふかい）人になりたいです。",
+    "koExample2": "깊다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1136,
+    "hanja": "浅い",
+    "hiragana": "あさい",
+    "mean": "얕다",
+    "partOfSpeech": "い형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても浅い（あさい）です。",
+    "koExample1": "이 방은 아주 얕다.",
+    "jpExample2": "浅い（あさい）人になりたいです。",
+    "koExample2": "얕다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1137,
+    "hanja": "細かい",
+    "hiragana": "こまかい",
+    "mean": "자세하다",
+    "partOfSpeech": "い형용사",
+    "themes": [
+      "상태"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても細かい（こまかい）です。",
+    "koExample1": "이 방은 아주 자세하다.",
+    "jpExample2": "細かい（こまかい）人になりたいです。",
+    "koExample2": "자세하다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1138,
+    "hanja": "怖い",
+    "hiragana": "こわい",
+    "mean": "무섭다",
+    "partOfSpeech": "い형용사",
+    "themes": [
+      "감정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても怖い（こわい）です。",
+    "koExample1": "이 방은 아주 무섭다.",
+    "jpExample2": "怖い（こわい）人になりたいです。",
+    "koExample2": "무섭다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1139,
+    "hanja": "作文",
+    "hiragana": "さくぶん",
+    "mean": "작문",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "作文を見ました。",
+    "koExample1": "작문을 봤습니다.",
+    "jpExample2": "作文があります。",
+    "koExample2": "작문이 있습니다."
+  },
+  {
+    "id": 1140,
+    "hanja": "教科書",
+    "hiragana": "きょうかしょ",
+    "mean": "교과서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "教科書を見ました。",
+    "koExample1": "교과서을 봤습니다.",
+    "jpExample2": "教科書があります。",
+    "koExample2": "교과서이 있습니다."
+  },
+  {
+    "id": 1141,
+    "hanja": "研究",
+    "hiragana": "けんきゅう",
+    "mean": "연구",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "研究を見ました。",
+    "koExample1": "연구을 봤습니다.",
+    "jpExample2": "研究があります。",
+    "koExample2": "연구이 있습니다."
+  },
+  {
+    "id": 1142,
+    "hanja": "発表",
+    "hiragana": "はっぴょう",
+    "mean": "발표",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습",
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "発表を見ました。",
+    "koExample1": "발표을 봤습니다.",
+    "jpExample2": "発表があります。",
+    "koExample2": "발표이 있습니다."
+  },
+  {
+    "id": 1143,
+    "hanja": "成績",
+    "hiragana": "せいせき",
+    "mean": "성적",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "成績を見ました。",
+    "koExample1": "성적을 봤습니다.",
+    "jpExample2": "成績があります。",
+    "koExample2": "성적이 있습니다."
+  },
+  {
+    "id": 1144,
+    "hanja": "合格",
+    "hiragana": "ごうかく",
+    "mean": "합격",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "合格を見ました。",
+    "koExample1": "합격을 봤습니다.",
+    "jpExample2": "合格があります。",
+    "koExample2": "합격이 있습니다."
+  },
+  {
+    "id": 1145,
+    "hanja": "不合格",
+    "hiragana": "ふごうかく",
+    "mean": "불합격",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "不合格を見ました。",
+    "koExample1": "불합격을 봤습니다.",
+    "jpExample2": "不合格があります。",
+    "koExample2": "불합격이 있습니다."
+  },
+  {
+    "id": 1146,
+    "hanja": "点数",
+    "hiragana": "てんすう",
+    "mean": "점수",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "点数を見ました。",
+    "koExample1": "점수을 봤습니다.",
+    "jpExample2": "点数があります。",
+    "koExample2": "점수이 있습니다."
+  },
+  {
+    "id": 1147,
+    "hanja": "答案",
+    "hiragana": "とうあん",
+    "mean": "답안",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "答案を見ました。",
+    "koExample1": "답안을 봤습니다.",
+    "jpExample2": "答案があります。",
+    "koExample2": "답안이 있습니다."
+  },
+  {
+    "id": 1148,
+    "hanja": "担当",
+    "hiragana": "たんとう",
+    "mean": "담당",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "担当を見ました。",
+    "koExample1": "담당을 봤습니다.",
+    "jpExample2": "担当があります。",
+    "koExample2": "담당이 있습니다."
+  },
+  {
+    "id": 1149,
+    "hanja": "締め切る",
+    "hiragana": "しめきる",
+    "mean": "마감하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日締め切る（しめきる）ようにしています。",
+    "koExample1": "매일 마감하다하려고 합니다.",
+    "jpExample2": "昨日は締め切る（しめきる）ことにしました。",
+    "koExample2": "어제는 마감하다하기로 했습니다."
+  },
+  {
+    "id": 1150,
+    "hanja": "提出する",
+    "hiragana": "ていしゅつする",
+    "mean": "제출하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "학습",
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日提出する（ていしゅつする）ようにしています。",
+    "koExample1": "매일 제출하다하려고 합니다.",
+    "jpExample2": "昨日は提出する（ていしゅつする）ことにしました。",
+    "koExample2": "어제는 제출하다하기로 했습니다."
+  },
+  {
+    "id": 1151,
+    "hanja": "乗り換え",
+    "hiragana": "のりかえ",
+    "mean": "환승",
+    "partOfSpeech": "명사",
+    "themes": [
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "乗り換えを見ました。",
+    "koExample1": "환승을 봤습니다.",
+    "jpExample2": "乗り換えがあります。",
+    "koExample2": "환승이 있습니다."
+  },
+  {
+    "id": 1152,
+    "hanja": "乗り遅れる",
+    "hiragana": "のりおくれる",
+    "mean": "놓치다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日乗り遅れる（のりおくれる）ようにしています。",
+    "koExample1": "매일 놓치다하려고 합니다.",
+    "jpExample2": "昨日は乗り遅れる（のりおくれる）ことにしました。",
+    "koExample2": "어제는 놓치다하기로 했습니다."
+  },
+  {
+    "id": 1153,
+    "hanja": "遅刻する",
+    "hiragana": "ちこくする",
+    "mean": "지각하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日遅刻する（ちこくする）ようにしています。",
+    "koExample1": "매일 지각하다하려고 합니다.",
+    "jpExample2": "昨日は遅刻する（ちこくする）ことにしました。",
+    "koExample2": "어제는 지각하다하기로 했습니다."
+  },
+  {
+    "id": 1154,
+    "hanja": "出席する",
+    "hiragana": "しゅっせきする",
+    "mean": "출석하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "학교"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日出席する（しゅっせきする）ようにしています。",
+    "koExample1": "매일 출석하다하려고 합니다.",
+    "jpExample2": "昨日は出席する（しゅっせきする）ことにしました。",
+    "koExample2": "어제는 출석하다하기로 했습니다."
+  },
+  {
+    "id": 1155,
+    "hanja": "欠席する",
+    "hiragana": "けっせきする",
+    "mean": "결석하다",
+    "partOfSpeech": "동사",
+    "themes": [
+      "학교"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "毎日欠席する（けっせきする）ようにしています。",
+    "koExample1": "매일 결석하다하려고 합니다.",
+    "jpExample2": "昨日は欠席する（けっせきする）ことにしました。",
+    "koExample2": "어제는 결석하다하기로 했습니다."
+  },
+  {
+    "id": 1156,
+    "hanja": "渋滞",
+    "hiragana": "じゅうたい",
+    "mean": "정체",
+    "partOfSpeech": "명사",
+    "themes": [
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "渋滞を見ました。",
+    "koExample1": "정체을 봤습니다.",
+    "jpExample2": "渋滞があります。",
+    "koExample2": "정체이 있습니다."
+  },
+  {
+    "id": 1157,
+    "hanja": "引っ越し",
+    "hiragana": "ひっこし",
+    "mean": "이사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "일상",
+      "주거"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "引っ越しを見ました。",
+    "koExample1": "이사을 봤습니다.",
+    "jpExample2": "引っ越しがあります。",
+    "koExample2": "이사이 있습니다."
+  },
+  {
+    "id": 1158,
+    "hanja": "横断歩道",
+    "hiragana": "おうだんほどう",
+    "mean": "횡단보도",
+    "partOfSpeech": "명사",
+    "themes": [
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "横断歩道を見ました。",
+    "koExample1": "횡단보도을 봤습니다.",
+    "jpExample2": "横断歩道があります。",
+    "koExample2": "횡단보도이 있습니다."
+  },
+  {
+    "id": 1159,
+    "hanja": "踏切",
+    "hiragana": "ふみきり",
+    "mean": "건널목",
+    "partOfSpeech": "명사",
+    "themes": [
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "踏切を見ました。",
+    "koExample1": "건널목을 봤습니다.",
+    "jpExample2": "踏切があります。",
+    "koExample2": "건널목이 있습니다."
+  },
+  {
+    "id": 1160,
+    "hanja": "運転免許",
+    "hiragana": "うんてんめんきょ",
+    "mean": "운전면허",
+    "partOfSpeech": "명사",
+    "themes": [
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "運転免許を見ました。",
+    "koExample1": "운전면허을 봤습니다.",
+    "jpExample2": "運転免許があります。",
+    "koExample2": "운전면허이 있습니다."
+  },
+  {
+    "id": 1161,
+    "hanja": "車線",
+    "hiragana": "しゃせん",
+    "mean": "차선",
+    "partOfSpeech": "명사",
+    "themes": [
+      "교통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "車線を見ました。",
+    "koExample1": "차선을 봤습니다.",
+    "jpExample2": "車線があります。",
+    "koExample2": "차선이 있습니다."
+  },
+  {
+    "id": 1162,
+    "hanja": "梅雨",
+    "hiragana": "つゆ",
+    "mean": "장마",
+    "partOfSpeech": "명사",
+    "themes": [
+      "날씨"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "梅雨を見ました。",
+    "koExample1": "장마을 봤습니다.",
+    "jpExample2": "梅雨があります。",
+    "koExample2": "장마이 있습니다."
+  },
+  {
+    "id": 1163,
+    "hanja": "湿度",
+    "hiragana": "しつど",
+    "mean": "습도",
+    "partOfSpeech": "명사",
+    "themes": [
+      "날씨"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "湿度を見ました。",
+    "koExample1": "습도을 봤습니다.",
+    "jpExample2": "湿度があります。",
+    "koExample2": "습도이 있습니다."
+  },
+  {
+    "id": 1164,
+    "hanja": "気温",
+    "hiragana": "きおん",
+    "mean": "기온",
+    "partOfSpeech": "명사",
+    "themes": [
+      "날씨"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "気温を見ました。",
+    "koExample1": "기온을 봤습니다.",
+    "jpExample2": "気温があります。",
+    "koExample2": "기온이 있습니다."
+  },
+  {
+    "id": 1165,
+    "hanja": "地球",
+    "hiragana": "ちきゅう",
+    "mean": "지구",
+    "partOfSpeech": "명사",
+    "themes": [
+      "자연"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "地球を見ました。",
+    "koExample1": "지구을 봤습니다.",
+    "jpExample2": "地球があります。",
+    "koExample2": "지구이 있습니다."
+  },
+  {
+    "id": 1166,
+    "hanja": "環境",
+    "hiragana": "かんきょう",
+    "mean": "환경",
+    "partOfSpeech": "명사",
+    "themes": [
+      "자연",
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "環境を見ました。",
+    "koExample1": "환경을 봤습니다.",
+    "jpExample2": "環境があります。",
+    "koExample2": "환경이 있습니다."
+  },
+  {
+    "id": 1167,
+    "hanja": "連絡先",
+    "hiragana": "れんらくさき",
+    "mean": "연락처",
+    "partOfSpeech": "명사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "連絡先を見ました。",
+    "koExample1": "연락처을 봤습니다.",
+    "jpExample2": "連絡先があります。",
+    "koExample2": "연락처이 있습니다."
+  },
+  {
+    "id": 1168,
+    "hanja": "住所録",
+    "hiragana": "じゅうしょろく",
+    "mean": "주소록",
+    "partOfSpeech": "명사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "住所録を見ました。",
+    "koExample1": "주소록을 봤습니다.",
+    "jpExample2": "住所録があります。",
+    "koExample2": "주소록이 있습니다."
+  },
+  {
+    "id": 1169,
+    "hanja": "招待状",
+    "hiragana": "しょうたいじょう",
+    "mean": "초대장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "招待状を見ました。",
+    "koExample1": "초대장을 봤습니다.",
+    "jpExample2": "招待状があります。",
+    "koExample2": "초대장이 있습니다."
+  },
+  {
+    "id": 1170,
+    "hanja": "返信",
+    "hiragana": "へんしん",
+    "mean": "회신",
+    "partOfSpeech": "명사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "返信を見ました。",
+    "koExample1": "회신을 봤습니다.",
+    "jpExample2": "返信があります。",
+    "koExample2": "회신이 있습니다."
+  },
+  {
+    "id": 1171,
+    "hanja": "差出人",
+    "hiragana": "さしだしにん",
+    "mean": "보낸 사람",
+    "partOfSpeech": "명사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "差出人を見ました。",
+    "koExample1": "보낸 사람을 봤습니다.",
+    "jpExample2": "差出人があります。",
+    "koExample2": "보낸 사람이 있습니다."
+  },
+  {
+    "id": 1172,
+    "hanja": "受取人",
+    "hiragana": "うけとりにん",
+    "mean": "받는 사람",
+    "partOfSpeech": "명사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "受取人を見ました。",
+    "koExample1": "받는 사람을 봤습니다.",
+    "jpExample2": "受取人があります。",
+    "koExample2": "받는 사람이 있습니다."
+  },
+  {
+    "id": 1173,
+    "hanja": "弁当",
+    "hiragana": "べんとう",
+    "mean": "도시락",
+    "partOfSpeech": "명사",
+    "themes": [
+      "음식"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "弁当を見ました。",
+    "koExample1": "도시락을 봤습니다.",
+    "jpExample2": "弁当があります。",
+    "koExample2": "도시락이 있습니다."
+  },
+  {
+    "id": 1174,
+    "hanja": "朝食",
+    "hiragana": "ちょうしょく",
+    "mean": "아침식사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "음식"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "朝食を見ました。",
+    "koExample1": "아침식사을 봤습니다.",
+    "jpExample2": "朝食があります。",
+    "koExample2": "아침식사이 있습니다."
+  },
+  {
+    "id": 1175,
+    "hanja": "昼食",
+    "hiragana": "ちゅうしょく",
+    "mean": "점심식사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "음식"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "昼食を見ました。",
+    "koExample1": "점심식사을 봤습니다.",
+    "jpExample2": "昼食があります。",
+    "koExample2": "점심식사이 있습니다."
+  },
+  {
+    "id": 1176,
+    "hanja": "夕食",
+    "hiragana": "ゆうしょく",
+    "mean": "저녁식사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "음식"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "夕食を見ました。",
+    "koExample1": "저녁식사을 봤습니다.",
+    "jpExample2": "夕食があります。",
+    "koExample2": "저녁식사이 있습니다."
+  },
+  {
+    "id": 1177,
+    "hanja": "食事",
+    "hiragana": "しょくじ",
+    "mean": "식사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "음식"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "食事を見ました。",
+    "koExample1": "식사을 봤습니다.",
+    "jpExample2": "食事があります。",
+    "koExample2": "식사이 있습니다."
+  },
+  {
+    "id": 1178,
+    "hanja": "酸味",
+    "hiragana": "さんみ",
+    "mean": "신맛",
+    "partOfSpeech": "명사",
+    "themes": [
+      "음식"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "酸味を見ました。",
+    "koExample1": "신맛을 봤습니다.",
+    "jpExample2": "酸味があります。",
+    "koExample2": "신맛이 있습니다."
+  },
+  {
+    "id": 1179,
+    "hanja": "新聞社",
+    "hiragana": "しんぶんしゃ",
+    "mean": "신문사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "미디어"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "新聞社を見ました。",
+    "koExample1": "신문사을 봤습니다.",
+    "jpExample2": "新聞社があります。",
+    "koExample2": "신문사이 있습니다."
+  },
+  {
+    "id": 1180,
+    "hanja": "放送局",
+    "hiragana": "ほうそうきょく",
+    "mean": "방송국",
+    "partOfSpeech": "명사",
+    "themes": [
+      "미디어"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "放送局を見ました。",
+    "koExample1": "방송국을 봤습니다.",
+    "jpExample2": "放送局があります。",
+    "koExample2": "방송국이 있습니다."
+  },
+  {
+    "id": 1181,
+    "hanja": "撮影",
+    "hiragana": "さつえい",
+    "mean": "촬영",
+    "partOfSpeech": "명사",
+    "themes": [
+      "미디어"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "撮影を見ました。",
+    "koExample1": "촬영을 봤습니다.",
+    "jpExample2": "撮影があります。",
+    "koExample2": "촬영이 있습니다."
+  },
+  {
+    "id": 1182,
+    "hanja": "印刷",
+    "hiragana": "いんさつ",
+    "mean": "인쇄",
+    "partOfSpeech": "명사",
+    "themes": [
+      "미디어"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "印刷を見ました。",
+    "koExample1": "인쇄을 봤습니다.",
+    "jpExample2": "印刷があります。",
+    "koExample2": "인쇄이 있습니다."
+  },
+  {
+    "id": 1183,
+    "hanja": "郵送",
+    "hiragana": "ゆうそう",
+    "mean": "우편 발송",
+    "partOfSpeech": "명사",
+    "themes": [
+      "서비스"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "郵送を見ました。",
+    "koExample1": "우편 발송을 봤습니다.",
+    "jpExample2": "郵送があります。",
+    "koExample2": "우편 발송이 있습니다."
+  },
+  {
+    "id": 1184,
+    "hanja": "緊張",
+    "hiragana": "きんちょう",
+    "mean": "긴장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "감정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "緊張を見ました。",
+    "koExample1": "긴장을 봤습니다.",
+    "jpExample2": "緊張があります。",
+    "koExample2": "긴장이 있습니다."
+  },
+  {
+    "id": 1185,
+    "hanja": "感動",
+    "hiragana": "かんどう",
+    "mean": "감동",
+    "partOfSpeech": "명사",
+    "themes": [
+      "감정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "感動を見ました。",
+    "koExample1": "감동을 봤습니다.",
+    "jpExample2": "感動があります。",
+    "koExample2": "감동이 있습니다."
+  },
+  {
+    "id": 1186,
+    "hanja": "感謝",
+    "hiragana": "かんしゃ",
+    "mean": "감사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "감정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "感謝を見ました。",
+    "koExample1": "감사을 봤습니다.",
+    "jpExample2": "感謝があります。",
+    "koExample2": "감사이 있습니다."
+  },
+  {
+    "id": 1187,
+    "hanja": "迷惑",
+    "hiragana": "めいわく",
+    "mean": "민폐다",
+    "partOfSpeech": "な형용사",
+    "themes": [
+      "감정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "この部屋はとても迷惑（めいわく）です。",
+    "koExample1": "이 방은 아주 민폐다.",
+    "jpExample2": "迷惑（めいわく）人になりたいです。",
+    "koExample2": "민폐다 사람이 되고 싶습니다."
+  },
+  {
+    "id": 1188,
+    "hanja": "苦労",
+    "hiragana": "くろう",
+    "mean": "고생",
+    "partOfSpeech": "명사",
+    "themes": [
+      "감정"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "苦労を見ました。",
+    "koExample1": "고생을 봤습니다.",
+    "jpExample2": "苦労があります。",
+    "koExample2": "고생이 있습니다."
+  },
+  {
+    "id": 1189,
+    "hanja": "努力",
+    "hiragana": "どりょく",
+    "mean": "노력",
+    "partOfSpeech": "명사",
+    "themes": [
+      "행동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "努力を見ました。",
+    "koExample1": "노력을 봤습니다.",
+    "jpExample2": "努力があります。",
+    "koExample2": "노력이 있습니다."
+  },
+  {
+    "id": 1190,
+    "hanja": "原因",
+    "hiragana": "げんいん",
+    "mean": "원인",
+    "partOfSpeech": "명사",
+    "themes": [
+      "논리"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "原因を見ました。",
+    "koExample1": "원인을 봤습니다.",
+    "jpExample2": "原因があります。",
+    "koExample2": "원인이 있습니다."
+  },
+  {
+    "id": 1191,
+    "hanja": "場合",
+    "hiragana": "ばあい",
+    "mean": "경우",
+    "partOfSpeech": "명사",
+    "themes": [
+      "논리"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "場合を見ました。",
+    "koExample1": "경우을 봤습니다.",
+    "jpExample2": "場合があります。",
+    "koExample2": "경우이 있습니다."
+  },
+  {
+    "id": 1192,
+    "hanja": "景色",
+    "hiragana": "けしき",
+    "mean": "경치",
+    "partOfSpeech": "명사",
+    "themes": [
+      "자연",
+      "여행"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "景色を見ました。",
+    "koExample1": "경치을 봤습니다.",
+    "jpExample2": "景色があります。",
+    "koExample2": "경치이 있습니다."
+  },
+  {
+    "id": 1193,
+    "hanja": "観光",
+    "hiragana": "かんこう",
+    "mean": "관광",
+    "partOfSpeech": "명사",
+    "themes": [
+      "여가"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "観光を見ました。",
+    "koExample1": "관광을 봤습니다.",
+    "jpExample2": "観光があります。",
+    "koExample2": "관광이 있습니다."
+  },
+  {
+    "id": 1194,
+    "hanja": "案内所",
+    "hiragana": "あんないじょ",
+    "mean": "안내소",
+    "partOfSpeech": "명사",
+    "themes": [
+      "서비스"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "案内所を見ました。",
+    "koExample1": "안내소을 봤습니다.",
+    "jpExample2": "案内所があります。",
+    "koExample2": "안내소이 있습니다."
+  },
+  {
+    "id": 1195,
+    "hanja": "連休",
+    "hiragana": "れんきゅう",
+    "mean": "연휴",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "連休を見ました。",
+    "koExample1": "연휴을 봤습니다.",
+    "jpExample2": "連休があります。",
+    "koExample2": "연휴이 있습니다."
+  },
+  {
+    "id": 1196,
+    "hanja": "祝日",
+    "hiragana": "しゅくじつ",
+    "mean": "공휴일",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "祝日を見ました。",
+    "koExample1": "공휴일을 봤습니다.",
+    "jpExample2": "祝日があります。",
+    "koExample2": "공휴일이 있습니다."
+  },
+  {
+    "id": 1197,
+    "hanja": "平日",
+    "hiragana": "へいじつ",
+    "mean": "평일",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "平日を見ました。",
+    "koExample1": "평일을 봤습니다.",
+    "jpExample2": "平日があります。",
+    "koExample2": "평일이 있습니다."
+  },
+  {
+    "id": 1198,
+    "hanja": "着物",
+    "hiragana": "きもの",
+    "mean": "기모노",
+    "partOfSpeech": "명사",
+    "themes": [
+      "의복",
+      "전통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 2,
+    "frequency": 60,
+    "jpExample1": "旅行に行きます。",
+    "koExample1": "여행을 갑니다.",
+    "jpExample2": "旅行が楽しいです。",
+    "koExample2": "여행이 즐겁습니다."
+  },
+  {
+    "id": 1199,
+    "hanja": "将棋",
+    "hiragana": "しょうぎ",
+    "mean": "쇼기",
+    "partOfSpeech": "명사",
+    "themes": [
+      "게임"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "将棋を見ました。",
+    "koExample1": "쇼기을 봤습니다.",
+    "jpExample2": "将棋があります。",
+    "koExample2": "쇼기이 있습니다."
+  },
+  {
+    "id": 1200,
+    "hanja": "花火",
+    "hiragana": "はなび",
+    "mean": "불꽃놀이",
+    "partOfSpeech": "명사",
+    "themes": [
+      "여가"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "花火を見ました。",
+    "koExample1": "불꽃놀이을 봤습니다.",
+    "jpExample2": "花火があります。",
+    "koExample2": "불꽃놀이이 있습니다."
+  },
+  {
+    "id": 1201,
+    "hanja": "運動",
+    "hiragana": "うんどう",
+    "mean": "운동",
+    "partOfSpeech": "명사",
+    "themes": [
+      "스포츠"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "運動を見ました。",
+    "koExample1": "운동을 봤습니다.",
+    "jpExample2": "運動があります。",
+    "koExample2": "운동이 있습니다."
+  },
+  {
+    "id": 1202,
+    "hanja": "体験",
+    "hiragana": "たいけん",
+    "mean": "체험",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경험"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "体験を見ました。",
+    "koExample1": "체험을 봤습니다.",
+    "jpExample2": "体験があります。",
+    "koExample2": "체험이 있습니다."
+  },
+  {
+    "id": 1203,
+    "hanja": "受付係",
+    "hiragana": "うけつけがかり",
+    "mean": "접수 담당",
+    "partOfSpeech": "명사",
+    "themes": [
+      "직업"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "受付係を見ました。",
+    "koExample1": "접수 담당을 봤습니다.",
+    "jpExample2": "受付係があります。",
+    "koExample2": "접수 담당이 있습니다."
+  },
+  {
+    "id": 1204,
+    "hanja": "店長",
+    "hiragana": "てんちょう",
+    "mean": "점장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "직업"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "店長を見ました。",
+    "koExample1": "점장을 봤습니다.",
+    "jpExample2": "店長があります。",
+    "koExample2": "점장이 있습니다."
+  },
+  {
+    "id": 1205,
+    "hanja": "工事",
+    "hiragana": "こうじ",
+    "mean": "공사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "工事を見ました。",
+    "koExample1": "공사을 봤습니다.",
+    "jpExample2": "工事があります。",
+    "koExample2": "공사이 있습니다."
+  },
+  {
+    "id": 1206,
+    "hanja": "建設",
+    "hiragana": "けんせつ",
+    "mean": "건설",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "建設を見ました。",
+    "koExample1": "건설을 봤습니다.",
+    "jpExample2": "建設があります。",
+    "koExample2": "건설이 있습니다."
+  },
+  {
+    "id": 1207,
+    "hanja": "準決勝",
+    "hiragana": "じゅんけっしょう",
+    "mean": "준결승",
+    "partOfSpeech": "명사",
+    "themes": [
+      "스포츠"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "準決勝を見ました。",
+    "koExample1": "준결승을 봤습니다.",
+    "jpExample2": "準決勝があります。",
+    "koExample2": "준결승이 있습니다."
+  },
+  {
+    "id": 1208,
+    "hanja": "決勝",
+    "hiragana": "けっしょう",
+    "mean": "결승",
+    "partOfSpeech": "명사",
+    "themes": [
+      "스포츠"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "決勝を見ました。",
+    "koExample1": "결승을 봤습니다.",
+    "jpExample2": "決勝があります。",
+    "koExample2": "결승이 있습니다."
+  },
+  {
+    "id": 1209,
+    "hanja": "予選",
+    "hiragana": "よせん",
+    "mean": "예선",
+    "partOfSpeech": "명사",
+    "themes": [
+      "스포츠"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "予選を見ました。",
+    "koExample1": "예선을 봤습니다.",
+    "jpExample2": "予選があります。",
+    "koExample2": "예선이 있습니다."
+  },
+  {
+    "id": 1210,
+    "hanja": "選手",
+    "hiragana": "せんしゅ",
+    "mean": "선수",
+    "partOfSpeech": "명사",
+    "themes": [
+      "스포츠"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "選手を見ました。",
+    "koExample1": "선수을 봤습니다.",
+    "jpExample2": "選手があります。",
+    "koExample2": "선수이 있습니다."
+  },
+  {
+    "id": 1211,
+    "hanja": "監督",
+    "hiragana": "かんとく",
+    "mean": "감독",
+    "partOfSpeech": "명사",
+    "themes": [
+      "스포츠",
+      "영화"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "監督を見ました。",
+    "koExample1": "감독을 봤습니다.",
+    "jpExample2": "監督があります。",
+    "koExample2": "감독이 있습니다."
+  },
+  {
+    "id": 1212,
+    "hanja": "報告",
+    "hiragana": "ほうこく",
+    "mean": "보고",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "報告を見ました。",
+    "koExample1": "보고을 봤습니다.",
+    "jpExample2": "報告があります。",
+    "koExample2": "보고이 있습니다."
+  },
+  {
+    "id": 1213,
+    "hanja": "連絡網",
+    "hiragana": "れんらくもう",
+    "mean": "연락망",
+    "partOfSpeech": "명사",
+    "themes": [
+      "소통"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "連絡網を見ました。",
+    "koExample1": "연락망을 봤습니다.",
+    "jpExample2": "連絡網があります。",
+    "koExample2": "연락망이 있습니다."
+  },
+  {
+    "id": 1214,
+    "hanja": "広告",
+    "hiragana": "こうこく",
+    "mean": "광고",
+    "partOfSpeech": "명사",
+    "themes": [
+      "미디어"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "広告を見ました。",
+    "koExample1": "광고을 봤습니다.",
+    "jpExample2": "広告があります。",
+    "koExample2": "광고이 있습니다."
+  },
+  {
+    "id": 1215,
+    "hanja": "募集",
+    "hiragana": "ぼしゅう",
+    "mean": "모집",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "募集を見ました。",
+    "koExample1": "모집을 봤습니다.",
+    "jpExample2": "募集があります。",
+    "koExample2": "모집이 있습니다."
+  },
+  {
+    "id": 1216,
+    "hanja": "応募",
+    "hiragana": "おうぼ",
+    "mean": "응모/지원",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "応募を見ました。",
+    "koExample1": "응모/지원을 봤습니다.",
+    "jpExample2": "応募があります。",
+    "koExample2": "응모/지원이 있습니다."
+  },
+  {
+    "id": 1217,
+    "hanja": "面接",
+    "hiragana": "めんせつ",
+    "mean": "면접",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "面接を見ました。",
+    "koExample1": "면접을 봤습니다.",
+    "jpExample2": "面接があります。",
+    "koExample2": "면접이 있습니다."
+  },
+  {
+    "id": 1218,
+    "hanja": "履歴書",
+    "hiragana": "りれきしょ",
+    "mean": "이력서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "履歴書を見ました。",
+    "koExample1": "이력서을 봤습니다.",
+    "jpExample2": "履歴書があります。",
+    "koExample2": "이력서이 있습니다."
+  },
+  {
+    "id": 1219,
+    "hanja": "資格",
+    "hiragana": "しかく",
+    "mean": "자격",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "資格を見ました。",
+    "koExample1": "자격을 봤습니다.",
+    "jpExample2": "資格があります。",
+    "koExample2": "자격이 있습니다."
+  },
+  {
+    "id": 1220,
+    "hanja": "免許",
+    "hiragana": "めんきょ",
+    "mean": "면허",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "免許を見ました。",
+    "koExample1": "면허을 봤습니다.",
+    "jpExample2": "免許があります。",
+    "koExample2": "면허이 있습니다."
+  },
+  {
+    "id": 1221,
+    "hanja": "申込書",
+    "hiragana": "もうしこみしょ",
+    "mean": "신청서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "申込書を見ました。",
+    "koExample1": "신청서을 봤습니다.",
+    "jpExample2": "申込書があります。",
+    "koExample2": "신청서이 있습니다."
+  },
+  {
+    "id": 1222,
+    "hanja": "許可",
+    "hiragana": "きょか",
+    "mean": "허가",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "許可を見ました。",
+    "koExample1": "허가을 봤습니다.",
+    "jpExample2": "許可があります。",
+    "koExample2": "허가이 있습니다."
+  },
+  {
+    "id": 1223,
+    "hanja": "禁止",
+    "hiragana": "きんし",
+    "mean": "금지",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "禁止を見ました。",
+    "koExample1": "금지을 봤습니다.",
+    "jpExample2": "禁止があります。",
+    "koExample2": "금지이 있습니다."
+  },
+  {
+    "id": 1224,
+    "hanja": "案内図",
+    "hiragana": "あんないず",
+    "mean": "안내도",
+    "partOfSpeech": "명사",
+    "themes": [
+      "여행",
+      "서비스"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "案内図を見ました。",
+    "koExample1": "안내도을 봤습니다.",
+    "jpExample2": "案内図があります。",
+    "koExample2": "안내도이 있습니다."
+  },
+  {
+    "id": 1225,
+    "hanja": "出張",
+    "hiragana": "しゅっちょう",
+    "mean": "출장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "직업",
+      "여행"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "出張を見ました。",
+    "koExample1": "출장을 봤습니다.",
+    "jpExample2": "出張があります。",
+    "koExample2": "출장이 있습니다."
+  },
+  {
+    "id": 1226,
+    "hanja": "方向",
+    "hiragana": "ほうこう",
+    "mean": "방향",
+    "partOfSpeech": "명사",
+    "themes": [
+      "이동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "方向を見ました。",
+    "koExample1": "방향을 봤습니다.",
+    "jpExample2": "方向があります。",
+    "koExample2": "방향이 있습니다."
+  },
+  {
+    "id": 1227,
+    "hanja": "方面",
+    "hiragana": "ほうめん",
+    "mean": "방면",
+    "partOfSpeech": "명사",
+    "themes": [
+      "이동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "方面を見ました。",
+    "koExample1": "방면을 봤습니다.",
+    "jpExample2": "方面があります。",
+    "koExample2": "방면이 있습니다."
+  },
+  {
+    "id": 1228,
+    "hanja": "経由",
+    "hiragana": "けいゆ",
+    "mean": "경유",
+    "partOfSpeech": "명사",
+    "themes": [
+      "이동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "経由を見ました。",
+    "koExample1": "경유을 봤습니다.",
+    "jpExample2": "経由があります。",
+    "koExample2": "경유이 있습니다."
+  },
+  {
+    "id": 1229,
+    "hanja": "直行",
+    "hiragana": "ちょっこう",
+    "mean": "직행",
+    "partOfSpeech": "명사",
+    "themes": [
+      "이동"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "直行を見ました。",
+    "koExample1": "직행을 봤습니다.",
+    "jpExample2": "直行があります。",
+    "koExample2": "직행이 있습니다."
+  },
+  {
+    "id": 1230,
+    "hanja": "景品",
+    "hiragana": "けいひん",
+    "mean": "경품",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "景品を見ました。",
+    "koExample1": "경품을 봤습니다.",
+    "jpExample2": "景品があります。",
+    "koExample2": "경품이 있습니다."
+  },
+  {
+    "id": 1231,
+    "hanja": "賞品",
+    "hiragana": "しょうひん",
+    "mean": "상품(경품)",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "賞品を見ました。",
+    "koExample1": "상품(경품)을 봤습니다.",
+    "jpExample2": "賞品があります。",
+    "koExample2": "상품(경품)이 있습니다."
+  },
+  {
+    "id": 1232,
+    "hanja": "品質",
+    "hiragana": "ひんしつ",
+    "mean": "품질",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "品質を見ました。",
+    "koExample1": "품질을 봤습니다.",
+    "jpExample2": "品質があります。",
+    "koExample2": "품질이 있습니다."
+  },
+  {
+    "id": 1233,
+    "hanja": "品質管理",
+    "hiragana": "ひんしつかんり",
+    "mean": "품질관리",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "品質管理を見ました。",
+    "koExample1": "품질관리을 봤습니다.",
+    "jpExample2": "品質管理があります。",
+    "koExample2": "품질관리이 있습니다."
+  },
+  {
+    "id": 1234,
+    "hanja": "期限切れ",
+    "hiragana": "きげんぎれ",
+    "mean": "기한 만료",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "期限切れを見ました。",
+    "koExample1": "기한 만료을 봤습니다.",
+    "jpExample2": "期限切れがあります。",
+    "koExample2": "기한 만료이 있습니다."
+  },
+  {
+    "id": 1235,
+    "hanja": "延長",
+    "hiragana": "えんちょう",
+    "mean": "연장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "延長を見ました。",
+    "koExample1": "연장을 봤습니다.",
+    "jpExample2": "延長があります。",
+    "koExample2": "연장이 있습니다."
+  },
+  {
+    "id": 1236,
+    "hanja": "短縮",
+    "hiragana": "たんしゅく",
+    "mean": "단축",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "短縮を見ました。",
+    "koExample1": "단축을 봤습니다.",
+    "jpExample2": "短縮があります。",
+    "koExample2": "단축이 있습니다."
+  },
+  {
+    "id": 1237,
+    "hanja": "延期",
+    "hiragana": "えんき",
+    "mean": "연기",
+    "partOfSpeech": "명사",
+    "themes": [
+      "시간"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "延期を見ました。",
+    "koExample1": "연기을 봤습니다.",
+    "jpExample2": "延期があります。",
+    "koExample2": "연기이 있습니다."
+  },
+  {
+    "id": 1238,
+    "hanja": "変更",
+    "hiragana": "へんこう",
+    "mean": "변경",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "変更を見ました。",
+    "koExample1": "변경을 봤습니다.",
+    "jpExample2": "変更があります。",
+    "koExample2": "변경이 있습니다."
+  },
+  {
+    "id": 1239,
+    "hanja": "交換",
+    "hiragana": "こうかん",
+    "mean": "교환",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "交換を見ました。",
+    "koExample1": "교환을 봤습니다.",
+    "jpExample2": "交換があります。",
+    "koExample2": "교환이 있습니다."
+  },
+  {
+    "id": 1240,
+    "hanja": "返金",
+    "hiragana": "へんきん",
+    "mean": "환불",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "返金を見ました。",
+    "koExample1": "환불을 봤습니다.",
+    "jpExample2": "返金があります。",
+    "koExample2": "환불이 있습니다."
+  },
+  {
+    "id": 1241,
+    "hanja": "返品",
+    "hiragana": "へんぴん",
+    "mean": "반품",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "返品を見ました。",
+    "koExample1": "반품을 봤습니다.",
+    "jpExample2": "返品があります。",
+    "koExample2": "반품이 있습니다."
+  },
+  {
+    "id": 1242,
+    "hanja": "在庫",
+    "hiragana": "ざいこ",
+    "mean": "재고",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "在庫を見ました。",
+    "koExample1": "재고을 봤습니다.",
+    "jpExample2": "在庫があります。",
+    "koExample2": "재고이 있습니다."
+  },
+  {
+    "id": 1243,
+    "hanja": "倉庫",
+    "hiragana": "そうこ",
+    "mean": "창고",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "倉庫を見ました。",
+    "koExample1": "창고을 봤습니다.",
+    "jpExample2": "倉庫があります。",
+    "koExample2": "창고이 있습니다."
+  },
+  {
+    "id": 1244,
+    "hanja": "納品",
+    "hiragana": "のうひん",
+    "mean": "납품",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "納品を見ました。",
+    "koExample1": "납품을 봤습니다.",
+    "jpExample2": "納品があります。",
+    "koExample2": "납품이 있습니다."
+  },
+  {
+    "id": 1245,
+    "hanja": "出荷",
+    "hiragana": "しゅっか",
+    "mean": "출하",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "出荷を見ました。",
+    "koExample1": "출하을 봤습니다.",
+    "jpExample2": "出荷があります。",
+    "koExample2": "출하이 있습니다."
+  },
+  {
+    "id": 1246,
+    "hanja": "輸出",
+    "hiragana": "ゆしゅつ",
+    "mean": "수출",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "輸出を見ました。",
+    "koExample1": "수출을 봤습니다.",
+    "jpExample2": "輸出があります。",
+    "koExample2": "수출이 있습니다."
+  },
+  {
+    "id": 1247,
+    "hanja": "輸入",
+    "hiragana": "ゆにゅう",
+    "mean": "수입",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "輸入を見ました。",
+    "koExample1": "수입을 봤습니다.",
+    "jpExample2": "輸入があります。",
+    "koExample2": "수입이 있습니다."
+  },
+  {
+    "id": 1248,
+    "hanja": "通関",
+    "hiragana": "つうかん",
+    "mean": "통관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "通関を見ました。",
+    "koExample1": "통관을 봤습니다.",
+    "jpExample2": "通関があります。",
+    "koExample2": "통관이 있습니다."
+  },
+  {
+    "id": 1249,
+    "hanja": "税関",
+    "hiragana": "ぜいかん",
+    "mean": "세관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "경제"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "税関を見ました。",
+    "koExample1": "세관을 봤습니다.",
+    "jpExample2": "税関があります。",
+    "koExample2": "세관이 있습니다."
+  },
+  {
+    "id": 1250,
+    "hanja": "見積もり",
+    "hiragana": "みつもり",
+    "mean": "견적",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "見積もりを見ました。",
+    "koExample1": "견적을 봤습니다.",
+    "jpExample2": "見積もりがあります。",
+    "koExample2": "견적이 있습니다."
+  },
+  {
+    "id": 1251,
+    "hanja": "請求書",
+    "hiragana": "せいきゅうしょ",
+    "mean": "청구서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "請求書を見ました。",
+    "koExample1": "청구서을 봤습니다.",
+    "jpExample2": "請求書があります。",
+    "koExample2": "청구서이 있습니다."
+  },
+  {
+    "id": 1252,
+    "hanja": "領収書",
+    "hiragana": "りょうしゅうしょ",
+    "mean": "영수증",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "領収書を見ました。",
+    "koExample1": "영수증을 봤습니다.",
+    "jpExample2": "領収書があります。",
+    "koExample2": "영수증이 있습니다."
+  },
+  {
+    "id": 1253,
+    "hanja": "伝票",
+    "hiragana": "でんぴょう",
+    "mean": "전표",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "伝票を見ました。",
+    "koExample1": "전표을 봤습니다.",
+    "jpExample2": "伝票があります。",
+    "koExample2": "전표이 있습니다."
+  },
+  {
+    "id": 1254,
+    "hanja": "書類",
+    "hiragana": "しょるい",
+    "mean": "서류",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "書類を見ました。",
+    "koExample1": "서류을 봤습니다.",
+    "jpExample2": "書類があります。",
+    "koExample2": "서류이 있습니다."
+  },
+  {
+    "id": 1255,
+    "hanja": "印鑑",
+    "hiragana": "いんかん",
+    "mean": "도장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "印鑑を見ました。",
+    "koExample1": "도장을 봤습니다.",
+    "jpExample2": "印鑑があります。",
+    "koExample2": "도장이 있습니다."
+  },
+  {
+    "id": 1256,
+    "hanja": "判子",
+    "hiragana": "はんこ",
+    "mean": "도장",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "判子を見ました。",
+    "koExample1": "도장을 봤습니다.",
+    "jpExample2": "判子があります。",
+    "koExample2": "도장이 있습니다."
+  },
+  {
+    "id": 1257,
+    "hanja": "署名",
+    "hiragana": "しょめい",
+    "mean": "서명",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "署名を見ました。",
+    "koExample1": "서명을 봤습니다.",
+    "jpExample2": "署名があります。",
+    "koExample2": "서명이 있습니다."
+  },
+  {
+    "id": 1258,
+    "hanja": "捺印",
+    "hiragana": "なついん",
+    "mean": "날인",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "捺印を見ました。",
+    "koExample1": "날인을 봤습니다.",
+    "jpExample2": "捺印があります。",
+    "koExample2": "날인이 있습니다."
+  },
+  {
+    "id": 1259,
+    "hanja": "申込",
+    "hiragana": "もうしこみ",
+    "mean": "신청",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "申込を見ました。",
+    "koExample1": "신청을 봤습니다.",
+    "jpExample2": "申込があります。",
+    "koExample2": "신청이 있습니다."
+  },
+  {
+    "id": 1260,
+    "hanja": "申込者",
+    "hiragana": "もうしこみしゃ",
+    "mean": "신청자",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "申込者を見ました。",
+    "koExample1": "신청자을 봤습니다.",
+    "jpExample2": "申込者があります。",
+    "koExample2": "신청자이 있습니다."
+  },
+  {
+    "id": 1261,
+    "hanja": "受験",
+    "hiragana": "じゅけん",
+    "mean": "수험",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "受験を見ました。",
+    "koExample1": "수험을 봤습니다.",
+    "jpExample2": "受験があります。",
+    "koExample2": "수험이 있습니다."
+  },
+  {
+    "id": 1262,
+    "hanja": "受験票",
+    "hiragana": "じゅけんひょう",
+    "mean": "수험표",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "受験票を見ました。",
+    "koExample1": "수험표을 봤습니다.",
+    "jpExample2": "受験票があります。",
+    "koExample2": "수험표이 있습니다."
+  },
+  {
+    "id": 1263,
+    "hanja": "受講",
+    "hiragana": "じゅこう",
+    "mean": "수강",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "受講を見ました。",
+    "koExample1": "수강을 봤습니다.",
+    "jpExample2": "受講があります。",
+    "koExample2": "수강이 있습니다."
+  },
+  {
+    "id": 1264,
+    "hanja": "講義",
+    "hiragana": "こうぎ",
+    "mean": "강의",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "講義を見ました。",
+    "koExample1": "강의을 봤습니다.",
+    "jpExample2": "講義があります。",
+    "koExample2": "강의이 있습니다."
+  },
+  {
+    "id": 1265,
+    "hanja": "講師",
+    "hiragana": "こうし",
+    "mean": "강사",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "講師を見ました。",
+    "koExample1": "강사을 봤습니다.",
+    "jpExample2": "講師があります。",
+    "koExample2": "강사이 있습니다."
+  },
+  {
+    "id": 1266,
+    "hanja": "教材",
+    "hiragana": "きょうざい",
+    "mean": "교재",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "教材を見ました。",
+    "koExample1": "교재을 봤습니다.",
+    "jpExample2": "教材があります。",
+    "koExample2": "교재이 있습니다."
+  },
+  {
+    "id": 1267,
+    "hanja": "概要",
+    "hiragana": "がいよう",
+    "mean": "개요",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "概要を見ました。",
+    "koExample1": "개요을 봤습니다.",
+    "jpExample2": "概要があります。",
+    "koExample2": "개요이 있습니다."
+  },
+  {
+    "id": 1268,
+    "hanja": "詳細",
+    "hiragana": "しょうさい",
+    "mean": "상세",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "詳細を見ました。",
+    "koExample1": "상세을 봤습니다.",
+    "jpExample2": "詳細があります。",
+    "koExample2": "상세이 있습니다."
+  },
+  {
+    "id": 1269,
+    "hanja": "注意事項",
+    "hiragana": "ちゅういじこう",
+    "mean": "주의사항",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "注意事項を見ました。",
+    "koExample1": "주의사항을 봤습니다.",
+    "jpExample2": "注意事項があります。",
+    "koExample2": "주의사항이 있습니다."
+  },
+  {
+    "id": 1270,
+    "hanja": "規約",
+    "hiragana": "きやく",
+    "mean": "약관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "規約を見ました。",
+    "koExample1": "약관을 봤습니다.",
+    "jpExample2": "規約があります。",
+    "koExample2": "약관이 있습니다."
+  },
+  {
+    "id": 1271,
+    "hanja": "利用規約",
+    "hiragana": "りようきやく",
+    "mean": "이용약관",
+    "partOfSpeech": "명사",
+    "themes": [
+      "문서"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "利用規約を見ました。",
+    "koExample1": "이용약관을 봤습니다.",
+    "jpExample2": "利用規約があります。",
+    "koExample2": "이용약관이 있습니다."
+  },
+  {
+    "id": 1272,
+    "hanja": "個人情報",
+    "hiragana": "こじんじょうほう",
+    "mean": "개인정보",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "個人情報を見ました。",
+    "koExample1": "개인정보을 봤습니다.",
+    "jpExample2": "個人情報があります。",
+    "koExample2": "개인정보이 있습니다."
+  },
+  {
+    "id": 1273,
+    "hanja": "同意",
+    "hiragana": "どうい",
+    "mean": "동의",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "同意を見ました。",
+    "koExample1": "동의을 봤습니다.",
+    "jpExample2": "同意があります。",
+    "koExample2": "동의이 있습니다."
+  },
+  {
+    "id": 1274,
+    "hanja": "異議",
+    "hiragana": "いぎ",
+    "mean": "이의",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "異議を見ました。",
+    "koExample1": "이의을 봤습니다.",
+    "jpExample2": "異議があります。",
+    "koExample2": "이의이 있습니다."
+  },
+  {
+    "id": 1275,
+    "hanja": "証明書",
+    "hiragana": "しょうめいしょ",
+    "mean": "증명서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "証明書を見ました。",
+    "koExample1": "증명서을 봤습니다.",
+    "jpExample2": "証明書があります。",
+    "koExample2": "증명서이 있습니다."
+  },
+  {
+    "id": 1276,
+    "hanja": "身分証",
+    "hiragana": "みぶんしょう",
+    "mean": "신분증",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "身分証を見ました。",
+    "koExample1": "신분증을 봤습니다.",
+    "jpExample2": "身分証があります。",
+    "koExample2": "신분증이 있습니다."
+  },
+  {
+    "id": 1277,
+    "hanja": "身分証明書",
+    "hiragana": "みぶんしょうめいしょ",
+    "mean": "신분증",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "身分証明書を見ました。",
+    "koExample1": "신분증을 봤습니다.",
+    "jpExample2": "身分証明書があります。",
+    "koExample2": "신분증이 있습니다."
+  },
+  {
+    "id": 1278,
+    "hanja": "保証",
+    "hiragana": "ほしょう",
+    "mean": "보증",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "保証を見ました。",
+    "koExample1": "보증을 봤습니다.",
+    "jpExample2": "保証があります。",
+    "koExample2": "보증이 있습니다."
+  },
+  {
+    "id": 1279,
+    "hanja": "保険",
+    "hiragana": "ほけん",
+    "mean": "보험",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "保険を見ました。",
+    "koExample1": "보험을 봤습니다.",
+    "jpExample2": "保険があります。",
+    "koExample2": "보험이 있습니다."
+  },
+  {
+    "id": 1280,
+    "hanja": "保険証",
+    "hiragana": "ほけんしょう",
+    "mean": "보험증",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "保険証を見ました。",
+    "koExample1": "보험증을 봤습니다.",
+    "jpExample2": "保険証があります。",
+    "koExample2": "보험증이 있습니다."
+  },
+  {
+    "id": 1281,
+    "hanja": "性別",
+    "hiragana": "せいべつ",
+    "mean": "성별",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "性別を見ました。",
+    "koExample1": "성별을 봤습니다.",
+    "jpExample2": "性別があります。",
+    "koExample2": "성별이 있습니다."
+  },
+  {
+    "id": 1282,
+    "hanja": "既婚",
+    "hiragana": "きこん",
+    "mean": "기혼",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "既婚を見ました。",
+    "koExample1": "기혼을 봤습니다.",
+    "jpExample2": "既婚があります。",
+    "koExample2": "기혼이 있습니다."
+  },
+  {
+    "id": 1283,
+    "hanja": "未婚",
+    "hiragana": "みこん",
+    "mean": "미혼",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "未婚を見ました。",
+    "koExample1": "미혼을 봤습니다.",
+    "jpExample2": "未婚があります。",
+    "koExample2": "미혼이 있습니다."
+  },
+  {
+    "id": 1284,
+    "hanja": "独身",
+    "hiragana": "どくしん",
+    "mean": "독신",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "独身を見ました。",
+    "koExample1": "독신을 봤습니다.",
+    "jpExample2": "独身があります。",
+    "koExample2": "독신이 있습니다."
+  },
+  {
+    "id": 1285,
+    "hanja": "家族構成",
+    "hiragana": "かぞくこうせい",
+    "mean": "가족구성",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "家族構成を見ました。",
+    "koExample1": "가족구성을 봤습니다.",
+    "jpExample2": "家族構成があります。",
+    "koExample2": "가족구성이 있습니다."
+  },
+  {
+    "id": 1286,
+    "hanja": "長所",
+    "hiragana": "ちょうしょ",
+    "mean": "장점",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "長所を見ました。",
+    "koExample1": "장점을 봤습니다.",
+    "jpExample2": "長所があります。",
+    "koExample2": "장점이 있습니다."
+  },
+  {
+    "id": 1287,
+    "hanja": "短所",
+    "hiragana": "たんしょ",
+    "mean": "단점",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "短所を見ました。",
+    "koExample1": "단점을 봤습니다.",
+    "jpExample2": "短所があります。",
+    "koExample2": "단점이 있습니다."
+  },
+  {
+    "id": 1288,
+    "hanja": "趣味",
+    "hiragana": "しゅみ",
+    "mean": "취미",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "趣味を見ました。",
+    "koExample1": "취미을 봤습니다.",
+    "jpExample2": "趣味があります。",
+    "koExample2": "취미이 있습니다."
+  },
+  {
+    "id": 1289,
+    "hanja": "特技",
+    "hiragana": "とくぎ",
+    "mean": "특기",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "特技を見ました。",
+    "koExample1": "특기을 봤습니다.",
+    "jpExample2": "特技があります。",
+    "koExample2": "특기이 있습니다."
+  },
+  {
+    "id": 1290,
+    "hanja": "能力",
+    "hiragana": "のうりょく",
+    "mean": "능력",
+    "partOfSpeech": "명사",
+    "themes": [
+      "개인"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "能力を見ました。",
+    "koExample1": "능력을 봤습니다.",
+    "jpExample2": "能力があります。",
+    "koExample2": "능력이 있습니다."
+  },
+  {
+    "id": 1291,
+    "hanja": "資格試験",
+    "hiragana": "しかくしけん",
+    "mean": "자격시험",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "資格試験を見ました。",
+    "koExample1": "자격시험을 봤습니다.",
+    "jpExample2": "資格試験があります。",
+    "koExample2": "자격시험이 있습니다."
+  },
+  {
+    "id": 1292,
+    "hanja": "筆記試験",
+    "hiragana": "ひっきしけん",
+    "mean": "필기시험",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "筆記試験を見ました。",
+    "koExample1": "필기시험을 봤습니다.",
+    "jpExample2": "筆記試験があります。",
+    "koExample2": "필기시험이 있습니다."
+  },
+  {
+    "id": 1293,
+    "hanja": "面接試験",
+    "hiragana": "めんせつしけん",
+    "mean": "면접시험",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "面接試験を見ました。",
+    "koExample1": "면접시험을 봤습니다.",
+    "jpExample2": "面接試験があります。",
+    "koExample2": "면접시험이 있습니다."
+  },
+  {
+    "id": 1294,
+    "hanja": "実技",
+    "hiragana": "じつぎ",
+    "mean": "실기",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "実技を見ました。",
+    "koExample1": "실기을 봤습니다.",
+    "jpExample2": "実技があります。",
+    "koExample2": "실기이 있습니다."
+  },
+  {
+    "id": 1295,
+    "hanja": "課題",
+    "hiragana": "かだい",
+    "mean": "과제",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "課題を見ました。",
+    "koExample1": "과제을 봤습니다.",
+    "jpExample2": "課題があります。",
+    "koExample2": "과제이 있습니다."
+  },
+  {
+    "id": 1296,
+    "hanja": "提出物",
+    "hiragana": "ていしゅつぶつ",
+    "mean": "제출물",
+    "partOfSpeech": "명사",
+    "themes": [
+      "학습"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "提出物を見ました。",
+    "koExample1": "제출물을 봤습니다.",
+    "jpExample2": "提出物があります。",
+    "koExample2": "제출물이 있습니다."
+  },
+  {
+    "id": 1297,
+    "hanja": "組織",
+    "hiragana": "そしき",
+    "mean": "조직",
+    "partOfSpeech": "명사",
+    "themes": [
+      "사회"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "組織を見ました。",
+    "koExample1": "조직을 봤습니다.",
+    "jpExample2": "組織があります。",
+    "koExample2": "조직이 있습니다."
+  },
+  {
+    "id": 1298,
+    "hanja": "部署",
+    "hiragana": "ぶしょ",
+    "mean": "부서",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "部署を見ました。",
+    "koExample1": "부서을 봤습니다.",
+    "jpExample2": "部署があります。",
+    "koExample2": "부서이 있습니다."
+  },
+  {
+    "id": 1299,
+    "hanja": "人事",
+    "hiragana": "じんじ",
+    "mean": "인사(부서)",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "人事を見ました。",
+    "koExample1": "인사(부서)을 봤습니다.",
+    "jpExample2": "人事があります。",
+    "koExample2": "인사(부서)이 있습니다."
+  },
+  {
+    "id": 1300,
+    "hanja": "総務",
+    "hiragana": "そうむ",
+    "mean": "총무",
+    "partOfSpeech": "명사",
+    "themes": [
+      "업무"
+    ],
+    "jlptLevel": "N4",
+    "difficulty": 3,
+    "frequency": 60,
+    "jpExample1": "総務を見ました。",
+    "koExample1": "총무을 봤습니다.",
+    "jpExample2": "総務があります。",
+    "koExample2": "총무이 있습니다."
+  }
+]
