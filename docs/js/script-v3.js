@@ -56,7 +56,6 @@ class WordLearningAppV3 {
                 // 통계 업데이트
                 await this.updateStatistics();
                 console.log('Statistics updated');
-
             } catch (dbError) {
                 console.error('Database initialization failed:', dbError);
                 // DB 없이도 동작하도록 기본 UI 설정
@@ -84,19 +83,19 @@ class WordLearningAppV3 {
                 { name: 'n4', displayName: 'N4', count: 0 },
                 { name: 'n3', displayName: 'N3', count: 0 },
                 { name: 'n2', displayName: 'N2', count: 0 },
-                { name: 'n1', displayName: 'N1', count: 0 }
+                { name: 'n1', displayName: 'N1', count: 0 },
             ],
             partOfSpeech: [
                 { name: '명사', displayName: '명사', count: 0 },
                 { name: '동사', displayName: '동사', count: 0 },
                 { name: 'い형용사', displayName: 'い형용사', count: 0 },
-                { name: 'な형용사', displayName: 'な형용사', count: 0 }
+                { name: 'な형용사', displayName: 'な형용사', count: 0 },
             ],
             themes: [
                 { name: '날씨', displayName: '날씨', count: 0 },
                 { name: '음식', displayName: '음식', count: 0 },
-                { name: '가족', displayName: '가족', count: 0 }
-            ]
+                { name: '가족', displayName: '가족', count: 0 },
+            ],
         };
 
         // 기본 필터 생성
@@ -124,7 +123,7 @@ class WordLearningAppV3 {
 
             // N5 데이터 로드
             console.log('Fetching N5 data...');
-            const n5Response = await fetch('../json/jlpt_n5_words_unified.json');
+            const n5Response = await fetch('./json/jlpt_n5_words_unified.json');
             console.log('N5 response status:', n5Response.status);
 
             if (n5Response.ok) {
@@ -142,7 +141,7 @@ class WordLearningAppV3 {
 
             // N4 데이터 로드
             console.log('Fetching N4 data...');
-            const n4Response = await fetch('../json/jlpt_n4_words_unified.json');
+            const n4Response = await fetch('./json/jlpt_n4_words_unified.json');
             console.log('N4 response status:', n4Response.status);
 
             if (n4Response.ok) {
@@ -160,7 +159,7 @@ class WordLearningAppV3 {
 
             // N3 데이터 로드
             console.log('Fetching N3 data...');
-            const n3Response = await fetch('../json/jlpt_n3_words_unified.json');
+            const n3Response = await fetch('./json/jlpt_n3_words_unified.json');
             console.log('N3 response status:', n3Response.status);
 
             if (n3Response.ok) {
@@ -178,7 +177,7 @@ class WordLearningAppV3 {
 
             // N2 데이터 로드
             console.log('Fetching N2 data...');
-            const n2Response = await fetch('../json/jlpt_n2_words_unified.json');
+            const n2Response = await fetch('./json/jlpt_n2_words_unified.json');
             console.log('N2 response status:', n2Response.status);
 
             if (n2Response.ok) {
@@ -196,7 +195,7 @@ class WordLearningAppV3 {
 
             // N1 데이터 로드
             console.log('Fetching N1 data...');
-            const n1Response = await fetch('../json/jlpt_n1_words_unified.json');
+            const n1Response = await fetch('./json/jlpt_n1_words_unified.json');
             console.log('N1 response status:', n1Response.status);
 
             if (n1Response.ok) {
@@ -215,7 +214,6 @@ class WordLearningAppV3 {
             // 최종 단어 수 확인
             const finalWordCount = await this.dbManager.getTotalWordCount();
             console.log('Final word count after loading:', finalWordCount);
-
         } catch (error) {
             console.error('Sample data loading failed:', error);
             console.error('Error stack:', error.stack);
@@ -255,7 +253,6 @@ class WordLearningAppV3 {
             this.updateFilterSummary();
 
             console.log('UI initialization completed');
-
         } catch (error) {
             console.error('UI initialization failed:', error);
         }
@@ -273,7 +270,7 @@ class WordLearningAppV3 {
         }
         jlptSelect.innerHTML = '<option value="">레벨 선택</option>';
 
-        this.availableCategories.jlpt.forEach(category => {
+        this.availableCategories.jlpt.forEach((category) => {
             const option = document.createElement('option');
             option.value = category.name;
             option.textContent = category.displayName;
@@ -297,7 +294,7 @@ class WordLearningAppV3 {
         }
         partOfSpeechSelect.innerHTML = '<option value="">품사 선택</option>';
 
-        this.availableCategories.partOfSpeech.forEach(category => {
+        this.availableCategories.partOfSpeech.forEach((category) => {
             const option = document.createElement('option');
             option.value = category.name;
             option.textContent = category.displayName;
@@ -321,7 +318,7 @@ class WordLearningAppV3 {
         }
         themeSelect.innerHTML = '<option value="">주제 선택</option>';
 
-        this.availableCategories.themes.forEach(category => {
+        this.availableCategories.themes.forEach((category) => {
             const option = document.createElement('option');
             option.value = category.name;
             option.textContent = category.displayName;
@@ -377,9 +374,9 @@ class WordLearningAppV3 {
 
         // 드롭다운 초기화
         const selectMapping = {
-            'jlptLevel': 'jlptLevelSelect',
-            'partOfSpeech': 'partOfSpeechSelect',
-            'theme': 'themeSelect'
+            jlptLevel: 'jlptLevelSelect',
+            partOfSpeech: 'partOfSpeechSelect',
+            theme: 'themeSelect',
         };
 
         const selectElement = document.getElementById(selectMapping[filterType]);
@@ -445,7 +442,6 @@ class WordLearningAppV3 {
             this.updateWordDisplay();
 
             console.log('Auto-loaded random words:', this.selectedWords);
-
         } catch (error) {
             console.error('Error auto-loading random words:', error);
             console.error('Error stack:', error.stack);
@@ -459,15 +455,17 @@ class WordLearningAppV3 {
     showSampleWord() {
         console.log('Showing sample word');
 
-        this.selectedWords = [{
-            hanja: '単語',
-            hiragana: 'たんご',
-            mean: '단어',
-            jpExample1: 'この単語の意味が分かりません。',
-            koExample1: '이 단어의 뜻을 모르겠습니다.',
-            jpExample2: '新しい単語を覚えるのは楽しいです。',
-            koExample2: '새로운 단어를 외우는 것은 즐겁습니다.'
-        }];
+        this.selectedWords = [
+            {
+                hanja: '単語',
+                hiragana: 'たんご',
+                mean: '단어',
+                jpExample1: 'この単語の意味が分かりません。',
+                koExample1: '이 단어의 뜻을 모르겠습니다.',
+                jpExample2: '新しい単語を覚えるのは楽しいです。',
+                koExample2: '새로운 단어를 외우는 것은 즐겁습니다.',
+            },
+        ];
 
         this.currentWordIndex = 0;
         this.showWordCard();
@@ -480,7 +478,6 @@ class WordLearningAppV3 {
     async updateFilterSummary() {
         // Filter summary element removed
     }
-
 
     /**
      * 이벤트 바인딩
@@ -681,7 +678,8 @@ class WordLearningAppV3 {
         document.getElementById('jlptLevelSelectMobile').value = document.getElementById('jlptLevelSelect').value;
         document.getElementById('partOfSpeechSelectMobile').value = document.getElementById('partOfSpeechSelect').value;
         document.getElementById('themeSelectMobile').value = document.getElementById('themeSelect').value;
-        document.getElementById('excludeViewedWordsMobile').checked = document.getElementById('excludeViewedWords').checked;
+        document.getElementById('excludeViewedWordsMobile').checked =
+            document.getElementById('excludeViewedWords').checked;
     }
 
     /**
@@ -705,87 +703,103 @@ class WordLearningAppV3 {
         console.log('Binding touch/swipe events to word screen');
 
         // 터치 시작
-        wordScreen.addEventListener('touchstart', (e) => {
-            this.startX = e.touches[0].clientX;
-            this.startY = e.touches[0].clientY;
-            isSwipingHorizontally = false;
-            isTap = true;
-            console.log('Touch start:', this.startX, this.startY);
-        }, { passive: true });
+        wordScreen.addEventListener(
+            'touchstart',
+            (e) => {
+                this.startX = e.touches[0].clientX;
+                this.startY = e.touches[0].clientY;
+                isSwipingHorizontally = false;
+                isTap = true;
+                console.log('Touch start:', this.startX, this.startY);
+            },
+            { passive: true }
+        );
 
         // 터치 이동 중
-        wordScreen.addEventListener('touchmove', (e) => {
-            if (!this.startX) return;
+        wordScreen.addEventListener(
+            'touchmove',
+            (e) => {
+                if (!this.startX) return;
 
-            const currentX = e.touches[0].clientX;
-            const currentY = e.touches[0].clientY;
-            const diffX = currentX - this.startX;
-            const diffY = currentY - this.startY;
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const diffX = currentX - this.startX;
+                const diffY = currentY - this.startY;
 
-            // 움직임이 있으면 탭이 아님
-            if (Math.abs(diffX) > 5 || Math.abs(diffY) > 5) {
-                isTap = false;
-            }
+                // 움직임이 있으면 탭이 아님
+                if (Math.abs(diffX) > 5 || Math.abs(diffY) > 5) {
+                    isTap = false;
+                }
 
-            // 왼쪽에서 오른쪽 스와이프만 허용 (이전 화면으로)
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10 && diffX > 0) {
-                isSwipingHorizontally = true;
-                e.preventDefault();
+                // 왼쪽에서 오른쪽 스와이프만 허용 (이전 화면으로)
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10 && diffX > 0) {
+                    isSwipingHorizontally = true;
+                    e.preventDefault();
 
-                // 시각적 피드백 - 전체 화면에 적용 (오른쪽 스와이프만)
-                const movePercent = Math.min(diffX / 150, 0.3);
-                const opacity = 1 - movePercent;
+                    // 시각적 피드백 - 전체 화면에 적용 (오른쪽 스와이프만)
+                    const movePercent = Math.min(diffX / 150, 0.3);
+                    const opacity = 1 - movePercent;
 
-                wordScreen.style.transform = `translateX(${diffX * 0.2}px)`;
-                wordScreen.style.opacity = opacity;
-            }
-        }, { passive: false });
+                    wordScreen.style.transform = `translateX(${diffX * 0.2}px)`;
+                    wordScreen.style.opacity = opacity;
+                }
+            },
+            { passive: false }
+        );
 
         // 터치 종료
-        wordScreen.addEventListener('touchend', (e) => {
-            if (e.changedTouches && e.changedTouches.length > 0) {
-                this.endX = e.changedTouches[0].clientX;
-                this.endY = e.changedTouches[0].clientY;
-            }
+        wordScreen.addEventListener(
+            'touchend',
+            (e) => {
+                if (e.changedTouches && e.changedTouches.length > 0) {
+                    this.endX = e.changedTouches[0].clientX;
+                    this.endY = e.changedTouches[0].clientY;
+                }
 
-            // 화면 원래 상태로 복원
-            wordScreen.style.transform = '';
-            wordScreen.style.opacity = '';
-            wordScreen.style.transition = 'all 0.3s ease';
+                // 화면 원래 상태로 복원
+                wordScreen.style.transform = '';
+                wordScreen.style.opacity = '';
+                wordScreen.style.transition = 'all 0.3s ease';
 
-            setTimeout(() => {
-                wordScreen.style.transition = '';
-            }, 300);
+                setTimeout(() => {
+                    wordScreen.style.transition = '';
+                }, 300);
 
-            // 탭 처리 (좌우 영역)
-            if (isTap) {
-                this.handleTap(this.startX);
-            }
-            // 스와이프 처리 (왼쪽→오른쪽만)
-            else if (isSwipingHorizontally) {
-                this.handleSwipe();
-            }
+                // 탭 처리 (좌우 영역)
+                if (isTap) {
+                    this.handleTap(this.startX);
+                }
+                // 스와이프 처리 (왼쪽→오른쪽만)
+                else if (isSwipingHorizontally) {
+                    this.handleSwipe();
+                }
 
-            // 초기화
-            this.startX = 0;
-            this.startY = 0;
-            this.endX = 0;
-            this.endY = 0;
-            isSwipingHorizontally = false;
-            isTap = false;
-        }, { passive: true });
+                // 초기화
+                this.startX = 0;
+                this.startY = 0;
+                this.endX = 0;
+                this.endY = 0;
+                isSwipingHorizontally = false;
+                isTap = false;
+            },
+            { passive: true }
+        );
 
         // 터치 취소
-        wordScreen.addEventListener('touchcancel', (e) => {
-            wordScreen.style.transform = '';
-            wordScreen.style.opacity = '';
-            this.startX = 0;
-            this.startY = 0;
-            this.endX = 0;
-            this.endY = 0;
-            isSwipingHorizontally = false;
-            isTap = false;
-        }, { passive: true });
+        wordScreen.addEventListener(
+            'touchcancel',
+            (e) => {
+                wordScreen.style.transform = '';
+                wordScreen.style.opacity = '';
+                this.startX = 0;
+                this.startY = 0;
+                this.endX = 0;
+                this.endY = 0;
+                isSwipingHorizontally = false;
+                isTap = false;
+            },
+            { passive: true }
+        );
 
         // 중복 바인딩 방지 마크 설정
         wordScreen.dataset.swipeBound = 'true';
@@ -802,7 +816,7 @@ class WordLearningAppV3 {
             tapX,
             screenWidth,
             leftAreaWidth,
-            selectedWordsLength: this.selectedWords.length
+            selectedWordsLength: this.selectedWords.length,
         });
 
         if (tapX < leftAreaWidth) {
@@ -825,7 +839,7 @@ class WordLearningAppV3 {
         console.log('Handling swipe:', {
             deltaX,
             startX: this.startX,
-            endX: this.endX
+            endX: this.endX,
         });
 
         // 최소 스와이프 거리
@@ -841,7 +855,6 @@ class WordLearningAppV3 {
         }
     }
 
-
     /**
      * 단어 카드 표시
      */
@@ -855,7 +868,8 @@ class WordLearningAppV3 {
 
         if (wordCard) {
             // 강제로 표시
-            wordCard.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
+            wordCard.style.cssText =
+                'display: block !important; visibility: visible !important; opacity: 1 !important;';
             console.log('wordCard display set to block with !important');
 
             // 스와이프 이벤트 바인딩 (전체 화면에)
@@ -956,12 +970,12 @@ class WordLearningAppV3 {
         const totalCountElements = document.querySelectorAll('#totalCount');
 
         // 모든 currentIndex 요소 업데이트
-        currentIndexElements.forEach(el => {
+        currentIndexElements.forEach((el) => {
             el.textContent = this.currentWordIndex + 1;
         });
 
         // 모든 totalCount 요소 업데이트
-        totalCountElements.forEach(el => {
+        totalCountElements.forEach((el) => {
             el.textContent = this.selectedWords.length;
         });
 
@@ -1026,7 +1040,6 @@ class WordLearningAppV3 {
             await this.updateStatistics();
 
             console.log(`Word ${currentWord.id} marked as viewed`);
-
         } catch (error) {
             console.error('Error marking word as viewed:', error);
             alert('단어 추가에 실패했습니다.');
@@ -1044,9 +1057,12 @@ class WordLearningAppV3 {
             const list = document.getElementById('viewedWordsList');
 
             if (viewedWords.length === 0) {
-                list.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">아직 본 단어가 없습니다.</p>';
+                list.innerHTML =
+                    '<p style="text-align: center; color: #666; padding: 20px;">아직 본 단어가 없습니다.</p>';
             } else {
-                list.innerHTML = viewedWords.map(word => `
+                list.innerHTML = viewedWords
+                    .map(
+                        (word) => `
                     <div style="
                         display: flex;
                         justify-content: space-between;
@@ -1065,20 +1081,23 @@ class WordLearningAppV3 {
                                 ${word.mean}
                             </div>
                             <div style="font-size: 0.8rem; color: #666; margin-top: 4px;">
-                                ${word.jlptLevel} · ${word.partOfSpeech} · ${word.themes ? word.themes.join(', ') : ''} · 조회수: ${word.viewCount}
+                                ${word.jlptLevel} · ${word.partOfSpeech} · ${
+                            word.themes ? word.themes.join(', ') : ''
+                        } · 조회수: ${word.viewCount}
                             </div>
                         </div>
                         <div style="font-size: 0.8rem; color: #666;">
                             ${new Date(word.viewedAt).toLocaleDateString()}
                         </div>
                     </div>
-                `).join('');
+                `
+                    )
+                    .join('');
             }
 
             section.style.display = 'block';
             document.getElementById('wordCard').style.display = 'none';
             document.getElementById('wordControls').style.display = 'none';
-
         } catch (error) {
             console.error('Error showing viewed words:', error);
             alert('본 단어장을 불러오는데 실패했습니다.');
@@ -1105,7 +1124,6 @@ class WordLearningAppV3 {
             await this.updateFilterSummary();
 
             console.log('Statistics updated');
-
         } catch (error) {
             console.error('Error updating statistics:', error);
         }
@@ -1131,7 +1149,7 @@ class WordLearningAppV3 {
                 // 최대 5초간 DB 초기화 대기
                 let attempts = 0;
                 while (!this.dbManager.db && attempts < 50) {
-                    await new Promise(resolve => setTimeout(resolve, 100));
+                    await new Promise((resolve) => setTimeout(resolve, 100));
                     attempts++;
                 }
 
@@ -1159,7 +1177,6 @@ class WordLearningAppV3 {
 
             // 단어 로드 및 표시
             await this.autoLoadRandomWords();
-
         } catch (error) {
             console.error('Error in setFiltersAndStart:', error);
             console.error('Error stack:', error.stack);
@@ -1172,7 +1189,7 @@ class WordLearningAppV3 {
      * @param {string[]} elementIds - 숨길 요소의 ID 배열
      */
     safeHideElements(elementIds) {
-        elementIds.forEach(id => {
+        elementIds.forEach((id) => {
             const element = document.getElementById(id);
             if (element) {
                 element.style.display = 'none';
@@ -1189,7 +1206,7 @@ class WordLearningAppV3 {
      * @param {string} displayStyle - display 스타일 (기본값: 'block')
      */
     safeShowElements(elementIds, displayStyle = 'block') {
-        elementIds.forEach(id => {
+        elementIds.forEach((id) => {
             const element = document.getElementById(id);
             if (element) {
                 element.style.display = displayStyle;
