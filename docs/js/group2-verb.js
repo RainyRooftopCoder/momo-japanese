@@ -1,14 +1,14 @@
 /**
- * Group1 Verb Conjugation App - 1그룹동사 활용 학습
+ * Group2 Verb Conjugation App - 2그룹동사 활용 학습
  *
  * 특징:
- * - 1그룹동사(う동사)의 6가지 활용형 학습
+ * - 2그룹동사(る동사)의 6가지 활용형 학습
  * - 실제 예문을 통한 학습
  * - 컴팩트한 인터페이스
  * - 터치 네비게이션
  */
 
-class Group1VerbApp {
+class Group2VerbApp {
     constructor() {
         this.verbData = null;
         this.currentVerbIndex = 0;
@@ -19,7 +19,7 @@ class Group1VerbApp {
 
     async init() {
         try {
-            console.log('Initializing Group1 Verb App...');
+            console.log('Initializing Group2 Verb App...');
 
             // 데이터 로드
             await this.loadVerbData();
@@ -30,28 +30,28 @@ class Group1VerbApp {
             // UI 초기화
             this.initializeUI();
 
-            console.log('Group1 Verb App initialized successfully');
+            console.log('Group2 Verb App initialized successfully');
         } catch (error) {
-            console.error('Error initializing Group1 Verb App:', error);
+            console.error('Error initializing Group2 Verb App:', error);
         }
     }
 
     /**
-     * 1그룹동사 데이터 로드
+     * 2그룹동사 데이터 로드
      */
     async loadVerbData() {
         try {
-            const response = await fetch('./json/group1_verb_data.json');
+            const response = await fetch('./json/group2_verb_data.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
-            this.verbData = data[0]; // 기본 1그룹동사 데이터
+            this.verbData = data[0]; // 기본 2그룹동사 데이터
 
-            console.log('Group1 Verb data loaded:', this.verbData);
+            console.log('Group2 Verb data loaded:', this.verbData);
         } catch (error) {
-            console.error('Error loading group1 verb data:', error);
+            console.error('Error loading group2 verb data:', error);
             this.setupDefaultData();
         }
     }
@@ -61,30 +61,30 @@ class Group1VerbApp {
      */
     setupDefaultData() {
         this.verbData = {
-            title: "1그룹동사 활용",
-            description: "1그룹동사(う동사)의 다양한 활용형을 학습합니다",
+            title: "2그룹동사 활용",
+            description: "2그룹동사(る동사)의 다양한 활용형을 학습합니다",
             conjugationTypes: [
                 {
                     formType: "현재형",
-                    ending: "う",
+                    ending: "る",
                     description: "기본형으로 현재나 미래를 나타냄"
                 }
             ],
             examples: [
                 {
-                    verb: "書く",
-                    stem: "書",
-                    reading: "かく",
-                    meaning: "쓰다",
-                    group: "く동사",
+                    verb: "食べる",
+                    stem: "食べ",
+                    reading: "たべる",
+                    meaning: "먹다",
+                    group: "る동사",
                     conjugations: {
                         "현재형": {
-                            form: "書く",
-                            reading: "かく",
-                            translation: "쓰다",
-                            example: "手紙を書く。",
-                            exampleReading: "てがみをかく。",
-                            exampleTranslation: "편지를 쓴다."
+                            form: "食べる",
+                            reading: "たべる",
+                            translation: "먹다",
+                            example: "朝ご飯を食べる。",
+                            exampleReading: "あさごはんをたべる。",
+                            exampleTranslation: "아침밥을 먹는다."
                         }
                     }
                 }
@@ -105,14 +105,14 @@ class Group1VerbApp {
      * 헤더 생성
      */
     createHeader() {
-        const headerContainer = document.getElementById('group1VerbHeader');
+        const headerContainer = document.getElementById('group2VerbHeader');
         if (!headerContainer) {
             console.log('Header container not found');
             return;
         }
 
         headerContainer.innerHTML = `
-            <div class="group1-verb-header">
+            <div class="group2-verb-header">
                 <h1>${this.verbData.title}</h1>
                 <p class="description">${this.verbData.description}</p>
                 <div class="explanation">
@@ -210,21 +210,13 @@ class Group1VerbApp {
     }
 
     /**
-     * 형태별 어미 변화 가져오기
+     * 형태별 어미 변화 가져오기 (2그룹동사 특화)
      */
     getEndingForForm(verb, formType) {
-        const verbType = verb.group;
-        const baseEnding = verb.verb.slice(-1);
-
         switch (formType) {
             case '현재형':
-                return baseEnding;
+                return 'る';
             case '과거형':
-                if (baseEnding === 'く') return 'いた';
-                if (baseEnding === 'ぐ') return 'いだ';
-                if (baseEnding === 'む' || baseEnding === 'ぶ' || baseEnding === 'ぬ') return 'んだ';
-                if (baseEnding === 'す') return 'した';
-                if (baseEnding === 'つ' || baseEnding === 'る' || baseEnding === 'う') return 'った';
                 return 'た';
             case '부정형':
                 return 'ない';
@@ -233,14 +225,9 @@ class Group1VerbApp {
             case 'ます형':
                 return 'ます';
             case 'て형':
-                if (baseEnding === 'く') return 'いて';
-                if (baseEnding === 'ぐ') return 'いで';
-                if (baseEnding === 'む' || baseEnding === 'ぶ' || baseEnding === 'ぬ') return 'んで';
-                if (baseEnding === 'す') return 'して';
-                if (baseEnding === 'つ' || baseEnding === 'る' || baseEnding === 'う') return 'って';
                 return 'て';
             default:
-                return baseEnding;
+                return 'る';
         }
     }
 
@@ -401,11 +388,11 @@ class Group1VerbApp {
     }
 }
 
-// Group1VerbApp 클래스를 전역으로 노출
-window.Group1VerbApp = Group1VerbApp;
+// Group2VerbApp 클래스를 전역으로 노출
+window.Group2VerbApp = Group2VerbApp;
 
-// 1그룹동사 활용 앱 초기화
-let group1VerbApp;
+// 2그룹동사 활용 앱 초기화
+let group2VerbApp;
 document.addEventListener('DOMContentLoaded', () => {
-    group1VerbApp = new Group1VerbApp();
+    group2VerbApp = new Group2VerbApp();
 });

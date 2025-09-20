@@ -1,0 +1,333 @@
+[
+  {
+    "id": "group3_verb_conjugation",
+    "title": "3그룹동사 활용",
+    "description": "3그룹동사(불규칙동사)의 다양한 활용형을 학습합니다",
+    "explanation": "3그룹동사는 する, 来る 등의 불규칙동사로, 각각 고유한 활용 패턴을 가집니다.",
+    "conjugationTypes": [
+      {
+        "formType": "현재형",
+        "ending": "る/う",
+        "description": "기본형으로 현재나 미래를 나타냄",
+        "usage": "평상시 사용하는 기본 형태"
+      },
+      {
+        "formType": "과거형",
+        "ending": "た",
+        "description": "과거의 동작이나 상태를 나타냄",
+        "usage": "~했다, ~였다"
+      },
+      {
+        "formType": "부정형",
+        "ending": "ない",
+        "description": "동작의 부정을 나타냄",
+        "usage": "~하지 않다, ~지 않다"
+      },
+      {
+        "formType": "과거부정형",
+        "ending": "なかった",
+        "description": "과거 동작의 부정을 나타냄",
+        "usage": "~하지 않았다, ~지 않았다"
+      },
+      {
+        "formType": "ます형",
+        "ending": "ます",
+        "description": "정중한 현재형",
+        "usage": "공식적인 상황에서 사용"
+      },
+      {
+        "formType": "て형",
+        "ending": "て",
+        "description": "연결형, 진행형, 명령형 등에 사용",
+        "usage": "동작의 연결이나 진행을 나타냄"
+      }
+    ],
+    "examples": [
+      {
+        "verb": "する",
+        "stem": "し",
+        "reading": "する",
+        "meaning": "하다",
+        "group": "불규칙동사",
+        "conjugations": {
+          "현재형": {
+            "form": "する",
+            "reading": "する",
+            "translation": "하다",
+            "example": "勉強をする。",
+            "exampleReading": "べんきょうをする。",
+            "exampleTranslation": "공부를 한다."
+          },
+          "과거형": {
+            "form": "した",
+            "reading": "した",
+            "translation": "했다",
+            "example": "昨日宿題をした。",
+            "exampleReading": "きのうしゅくだいをした。",
+            "exampleTranslation": "어제 숙제를 했다."
+          },
+          "부정형": {
+            "form": "しない",
+            "reading": "しない",
+            "translation": "하지 않다",
+            "example": "今日は運動をしない。",
+            "exampleReading": "きょうはうんどうをしない。",
+            "exampleTranslation": "오늘은 운동을 하지 않는다."
+          },
+          "과거부정형": {
+            "form": "しなかった",
+            "reading": "しなかった",
+            "translation": "하지 않았다",
+            "example": "昨日は何もしなかった。",
+            "exampleReading": "きのうはなにもしなかった。",
+            "exampleTranslation": "어제는 아무것도 하지 않았다."
+          },
+          "ます형": {
+            "form": "します",
+            "reading": "します",
+            "translation": "합니다",
+            "example": "毎日勉強をします。",
+            "exampleReading": "まいにちべんきょうをします。",
+            "exampleTranslation": "매일 공부를 합니다."
+          },
+          "て형": {
+            "form": "して",
+            "reading": "して",
+            "translation": "해서",
+            "example": "宿題をしてください。",
+            "exampleReading": "しゅくだいをしてください。",
+            "exampleTranslation": "숙제를 해주세요."
+          }
+        }
+      },
+      {
+        "verb": "来る",
+        "stem": "き",
+        "reading": "くる",
+        "meaning": "오다",
+        "group": "불규칙동사",
+        "conjugations": {
+          "현재형": {
+            "form": "来る",
+            "reading": "くる",
+            "translation": "오다",
+            "example": "友達が来る。",
+            "exampleReading": "ともだちがくる。",
+            "exampleTranslation": "친구가 온다."
+          },
+          "과거형": {
+            "form": "来た",
+            "reading": "きた",
+            "translation": "왔다",
+            "example": "昨日先生が来た。",
+            "exampleReading": "きのうせんせいがきた。",
+            "exampleTranslation": "어제 선생님이 왔다."
+          },
+          "부정형": {
+            "form": "来ない",
+            "reading": "こない",
+            "translation": "오지 않다",
+            "example": "彼は来ない。",
+            "exampleReading": "かれはこない。",
+            "exampleTranslation": "그는 오지 않는다."
+          },
+          "과거부정형": {
+            "form": "来なかった",
+            "reading": "こなかった",
+            "translation": "오지 않았다",
+            "example": "昨日は誰も来なかった。",
+            "exampleReading": "きのうはだれもこなかった。",
+            "exampleTranslation": "어제는 아무도 오지 않았다."
+          },
+          "ます형": {
+            "form": "来ます",
+            "reading": "きます",
+            "translation": "옵니다",
+            "example": "明日来ます。",
+            "exampleReading": "あしたきます。",
+            "exampleTranslation": "내일 옵니다."
+          },
+          "て형": {
+            "form": "来て",
+            "reading": "きて",
+            "translation": "와서",
+            "example": "早く来てください。",
+            "exampleReading": "はやくきてください。",
+            "exampleTranslation": "빨리 와주세요."
+          }
+        }
+      },
+      {
+        "verb": "ある",
+        "stem": "あ",
+        "reading": "ある",
+        "meaning": "있다",
+        "group": "불규칙동사",
+        "conjugations": {
+          "현재형": {
+            "form": "ある",
+            "reading": "ある",
+            "translation": "있다",
+            "example": "本がある。",
+            "exampleReading": "ほんがある。",
+            "exampleTranslation": "책이 있다."
+          },
+          "과거형": {
+            "form": "あった",
+            "reading": "あった",
+            "translation": "있었다",
+            "example": "昨日時間があった。",
+            "exampleReading": "きのうじかんがあった。",
+            "exampleTranslation": "어제 시간이 있었다."
+          },
+          "부정형": {
+            "form": "ない",
+            "reading": "ない",
+            "translation": "없다",
+            "example": "お金がない。",
+            "exampleReading": "おかねがない。",
+            "exampleTranslation": "돈이 없다."
+          },
+          "과거부정형": {
+            "form": "なかった",
+            "reading": "なかった",
+            "translation": "없었다",
+            "example": "昨日は時間がなかった。",
+            "exampleReading": "きのうはじかんがなかった。",
+            "exampleTranslation": "어제는 시간이 없었다."
+          },
+          "ます형": {
+            "form": "あります",
+            "reading": "あります",
+            "translation": "있습니다",
+            "example": "質問があります。",
+            "exampleReading": "しつもんがあります。",
+            "exampleTranslation": "질문이 있습니다."
+          },
+          "て형": {
+            "form": "あって",
+            "reading": "あって",
+            "translation": "있어서",
+            "example": "時間があって良かった。",
+            "exampleReading": "じかんがあってよかった。",
+            "exampleTranslation": "시간이 있어서 다행이었다."
+          }
+        }
+      },
+      {
+        "verb": "いる",
+        "stem": "い",
+        "reading": "いる",
+        "meaning": "있다(살아있는 것)",
+        "group": "불규칙동사",
+        "conjugations": {
+          "현재형": {
+            "form": "いる",
+            "reading": "いる",
+            "translation": "있다",
+            "example": "猫がいる。",
+            "exampleReading": "ねこがいる。",
+            "exampleTranslation": "고양이가 있다."
+          },
+          "과거형": {
+            "form": "いた",
+            "reading": "いた",
+            "translation": "있었다",
+            "example": "昨日友達がいた。",
+            "exampleReading": "きのうともだちがいた。",
+            "exampleTranslation": "어제 친구가 있었다."
+          },
+          "부정형": {
+            "form": "いない",
+            "reading": "いない",
+            "translation": "없다",
+            "example": "誰もいない。",
+            "exampleReading": "だれもいない。",
+            "exampleTranslation": "아무도 없다."
+          },
+          "과거부정형": {
+            "form": "いなかった",
+            "reading": "いなかった",
+            "translation": "없었다",
+            "example": "昨日は誰もいなかった。",
+            "exampleReading": "きのうはだれもいなかった。",
+            "exampleTranslation": "어제는 아무도 없었다."
+          },
+          "ます형": {
+            "form": "います",
+            "reading": "います",
+            "translation": "있습니다",
+            "example": "先生がいます。",
+            "exampleReading": "せんせいがいます。",
+            "exampleTranslation": "선생님이 있습니다."
+          },
+          "て형": {
+            "form": "いて",
+            "reading": "いて",
+            "translation": "있어서",
+            "example": "家にいてください。",
+            "exampleReading": "いえにいてください。",
+            "exampleTranslation": "집에 있어주세요."
+          }
+        }
+      },
+      {
+        "verb": "行く",
+        "stem": "行",
+        "reading": "いく",
+        "meaning": "가다",
+        "group": "불규칙동사",
+        "conjugations": {
+          "현재형": {
+            "form": "行く",
+            "reading": "いく",
+            "translation": "가다",
+            "example": "学校に行く。",
+            "exampleReading": "がっこうにいく。",
+            "exampleTranslation": "학교에 간다."
+          },
+          "과거형": {
+            "form": "行った",
+            "reading": "いった",
+            "translation": "갔다",
+            "example": "昨日映画館に行った。",
+            "exampleReading": "きのうえいがかんにいった。",
+            "exampleTranslation": "어제 영화관에 갔다."
+          },
+          "부정형": {
+            "form": "行かない",
+            "reading": "いかない",
+            "translation": "가지 않다",
+            "example": "今日は行かない。",
+            "exampleReading": "きょうはいかない。",
+            "exampleTranslation": "오늘은 가지 않는다."
+          },
+          "과거부정형": {
+            "form": "行かなかった",
+            "reading": "いかなかった",
+            "translation": "가지 않았다",
+            "example": "昨日は行かなかった。",
+            "exampleReading": "きのうはいかなかった。",
+            "exampleTranslation": "어제는 가지 않았다."
+          },
+          "ます형": {
+            "form": "行きます",
+            "reading": "いきます",
+            "translation": "갑니다",
+            "example": "明日行きます。",
+            "exampleReading": "あしたいきます。",
+            "exampleTranslation": "내일 갑니다."
+          },
+          "て형": {
+            "form": "行って",
+            "reading": "いって",
+            "translation": "가서",
+            "example": "買い物に行ってください。",
+            "exampleReading": "かいものにいってください。",
+            "exampleTranslation": "쇼핑하러 가주세요."
+          }
+        }
+      }
+    ]
+  }
+]

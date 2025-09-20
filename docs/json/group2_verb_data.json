@@ -1,0 +1,333 @@
+[
+  {
+    "id": "group2_verb_conjugation",
+    "title": "2그룹동사 활용",
+    "description": "2그룹동사(る동사)의 다양한 활용형을 학습합니다",
+    "explanation": "2그룹동사는 る로 끝나는 동사로, 어간에 る를 떼고 다양한 어미를 붙여 활용합니다.",
+    "conjugationTypes": [
+      {
+        "formType": "현재형",
+        "ending": "る",
+        "description": "기본형으로 현재나 미래를 나타냄",
+        "usage": "평상시 사용하는 기본 형태"
+      },
+      {
+        "formType": "과거형",
+        "ending": "た",
+        "description": "과거의 동작이나 상태를 나타냄",
+        "usage": "~했다, ~였다"
+      },
+      {
+        "formType": "부정형",
+        "ending": "ない",
+        "description": "동작의 부정을 나타냄",
+        "usage": "~하지 않다, ~지 않다"
+      },
+      {
+        "formType": "과거부정형",
+        "ending": "なかった",
+        "description": "과거 동작의 부정을 나타냄",
+        "usage": "~하지 않았다, ~지 않았다"
+      },
+      {
+        "formType": "ます형",
+        "ending": "ます",
+        "description": "정중한 현재형",
+        "usage": "공식적인 상황에서 사용"
+      },
+      {
+        "formType": "て형",
+        "ending": "て",
+        "description": "연결형, 진행형, 명령형 등에 사용",
+        "usage": "동작의 연결이나 진행을 나타냄"
+      }
+    ],
+    "examples": [
+      {
+        "verb": "食べる",
+        "stem": "食べ",
+        "reading": "たべる",
+        "meaning": "먹다",
+        "group": "る동사",
+        "conjugations": {
+          "현재형": {
+            "form": "食べる",
+            "reading": "たべる",
+            "translation": "먹다",
+            "example": "朝ご飯を食べる。",
+            "exampleReading": "あさごはんをたべる。",
+            "exampleTranslation": "아침밥을 먹는다."
+          },
+          "과거형": {
+            "form": "食べた",
+            "reading": "たべた",
+            "translation": "먹었다",
+            "example": "昨日寿司を食べた。",
+            "exampleReading": "きのうすしをたべた。",
+            "exampleTranslation": "어제 스시를 먹었다."
+          },
+          "부정형": {
+            "form": "食べない",
+            "reading": "たべない",
+            "translation": "먹지 않다",
+            "example": "野菜を食べない。",
+            "exampleReading": "やさいをたべない。",
+            "exampleTranslation": "야채를 먹지 않는다."
+          },
+          "과거부정형": {
+            "form": "食べなかった",
+            "reading": "たべなかった",
+            "translation": "먹지 않았다",
+            "example": "昨日は何も食べなかった。",
+            "exampleReading": "きのうはなにもたべなかった。",
+            "exampleTranslation": "어제는 아무것도 먹지 않았다."
+          },
+          "ます형": {
+            "form": "食べます",
+            "reading": "たべます",
+            "translation": "먹습니다",
+            "example": "毎日野菜を食べます。",
+            "exampleReading": "まいにちやさいをたべます。",
+            "exampleTranslation": "매일 야채를 먹습니다."
+          },
+          "て형": {
+            "form": "食べて",
+            "reading": "たべて",
+            "translation": "먹어서",
+            "example": "朝ご飯を食べてください。",
+            "exampleReading": "あさごはんをたべてください。",
+            "exampleTranslation": "아침밥을 드세요."
+          }
+        }
+      },
+      {
+        "verb": "見る",
+        "stem": "見",
+        "reading": "みる",
+        "meaning": "보다",
+        "group": "る동사",
+        "conjugations": {
+          "현재형": {
+            "form": "見る",
+            "reading": "みる",
+            "translation": "보다",
+            "example": "テレビを見る。",
+            "exampleReading": "テレビをみる。",
+            "exampleTranslation": "텔레비전을 본다."
+          },
+          "과거형": {
+            "form": "見た",
+            "reading": "みた",
+            "translation": "봤다",
+            "example": "昨日映画を見た。",
+            "exampleReading": "きのうえいがをみた。",
+            "exampleTranslation": "어제 영화를 봤다."
+          },
+          "부정형": {
+            "form": "見ない",
+            "reading": "みない",
+            "translation": "보지 않다",
+            "example": "ニュースを見ない。",
+            "exampleReading": "ニュースをみない。",
+            "exampleTranslation": "뉴스를 보지 않는다."
+          },
+          "과거부정형": {
+            "form": "見なかった",
+            "reading": "みなかった",
+            "translation": "보지 않았다",
+            "example": "昨日はテレビを見なかった。",
+            "exampleReading": "きのうはテレビをみなかった。",
+            "exampleTranslation": "어제는 텔레비전을 보지 않았다."
+          },
+          "ます형": {
+            "form": "見ます",
+            "reading": "みます",
+            "translation": "봅니다",
+            "example": "毎日ニュースを見ます。",
+            "exampleReading": "まいにちニュースをみます。",
+            "exampleTranslation": "매일 뉴스를 봅니다."
+          },
+          "て형": {
+            "form": "見て",
+            "reading": "みて",
+            "translation": "봐서",
+            "example": "この映画を見てください。",
+            "exampleReading": "このえいがをみてください。",
+            "exampleTranslation": "이 영화를 봐주세요."
+          }
+        }
+      },
+      {
+        "verb": "寝る",
+        "stem": "寝",
+        "reading": "ねる",
+        "meaning": "자다",
+        "group": "る동사",
+        "conjugations": {
+          "현재형": {
+            "form": "寝る",
+            "reading": "ねる",
+            "translation": "자다",
+            "example": "夜早く寝る。",
+            "exampleReading": "よるはやくねる。",
+            "exampleTranslation": "밤에 일찍 잔다."
+          },
+          "과거형": {
+            "form": "寝た",
+            "reading": "ねた",
+            "translation": "잤다",
+            "example": "昨日は早く寝た。",
+            "exampleReading": "きのうははやくねた。",
+            "exampleTranslation": "어제는 일찍 잤다."
+          },
+          "부정형": {
+            "form": "寝ない",
+            "reading": "ねない",
+            "translation": "자지 않다",
+            "example": "今日は寝ない。",
+            "exampleReading": "きょうはねない。",
+            "exampleTranslation": "오늘은 자지 않는다."
+          },
+          "과거부정형": {
+            "form": "寝なかった",
+            "reading": "ねなかった",
+            "translation": "자지 않았다",
+            "example": "昨日はよく寝なかった。",
+            "exampleReading": "きのうはよくねなかった。",
+            "exampleTranslation": "어제는 잘 자지 않았다."
+          },
+          "ます형": {
+            "form": "寝ます",
+            "reading": "ねます",
+            "translation": "잡니다",
+            "example": "毎晩10時に寝ます。",
+            "exampleReading": "まいばん10じにねます。",
+            "exampleTranslation": "매일 밤 10시에 잡니다."
+          },
+          "て형": {
+            "form": "寝て",
+            "reading": "ねて",
+            "translation": "자서",
+            "example": "早く寝てください。",
+            "exampleReading": "はやくねてください。",
+            "exampleTranslation": "일찍 주무세요."
+          }
+        }
+      },
+      {
+        "verb": "起きる",
+        "stem": "起き",
+        "reading": "おきる",
+        "meaning": "일어나다",
+        "group": "る동사",
+        "conjugations": {
+          "현재형": {
+            "form": "起きる",
+            "reading": "おきる",
+            "translation": "일어나다",
+            "example": "朝早く起きる。",
+            "exampleReading": "あさはやくおきる。",
+            "exampleTranslation": "아침 일찍 일어난다."
+          },
+          "과거형": {
+            "form": "起きた",
+            "reading": "おきた",
+            "translation": "일어났다",
+            "example": "今朝6時に起きた。",
+            "exampleReading": "けさ6じにおきた。",
+            "exampleTranslation": "오늘 아침 6시에 일어났다."
+          },
+          "부정형": {
+            "form": "起きない",
+            "reading": "おきない",
+            "translation": "일어나지 않다",
+            "example": "土曜日は早く起きない。",
+            "exampleReading": "どようびははやくおきない。",
+            "exampleTranslation": "토요일은 일찍 일어나지 않는다."
+          },
+          "과거부정형": {
+            "form": "起きなかった",
+            "reading": "おきなかった",
+            "translation": "일어나지 않았다",
+            "example": "昨日は遅くまで起きなかった。",
+            "exampleReading": "きのうはおそくまでおきなかった。",
+            "exampleTranslation": "어제는 늦게까지 일어나지 않았다."
+          },
+          "ます형": {
+            "form": "起きます",
+            "reading": "おきます",
+            "translation": "일어납니다",
+            "example": "毎朝7時に起きます。",
+            "exampleReading": "まいあさ7じにおきます。",
+            "exampleTranslation": "매일 아침 7시에 일어납니다."
+          },
+          "て형": {
+            "form": "起きて",
+            "reading": "おきて",
+            "translation": "일어나서",
+            "example": "起きてすぐシャワーを浴びる。",
+            "exampleReading": "おきてすぐシャワーをあびる。",
+            "exampleTranslation": "일어나서 곧바로 샤워를 한다."
+          }
+        }
+      },
+      {
+        "verb": "出る",
+        "stem": "出",
+        "reading": "でる",
+        "meaning": "나가다",
+        "group": "る동사",
+        "conjugations": {
+          "현재형": {
+            "form": "出る",
+            "reading": "でる",
+            "translation": "나가다",
+            "example": "家から出る。",
+            "exampleReading": "いえからでる。",
+            "exampleTranslation": "집에서 나간다."
+          },
+          "과거형": {
+            "form": "出た",
+            "reading": "でた",
+            "translation": "나갔다",
+            "example": "朝早く家を出た。",
+            "exampleReading": "あさはやくいえをでた。",
+            "exampleTranslation": "아침 일찍 집을 나갔다."
+          },
+          "부정형": {
+            "form": "出ない",
+            "reading": "でない",
+            "translation": "나가지 않다",
+            "example": "今日は外に出ない。",
+            "exampleReading": "きょうはそとにでない。",
+            "exampleTranslation": "오늘은 밖에 나가지 않는다."
+          },
+          "과거부정형": {
+            "form": "出なかった",
+            "reading": "でなかった",
+            "translation": "나가지 않았다",
+            "example": "昨日は一日中家から出なかった。",
+            "exampleReading": "きのうはいちにちじゅういえからでなかった。",
+            "exampleTranslation": "어제는 하루 종일 집에서 나가지 않았다."
+          },
+          "ます형": {
+            "form": "出ます",
+            "reading": "でます",
+            "translation": "나갑니다",
+            "example": "8時に家を出ます。",
+            "exampleReading": "8じにいえをでます。",
+            "exampleTranslation": "8시에 집을 나갑니다."
+          },
+          "て형": {
+            "form": "出て",
+            "reading": "でて",
+            "translation": "나가서",
+            "example": "家を出て駅に向かう。",
+            "exampleReading": "いえをでてえきにむかう。",
+            "exampleTranslation": "집을 나가서 역으로 향한다."
+          }
+        }
+      }
+    ]
+  }
+]

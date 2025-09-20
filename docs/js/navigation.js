@@ -1229,6 +1229,363 @@ class ThreeStepNavigation {
     }
 
     /**
+     * 1그룹동사 활용 화면 표시
+     */
+    async showGroup1VerbScreen() {
+        console.log('showGroup1VerbScreen called');
+        try {
+            // 템플릿 로드
+            console.log('Loading group1-verb template');
+            const html = await loadTemplate('group1-verb');
+            console.log('Group1-verb template loaded successfully');
+
+            // 화면 컨테이너 찾기
+            const characterScreen = document.getElementById('characterScreen');
+            if (!characterScreen) {
+                console.error('Character screen container not found');
+                return;
+            }
+
+            // 템플릿 적용
+            characterScreen.innerHTML = html;
+            console.log('Group1-verb template applied to characterScreen');
+
+            // 화면 전환
+            this.showScreen('character');
+
+            // 1그룹동사 활용 앱 초기화
+            setTimeout(() => {
+                if (window.group1VerbApp) {
+                    window.group1VerbApp.init();
+                } else {
+                    // 새로운 인스턴스 생성
+                    window.group1VerbApp = new Group1VerbApp();
+                }
+            }, 100);
+
+            // 뒤로가기 스와이프 이벤트 바인딩
+            this.bindGroup1VerbSwipeEvents(characterScreen);
+        } catch (error) {
+            console.error('Error loading group1-verb screen:', error);
+        }
+    }
+
+    /**
+     * 1그룹동사 활용 화면 스와이프 이벤트 바인딩
+     */
+    bindGroup1VerbSwipeEvents(screen) {
+        if (screen.dataset.group1VerbSwipeBound) {
+            return;
+        }
+
+        let startX = 0;
+        let startY = 0;
+        let isSwipingHorizontally = false;
+
+        console.log('Binding swipe events to group1 verb screen');
+
+        // 터치 시작
+        screen.addEventListener(
+            'touchstart',
+            (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
+
+        // 터치 이동
+        screen.addEventListener(
+            'touchmove',
+            (e) => {
+                if (!startX || !startY) return;
+
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+
+                const diffX = Math.abs(currentX - startX);
+                const diffY = Math.abs(currentY - startY);
+
+                // 수평 스와이프 감지
+                if (diffX > diffY && diffX > 10) {
+                    isSwipingHorizontally = true;
+                    e.preventDefault();
+                }
+            },
+            { passive: false }
+        );
+
+        // 터치 종료
+        screen.addEventListener(
+            'touchend',
+            (e) => {
+                if (!startX || !startY) return;
+
+                // 최소 스와이프 거리
+                if (isSwipingHorizontally) {
+                    const endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+
+                    if (Math.abs(diffX) > 50) {
+                        if (diffX < 0) {
+                            // 왼쪽에서 오른쪽 스와이프 (뒤로가기)
+                            console.log('Left to right swipe detected - going back');
+                            this.showScreen('sub');
+                        }
+                    }
+                }
+
+                // 초기화
+                startX = 0;
+                startY = 0;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
+
+        screen.dataset.group1VerbSwipeBound = 'true';
+    }
+
+    /**
+     * 2그룹동사 활용 화면 표시
+     */
+    async showGroup2VerbScreen() {
+        console.log('showGroup2VerbScreen called');
+        try {
+            // 템플릿 로드
+            console.log('Loading group2-verb template');
+            const html = await loadTemplate('group2-verb');
+            console.log('Group2-verb template loaded successfully');
+
+            // 화면 컨테이너 찾기
+            const characterScreen = document.getElementById('characterScreen');
+            if (!characterScreen) {
+                console.error('Character screen container not found');
+                return;
+            }
+
+            // 템플릿 적용
+            characterScreen.innerHTML = html;
+            console.log('Group2-verb template applied to characterScreen');
+
+            // 화면 전환
+            this.showScreen('character');
+
+            // 2그룹동사 활용 앱 초기화
+            setTimeout(() => {
+                if (window.group2VerbApp) {
+                    window.group2VerbApp.init();
+                } else {
+                    // 새로운 인스턴스 생성
+                    window.group2VerbApp = new Group2VerbApp();
+                }
+            }, 100);
+
+            // 뒤로가기 스와이프 이벤트 바인딩
+            this.bindGroup2VerbSwipeEvents(characterScreen);
+        } catch (error) {
+            console.error('Error loading group2-verb screen:', error);
+        }
+    }
+
+    /**
+     * 2그룹동사 활용 화면 스와이프 이벤트 바인딩
+     */
+    bindGroup2VerbSwipeEvents(screen) {
+        if (screen.dataset.group2VerbSwipeBound) {
+            return;
+        }
+
+        let startX = 0;
+        let startY = 0;
+        let isSwipingHorizontally = false;
+
+        console.log('Binding swipe events to group2 verb screen');
+
+        // 터치 시작
+        screen.addEventListener(
+            'touchstart',
+            (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
+
+        // 터치 이동
+        screen.addEventListener(
+            'touchmove',
+            (e) => {
+                if (!startX || !startY) return;
+
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+
+                const diffX = Math.abs(currentX - startX);
+                const diffY = Math.abs(currentY - startY);
+
+                // 수평 스와이프 감지
+                if (diffX > diffY && diffX > 10) {
+                    isSwipingHorizontally = true;
+                    e.preventDefault();
+                }
+            },
+            { passive: false }
+        );
+
+        // 터치 종료
+        screen.addEventListener(
+            'touchend',
+            (e) => {
+                if (!startX || !startY) return;
+
+                // 최소 스와이프 거리
+                if (isSwipingHorizontally) {
+                    const endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+
+                    if (Math.abs(diffX) > 50) {
+                        if (diffX < 0) {
+                            // 왼쪽에서 오른쪽 스와이프 (뒤로가기)
+                            console.log('Left to right swipe detected - going back');
+                            this.showScreen('sub');
+                        }
+                    }
+                }
+
+                // 초기화
+                startX = 0;
+                startY = 0;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
+
+        screen.dataset.group2VerbSwipeBound = 'true';
+    }
+
+    /**
+     * 3그룹동사 활용 화면 표시
+     */
+    async showGroup3VerbScreen() {
+        console.log('showGroup3VerbScreen called');
+        try {
+            // 템플릿 로드
+            console.log('Loading group3-verb template');
+            const html = await loadTemplate('group3-verb');
+            console.log('Group3-verb template loaded successfully');
+
+            // 화면 컨테이너 찾기
+            const characterScreen = document.getElementById('characterScreen');
+            if (!characterScreen) {
+                console.error('Character screen container not found');
+                return;
+            }
+
+            // 템플릿 적용
+            characterScreen.innerHTML = html;
+            console.log('Group3-verb template applied to characterScreen');
+
+            // 화면 전환
+            this.showScreen('character');
+
+            // 3그룹동사 활용 앱 초기화
+            setTimeout(() => {
+                if (window.group3VerbApp) {
+                    window.group3VerbApp.init();
+                } else {
+                    // 새로운 인스턴스 생성
+                    window.group3VerbApp = new Group3VerbApp();
+                }
+            }, 100);
+
+            // 뒤로가기 스와이프 이벤트 바인딩
+            this.bindGroup3VerbSwipeEvents(characterScreen);
+        } catch (error) {
+            console.error('Error loading group3-verb screen:', error);
+        }
+    }
+
+    /**
+     * 3그룹동사 활용 화면 스와이프 이벤트 바인딩
+     */
+    bindGroup3VerbSwipeEvents(screen) {
+        if (screen.dataset.group3VerbSwipeBound) {
+            return;
+        }
+
+        let startX = 0;
+        let startY = 0;
+        let isSwipingHorizontally = false;
+
+        console.log('Binding swipe events to group3 verb screen');
+
+        // 터치 시작
+        screen.addEventListener(
+            'touchstart',
+            (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
+
+        // 터치 이동
+        screen.addEventListener(
+            'touchmove',
+            (e) => {
+                if (!startX || !startY) return;
+
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+
+                const diffX = Math.abs(currentX - startX);
+                const diffY = Math.abs(currentY - startY);
+
+                // 수평 스와이프 감지
+                if (diffX > diffY && diffX > 10) {
+                    isSwipingHorizontally = true;
+                    e.preventDefault();
+                }
+            },
+            { passive: false }
+        );
+
+        // 터치 종료
+        screen.addEventListener(
+            'touchend',
+            (e) => {
+                if (!startX || !startY) return;
+
+                // 최소 스와이프 거리
+                if (isSwipingHorizontally) {
+                    const endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+
+                    if (Math.abs(diffX) > 50) {
+                        if (diffX < 0) {
+                            // 왼쪽에서 오른쪽 스와이프 (뒤로가기)
+                            console.log('Left to right swipe detected - going back');
+                            this.showScreen('sub');
+                        }
+                    }
+                }
+
+                // 초기화
+                startX = 0;
+                startY = 0;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
+
+        screen.dataset.group3VerbSwipeBound = 'true';
+    }
+
+    /**
      * 평서체/경어체 화면 스와이프 이벤트 바인딩
      */
     bindNounFormsSwipeEvents(screen) {
@@ -1847,6 +2204,12 @@ class ThreeStepNavigation {
                     this.showIAdjectiveScreen();
                 } else if (this.currentMainCategory === 'grammar' && category === 'な형용사 활용') {
                     this.showNaAdjectiveScreen();
+                } else if (this.currentMainCategory === 'grammar' && category === '1그룹동사 활용') {
+                    this.showGroup1VerbScreen();
+                } else if (this.currentMainCategory === 'grammar' && category === '2그룹동사 활용') {
+                    this.showGroup2VerbScreen();
+                } else if (this.currentMainCategory === 'grammar' && category === '3그룹동사 활용') {
+                    this.showGroup3VerbScreen();
                 } else {
                     this.startWordStudy();
                 }
