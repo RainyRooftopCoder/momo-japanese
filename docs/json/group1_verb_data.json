@@ -1,0 +1,333 @@
+[
+  {
+    "id": "group1_verb_conjugation",
+    "title": "1그룹동사 활용",
+    "description": "1그룹동사(う동사)의 다양한 활용형을 학습합니다",
+    "explanation": "1그룹동사는 う단으로 끝나는 동사로, 어미를 い단, あ단, え단 등으로 변화시켜 활용합니다.",
+    "conjugationTypes": [
+      {
+        "formType": "현재형",
+        "ending": "う",
+        "description": "기본형으로 현재나 미래를 나타냄",
+        "usage": "평상시 사용하는 기본 형태"
+      },
+      {
+        "formType": "과거형",
+        "ending": "った/いた/んだ",
+        "description": "과거의 동작이나 상태를 나타냄",
+        "usage": "~했다, ~였다"
+      },
+      {
+        "formType": "부정형",
+        "ending": "ない",
+        "description": "동작의 부정을 나타냄",
+        "usage": "~하지 않다, ~지 않다"
+      },
+      {
+        "formType": "과거부정형",
+        "ending": "なかった",
+        "description": "과거 동작의 부정을 나타냄",
+        "usage": "~하지 않았다, ~지 않았다"
+      },
+      {
+        "formType": "ます형",
+        "ending": "います",
+        "description": "정중한 현재형",
+        "usage": "공식적인 상황에서 사용"
+      },
+      {
+        "formType": "て형",
+        "ending": "って/いて/んで",
+        "description": "연결형, 진행형, 명령형 등에 사용",
+        "usage": "동작의 연결이나 진행을 나타냄"
+      }
+    ],
+    "examples": [
+      {
+        "verb": "書く",
+        "stem": "書",
+        "reading": "かく",
+        "meaning": "쓰다",
+        "group": "く동사",
+        "conjugations": {
+          "현재형": {
+            "form": "書く",
+            "reading": "かく",
+            "translation": "쓰다",
+            "example": "手紙を書く。",
+            "exampleReading": "てがみをかく。",
+            "exampleTranslation": "편지를 쓴다."
+          },
+          "과거형": {
+            "form": "書いた",
+            "reading": "かいた",
+            "translation": "썼다",
+            "example": "昨日日記を書いた。",
+            "exampleReading": "きのうにっきをかいた。",
+            "exampleTranslation": "어제 일기를 썼다."
+          },
+          "부정형": {
+            "form": "書かない",
+            "reading": "かかない",
+            "translation": "쓰지 않다",
+            "example": "今日は何も書かない。",
+            "exampleReading": "きょうはなにもかかない。",
+            "exampleTranslation": "오늘은 아무것도 쓰지 않는다."
+          },
+          "과거부정형": {
+            "form": "書かなかった",
+            "reading": "かかなかった",
+            "translation": "쓰지 않았다",
+            "example": "昨日は何も書かなかった。",
+            "exampleReading": "きのうはなにもかかなかった。",
+            "exampleTranslation": "어제는 아무것도 쓰지 않았다."
+          },
+          "ます형": {
+            "form": "書きます",
+            "reading": "かきます",
+            "translation": "씁니다",
+            "example": "毎日日記を書きます。",
+            "exampleReading": "まいにちにっきをかきます。",
+            "exampleTranslation": "매일 일기를 씁니다."
+          },
+          "て형": {
+            "form": "書いて",
+            "reading": "かいて",
+            "translation": "써서",
+            "example": "名前を書いてください。",
+            "exampleReading": "なまえをかいてください。",
+            "exampleTranslation": "이름을 써주세요."
+          }
+        }
+      },
+      {
+        "verb": "読む",
+        "stem": "読",
+        "reading": "よむ",
+        "meaning": "읽다",
+        "group": "む동사",
+        "conjugations": {
+          "현재형": {
+            "form": "読む",
+            "reading": "よむ",
+            "translation": "읽다",
+            "example": "本を読む。",
+            "exampleReading": "ほんをよむ。",
+            "exampleTranslation": "책을 읽는다."
+          },
+          "과거형": {
+            "form": "読んだ",
+            "reading": "よんだ",
+            "translation": "읽었다",
+            "example": "昨日小説を読んだ。",
+            "exampleReading": "きのうしょうせつをよんだ。",
+            "exampleTranslation": "어제 소설을 읽었다."
+          },
+          "부정형": {
+            "form": "読まない",
+            "reading": "よまない",
+            "translation": "읽지 않다",
+            "example": "新聞を読まない。",
+            "exampleReading": "しんぶんをよまない。",
+            "exampleTranslation": "신문을 읽지 않는다."
+          },
+          "과거부정형": {
+            "form": "読まなかった",
+            "reading": "よまなかった",
+            "translation": "읽지 않았다",
+            "example": "昨日は本を読まなかった。",
+            "exampleReading": "きのうはほんをよまなかった。",
+            "exampleTranslation": "어제는 책을 읽지 않았다."
+          },
+          "ます형": {
+            "form": "読みます",
+            "reading": "よみます",
+            "translation": "읽습니다",
+            "example": "毎朝新聞を読みます。",
+            "exampleReading": "まいあさしんぶんをよみます。",
+            "exampleTranslation": "매일 아침 신문을 읽습니다."
+          },
+          "て형": {
+            "form": "読んで",
+            "reading": "よんで",
+            "translation": "읽어서",
+            "example": "本を読んでいます。",
+            "exampleReading": "ほんをよんでいます。",
+            "exampleTranslation": "책을 읽고 있습니다."
+          }
+        }
+      },
+      {
+        "verb": "立つ",
+        "stem": "立",
+        "reading": "たつ",
+        "meaning": "서다",
+        "group": "つ동사",
+        "conjugations": {
+          "현재형": {
+            "form": "立つ",
+            "reading": "たつ",
+            "translation": "서다",
+            "example": "椅子から立つ。",
+            "exampleReading": "いすからたつ。",
+            "exampleTranslation": "의자에서 선다."
+          },
+          "과거형": {
+            "form": "立った",
+            "reading": "たった",
+            "translation": "섰다",
+            "example": "急に立った。",
+            "exampleReading": "きゅうにたった。",
+            "exampleTranslation": "갑자기 섰다."
+          },
+          "부정형": {
+            "form": "立たない",
+            "reading": "たたない",
+            "translation": "서지 않다",
+            "example": "今は立たない。",
+            "exampleReading": "いまはたたない。",
+            "exampleTranslation": "지금은 서지 않는다."
+          },
+          "과거부정형": {
+            "form": "立たなかった",
+            "reading": "たたなかった",
+            "translation": "서지 않았다",
+            "example": "昨日は立たなかった。",
+            "exampleReading": "きのうはたたなかった。",
+            "exampleTranslation": "어제는 서지 않았다."
+          },
+          "ます형": {
+            "form": "立ちます",
+            "reading": "たちます",
+            "translation": "섭니다",
+            "example": "席を立ちます。",
+            "exampleReading": "せきをたちます。",
+            "exampleTranslation": "자리에서 섭니다."
+          },
+          "て형": {
+            "form": "立って",
+            "reading": "たって",
+            "translation": "서서",
+            "example": "立って話してください。",
+            "exampleReading": "たってはなしてください。",
+            "exampleTranslation": "서서 말해주세요."
+          }
+        }
+      },
+      {
+        "verb": "泳ぐ",
+        "stem": "泳",
+        "reading": "およぐ",
+        "meaning": "수영하다",
+        "group": "ぐ동사",
+        "conjugations": {
+          "현재형": {
+            "form": "泳ぐ",
+            "reading": "およぐ",
+            "translation": "수영하다",
+            "example": "海で泳ぐ。",
+            "exampleReading": "うみでおよぐ。",
+            "exampleTranslation": "바다에서 수영한다."
+          },
+          "과거형": {
+            "form": "泳いだ",
+            "reading": "およいだ",
+            "translation": "수영했다",
+            "example": "昨日プールで泳いだ。",
+            "exampleReading": "きのうプールでおよいだ。",
+            "exampleTranslation": "어제 수영장에서 수영했다."
+          },
+          "부정형": {
+            "form": "泳がない",
+            "reading": "およがない",
+            "translation": "수영하지 않다",
+            "example": "冬は泳がない。",
+            "exampleReading": "ふゆはおよがない。",
+            "exampleTranslation": "겨울에는 수영하지 않는다."
+          },
+          "과거부정형": {
+            "form": "泳がなかった",
+            "reading": "およがなかった",
+            "translation": "수영하지 않았다",
+            "example": "昨日は泳がなかった。",
+            "exampleReading": "きのうはおよがなかった。",
+            "exampleTranslation": "어제는 수영하지 않았다."
+          },
+          "ます형": {
+            "form": "泳ぎます",
+            "reading": "およぎます",
+            "translation": "수영합니다",
+            "example": "毎週泳ぎます。",
+            "exampleReading": "まいしゅうおよぎます。",
+            "exampleTranslation": "매주 수영합니다."
+          },
+          "て형": {
+            "form": "泳いで",
+            "reading": "およいで",
+            "translation": "수영해서",
+            "example": "泳いで疲れました。",
+            "exampleReading": "およいでつかれました。",
+            "exampleTranslation": "수영해서 피곤합니다."
+          }
+        }
+      },
+      {
+        "verb": "話す",
+        "stem": "話",
+        "reading": "はなす",
+        "meaning": "말하다",
+        "group": "す동사",
+        "conjugations": {
+          "현재형": {
+            "form": "話す",
+            "reading": "はなす",
+            "translation": "말하다",
+            "example": "日本語を話す。",
+            "exampleReading": "にほんごをはなす。",
+            "exampleTranslation": "일본어를 말한다."
+          },
+          "과거형": {
+            "form": "話した",
+            "reading": "はなした",
+            "translation": "말했다",
+            "example": "先生と話した。",
+            "exampleReading": "せんせいとはなした。",
+            "exampleTranslation": "선생님과 말했다."
+          },
+          "부정형": {
+            "form": "話さない",
+            "reading": "はなさない",
+            "translation": "말하지 않다",
+            "example": "秘密を話さない。",
+            "exampleReading": "ひみつをはなさない。",
+            "exampleTranslation": "비밀을 말하지 않는다."
+          },
+          "과거부정형": {
+            "form": "話さなかった",
+            "reading": "はなさなかった",
+            "translation": "말하지 않았다",
+            "example": "昨日は何も話さなかった。",
+            "exampleReading": "きのうはなにもはなさなかった。",
+            "exampleTranslation": "어제는 아무것도 말하지 않았다."
+          },
+          "ます형": {
+            "form": "話します",
+            "reading": "はなします",
+            "translation": "말합니다",
+            "example": "英語を話します。",
+            "exampleReading": "えいごをはなします。",
+            "exampleTranslation": "영어를 말합니다."
+          },
+          "て형": {
+            "form": "話して",
+            "reading": "はなして",
+            "translation": "말해서",
+            "example": "ゆっくり話してください。",
+            "exampleReading": "ゆっくりはなしてください。",
+            "exampleTranslation": "천천히 말해주세요."
+          }
+        }
+      }
+    ]
+  }
+]

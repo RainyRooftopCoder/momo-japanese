@@ -1,0 +1,193 @@
+[
+  {
+    "id": "basic_particles_sentences",
+    "title": "기본 격조사 문장 완성",
+    "description": "일상생활에서 자주 사용하는 문장의 격조사를 완성해보세요",
+    "difficulty": "초급",
+    "exercises": [
+      {
+        "id": 1,
+        "sentence": "私___学生です。",
+        "sentenceReading": "わたし___がくせいです。",
+        "translation": "나___학생입니다.",
+        "correctParticle": "は",
+        "correctParticleReading": "wa",
+        "explanation": "주제를 나타내는 は를 사용합니다.",
+        "choices": ["は", "が", "を", "に"],
+        "choicesReading": ["wa", "ga", "o", "ni"],
+        "context": "자기소개",
+        "difficulty": 1
+      },
+      {
+        "id": 2,
+        "sentence": "本___読みます。",
+        "sentenceReading": "ほん___よみます。",
+        "translation": "책___읽습니다.",
+        "correctParticle": "を",
+        "correctParticleReading": "o",
+        "explanation": "동작의 대상(목적어)을 나타내는 を을 사용합니다.",
+        "choices": ["を", "に", "で", "が"],
+        "choicesReading": ["o", "ni", "de", "ga"],
+        "context": "독서",
+        "difficulty": 1
+      },
+      {
+        "id": 3,
+        "sentence": "学校___行きます。",
+        "sentenceReading": "がっこう___いきます。",
+        "translation": "학교___갑니다.",
+        "correctParticle": "に",
+        "correctParticleReading": "ni",
+        "explanation": "이동의 목적지를 나타내는 に를 사용합니다.",
+        "choices": ["に", "を", "で", "と"],
+        "choicesReading": ["ni", "o", "de", "to"],
+        "context": "등교",
+        "difficulty": 1
+      },
+      {
+        "id": 4,
+        "sentence": "図書館___勉強します。",
+        "sentenceReading": "としょかん___べんきょうします。",
+        "translation": "도서관___공부합니다.",
+        "correctParticle": "で",
+        "correctParticleReading": "de",
+        "explanation": "동작이 일어나는 장소를 나타내는 で를 사용합니다.",
+        "choices": ["で", "に", "を", "が"],
+        "choicesReading": ["de", "ni", "o", "ga"],
+        "context": "학습",
+        "difficulty": 1
+      },
+      {
+        "id": 5,
+        "sentence": "友達___映画を見ます。",
+        "sentenceReading": "ともだち___えいがをみます。",
+        "translation": "친구___영화를 봅니다.",
+        "correctParticle": "と",
+        "correctParticleReading": "to",
+        "explanation": "함께하는 상대를 나타내는 と를 사용합니다.",
+        "choices": ["と", "を", "に", "で"],
+        "choicesReading": ["to", "o", "ni", "de"],
+        "context": "여가활동",
+        "difficulty": 1
+      },
+      {
+        "id": 6,
+        "sentence": "私___本です。",
+        "sentenceReading": "わたし___ほんです。",
+        "translation": "나___책입니다.",
+        "correctParticle": "の",
+        "correctParticleReading": "no",
+        "explanation": "소유관계를 나타내는 の를 사용합니다.",
+        "choices": ["の", "は", "が", "を"],
+        "choicesReading": ["no", "wa", "ga", "o"],
+        "context": "소유",
+        "difficulty": 1
+      },
+      {
+        "id": 7,
+        "sentence": "駅___歩きます。",
+        "sentenceReading": "えき___あるきます。",
+        "translation": "역___걸어갑니다.",
+        "correctParticle": "から",
+        "correctParticleReading": "kara",
+        "explanation": "출발점을 나타내는 から를 사용합니다.",
+        "choices": ["から", "まで", "に", "で"],
+        "choicesReading": ["kara", "made", "ni", "de"],
+        "context": "이동",
+        "difficulty": 1
+      },
+      {
+        "id": 8,
+        "sentence": "駅___走ります。",
+        "sentenceReading": "えき___はしります。",
+        "translation": "역___뛰어갑니다.",
+        "correctParticle": "まで",
+        "correctParticleReading": "made",
+        "explanation": "도착점을 나타내는 まで를 사용합니다.",
+        "choices": ["まで", "から", "に", "を"],
+        "choicesReading": ["made", "kara", "ni", "o"],
+        "context": "이동",
+        "difficulty": 1
+      },
+      {
+        "id": 9,
+        "sentence": "犬___走っています。",
+        "sentenceReading": "いぬ___はしっています。",
+        "translation": "개___뛰고 있습니다.",
+        "correctParticle": "が",
+        "correctParticleReading": "ga",
+        "explanation": "문장의 주어를 나타내는 が를 사용합니다.",
+        "choices": ["が", "は", "を", "に"],
+        "choicesReading": ["ga", "wa", "o", "ni"],
+        "context": "동물의 행동",
+        "difficulty": 1
+      },
+      {
+        "id": 10,
+        "sentence": "コーヒー___飲みます。",
+        "sentenceReading": "コーヒー___のみます。",
+        "translation": "커피___마십니다.",
+        "correctParticle": "を",
+        "correctParticleReading": "o",
+        "explanation": "동작의 대상(목적어)을 나타내는 を을 사용합니다.",
+        "choices": ["を", "に", "で", "が"],
+        "choicesReading": ["o", "ni", "de", "ga"],
+        "context": "음료",
+        "difficulty": 1
+      }
+    ]
+  },
+  {
+    "id": "intermediate_particles_sentences",
+    "title": "중급 격조사 문장 완성",
+    "description": "좀 더 복합적인 문장에서 올바른 격조사를 선택해보세요",
+    "difficulty": "중급",
+    "exercises": [
+      {
+        "id": 11,
+        "sentence": "母___父___話しています。",
+        "sentenceReading": "はは___ちち___はなしています。",
+        "translation": "어머니___아버지___이야기하고 있습니다.",
+        "correctParticle": "が",
+        "correctParticle2": "と",
+        "explanation": "주어는 が, 함께하는 상대는 と를 사용합니다.",
+        "choices": ["が/と", "は/を", "を/に", "に/で"],
+        "context": "가족",
+        "difficulty": 2
+      },
+      {
+        "id": 12,
+        "sentence": "電車___会社___行きます。",
+        "sentenceReading": "でんしゃ___かいしゃ___いきます。",
+        "translation": "전철___회사___갑니다.",
+        "correctParticle": "で",
+        "correctParticle2": "に",
+        "explanation": "이동수단은 で, 목적지는 に를 사용합니다.",
+        "choices": ["で/に", "を/へ", "に/で", "と/을"],
+        "context": "출근",
+        "difficulty": 2
+      }
+    ]
+  },
+  {
+    "id": "advanced_particles_sentences",
+    "title": "고급 격조사 문장 완성",
+    "description": "복잡한 문장 구조에서 정확한 격조사 활용을 연습해보세요",
+    "difficulty": "고급",
+    "exercises": [
+      {
+        "id": 13,
+        "sentence": "先生___学生___質問___答えました。",
+        "sentenceReading": "せんせい___がくせい___しつもん___こたえました。",
+        "translation": "선생님___학생___질문___답변했습니다.",
+        "correctParticle": "が",
+        "correctParticle2": "の",
+        "correctParticle3": "に",
+        "explanation": "주어 が, 소유관계 の, 대상 に를 사용합니다.",
+        "choices": ["が/の/に", "は/을/을", "を/と/에서", "에/의/를"],
+        "context": "교육",
+        "difficulty": 3
+      }
+    ]
+  }
+]

@@ -1,0 +1,328 @@
+[
+  {
+    "id": "na_adjective_conjugation",
+    "title": "な형용사 활용",
+    "description": "な형용사의 다양한 활용형을 학습합니다",
+    "explanation": "な형용사는 명사를 수식할 때 な를 붙이고, 술어로 사용할 때는 だ/である를 붙입니다. 다양한 활용이 가능합니다.",
+    "conjugationTypes": [
+      {
+        "formType": "현재 긍정",
+        "ending": "だ",
+        "description": "기본형으로 현재 상태를 나타냄",
+        "usage": "평상시 사용하는 기본 형태"
+      },
+      {
+        "formType": "현재 부정",
+        "ending": "ではない",
+        "description": "현재 상태의 부정을 나타냄",
+        "usage": "~하지 않다, ~지 않다"
+      },
+      {
+        "formType": "과거 긍정",
+        "ending": "だった",
+        "description": "과거 상태를 나타냄",
+        "usage": "~했다, ~였다"
+      },
+      {
+        "formType": "과거 부정",
+        "ending": "ではなかった",
+        "description": "과거 상태의 부정을 나타냄",
+        "usage": "~하지 않았다, ~지 않았다"
+      },
+      {
+        "formType": "연용형",
+        "ending": "に",
+        "description": "부사로 사용하거나 다른 어미와 결합",
+        "usage": "동사를 수식하거나 ~に なる, ~に する 등과 결합"
+      },
+      {
+        "formType": "정중형",
+        "ending": "です",
+        "description": "정중한 표현",
+        "usage": "공식적인 상황에서 사용"
+      }
+    ],
+    "examples": [
+      {
+        "adjective": "静か",
+        "stem": "静か",
+        "reading": "しずか",
+        "meaning": "조용하다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "静かだ",
+            "reading": "しずかだ",
+            "translation": "조용하다",
+            "example": "この図書館は静かです。",
+            "exampleReading": "このとしょかんはしずかです。",
+            "exampleTranslation": "이 도서관은 조용합니다."
+          },
+          "현재 부정": {
+            "form": "静かではない",
+            "reading": "しずかではない",
+            "translation": "조용하지 않다",
+            "example": "この街は静かではありません。",
+            "exampleReading": "このまちはしずかではありません。",
+            "exampleTranslation": "이 거리는 조용하지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "静かだった",
+            "reading": "しずかだった",
+            "translation": "조용했다",
+            "example": "昨日の夜は静かでした。",
+            "exampleReading": "きのうのよるはしずかでした。",
+            "exampleTranslation": "어제 밤은 조용했습니다."
+          },
+          "과거 부정": {
+            "form": "静かではなかった",
+            "reading": "しずかではなかった",
+            "translation": "조용하지 않았다",
+            "example": "パーティーは静かではありませんでした。",
+            "exampleReading": "パーティーはしずかではありませんでした。",
+            "exampleTranslation": "파티는 조용하지 않았습니다."
+          },
+          "연용형": {
+            "form": "静かに",
+            "reading": "しずかに",
+            "translation": "조용히",
+            "example": "静かに話してください。",
+            "exampleReading": "しずかにはなしてください。",
+            "exampleTranslation": "조용히 말해주세요."
+          },
+          "정중형": {
+            "form": "静かです",
+            "reading": "しずかです",
+            "translation": "조용합니다",
+            "example": "この部屋は静かです。",
+            "exampleReading": "このへやはしずかです。",
+            "exampleTranslation": "이 방은 조용합니다."
+          }
+        }
+      },
+      {
+        "adjective": "便利",
+        "stem": "便利",
+        "reading": "べんり",
+        "meaning": "편리하다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "便利だ",
+            "reading": "べんりだ",
+            "translation": "편리하다",
+            "example": "このアプリは便利です。",
+            "exampleReading": "このアプリはべんりです。",
+            "exampleTranslation": "이 앱은 편리합니다."
+          },
+          "현재 부정": {
+            "form": "便利ではない",
+            "reading": "べんりではない",
+            "translation": "편리하지 않다",
+            "example": "この機能は便利ではありません。",
+            "exampleReading": "このきのうはべんりではありません。",
+            "exampleTranslation": "이 기능은 편리하지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "便利だった",
+            "reading": "べんりだった",
+            "translation": "편리했다",
+            "example": "昔のサービスは便利でした。",
+            "exampleReading": "むかしのサービスはべんりでした。",
+            "exampleTranslation": "예전 서비스는 편리했습니다."
+          },
+          "과거 부정": {
+            "form": "便利ではなかった",
+            "reading": "べんりではなかった",
+            "translation": "편리하지 않았다",
+            "example": "古い携帯は便利ではありませんでした。",
+            "exampleReading": "ふるいけいたいはべんりではありませんでした。",
+            "exampleTranslation": "옛날 휴대폰은 편리하지 않았습니다."
+          },
+          "연용형": {
+            "form": "便利に",
+            "reading": "べんりに",
+            "translation": "편리하게",
+            "example": "便利に使えます。",
+            "exampleReading": "べんりにつかえます。",
+            "exampleTranslation": "편리하게 사용할 수 있습니다."
+          },
+          "정중형": {
+            "form": "便利です",
+            "reading": "べんりです",
+            "translation": "편리합니다",
+            "example": "交通が便利です。",
+            "exampleReading": "こうつうがべんりです。",
+            "exampleTranslation": "교통이 편리합니다."
+          }
+        }
+      },
+      {
+        "adjective": "簡単",
+        "stem": "簡単",
+        "reading": "かんたん",
+        "meaning": "간단하다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "簡単だ",
+            "reading": "かんたんだ",
+            "translation": "간단하다",
+            "example": "この問題は簡単です。",
+            "exampleReading": "このもんだいはかんたんです。",
+            "exampleTranslation": "이 문제는 간단합니다."
+          },
+          "현재 부정": {
+            "form": "簡単ではない",
+            "reading": "かんたんではない",
+            "translation": "간단하지 않다",
+            "example": "数学は簡単ではありません。",
+            "exampleReading": "すうがくはかんたんではありません。",
+            "exampleTranslation": "수학은 간단하지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "簡単だった",
+            "reading": "かんたんだった",
+            "translation": "간단했다",
+            "example": "昨日のテストは簡単でした。",
+            "exampleReading": "きのうのテストはかんたんでした。",
+            "exampleTranslation": "어제 시험은 간단했습니다."
+          },
+          "과거 부정": {
+            "form": "簡単ではなかった",
+            "reading": "かんたんではなかった",
+            "translation": "간단하지 않았다",
+            "example": "入試は簡単ではありませんでした。",
+            "exampleReading": "にゅうしはかんたんではありませんでした。",
+            "exampleTranslation": "입시는 간단하지 않았습니다."
+          },
+          "연용형": {
+            "form": "簡単に",
+            "reading": "かんたんに",
+            "translation": "간단히",
+            "example": "簡単に説明してください。",
+            "exampleReading": "かんたんにせつめいしてください。",
+            "exampleTranslation": "간단히 설명해주세요."
+          },
+          "정중형": {
+            "form": "簡単です",
+            "reading": "かんたんです",
+            "translation": "간단합니다",
+            "example": "操作は簡単です。",
+            "exampleReading": "そうさはかんたんです。",
+            "exampleTranslation": "조작은 간단합니다."
+          }
+        }
+      },
+      {
+        "adjective": "綺麗",
+        "stem": "綺麗",
+        "reading": "きれい",
+        "meaning": "예쁘다/깨끗하다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "綺麗だ",
+            "reading": "きれいだ",
+            "translation": "예쁘다/깨끗하다",
+            "example": "この花は綺麗です。",
+            "exampleReading": "このはなはきれいです。",
+            "exampleTranslation": "이 꽃은 예쁩니다."
+          },
+          "현재 부정": {
+            "form": "綺麗ではない",
+            "reading": "きれいではない",
+            "translation": "예쁘지 않다/깨끗하지 않다",
+            "example": "部屋は綺麗ではありません。",
+            "exampleReading": "へやはきれいではありません。",
+            "exampleTranslation": "방은 깨끗하지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "綺麗だった",
+            "reading": "きれいだった",
+            "translation": "예뻤다/깨끗했다",
+            "example": "昨日の空は綺麗でした。",
+            "exampleReading": "きのうのそらはきれいでした。",
+            "exampleTranslation": "어제 하늘은 예뻤습니다."
+          },
+          "과거 부정": {
+            "form": "綺麗ではなかった",
+            "reading": "きれいではなかった",
+            "translation": "예쁘지 않았다/깨끗하지 않았다",
+            "example": "昔の川は綺麗ではありませんでした。",
+            "exampleReading": "むかしのかわはきれいではありませんでした。",
+            "exampleTranslation": "예전 강은 깨끗하지 않았습니다."
+          },
+          "연용형": {
+            "form": "綺麗に",
+            "reading": "きれいに",
+            "translation": "예쁘게/깨끗하게",
+            "example": "部屋を綺麗にしました。",
+            "exampleReading": "へやをきれいにしました。",
+            "exampleTranslation": "방을 깨끗하게 했습니다."
+          },
+          "정중형": {
+            "form": "綺麗です",
+            "reading": "きれいです",
+            "translation": "예쁩니다/깨끗합니다",
+            "example": "桜の花は綺麗です。",
+            "exampleReading": "さくらのはなはきれいです。",
+            "exampleTranslation": "벚꽃은 예쁩니다."
+          }
+        }
+      },
+      {
+        "adjective": "有名",
+        "stem": "有名",
+        "reading": "ゆうめい",
+        "meaning": "유명하다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "有名だ",
+            "reading": "ゆうめいだ",
+            "translation": "유명하다",
+            "example": "この歌手は有名です。",
+            "exampleReading": "このかしゅはゆうめいです。",
+            "exampleTranslation": "이 가수는 유명합니다."
+          },
+          "현재 부정": {
+            "form": "有名ではない",
+            "reading": "ゆうめいではない",
+            "translation": "유명하지 않다",
+            "example": "私は有名ではありません。",
+            "exampleReading": "わたしはゆうめいではありません。",
+            "exampleTranslation": "저는 유명하지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "有名だった",
+            "reading": "ゆうめいだった",
+            "translation": "유명했다",
+            "example": "昔はとても有名でした。",
+            "exampleReading": "むかしはとてもゆうめいでした。",
+            "exampleTranslation": "예전에는 매우 유명했습니다."
+          },
+          "과거 부정": {
+            "form": "有名ではなかった",
+            "reading": "ゆうめいではなかった",
+            "translation": "유명하지 않았다",
+            "example": "当時は有名ではありませんでした。",
+            "exampleReading": "とうじはゆうめいではありませんでした。",
+            "exampleTranslation": "당시에는 유명하지 않았습니다."
+          },
+          "연용형": {
+            "form": "有名に",
+            "reading": "ゆうめいに",
+            "translation": "유명하게",
+            "example": "世界的に有名になりました。",
+            "exampleReading": "せかいてきにゆうめいになりました。",
+            "exampleTranslation": "세계적으로 유명해졌습니다."
+          },
+          "정중형": {
+            "form": "有名です",
+            "reading": "ゆうめいです",
+            "translation": "유명합니다",
+            "example": "富士山は有名です。",
+            "exampleReading": "ふじさんはゆうめいです。",
+            "exampleTranslation": "후지산은 유명합니다."
+          }
+        }
+      }
+    ]
+  }
+]

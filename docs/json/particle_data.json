@@ -1,0 +1,253 @@
+[
+  {
+    "id": "basic_particles",
+    "title": "기본 조사 활용",
+    "description": "일본어의 주요 조사들과 그 기능을 학습합니다",
+    "explanation": "조사는 명사 뒤에 붙어서 그 명사가 문장에서 어떤 역할을 하는지 나타내는 중요한 문법 요소입니다.",
+    "particles": [
+      {
+        "particle": "は",
+        "reading": "wa",
+        "function": "주격 조사 (주제)",
+        "description": "문장의 주제나 화제를 나타낸다. '~은/는'으로 번역된다.",
+        "usage": "주제를 강조하거나 대조할 때 사용. 이미 알려진 정보나 일반적인 사실을 나타낼 때도 사용.",
+        "examples": [
+          {
+            "sentence": "私は学生です。",
+            "reading": "わたしはがくせいです。",
+            "translation": "나는 학생입니다.",
+            "note": "자기소개할 때 주제를 나타냄"
+          },
+          {
+            "sentence": "桜は美しいです。",
+            "reading": "さくらはうつくしいです。",
+            "translation": "벚꽃은 아름답습니다.",
+            "note": "일반적인 사실이나 특징을 나타냄"
+          },
+          {
+            "sentence": "今日は暖かいです。",
+            "reading": "きょうはあたたかいです。",
+            "translation": "오늘은 따뜻합니다.",
+            "note": "시간 표현과 함께 사용"
+          }
+        ]
+      },
+      {
+        "particle": "が",
+        "reading": "ga",
+        "function": "주격 조사 (주어)",
+        "description": "문장의 주어를 나타낸다. '~이/가'로 번역된다.",
+        "usage": "새로운 정보의 주어, 의문사와 함께, 능력이나 좋아함을 나타낼 때 사용.",
+        "examples": [
+          {
+            "sentence": "猫が走っています。",
+            "reading": "ねこがはしっています。",
+            "translation": "고양이가 뛰고 있습니다.",
+            "note": "동작의 주체를 명확히 나타냄"
+          },
+          {
+            "sentence": "誰が来ましたか？",
+            "reading": "だれがきましたか？",
+            "translation": "누가 왔습니까?",
+            "note": "의문사와 함께 사용"
+          },
+          {
+            "sentence": "私は日本語が好きです。",
+            "reading": "わたしはにほんごがすきです。",
+            "translation": "나는 일본어를 좋아합니다.",
+            "note": "좋아하는 대상을 나타냄"
+          }
+        ]
+      },
+      {
+        "particle": "を",
+        "reading": "o",
+        "function": "목적격 조사",
+        "description": "동작의 대상(목적어)을 나타낸다. '~을/를'로 번역된다.",
+        "usage": "타동사의 목적어, 통과하는 장소, 출발점을 나타낼 때 사용.",
+        "examples": [
+          {
+            "sentence": "本を読みます。",
+            "reading": "ほんをよみます。",
+            "translation": "책을 읽습니다.",
+            "note": "동작의 직접 목적어"
+          },
+          {
+            "sentence": "公園を散歩します。",
+            "reading": "こうえんをさんぽします。",
+            "translation": "공원을 산책합니다.",
+            "note": "통과하는 장소를 나타냄"
+          },
+          {
+            "sentence": "家を出ます。",
+            "reading": "いえをでます。",
+            "translation": "집을 나갑니다.",
+            "note": "출발점을 나타냄"
+          }
+        ]
+      },
+      {
+        "particle": "に",
+        "reading": "ni",
+        "function": "방향/시간/목적 조사",
+        "description": "방향, 시간, 목적, 존재 장소 등을 나타낸다. '~에/에게/로'로 번역된다.",
+        "usage": "이동의 목적지, 시간, 존재 위치, 동작의 목적 등을 나타낼 때 사용.",
+        "examples": [
+          {
+            "sentence": "学校に行きます。",
+            "reading": "がっこうにいきます。",
+            "translation": "학교에 갑니다.",
+            "note": "이동의 목적지"
+          },
+          {
+            "sentence": "3時に会います。",
+            "reading": "さんじにあいます。",
+            "translation": "3시에 만납니다.",
+            "note": "시간을 나타냄"
+          },
+          {
+            "sentence": "机の上に本があります。",
+            "reading": "つくえのうえにほんがあります。",
+            "translation": "책상 위에 책이 있습니다.",
+            "note": "존재 장소를 나타냄"
+          }
+        ]
+      },
+      {
+        "particle": "で",
+        "reading": "de",
+        "function": "수단/장소 조사",
+        "description": "동작이 일어나는 장소나 수단, 방법을 나타낸다. '~에서/~로'로 번역된다.",
+        "usage": "동작의 장소, 수단, 방법, 재료, 원인 등을 나타낼 때 사용.",
+        "examples": [
+          {
+            "sentence": "図書館で勉強します。",
+            "reading": "としょかんでべんきょうします。",
+            "translation": "도서관에서 공부합니다.",
+            "note": "동작이 일어나는 장소"
+          },
+          {
+            "sentence": "電車で行きます。",
+            "reading": "でんしゃでいきます。",
+            "translation": "전차로 갑니다.",
+            "note": "이동 수단을 나타냄"
+          },
+          {
+            "sentence": "箸で食べます。",
+            "reading": "はしでたべます。",
+            "translation": "젓가락으로 먹습니다.",
+            "note": "도구나 수단을 나타냄"
+          }
+        ]
+      },
+      {
+        "particle": "の",
+        "reading": "no",
+        "function": "소유격/연체 조사",
+        "description": "소유나 관계, 연체 수식을 나타낸다. '~의'로 번역된다.",
+        "usage": "소유, 소속, 성질, 연체 수식 등을 나타낼 때 사용.",
+        "examples": [
+          {
+            "sentence": "私の本です。",
+            "reading": "わたしのほんです。",
+            "translation": "나의 책입니다.",
+            "note": "소유 관계를 나타냄"
+          },
+          {
+            "sentence": "日本の文化",
+            "reading": "にほんのぶんか",
+            "translation": "일본의 문화",
+            "note": "소속이나 관련성을 나타냄"
+          },
+          {
+            "sentence": "赤いのを下さい。",
+            "reading": "あかいのをください。",
+            "translation": "빨간 것을 주세요.",
+            "note": "명사를 대신하는 역할"
+          }
+        ]
+      },
+      {
+        "particle": "と",
+        "reading": "to",
+        "function": "동반/인용 조사",
+        "description": "함께하는 상대나 인용을 나타낸다. '~와/과/라고'로 번역된다.",
+        "usage": "동반, 병렬, 인용, 조건 등을 나타낼 때 사용.",
+        "examples": [
+          {
+            "sentence": "友達と映画を見ます。",
+            "reading": "ともだちとえいがをみます。",
+            "translation": "친구와 영화를 봅니다.",
+            "note": "함께하는 상대를 나타냄"
+          },
+          {
+            "sentence": "田中さんと申します。",
+            "reading": "たなかさんともうします。",
+            "translation": "다나카라고 합니다.",
+            "note": "인용을 나타냄"
+          },
+          {
+            "sentence": "パンと牛乳を買います。",
+            "reading": "パンとぎゅうにゅうをかいます。",
+            "translation": "빵과 우유를 삽니다.",
+            "note": "병렬 관계를 나타냄"
+          }
+        ]
+      },
+      {
+        "particle": "から",
+        "reading": "kara",
+        "function": "출발점/기점 조사",
+        "description": "시작점이나 출발점, 이유를 나타낸다. '~부터/~에서/~때문에'로 번역된다.",
+        "usage": "시간이나 장소의 시작점, 원인이나 이유를 나타낼 때 사용.",
+        "examples": [
+          {
+            "sentence": "駅から歩きます。",
+            "reading": "えきからあるきます。",
+            "translation": "역에서부터 걸어갑니다.",
+            "note": "출발점을 나타냄"
+          },
+          {
+            "sentence": "9時から働きます。",
+            "reading": "くじからはたらきます。",
+            "translation": "9시부터 일합니다.",
+            "note": "시간의 시작점"
+          },
+          {
+            "sentence": "雨だから家にいます。",
+            "reading": "あめだからいえにいます。",
+            "translation": "비가 오니까 집에 있습니다.",
+            "note": "이유를 나타냄"
+          }
+        ]
+      },
+      {
+        "particle": "まで",
+        "reading": "made",
+        "function": "종료점/한계 조사",
+        "description": "끝점이나 한계를 나타낸다. '~까지'로 번역된다.",
+        "usage": "시간이나 장소의 끝점, 정도의 한계를 나타낼 때 사용.",
+        "examples": [
+          {
+            "sentence": "駅まで走ります。",
+            "reading": "えきまではしります。",
+            "translation": "역까지 뛰어갑니다.",
+            "note": "도착점을 나타냄"
+          },
+          {
+            "sentence": "5時まで働きます。",
+            "reading": "ごじまではたらきます。",
+            "translation": "5시까지 일합니다.",
+            "note": "시간의 끝점"
+          },
+          {
+            "sentence": "子供まで知っています。",
+            "reading": "こどもまでしっています。",
+            "translation": "아이까지 알고 있습니다.",
+            "note": "정도의 한계를 나타냄"
+          }
+        ]
+      }
+    ]
+  }
+]

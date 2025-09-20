@@ -1,0 +1,509 @@
+<!-- 명사 활용 학습 화면 -->
+<div class="app-screen" id="nounConjugationScreen">
+    <div class="screen-header">
+        <h1>명사 활용 학습</h1>
+        <p class="subtitle">일본어 명사와 격조사 조합을 익혀보세요</p>
+    </div>
+
+    <!-- 격조사 선택기 -->
+    <div class="section" id="particleSelector">
+        <h2>격조사 선택</h2>
+        <div class="particle-grid">
+            <!-- JavaScript에서 동적으로 생성됨 -->
+        </div>
+    </div>
+
+    <!-- 격조사 설명 -->
+    <div class="section" id="particleExplanation" style="display: block;">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+
+    <!-- 연습 모드 -->
+    <div class="section" id="practiceContainer" style="display: none;">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+
+    <!-- 퀴즈 모드 -->
+    <div class="section" id="quizContainer" style="display: none;">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+</div>
+
+<style>
+/* 명사 활용 전용 스타일 */
+.particle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.particle-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.particle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.particle-btn.active {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 6px 20px rgba(240, 147, 251, 0.4);
+}
+
+.particle-main {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.particle-reading {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.particle-function {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* 설명 섹션 */
+.explanation-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.explanation-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.function-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.description {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.examples-container h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.example-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.noun-info {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.noun-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.noun-kanji {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.noun-reading {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.noun-meaning {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.sentence-info {
+    margin-bottom: 15px;
+}
+
+.sentence-japanese {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.sentence-reading {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.sentence-translation {
+    font-size: 16px;
+    color: #555;
+    padding: 10px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 6px;
+}
+
+.particle-highlight {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.particle-emphasis {
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.example-navigation {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.example-navigation button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #667eea;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.example-navigation button:hover:not(:disabled) {
+    background: #5a67d8;
+}
+
+.example-navigation button:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+}
+
+.practice-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);
+}
+
+.secondary-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+}
+
+/* 연습 모드 스타일 */
+.practice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.practice-header h2 {
+    color: #667eea;
+    margin: 0;
+}
+
+.back-btn {
+    background: #718096;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #4a5568;
+}
+
+.practice-instruction {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.practice-question {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.question-sentence {
+    margin-bottom: 15px;
+}
+
+.question-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.question-reading {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.question-translation {
+    font-size: 16px;
+    color: #555;
+    padding: 10px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 6px;
+}
+
+.question-options {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.option-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.option-btn:hover:not(:disabled) {
+    background: #5a67d8;
+}
+
+.option-btn:disabled {
+    cursor: not-allowed;
+}
+
+.option-btn.correct {
+    background: #38a169;
+}
+
+.option-btn.incorrect {
+    background: #e53e3e;
+}
+
+.question-feedback {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.question-feedback .correct {
+    color: #38a169;
+}
+
+.question-feedback .incorrect {
+    color: #e53e3e;
+}
+
+/* 퀴즈 모드 스타일 */
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.quiz-header h2 {
+    color: #667eea;
+    margin: 0;
+}
+
+.quiz-progress {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.quiz-question-content {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.quiz-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.quiz-option-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+    background: #5a67d8;
+    transform: translateY(-1px);
+}
+
+.quiz-option-btn:disabled {
+    cursor: not-allowed;
+}
+
+.quiz-option-btn.correct {
+    background: #38a169;
+}
+
+.quiz-option-btn.incorrect {
+    background: #e53e3e;
+}
+
+.quiz-navigation {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.quiz-navigation button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #667eea;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-navigation button:hover:not(:disabled) {
+    background: #5a67d8;
+}
+
+.quiz-navigation button:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+}
+
+.quiz-score {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .particle-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+    }
+
+    .particle-main {
+        font-size: 20px;
+    }
+
+    .practice-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .quiz-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .question-options {
+        flex-direction: column;
+    }
+
+    .quiz-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .practice-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>

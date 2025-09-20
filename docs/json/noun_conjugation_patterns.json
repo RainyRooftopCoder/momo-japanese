@@ -1,0 +1,225 @@
+[
+  {
+    "id": "basic_particles",
+    "name": "기본 격조사",
+    "description": "일본어 명사의 기본 격조사 활용",
+    "particles": [
+      {
+        "particle": "は",
+        "reading": "wa",
+        "function": "주격(주제)",
+        "description": "문장의 주제를 나타낸다",
+        "examples": [
+          {
+            "noun": "私",
+            "reading": "わたし",
+            "meaning": "나",
+            "sentence": "私は学生です。",
+            "sentenceReading": "わたしはがくせいです。",
+            "translation": "나는 학생입니다."
+          },
+          {
+            "noun": "本",
+            "reading": "ほん",
+            "meaning": "책",
+            "sentence": "本は机の上にあります。",
+            "sentenceReading": "ほんはつくえのうえにあります。",
+            "translation": "책은 책상 위에 있습니다."
+          }
+        ]
+      },
+      {
+        "particle": "が",
+        "reading": "ga",
+        "function": "주격",
+        "description": "문장의 주어를 나타낸다",
+        "examples": [
+          {
+            "noun": "犬",
+            "reading": "いぬ",
+            "meaning": "개",
+            "sentence": "犬が走っています。",
+            "sentenceReading": "いぬがはしっています。",
+            "translation": "개가 뛰고 있습니다."
+          },
+          {
+            "noun": "雨",
+            "reading": "あめ",
+            "meaning": "비",
+            "sentence": "雨が降っています。",
+            "sentenceReading": "あめがふっています。",
+            "translation": "비가 내리고 있습니다."
+          }
+        ]
+      },
+      {
+        "particle": "を",
+        "reading": "o",
+        "function": "목적격",
+        "description": "동작의 대상을 나타낸다",
+        "examples": [
+          {
+            "noun": "本",
+            "reading": "ほん",
+            "meaning": "책",
+            "sentence": "本を読みます。",
+            "sentenceReading": "ほんをよみます。",
+            "translation": "책을 읽습니다."
+          },
+          {
+            "noun": "コーヒー",
+            "reading": "コーヒー",
+            "meaning": "커피",
+            "sentence": "コーヒーを飲みます。",
+            "sentenceReading": "コーヒーをのみます。",
+            "translation": "커피를 마십니다."
+          }
+        ]
+      },
+      {
+        "particle": "に",
+        "reading": "ni",
+        "function": "방향/시간/목적",
+        "description": "방향, 시간, 목적을 나타낸다",
+        "examples": [
+          {
+            "noun": "学校",
+            "reading": "がっこう",
+            "meaning": "학교",
+            "sentence": "学校に行きます。",
+            "sentenceReading": "がっこうにいきます。",
+            "translation": "학교에 갑니다."
+          },
+          {
+            "noun": "三時",
+            "reading": "さんじ",
+            "meaning": "3시",
+            "sentence": "三時に会います。",
+            "sentenceReading": "さんじにあいます。",
+            "translation": "3시에 만납니다."
+          }
+        ]
+      },
+      {
+        "particle": "で",
+        "reading": "de",
+        "function": "장소/수단",
+        "description": "동작이 일어나는 장소나 수단을 나타낸다",
+        "examples": [
+          {
+            "noun": "図書館",
+            "reading": "としょかん",
+            "meaning": "도서관",
+            "sentence": "図書館で勉強します。",
+            "sentenceReading": "としょかんでべんきょうします。",
+            "translation": "도서관에서 공부합니다."
+          },
+          {
+            "noun": "電車",
+            "reading": "でんしゃ",
+            "meaning": "전차",
+            "sentence": "電車で行きます。",
+            "sentenceReading": "でんしゃでいきます。",
+            "translation": "전차로 갑니다."
+          }
+        ]
+      },
+      {
+        "particle": "の",
+        "reading": "no",
+        "function": "소유격/연체격",
+        "description": "소유나 관계를 나타낸다",
+        "examples": [
+          {
+            "noun": "私",
+            "reading": "わたし",
+            "meaning": "나",
+            "sentence": "私の本です。",
+            "sentenceReading": "わたしのほんです。",
+            "translation": "나의 책입니다."
+          },
+          {
+            "noun": "日本",
+            "reading": "にほん",
+            "meaning": "일본",
+            "sentence": "日本の文化",
+            "sentenceReading": "にほんのぶんか",
+            "translation": "일본의 문화"
+          }
+        ]
+      },
+      {
+        "particle": "と",
+        "reading": "to",
+        "function": "동반/인용",
+        "description": "함께하는 대상이나 인용을 나타낸다",
+        "examples": [
+          {
+            "noun": "友達",
+            "reading": "ともだち",
+            "meaning": "친구",
+            "sentence": "友達と映画を見ます。",
+            "sentenceReading": "ともだちとえいがをみます。",
+            "translation": "친구와 영화를 봅니다."
+          },
+          {
+            "noun": "母",
+            "reading": "はは",
+            "meaning": "어머니",
+            "sentence": "母と話します。",
+            "sentenceReading": "ははとはなします。",
+            "translation": "어머니와 이야기합니다."
+          }
+        ]
+      },
+      {
+        "particle": "から",
+        "reading": "kara",
+        "function": "출발점/기점",
+        "description": "시작점이나 출발점을 나타낸다",
+        "examples": [
+          {
+            "noun": "駅",
+            "reading": "えき",
+            "meaning": "역",
+            "sentence": "駅から歩きます。",
+            "sentenceReading": "えきからあるきます。",
+            "translation": "역에서부터 걸어갑니다."
+          },
+          {
+            "noun": "九時",
+            "reading": "くじ",
+            "meaning": "9시",
+            "sentence": "九時から始まります。",
+            "sentenceReading": "くじからはじまります。",
+            "translation": "9시부터 시작됩니다."
+          }
+        ]
+      },
+      {
+        "particle": "まで",
+        "reading": "made",
+        "function": "종료점/한계",
+        "description": "끝점이나 한계를 나타낸다",
+        "examples": [
+          {
+            "noun": "駅",
+            "reading": "えき",
+            "meaning": "역",
+            "sentence": "駅まで走ります。",
+            "sentenceReading": "えきまではしります。",
+            "translation": "역까지 뛰어갑니다."
+          },
+          {
+            "noun": "五時",
+            "reading": "ごじ",
+            "meaning": "5시",
+            "sentence": "五時まで働きます。",
+            "sentenceReading": "ごじまではたらきます。",
+            "translation": "5시까지 일합니다."
+          }
+        ]
+      }
+    ]
+  }
+]

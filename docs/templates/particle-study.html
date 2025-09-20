@@ -1,0 +1,292 @@
+<!-- 조사 활용 학습 화면 -->
+<div class="app-screen" id="particleStudyScreen">
+    <!-- 헤더 -->
+    <div class="section" id="particleHeader">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+
+    <!-- 조사 선택기 -->
+    <div class="section" id="particleSelector">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+
+    <!-- 조사 표시 영역 -->
+    <div class="section" id="particleDisplay">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+</div>
+
+<style>
+/* 조사 활용 전용 스타일 */
+.particle-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.particle-header h1 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.particle-header .description {
+    margin: 5px 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.particle-header .explanation {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* 조사 선택기 */
+.particle-selector {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.particle-selector h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.particle-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.particle-btn {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 60px;
+}
+
+.particle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.particle-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #667eea;
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.particle-char {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.particle-reading {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+/* 조사 표시 영역 */
+.particle-display {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* 카운터 */
+.particle-counter {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.particle-info {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.particle-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.particle-large {
+    font-size: 32px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.particle-pronunciation {
+    font-size: 16px;
+    color: #666;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.particle-function {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* 조사 설명 */
+.particle-explanation {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.particle-explanation h4 {
+    margin: 0 0 6px 0;
+    color: #667eea;
+    font-size: 14px;
+}
+
+.particle-explanation p {
+    margin: 4px 0;
+    color: #555;
+    line-height: 1.4;
+    font-size: 13px;
+}
+
+.usage-note {
+    background: rgba(255, 193, 7, 0.1);
+    padding: 8px;
+    border-radius: 6px;
+    border-left: 3px solid #ffc107;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* 예문 표시 */
+.example-display h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.example-card {
+    background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%);
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid rgba(17, 153, 142, 0.2);
+}
+
+.example-sentence {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.example-reading {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.example-translation {
+    font-size: 15px;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.example-note {
+    background: rgba(255, 193, 7, 0.2);
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #856404;
+    margin-top: 8px;
+}
+
+.highlighted-particle {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .particle-header {
+        padding: 12px;
+    }
+
+    .particle-header h1 {
+        font-size: 18px;
+    }
+
+    .particle-buttons {
+        gap: 6px;
+    }
+
+    .particle-btn {
+        min-width: 50px;
+        padding: 8px 10px;
+    }
+
+    .particle-char {
+        font-size: 16px;
+    }
+
+    .particle-large {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .particle-display, .particle-selector {
+        padding: 12px;
+    }
+
+    .example-sentence {
+        font-size: 16px;
+    }
+
+    .particle-main {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+</style>

@@ -1,0 +1,299 @@
+<!-- 평서체/경어체 명사 활용 학습 화면 -->
+<div class="app-screen" id="nounFormsScreen">
+    <!-- 헤더 -->
+    <div class="section" id="nounFormsHeader">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+
+    <!-- 활용 형태 선택기 -->
+    <div class="section" id="formSelector">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+
+    <!-- 명사 표시 영역 -->
+    <div class="section" id="nounDisplay">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+</div>
+
+<style>
+/* 평서체/경어체 명사 활용 전용 스타일 */
+.forms-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.forms-header h1 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.forms-header .description {
+    margin: 5px 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.forms-header .explanation {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* 활용 형태 선택기 */
+.form-selector {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.form-selector h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.form-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.form-btn {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #dee2e6;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 80px;
+}
+
+.form-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #667eea;
+    color: white;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.form-name {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* 명사 표시 영역 */
+.noun-display {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* 카운터 */
+.noun-counter {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.noun-info {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.noun-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.noun-kanji {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+.noun-reading {
+    font-size: 14px;
+    color: #666;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.noun-meaning {
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* 형태 설명 */
+.form-explanation {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.form-explanation h4 {
+    margin: 0 0 6px 0;
+    color: #667eea;
+    font-size: 16px;
+}
+
+.form-explanation p {
+    margin: 4px 0;
+    color: #555;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.usage-note {
+    background: rgba(255, 193, 7, 0.1);
+    padding: 8px;
+    border-radius: 6px;
+    border-left: 3px solid #ffc107;
+    font-size: 13px;
+}
+
+/* 활용 표시 */
+.conjugation-display {
+    text-align: center;
+}
+
+.conjugation-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.casual-form, .polite-form {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+}
+
+.casual-form {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, rgba(245, 124, 0, 0.1) 100%);
+    border-color: #ff9800;
+}
+
+.polite-form {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(56, 142, 60, 0.1) 100%);
+    border-color: #4caf50;
+}
+
+.form-label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    opacity: 0.8;
+}
+
+.casual-form .form-label {
+    color: #f57c00;
+}
+
+.polite-form .form-label {
+    color: #388e3c;
+}
+
+.form-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.form-korean {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+}
+
+.translation {
+    background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%);
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 3px solid #11998e;
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+}
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .forms-header {
+        padding: 20px;
+    }
+
+    .forms-header h1 {
+        font-size: 20px;
+    }
+
+    .form-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .noun-main {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .noun-kanji {
+        font-size: 28px;
+    }
+
+    .conjugation-pair {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .noun-display, .form-selector {
+        padding: 15px;
+    }
+
+    .form-text {
+        font-size: 18px;
+    }
+
+    .noun-kanji {
+        font-size: 24px;
+    }
+}
+</style>

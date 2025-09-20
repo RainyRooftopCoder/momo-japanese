@@ -1569,6 +1569,12 @@ body::before {
     transform: translateY(-2px);
 }
 
+.adjective-display {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
 /* 반응형 */
 @media (max-width: 768px) {
     .search-results-screen {

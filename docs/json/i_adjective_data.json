@@ -1,0 +1,328 @@
+[
+  {
+    "id": "i_adjective_conjugation",
+    "title": "い형용사 활용",
+    "description": "い형용사의 다양한 활용형을 학습합니다",
+    "explanation": "い형용사는 어미 い를 변화시켜 시제, 부정, 과거 등을 나타냅니다. 모든 활용은 い를 떼고 새로운 어미를 붙이는 방식입니다.",
+    "conjugationTypes": [
+      {
+        "formType": "현재 긍정",
+        "ending": "い",
+        "description": "기본형으로 현재 상태를 나타냄",
+        "usage": "평상시 사용하는 기본 형태"
+      },
+      {
+        "formType": "현재 부정",
+        "ending": "くない",
+        "description": "현재 상태의 부정을 나타냄",
+        "usage": "~하지 않다, ~지 않다"
+      },
+      {
+        "formType": "과거 긍정",
+        "ending": "かった",
+        "description": "과거 상태를 나타냄",
+        "usage": "~했다, ~였다"
+      },
+      {
+        "formType": "과거 부정",
+        "ending": "くなかった",
+        "description": "과거 상태의 부정을 나타냄",
+        "usage": "~하지 않았다, ~지 않았다"
+      },
+      {
+        "formType": "연용형",
+        "ending": "く",
+        "description": "부사로 사용하거나 다른 어미와 결합",
+        "usage": "동사를 수식하거나 ~く なる, ~く する 등과 결합"
+      },
+      {
+        "formType": "정중형",
+        "ending": "いです",
+        "description": "정중한 표현",
+        "usage": "공식적인 상황에서 사용"
+      }
+    ],
+    "examples": [
+      {
+        "adjective": "大きい",
+        "stem": "大き",
+        "reading": "おおき",
+        "meaning": "크다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "大きい",
+            "reading": "おおきい",
+            "translation": "크다",
+            "example": "この部屋は大きいです。",
+            "exampleReading": "このへやはおおきいです。",
+            "exampleTranslation": "이 방은 큽니다."
+          },
+          "현재 부정": {
+            "form": "大きくない",
+            "reading": "おおきくない",
+            "translation": "크지 않다",
+            "example": "この部屋は大きくないです。",
+            "exampleReading": "このへやはおおきくないです。",
+            "exampleTranslation": "이 방은 크지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "大きかった",
+            "reading": "おおきかった",
+            "translation": "컸다",
+            "example": "昨日の魚は大きかったです。",
+            "exampleReading": "きのうのさかなはおおきかったです。",
+            "exampleTranslation": "어제 물고기는 컸습니다."
+          },
+          "과거 부정": {
+            "form": "大きくなかった",
+            "reading": "おおきくなかった",
+            "translation": "크지 않았다",
+            "example": "昨日の魚は大きくなかったです。",
+            "exampleReading": "きのうのさかなはおおきくなかったです。",
+            "exampleTranslation": "어제 물고기는 크지 않았습니다."
+          },
+          "연용형": {
+            "form": "大きく",
+            "reading": "おおきく",
+            "translation": "크게",
+            "example": "声を大きくしてください。",
+            "exampleReading": "こえをおおきくしてください。",
+            "exampleTranslation": "목소리를 크게 해주세요."
+          },
+          "정중형": {
+            "form": "大きいです",
+            "reading": "おおきいです",
+            "translation": "큽니다",
+            "example": "象は大きいです。",
+            "exampleReading": "ぞうはおおきいです。",
+            "exampleTranslation": "코끼리는 큽니다."
+          }
+        }
+      },
+      {
+        "adjective": "小さい",
+        "stem": "小さ",
+        "reading": "ちいさ",
+        "meaning": "작다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "小さい",
+            "reading": "ちいさい",
+            "translation": "작다",
+            "example": "この猫は小さいです。",
+            "exampleReading": "このねこはちいさいです。",
+            "exampleTranslation": "이 고양이는 작습니다."
+          },
+          "현재 부정": {
+            "form": "小さくない",
+            "reading": "ちいさくない",
+            "translation": "작지 않다",
+            "example": "この犬は小さくないです。",
+            "exampleReading": "このいぬはちいさくないです。",
+            "exampleTranslation": "이 개는 작지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "小さかった",
+            "reading": "ちいさかった",
+            "translation": "작았다",
+            "example": "子供の時、私は小さかったです。",
+            "exampleReading": "こどものとき、わたしはちいさかったです。",
+            "exampleTranslation": "어릴 때 나는 작았습니다."
+          },
+          "과거 부정": {
+            "form": "小さくなかった",
+            "reading": "ちいさくなかった",
+            "translation": "작지 않았다",
+            "example": "昔のテレビは小さくなかったです。",
+            "exampleReading": "むかしのテレビはちいさくなかったです。",
+            "exampleTranslation": "옛날 TV는 작지 않았습니다."
+          },
+          "연용형": {
+            "form": "小さく",
+            "reading": "ちいさく",
+            "translation": "작게",
+            "example": "字を小さく書いてください。",
+            "exampleReading": "じをちいさくかいてください。",
+            "exampleTranslation": "글자를 작게 써주세요."
+          },
+          "정중형": {
+            "form": "小さいです",
+            "reading": "ちいさいです",
+            "translation": "작습니다",
+            "example": "この箱は小さいです。",
+            "exampleReading": "このはこはちいさいです。",
+            "exampleTranslation": "이 상자는 작습니다."
+          }
+        }
+      },
+      {
+        "adjective": "新しい",
+        "stem": "新し",
+        "reading": "あたらし",
+        "meaning": "새롭다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "新しい",
+            "reading": "あたらしい",
+            "translation": "새롭다",
+            "example": "これは新しい本です。",
+            "exampleReading": "これはあたらしいほんです。",
+            "exampleTranslation": "이것은 새로운 책입니다."
+          },
+          "현재 부정": {
+            "form": "新しくない",
+            "reading": "あたらしくない",
+            "translation": "새롭지 않다",
+            "example": "この車は新しくないです。",
+            "exampleReading": "このくるまはあたらしくないです。",
+            "exampleTranslation": "이 차는 새롭지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "新しかった",
+            "reading": "あたらしかった",
+            "translation": "새로웠다",
+            "example": "昨日買った服は新しかったです。",
+            "exampleReading": "きのうかったふくはあたらしかったです。",
+            "exampleTranslation": "어제 산 옷은 새로웠습니다."
+          },
+          "과거 부정": {
+            "form": "新しくなかった",
+            "reading": "あたらしくなかった",
+            "translation": "새롭지 않았다",
+            "example": "その情報は新しくなかったです。",
+            "exampleReading": "そのじょうほうはあたらしくなかったです。",
+            "exampleTranslation": "그 정보는 새롭지 않았습니다."
+          },
+          "연용형": {
+            "form": "新しく",
+            "reading": "あたらしく",
+            "translation": "새롭게",
+            "example": "部屋を新しくしました。",
+            "exampleReading": "へやをあたらしくしました。",
+            "exampleTranslation": "방을 새롭게 했습니다."
+          },
+          "정중형": {
+            "form": "新しいです",
+            "reading": "あたらしいです",
+            "translation": "새롭습니다",
+            "example": "この映画は新しいです。",
+            "exampleReading": "このえいがはあたらしいです。",
+            "exampleTranslation": "이 영화는 새롭습니다."
+          }
+        }
+      },
+      {
+        "adjective": "古い",
+        "stem": "古",
+        "reading": "ふる",
+        "meaning": "오래되다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "古い",
+            "reading": "ふるい",
+            "translation": "오래되다",
+            "example": "この建物は古いです。",
+            "exampleReading": "このたてものはふるいです。",
+            "exampleTranslation": "이 건물은 오래되었습니다."
+          },
+          "현재 부정": {
+            "form": "古くない",
+            "reading": "ふるくない",
+            "translation": "오래되지 않다",
+            "example": "この歌は古くないです。",
+            "exampleReading": "このうたはふるくないです。",
+            "exampleTranslation": "이 노래는 오래되지 않았습니다."
+          },
+          "과거 긍정": {
+            "form": "古かった",
+            "reading": "ふるかった",
+            "translation": "오래되었었다",
+            "example": "その写真は古かったです。",
+            "exampleReading": "そのしゃしんはふるかったです。",
+            "exampleTranslation": "그 사진은 오래되었었습니다."
+          },
+          "과거 부정": {
+            "form": "古くなかった",
+            "reading": "ふるくなかった",
+            "translation": "오래되지 않았었다",
+            "example": "当時のデザインは古くなかったです。",
+            "exampleReading": "とうじのデザインはふるくなかったです。",
+            "exampleTranslation": "당시의 디자인은 오래되지 않았었습니다."
+          },
+          "연용형": {
+            "form": "古く",
+            "reading": "ふるく",
+            "translation": "오래되게",
+            "example": "古くから伝わる話です。",
+            "exampleReading": "ふるくからつたわるはなしです。",
+            "exampleTranslation": "오래전부터 전해지는 이야기입니다."
+          },
+          "정중형": {
+            "form": "古いです",
+            "reading": "ふるいです",
+            "translation": "오래되었습니다",
+            "example": "この時計は古いです。",
+            "exampleReading": "このとけいはふるいです。",
+            "exampleTranslation": "이 시계는 오래되었습니다."
+          }
+        }
+      },
+      {
+        "adjective": "高い",
+        "stem": "高",
+        "reading": "たか",
+        "meaning": "높다/비싸다",
+        "conjugations": {
+          "현재 긍정": {
+            "form": "高い",
+            "reading": "たかい",
+            "translation": "높다/비싸다",
+            "example": "この山は高いです。",
+            "exampleReading": "このやまはたかいです。",
+            "exampleTranslation": "이 산은 높습니다."
+          },
+          "현재 부정": {
+            "form": "高くない",
+            "reading": "たかくない",
+            "translation": "높지 않다/비싸지 않다",
+            "example": "この本は高くないです。",
+            "exampleReading": "このほんはたかくないです。",
+            "exampleTranslation": "이 책은 비싸지 않습니다."
+          },
+          "과거 긍정": {
+            "form": "高かった",
+            "reading": "たかかった",
+            "translation": "높았다/비쌌다",
+            "example": "昨日の肉は高かったです。",
+            "exampleReading": "きのうのにくはたかかったです。",
+            "exampleTranslation": "어제 고기는 비쌌습니다."
+          },
+          "과거 부정": {
+            "form": "高くなかった",
+            "reading": "たかくなかった",
+            "translation": "높지 않았다/비싸지 않았다",
+            "example": "その時の値段は高くなかったです。",
+            "exampleReading": "そのときのねだんはたかくなかったです。",
+            "exampleTranslation": "그때 가격은 비싸지 않았습니다."
+          },
+          "연용형": {
+            "form": "高く",
+            "reading": "たかく",
+            "translation": "높게/비싸게",
+            "example": "手を高く上げてください。",
+            "exampleReading": "てをたかくあげてください。",
+            "exampleTranslation": "손을 높게 올려주세요."
+          },
+          "정중형": {
+            "form": "高いです",
+            "reading": "たかいです",
+            "translation": "높습니다/비쌉니다",
+            "example": "この靴は高いです。",
+            "exampleReading": "このくつはたかいです。",
+            "exampleTranslation": "이 신발은 비쌉니다."
+          }
+        }
+      }
+    ]
+  }
+]

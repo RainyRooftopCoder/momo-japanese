@@ -1,0 +1,500 @@
+<!-- 문장 완성 학습 화면 -->
+<div class="app-screen" id="sentenceCompletionScreen">
+    <div class="screen-header">
+        <h1>문장 완성 학습</h1>
+        <p class="subtitle">실제 문장에서 올바른 격조사를 선택해보세요</p>
+    </div>
+
+    <!-- 레벨 선택기 -->
+    <div class="section" id="levelSelector">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+
+    <!-- 진도 표시 -->
+    <div class="section" id="progressContainer">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+
+    <!-- 연습 문제 컨테이너 -->
+    <div class="section" id="exerciseContainer">
+        <!-- JavaScript에서 동적으로 생성됨 -->
+    </div>
+</div>
+
+<style>
+/* 문장 완성 전용 스타일 */
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.level-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-align: left;
+}
+
+.level-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+}
+
+.level-btn.active {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 6px 25px rgba(240, 147, 251, 0.4);
+}
+
+.level-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.level-difficulty {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.level-progress {
+    font-size: 12px;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* 진도 표시 */
+.progress-header {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.progress-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+.progress-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.progress-stats span {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.progress-bar-container {
+    margin: 10px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #38ef7d 0%, #11998e 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* 연습 문제 카드 */
+.exercise-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.exercise-card.success-pulse {
+    animation: successPulse 0.6s ease-in-out;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); box-shadow: 0 15px 40px rgba(56, 239, 125, 0.3); }
+    100% { transform: scale(1); }
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.context-badge {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.difficulty-stars {
+    color: #ffd700;
+    font-size: 16px;
+}
+
+/* 문장 표시 */
+.sentence-display {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.sentence-japanese {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.sentence-reading {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.sentence-translation {
+    font-size: 18px;
+    color: #555;
+    font-weight: 500;
+}
+
+.blank-space {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* 선택지 */
+.choices-container {
+    margin-bottom: 25px;
+}
+
+.instruction {
+    text-align: center;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.choices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.choice-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-align: center;
+}
+
+.choice-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.choice-btn:disabled {
+    cursor: not-allowed;
+}
+
+.choice-btn.correct {
+    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+    box-shadow: 0 6px 20px rgba(56, 161, 105, 0.4);
+}
+
+.choice-btn.incorrect {
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
+}
+
+.choice-particle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.choice-reading {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* 피드백 */
+.feedback-container {
+    margin: 20px 0;
+}
+
+.feedback {
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+}
+
+.feedback.correct {
+    background: linear-gradient(135deg, rgba(56, 161, 105, 0.1) 0%, rgba(47, 133, 90, 0.1) 100%);
+    border: 2px solid #38a169;
+}
+
+.feedback.incorrect {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1) 0%, rgba(197, 48, 48, 0.1) 100%);
+    border: 2px solid #e53e3e;
+}
+
+.feedback-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.feedback-icon {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.feedback.correct .feedback-icon {
+    color: #38a169;
+}
+
+.feedback.incorrect .feedback-icon {
+    color: #e53e3e;
+}
+
+.feedback-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.feedback.correct .feedback-title {
+    color: #38a169;
+}
+
+.feedback.incorrect .feedback-title {
+    color: #e53e3e;
+}
+
+.feedback-content div {
+    margin-bottom: 10px;
+}
+
+.correct-answer {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.explanation {
+    background: rgba(255, 235, 59, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.complete-sentence {
+    background: rgba(76, 175, 80, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* 연습 컨트롤 */
+.exercise-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.hint-btn {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hint-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+.next-btn {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.next-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);
+}
+
+/* 레벨 완료 */
+.level-complete, .all-complete {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.complete-header h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.complete-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.complete-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.retry-btn, .next-level-btn, .back-btn, .primary-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.retry-btn {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+}
+
+.next-level-btn, .primary-btn {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+    color: white;
+}
+
+.retry-btn:hover, .next-level-btn:hover, .back-btn:hover, .primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .level-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sentence-japanese {
+        font-size: 20px;
+    }
+
+    .choices-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .complete-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .complete-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .exercise-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .choices-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sentence-japanese {
+        font-size: 18px;
+    }
+}
+</style>
