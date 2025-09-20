@@ -121,7 +121,7 @@ body::before {
     border-right: none;
     box-shadow: var(--glass-shadow);
     color: var(--text-dark);
-    padding: 1.2rem 1rem;
+    /* padding: 1.2rem 1rem; */
     position: fixed;
     top: 0;
     left: 0;
@@ -253,7 +253,7 @@ body::before {
 /* Main Content */
 .main-content {
     flex: 1;
-    padding: 6rem 1rem 1rem 1rem; /* 상단에 헤더 높이만큼 여백 추가 */
+    padding: 4rem 1rem 1rem 1rem; /* 상단에 헤더 높이만큼 여백 추가 */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -676,7 +676,7 @@ body::before {
     }
 
     .main-content {
-        padding: 6rem 0.75rem 1.5rem 0.75rem; /* 상단 여백 유지 */
+        padding: 4rem 0.75rem 1.5rem 0.75rem; /* 상단 여백 유지 */
         gap: 2rem;
     }
 
@@ -740,7 +740,7 @@ body::before {
     }
 
     .main-content {
-        padding: 6rem 0.5rem 1rem 0.5rem; /* 작은 화면에서 헤더 높이에 맞춰 조정 */
+        padding: 4rem 0.5rem 1rem 0.5rem; /* 작은 화면에서 헤더 높이에 맞춰 조정 */
     }
 
     .word-card {
