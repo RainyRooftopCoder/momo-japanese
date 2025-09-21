@@ -53,7 +53,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Noto Sans CJK KR', sans-serif;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg-gradient) !important;
     background-attachment: fixed;
     color: var(--text-primary);
@@ -418,7 +418,7 @@ body::before {
     font-size: var(--font-lg);
     font-weight: 500;
     color: var(--text-primary);
-    font-family: 'SF Pro Display', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .meaning {
@@ -472,7 +472,7 @@ body::before {
     color: var(--text-accent);
     font-weight: 500;
     line-height: 1.6;
-    font-family: 'SF Pro Display', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .ko-example {

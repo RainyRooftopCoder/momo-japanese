@@ -14,6 +14,114 @@
     <div class="section" id="adjectiveDisplay">
         <!-- JavaScript에서 동적으로 생성됨 -->
     </div>
+
+    <!-- 정보 모달 -->
+    <div class="modal-overlay" id="infoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>な형용사 활용 가이드</h2>
+                <button class="modal-close-btn" onclick="naAdjectiveApp.closeInfoModal()">
+                    <span>✕</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>📝 な형용사란?</h3>
+                    <div class="explanation-text">
+                        <p>な형용사는 명사를 수식할 때 <strong>「な」</strong>를 붙이는 형용사입니다. 주로 외래어나 한자어에서 유래하며, 명사처럼 활용됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🔄 활용 형태</h3>
+                    <div class="form-guide">
+                        <div class="form-guide-item">
+                            <h4>현재 긍정형 (だ/である)</h4>
+                            <p><strong>형태:</strong> 어간 + だ/である</p>
+                            <p><strong>의미:</strong> 기본형으로 현재 상태를 나타냄</p>
+                            <p class="example">예: 静かだ (조용하다)</p>
+                        </div>
+                        <div class="form-guide-item">
+                            <h4>현재 부정형 (ではない)</h4>
+                            <p><strong>형태:</strong> 어간 + ではない/じゃない</p>
+                            <p><strong>의미:</strong> 현재 상태의 부정</p>
+                            <p class="example">예: 静かではない (조용하지 않다)</p>
+                        </div>
+                        <div class="form-guide-item">
+                            <h4>과거 긍정형 (だった)</h4>
+                            <p><strong>형태:</strong> 어간 + だった/であった</p>
+                            <p><strong>의미:</strong> 과거 상태를 나타냄</p>
+                            <p class="example">예: 静かだった (조용했다)</p>
+                        </div>
+                        <div class="form-guide-item">
+                            <h4>과거 부정형 (ではなかった)</h4>
+                            <p><strong>형태:</strong> 어간 + ではなかった/じゃなかった</p>
+                            <p><strong>의미:</strong> 과거 상태의 부정</p>
+                            <p class="example">예: 静かではなかった (조용하지 않았다)</p>
+                        </div>
+                        <div class="form-guide-item">
+                            <h4>연결형 (で)</h4>
+                            <p><strong>형태:</strong> 어간 + で</p>
+                            <p><strong>의미:</strong> 형용사들을 연결하거나 이유를 나타냄</p>
+                            <p class="example">예: 静かで (조용하고)</p>
+                        </div>
+                        <div class="form-guide-item">
+                            <h4>수식형 (な/の)</h4>
+                            <p><strong>형태:</strong> 어간 + な (명사 앞), の (명사화)</p>
+                            <p><strong>의미:</strong> 명사를 수식하거나 명사화</p>
+                            <p class="example">예: 静かな部屋 (조용한 방)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>📋 활용 규칙</h3>
+                    <div class="usage-guide">
+                        <div class="usage-item">
+                            <h4>기본 규칙</h4>
+                            <p>• 어간은 변하지 않고 어미만 변화</p>
+                            <p>• 명사 수식: 어간 + な + 명사</p>
+                            <p>• 정중한 표현: です/ます를 추가</p>
+                        </div>
+                        <div class="usage-item">
+                            <h4>사용 예시</h4>
+                            <p>• 平叙文: この部屋は静かです</p>
+                            <p>• 修飾: 静かな部屋が好きです</p>
+                            <p>• 否定: あまり便利ではありません</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>🆚 い형용사와의 차이점</h3>
+                    <div class="usage-guide">
+                        <div class="usage-item">
+                            <h4>な형용사</h4>
+                            <p>• 어미 「な」로 명사 수식</p>
+                            <p>• 명사처럼 だ/である로 활용</p>
+                            <p>• 주로 외래어, 한자어</p>
+                        </div>
+                        <div class="usage-item">
+                            <h4>い형용사</h4>
+                            <p>• 직접 명사 수식</p>
+                            <p>• 「い」를 변화시켜 활용</p>
+                            <p>• 일본 고유어가 많음</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>💡 학습 포인트</h3>
+                    <div class="tips">
+                        <p>• 명사를 수식할 때 반드시 「な」를 붙여야 합니다</p>
+                        <p>• 정중한 표현에서는 だ → です, である → であります</p>
+                        <p>• い형용사와 구분하여 올바른 활용을 사용하세요</p>
+                        <p>• 많은 예문을 통해 자연스러운 사용법을 익히세요</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
@@ -47,6 +155,221 @@
     font-size: 11px;
     line-height: 1.3;
     text-align: left;
+}
+
+/* 선택기 헤더 스타일 */
+.selector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.info-modal-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.3s ease;
+}
+
+.info-modal-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.info-icon {
+    font-size: 12px;
+}
+
+.info-text {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* 모달 스타일 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.modal-close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+
+.modal-section {
+    margin-bottom: 20px;
+}
+
+.modal-section:last-child {
+    margin-bottom: 0;
+}
+
+.modal-section h3 {
+    color: #28a745;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgba(40, 167, 69, 0.2);
+}
+
+.explanation-text,
+.usage-guide,
+.tips {
+    background: rgba(40, 167, 69, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+}
+
+.explanation-text p,
+.usage-guide p,
+.tips p {
+    margin: 8px 0;
+    line-height: 1.5;
+    color: #333;
+    font-size: 14px;
+}
+
+.explanation-text strong,
+.usage-guide strong,
+.tips strong {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.form-guide {
+    display: grid;
+    gap: 12px;
+}
+
+.form-guide-item {
+    background: rgba(40, 167, 69, 0.05);
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #28a745;
+}
+
+.form-guide-item h4 {
+    color: #28a745;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 6px 0;
+}
+
+.form-guide-item p {
+    margin: 4px 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.form-guide-item .example {
+    background: rgba(40, 167, 69, 0.1);
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    color: #28a745;
+    margin-top: 6px;
+}
+
+.usage-item {
+    margin-bottom: 12px;
+    padding: 10px;
+    background: rgba(40, 167, 69, 0.03);
+    border-radius: 6px;
+}
+
+.usage-item h4 {
+    color: #28a745;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 6px 0;
+}
+
+.usage-item p {
+    margin: 3px 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #555;
 }
 
 /* 활용 형태 선택기 */

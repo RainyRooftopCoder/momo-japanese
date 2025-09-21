@@ -96,30 +96,19 @@ class Group3VerbApp {
      * UI 초기화
      */
     initializeUI() {
-        this.createHeader();
+        this.hideHeader(); // 헤더 숨기기
         this.createFormSelector();
         this.createVerbDisplay();
     }
 
     /**
-     * 헤더 생성
+     * 헤더 숨기기
      */
-    createHeader() {
+    hideHeader() {
         const headerContainer = document.getElementById('group3VerbHeader');
-        if (!headerContainer) {
-            console.log('Header container not found');
-            return;
+        if (headerContainer) {
+            headerContainer.style.display = 'none';
         }
-
-        headerContainer.innerHTML = `
-            <div class="group3-verb-header">
-                <h1>${this.verbData.title}</h1>
-                <p class="description">${this.verbData.description}</p>
-                <div class="explanation">
-                    ${this.verbData.explanation}
-                </div>
-            </div>
-        `;
     }
 
     /**
@@ -134,7 +123,13 @@ class Group3VerbApp {
 
         selectorContainer.innerHTML = `
             <div class="form-selector">
-                <h3>활용 형태 선택</h3>
+                <div class="selector-header">
+                    <h3>활용 형태 선택</h3>
+                    <button class="info-modal-btn" onclick="group3VerbApp.openInfoModal()">
+                        <span class="info-icon">ℹ️</span>
+                        <span class="info-text">설명</span>
+                    </button>
+                </div>
                 <div class="form-buttons">
                     ${this.verbData.conjugationTypes.map(form => `
                         <button class="form-btn ${form.formType === this.selectedForm ? 'active' : ''}"
@@ -404,6 +399,50 @@ class Group3VerbApp {
             isSwiping = false;
         }, { passive: true });
     }
+
+    /**
+     * 정보 모달 열기
+     */
+    openInfoModal() {
+        const modal = document.getElementById('infoModal');
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+        }
+    }
+
+    /**
+     * 정보 모달 닫기
+     */
+    closeInfoModal() {
+        const modal = document.getElementById('infoModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // 스크롤 복원
+        }
+    }
+
+    /**
+     * 모달 외부 클릭 시 닫기
+     */
+    bindModalEvents() {
+        const modal = document.getElementById('infoModal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                // 모달 외부(오버레이) 클릭 시 닫기
+                if (e.target === modal) {
+                    this.closeInfoModal();
+                }
+            });
+
+            // ESC 키로 모달 닫기
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    this.closeInfoModal();
+                }
+            });
+        }
+    }
 }
 
 // Group3VerbApp 클래스를 전역으로 노출
@@ -413,4 +452,11 @@ window.Group3VerbApp = Group3VerbApp;
 let group3VerbApp;
 document.addEventListener('DOMContentLoaded', () => {
     group3VerbApp = new Group3VerbApp();
+
+    // 모달 이벤트 바인딩 (DOM 로드 후)
+    setTimeout(() => {
+        if (group3VerbApp) {
+            group3VerbApp.bindModalEvents();
+        }
+    }, 100);
 });

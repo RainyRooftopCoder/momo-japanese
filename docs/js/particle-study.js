@@ -84,30 +84,19 @@ class ParticleStudyApp {
      * UI 초기화
      */
     initializeUI() {
-        this.createHeader();
+        this.hideHeader(); // 헤더 숨기기
         this.createParticleSelector();
         this.createParticleDisplay();
     }
 
     /**
-     * 헤더 생성
+     * 헤더 숨기기
      */
-    createHeader() {
+    hideHeader() {
         const headerContainer = document.getElementById('particleHeader');
-        if (!headerContainer) {
-            console.log('Header container not found');
-            return;
+        if (headerContainer) {
+            headerContainer.style.display = 'none';
         }
-
-        headerContainer.innerHTML = `
-            <div class="particle-header">
-                <h1>${this.particleData.title}</h1>
-                <p class="description">${this.particleData.description}</p>
-                <div class="explanation">
-                    ${this.particleData.explanation}
-                </div>
-            </div>
-        `;
     }
 
     /**
@@ -122,7 +111,13 @@ class ParticleStudyApp {
 
         selectorContainer.innerHTML = `
             <div class="particle-selector">
-                <h3>조사 선택</h3>
+                <div class="selector-header">
+                    <h3>조사 선택</h3>
+                    <button class="info-modal-btn" onclick="particleStudyApp.openInfoModal()">
+                        <span class="info-icon">ℹ️</span>
+                        <span class="info-text">설명</span>
+                    </button>
+                </div>
                 <div class="particle-buttons">
                     ${this.particleData.particles.map((particle, index) => `
                         <button class="particle-btn ${index === this.currentParticleIndex ? 'active' : ''}"
@@ -351,10 +346,61 @@ class ParticleStudyApp {
             isSwiping = false;
         }, { passive: true });
     }
+
+    /**
+     * 정보 모달 열기
+     */
+    openInfoModal() {
+        const modal = document.getElementById('infoModal');
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+        }
+    }
+
+    /**
+     * 정보 모달 닫기
+     */
+    closeInfoModal() {
+        const modal = document.getElementById('infoModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // 스크롤 복원
+        }
+    }
+
+    /**
+     * 모달 외부 클릭 시 닫기
+     */
+    bindModalEvents() {
+        const modal = document.getElementById('infoModal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                // 모달 외부(오버레이) 클릭 시 닫기
+                if (e.target === modal) {
+                    this.closeInfoModal();
+                }
+            });
+
+            // ESC 키로 모달 닫기
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    this.closeInfoModal();
+                }
+            });
+        }
+    }
 }
 
 // 조사 학습 앱 초기화
 let particleStudyApp;
 document.addEventListener('DOMContentLoaded', () => {
     particleStudyApp = new ParticleStudyApp();
+
+    // 모달 이벤트 바인딩 (DOM 로드 후)
+    setTimeout(() => {
+        if (particleStudyApp) {
+            particleStudyApp.bindModalEvents();
+        }
+    }, 100);
 });
