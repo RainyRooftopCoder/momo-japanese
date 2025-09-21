@@ -158,6 +158,7 @@ class NounFormsApp {
                 <div class="noun-info">
                     <div class="noun-main">
                         <span class="noun-kanji">${currentNoun.noun}</span>
+                        <button class="speech-btn speech-noun-btn" title="명사 음성 듣기">🔊</button>
                         <span class="noun-reading">${currentNoun.reading}</span>
                     </div>
                     <div class="noun-meaning">${currentNoun.meaning}</div>
@@ -173,12 +174,18 @@ class NounFormsApp {
                     <div class="conjugation-pair">
                         <div class="casual-form">
                             <div class="form-label">평문체 (친근한 상황)</div>
-                            <div class="form-text">${currentNoun.forms[this.selectedForm].casual}</div>
+                            <div class="form-text">
+                                ${currentNoun.forms[this.selectedForm].casual}
+                                <button class="speech-btn speech-btn-small speech-casual-btn" title="평문체 음성 듣기">🔊</button>
+                            </div>
                             <div class="form-korean">${this.getKoreanTranslation(currentNoun.forms[this.selectedForm].casual)}</div>
                         </div>
                         <div class="polite-form">
                             <div class="form-label">경어체 (정중한 상황)</div>
-                            <div class="form-text">${currentNoun.forms[this.selectedForm].polite}</div>
+                            <div class="form-text">
+                                ${currentNoun.forms[this.selectedForm].polite}
+                                <button class="speech-btn speech-btn-small speech-polite-btn" title="경어체 음성 듣기">🔊</button>
+                            </div>
                             <div class="form-korean">${this.getKoreanTranslation(currentNoun.forms[this.selectedForm].polite)}</div>
                         </div>
                     </div>
@@ -241,6 +248,9 @@ class NounFormsApp {
             if (e.key === 'ArrowLeft') this.showPreviousNoun();
             if (e.key === 'ArrowRight') this.showNextNoun();
         });
+
+        // 음성 버튼 이벤트
+        this.bindSpeechEvents();
     }
 
     /**
@@ -403,6 +413,171 @@ class NounFormsApp {
                     this.closeInfoModal();
                 }
             });
+        }
+    }
+
+    /**
+     * 음성 버튼 이벤트 바인딩
+     */
+    bindSpeechEvents() {
+        // 명사 음성 버튼
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('speech-noun-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.speakCurrentNoun();
+            } else if (e.target.classList.contains('speech-casual-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.speakCasualForm();
+            } else if (e.target.classList.contains('speech-polite-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.speakPoliteForm();
+            }
+        });
+    }
+
+    /**
+     * 현재 명사 음성 재생
+     */
+    async speakCurrentNoun() {
+        if (!this.formsData || !window.speechManager) {
+            console.warn('No data or speech manager not available');
+            return;
+        }
+
+        const speechBtn = document.querySelector('.speech-noun-btn');
+
+        // 이미 재생 중이면 중복 실행 방지
+        if (speechBtn && speechBtn.classList.contains('speaking')) {
+            console.log('Speech already in progress, ignoring click');
+            return;
+        }
+
+        try {
+            const currentNoun = this.formsData.examples[this.currentNounIndex];
+            const textToSpeak = currentNoun.noun;
+
+            // 버튼 상태 변경 및 비활성화
+            if (speechBtn) {
+                speechBtn.classList.add('speaking');
+                speechBtn.textContent = '🔈';
+                speechBtn.disabled = true;
+            }
+
+            await window.speechManager.speak(textToSpeak, { rate: 0.7 });
+
+            console.log('Noun speech completed');
+        } catch (error) {
+            console.error('Error speaking noun:', error);
+            // interrupted 오류가 아닌 경우만 알림 표시
+            if (error !== 'interrupted') {
+                alert('음성 재생에 실패했습니다.');
+            }
+        } finally {
+            // 버튼 상태 복원
+            if (speechBtn) {
+                speechBtn.classList.remove('speaking');
+                speechBtn.textContent = '🔊';
+                speechBtn.disabled = false;
+            }
+        }
+    }
+
+    /**
+     * 평문체 활용형 음성 재생
+     */
+    async speakCasualForm() {
+        if (!this.formsData || !window.speechManager) {
+            console.warn('No data or speech manager not available');
+            return;
+        }
+
+        const speechBtn = document.querySelector('.speech-casual-btn');
+
+        // 이미 재생 중이면 중복 실행 방지
+        if (speechBtn && speechBtn.classList.contains('speaking')) {
+            console.log('Speech already in progress, ignoring click');
+            return;
+        }
+
+        try {
+            const currentNoun = this.formsData.examples[this.currentNounIndex];
+            const formData = currentNoun.forms[this.selectedForm];
+            const textToSpeak = formData.casual;
+
+            // 버튼 상태 변경 및 비활성화
+            if (speechBtn) {
+                speechBtn.classList.add('speaking');
+                speechBtn.textContent = '🔈';
+                speechBtn.disabled = true;
+            }
+
+            await window.speechManager.speak(textToSpeak, { rate: 0.7 });
+
+            console.log('Casual form speech completed');
+        } catch (error) {
+            console.error('Error speaking casual form:', error);
+            // interrupted 오류가 아닌 경우만 알림 표시
+            if (error !== 'interrupted') {
+                alert('음성 재생에 실패했습니다.');
+            }
+        } finally {
+            // 버튼 상태 복원
+            if (speechBtn) {
+                speechBtn.classList.remove('speaking');
+                speechBtn.textContent = '🔊';
+                speechBtn.disabled = false;
+            }
+        }
+    }
+
+    /**
+     * 경어체 활용형 음성 재생
+     */
+    async speakPoliteForm() {
+        if (!this.formsData || !window.speechManager) {
+            console.warn('No data or speech manager not available');
+            return;
+        }
+
+        const speechBtn = document.querySelector('.speech-polite-btn');
+
+        // 이미 재생 중이면 중복 실행 방지
+        if (speechBtn && speechBtn.classList.contains('speaking')) {
+            console.log('Speech already in progress, ignoring click');
+            return;
+        }
+
+        try {
+            const currentNoun = this.formsData.examples[this.currentNounIndex];
+            const formData = currentNoun.forms[this.selectedForm];
+            const textToSpeak = formData.polite;
+
+            // 버튼 상태 변경 및 비활성화
+            if (speechBtn) {
+                speechBtn.classList.add('speaking');
+                speechBtn.textContent = '🔈';
+                speechBtn.disabled = true;
+            }
+
+            await window.speechManager.speak(textToSpeak, { rate: 0.7 });
+
+            console.log('Polite form speech completed');
+        } catch (error) {
+            console.error('Error speaking polite form:', error);
+            // interrupted 오류가 아닌 경우만 알림 표시
+            if (error !== 'interrupted') {
+                alert('음성 재생에 실패했습니다.');
+            }
+        } finally {
+            // 버튼 상태 복원
+            if (speechBtn) {
+                speechBtn.classList.remove('speaking');
+                speechBtn.textContent = '🔊';
+                speechBtn.disabled = false;
+            }
         }
     }
 }

@@ -233,6 +233,12 @@ class WordLearningAppV3 {
                 // 카테고리 정보가 없으면 전체 초기화
                 await this.initializeUI();
             }
+
+            // 템플릿 로드 후 이벤트 다시 바인딩
+            this.bindMobileFABEvents();
+            this.bindSwipeEvents();
+            this.bindSpeechEvents();
+
         } catch (error) {
             console.error('UI re-initialization failed:', error);
         }
@@ -548,6 +554,9 @@ class WordLearningAppV3 {
 
         // 모바일 스와이프 기능
         this.bindSwipeEvents();
+
+        // 음성 버튼 이벤트
+        this.bindSpeechEvents();
     }
 
     /**
@@ -699,6 +708,7 @@ class WordLearningAppV3 {
 
         let isSwipingHorizontally = false;
         let isTap = false;
+        let isSpeechButtonTouch = false;
 
         console.log('Binding touch/swipe events to word screen');
 
@@ -710,7 +720,12 @@ class WordLearningAppV3 {
                 this.startY = e.touches[0].clientY;
                 isSwipingHorizontally = false;
                 isTap = true;
-                console.log('Touch start:', this.startX, this.startY);
+
+                // 음성 버튼 터치 감지
+                const target = e.target;
+                isSpeechButtonTouch = target && (target.classList.contains('speech-btn') || target.closest('.speech-btn'));
+
+                console.log('Touch start:', this.startX, this.startY, 'Speech button:', isSpeechButtonTouch);
             },
             { passive: true }
         );
@@ -766,8 +781,10 @@ class WordLearningAppV3 {
                 }, 300);
 
                 // 탭 처리 (좌우 영역)
-                if (isTap) {
+                if (isTap && !isSpeechButtonTouch) {
                     this.handleTap(this.startX);
+                } else if (isSpeechButtonTouch) {
+                    console.log('Speech button tapped, ignoring navigation');
                 }
                 // 스와이프 처리 (왼쪽→오른쪽만)
                 else if (isSwipingHorizontally) {
@@ -781,6 +798,7 @@ class WordLearningAppV3 {
                 this.endY = 0;
                 isSwipingHorizontally = false;
                 isTap = false;
+                isSpeechButtonTouch = false;
             },
             { passive: true }
         );
@@ -797,12 +815,201 @@ class WordLearningAppV3 {
                 this.endY = 0;
                 isSwipingHorizontally = false;
                 isTap = false;
+                isSpeechButtonTouch = false;
             },
             { passive: true }
         );
 
         // 중복 바인딩 방지 마크 설정
         wordScreen.dataset.swipeBound = 'true';
+    }
+
+    /**
+     * 음성 버튼 이벤트 바인딩
+     */
+    bindSpeechEvents() {
+        // 단어 음성 버튼
+        const speechWordBtn = document.getElementById('speechWordBtn');
+        if (speechWordBtn) {
+            speechWordBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.speakCurrentWord();
+            });
+        }
+
+        // 예문1 음성 버튼
+        const speechExample1Btn = document.getElementById('speechExample1Btn');
+        if (speechExample1Btn) {
+            speechExample1Btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.speakExample1();
+            });
+        }
+
+        // 예문2 음성 버튼
+        const speechExample2Btn = document.getElementById('speechExample2Btn');
+        if (speechExample2Btn) {
+            speechExample2Btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.speakExample2();
+            });
+        }
+    }
+
+    /**
+     * 현재 단어 음성 재생
+     */
+    async speakCurrentWord() {
+        if (this.selectedWords.length === 0 || !window.speechManager) {
+            console.warn('No word to speak or speech manager not available');
+            return;
+        }
+
+        const speechBtn = document.getElementById('speechWordBtn');
+
+        // 이미 재생 중이면 중복 실행 방지
+        if (speechBtn && speechBtn.classList.contains('speaking')) {
+            console.log('Speech already in progress, ignoring click');
+            return;
+        }
+
+        try {
+            const currentWord = this.selectedWords[this.currentWordIndex];
+
+            // 버튼 상태 변경 및 비활성화
+            if (speechBtn) {
+                speechBtn.classList.add('speaking');
+                speechBtn.textContent = '🔈';
+                speechBtn.disabled = true;
+            }
+
+            // 음성 재생
+            await window.speechManager.speakWord(currentWord);
+
+            console.log('Word speech completed');
+        } catch (error) {
+            console.error('Error speaking word:', error);
+            // interrupted 오류가 아닌 경우만 알림 표시
+            if (error !== 'interrupted') {
+                alert('음성 재생에 실패했습니다.');
+            }
+        } finally {
+            // 버튼 상태 복원
+            if (speechBtn) {
+                speechBtn.classList.remove('speaking');
+                speechBtn.textContent = '🔊';
+                speechBtn.disabled = false;
+            }
+        }
+    }
+
+    /**
+     * 예문1 음성 재생
+     */
+    async speakExample1() {
+        if (this.selectedWords.length === 0 || !window.speechManager) {
+            console.warn('No example to speak or speech manager not available');
+            return;
+        }
+
+        const speechBtn = document.getElementById('speechExample1Btn');
+
+        // 이미 재생 중이면 중복 실행 방지
+        if (speechBtn && speechBtn.classList.contains('speaking')) {
+            console.log('Speech already in progress, ignoring click');
+            return;
+        }
+
+        try {
+            const currentWord = this.selectedWords[this.currentWordIndex];
+            const jpExample1 = currentWord.jpExample1;
+
+            if (!jpExample1) {
+                console.warn('No example1 text to speak');
+                return;
+            }
+
+            // 버튼 상태 변경 및 비활성화
+            if (speechBtn) {
+                speechBtn.classList.add('speaking');
+                speechBtn.textContent = '🔈';
+                speechBtn.disabled = true;
+            }
+
+            // 음성 재생
+            await window.speechManager.speakSentence(jpExample1);
+
+            console.log('Example1 speech completed');
+        } catch (error) {
+            console.error('Error speaking example1:', error);
+            // interrupted 오류가 아닌 경우만 알림 표시
+            if (error !== 'interrupted') {
+                alert('예문 음성 재생에 실패했습니다.');
+            }
+        } finally {
+            // 버튼 상태 복원
+            if (speechBtn) {
+                speechBtn.classList.remove('speaking');
+                speechBtn.textContent = '🔊';
+                speechBtn.disabled = false;
+            }
+        }
+    }
+
+    /**
+     * 예문2 음성 재생
+     */
+    async speakExample2() {
+        if (this.selectedWords.length === 0 || !window.speechManager) {
+            console.warn('No example to speak or speech manager not available');
+            return;
+        }
+
+        const speechBtn = document.getElementById('speechExample2Btn');
+
+        // 이미 재생 중이면 중복 실행 방지
+        if (speechBtn && speechBtn.classList.contains('speaking')) {
+            console.log('Speech already in progress, ignoring click');
+            return;
+        }
+
+        try {
+            const currentWord = this.selectedWords[this.currentWordIndex];
+            const jpExample2 = currentWord.jpExample2;
+
+            if (!jpExample2) {
+                console.warn('No example2 text to speak');
+                return;
+            }
+
+            // 버튼 상태 변경 및 비활성화
+            if (speechBtn) {
+                speechBtn.classList.add('speaking');
+                speechBtn.textContent = '🔈';
+                speechBtn.disabled = true;
+            }
+
+            // 음성 재생
+            await window.speechManager.speakSentence(jpExample2);
+
+            console.log('Example2 speech completed');
+        } catch (error) {
+            console.error('Error speaking example2:', error);
+            // interrupted 오류가 아닌 경우만 알림 표시
+            if (error !== 'interrupted') {
+                alert('예문 음성 재생에 실패했습니다.');
+            }
+        } finally {
+            // 버튼 상태 복원
+            if (speechBtn) {
+                speechBtn.classList.remove('speaking');
+                speechBtn.textContent = '🔊';
+                speechBtn.disabled = false;
+            }
+        }
     }
 
     /**
@@ -991,6 +1198,9 @@ class WordLearningAppV3 {
         if (cardTotalCountEl) cardTotalCountEl.textContent = this.selectedWords.length;
 
         // 버튼 제거됨 - 터치/스와이프로만 조작
+
+        // 음성 버튼 이벤트 다시 바인딩 (단어가 변경될 때마다)
+        this.bindSpeechEvents();
 
         console.log('Word display updated successfully');
     }

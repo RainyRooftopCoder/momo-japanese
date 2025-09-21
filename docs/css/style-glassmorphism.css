@@ -144,7 +144,7 @@ body::before {
 }
 
 .app-title {
-    font-size: 2rem; /* 한자 사이즈의 2/3 (4.1 * 2/3) */
+    font-size: 1.5rem; /* 한자 사이즈의 2/3 (4.1 * 2/3) */
     font-weight: 600;
     margin: 0;
     color: var(--text-dark);
@@ -730,7 +730,7 @@ body::before {
     }
 
     .app-title {
-        font-size: 2.4rem; /* 모바일에서 한자 사이즈의 2/3 (3.6 * 2/3) */
+        font-size: 1.8rem; /* 모바일에서 한자 사이즈의 2/3 (3.6 * 2/3) */
     }
 }
 
@@ -851,13 +851,17 @@ body::before {
     position: fixed;
     bottom: 0;
     width: 100%;
-    border: none;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
 }
 
 .bottom-nav {
     width: 95%;
-    height: 8vh;
-    min-height: 8vh;
+    height: 2.5rem;
+    min-height: 2.5rem;
     display: flex;
     justify-content: space-around;
 }
@@ -875,7 +879,7 @@ body::before {
 
 /* 검색 영역 스타일 - 글래스모피즘 */
 .bottom-nav .search-area {
-    border: 1px solid var(--glass-border);
+    border: none !important;
     border-radius: 4rem;
     box-shadow: var(--glass-shadow);
     /* background: rgba(255, 255, 255, 0.25);
@@ -888,27 +892,30 @@ body::before {
 .search-container {
     position: relative;
     width: 100%;
-    height: 100%;
-    /* background: rgba(255, 255, 255, 0.2); */
-    /* backdrop-filter: blur(10px); */
+    height: 90%; /* search-input과 동일한 높이 */
     border-radius: 3.5rem;
-    /* padding: 0.2rem; */
+    padding: 0;
+    margin: auto 0; /* 세로 중앙 정렬 */
+    box-sizing: border-box;
 }
 
 .search-input {
     width: 100%;
     height: 100%;
-    padding: 0.6rem 5rem 0.6rem 1rem; /* 오른쪽에 더 큰 버튼 공간 확보 */
+    padding: 0; /* 패딩 제거 */
+    padding-left: 1rem; /* 왼쪽 텍스트 여백만 유지 */
+    padding-right: 5rem; /* 오른쪽 버튼 공간만 유지 */
     border: none;
     border-radius: 3.5rem;
     background: rgba(255, 255, 255, 0.15); /* 더 투명하게 */
     backdrop-filter: blur(8px);
     color: var(--text-dark);
-    font-size: 1.3rem;
+    font-size: 1.3rem; /* 원래 크기로 복원 */
     outline: none;
     transition: all 0.3s ease;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* 그림자도 연하게 */
     box-sizing: border-box;
+    margin: 0;
 }
 
 .search-input::placeholder {
@@ -963,20 +970,13 @@ body::before {
     width: 14%;
     backdrop-filter: var(--glass-backdrop);
     -webkit-backdrop-filter: var(--glass-backdrop);
-    border: 1px solid var(--glass-border);
+    border: none !important;
     border-radius: 4rem;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
 }
 
 .bottom-nav::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    display: none !important;
 }
 
 .nav-btn {
@@ -1001,8 +1001,8 @@ body::before {
 }
 
 .nav-icon img {
-    width: 4rem;
-    height: 4rem;
+    width: 2.3rem;
+    height: 2.3rem;
 }
 
 /* 중앙 검색 버튼 강조 */
@@ -1029,8 +1029,8 @@ body::before {
 }
 
 .nav-search .nav-icon img {
-    width: 4rem;
-    height: 4rem;
+    width: 2.3rem;
+    height: 2.3rem;
 }
 
 /* 메인 콘텐츠 하단 여백 추가 */
@@ -1064,9 +1064,18 @@ body::before {
         width: 20%;
     }
 
+    .search-container {
+        height: 2.5rem;
+        margin: auto 0;
+    }
+
     .search-input {
-        padding: 0.5rem 4rem 0.5rem 0.8rem; /* 4rem 버튼에 맞춰 조정 */
+        height: 2.5rem;
+        padding: 0;
+        padding-left: 0.8rem;
+        padding-right: 4rem;
         font-size: 1rem;
+        margin: 0;
     }
 
     .search-btn {
@@ -1076,8 +1085,8 @@ body::before {
     }
 
     .search-btn .nav-icon img {
-        width: 1.8rem;
-        height: 1.8rem;
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
     .search-query {
@@ -1090,8 +1099,8 @@ body::before {
     }
 
     .bottom-nav .botton-search .nav-icon img {
-        width: 3rem;
-        height: 3rem;
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
     .nav-btn {
@@ -1139,12 +1148,18 @@ body::before {
     }
 
     .search-container {
-        padding: 0.1rem;
+        height: 90%;
+        margin: auto 0;
+        padding: 0;
     }
 
     .search-input {
-        padding: 0.4rem 3.5rem 0.4rem 0.7rem; /* 작은 화면에서 버튼 공간 조정 */
+        height: 100%;
+        padding: 0;
+        padding-left: 0.7rem;
+        padding-right: 3.5rem;
         font-size: 0.75rem;
+        margin: 0;
     }
 
     .search-btn {
@@ -1165,7 +1180,7 @@ body::before {
 
     .bottom-nav .botton-search .nav-icon img {
         width: 3rem;
-        height: 3rem;
+        height: 2.5rem;
     }
 
     .nav-btn {
@@ -1704,8 +1719,8 @@ body::before {
 /* Character Learning Screens - Glassmorphism Style */
 .character-learning-screen {
     display: flex;
-    height: 100vh;
-    overflow-y: auto;
+    min-height: auto; /* height: 100vh 제거 */
+    overflow-y: visible; /* overflow-y: auto 제거 */
     flex-direction: column;
     gap: 20px;
     padding: 20px;
@@ -2038,6 +2053,116 @@ body::before {
 
     .grid-base {
         font-size: 0.6rem;
+    }
+}
+
+/* Speech Button Styles */
+.speech-btn {
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    margin-left: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.speech-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.speech-btn:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.speech-btn.speaking {
+    background: var(--accent-success);
+    animation: pulse 1.5s infinite;
+}
+
+.speech-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.speech-btn-small {
+    padding: 2px;
+    font-size: 0.9rem;
+    min-width: 24px;
+    min-height: 24px;
+    margin-left: 4px;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(152, 251, 152, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(152, 251, 152, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(152, 251, 152, 0);
+    }
+}
+
+/* 히라가나 블록 내 버튼 레이아웃 */
+.hiragana-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+.hiragana-block .hiragana {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hiragana-block .speech-btn {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* 예문 블록 내 버튼 레이아웃 */
+.jp-example {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.6;
+}
+
+.jp-example span {
+    flex: 1;
+}
+
+/* 모바일에서 버튼 크기 조정 */
+@media (max-width: 768px) {
+    .speech-btn {
+        padding: 3px;
+        font-size: 1.1rem;
+        min-width: 28px;
+        min-height: 28px;
+        margin-left: 4px;
+    }
+
+    .speech-btn-small {
+        padding: 2px;
+        font-size: 0.8rem;
+        min-width: 20px;
+        min-height: 20px;
+        margin-left: 3px;
     }
 }
 
