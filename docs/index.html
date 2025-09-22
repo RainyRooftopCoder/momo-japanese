@@ -6,26 +6,36 @@
         <title>JLPT 단어장 V3 - Template 기반</title>
 
         <!-- CSS 파일들 -->
-        <link rel="stylesheet" href="./css/reset.css" />
-        <link rel="stylesheet" href="./css/style-glassmorphism.css" />
-        <link rel="stylesheet" href="./css/three-step-navigation.css" />
+        <link rel="stylesheet" href="./styles/base/reset.css" />
+        <link rel="stylesheet" href="./styles/base/variables.css" />
+        <link rel="stylesheet" href="./styles/themes/glassmorphism.css" />
+        <link rel="stylesheet" href="./styles/components/navigation.css" />
+        <link rel="stylesheet" href="./styles/components/modal.css" />
 
-        <!-- JavaScript 파일들 -->
-        <script defer src="./js/speech-synthesis.js"></script>
-        <script defer src="./js/grammar-speech-addon.js"></script>
-        <script defer src="./js/indexedDB-v3.js"></script>
-        <script defer src="./js/script-v3.js"></script>
-        <script defer src="./js/noun-conjugation.js"></script>
-        <script defer src="./js/sentence-completion.js"></script>
-        <script defer src="./js/noun-forms.js"></script>
-        <script defer src="./js/particle-study.js"></script>
-        <script defer src="./js/i-adjective.js"></script>
-        <script defer src="./js/na-adjective.js"></script>
-        <script defer src="./js/group1-verb.js"></script>
-        <script defer src="./js/group2-verb.js"></script>
-        <script defer src="./js/group3-verb.js"></script>
-        <script defer src="./js/template-loader.js"></script>
-        <script defer src="./js/navigation.js"></script>
+        <!-- Core JavaScript 파일들 -->
+        <script defer src="./scripts/core/database.js"></script>
+        <script defer src="./scripts/core/app.js"></script>
+
+        <!-- Audio 모듈 -->
+        <script defer src="./scripts/modules/audio/speech-synthesis.js"></script>
+        <script defer src="./scripts/modules/audio/grammar-speech.js"></script>
+
+        <!-- Grammar 모듈들 -->
+        <script defer src="./scripts/modules/grammar/verbs/group1-verb.js"></script>
+        <script defer src="./scripts/modules/grammar/verbs/group2-verb.js"></script>
+        <script defer src="./scripts/modules/grammar/verbs/group3-verb.js"></script>
+        <script defer src="./scripts/modules/grammar/adjectives/i-adjective.js"></script>
+        <script defer src="./scripts/modules/grammar/adjectives/na-adjective.js"></script>
+        <script defer src="./scripts/modules/grammar/nouns/noun-conjugation.js"></script>
+        <script defer src="./scripts/modules/grammar/nouns/noun-forms.js"></script>
+        <script defer src="./scripts/modules/grammar/particles/particle-study.js"></script>
+
+        <!-- Games 모듈 -->
+        <script defer src="./scripts/modules/games/sentence-completion.js"></script>
+
+        <!-- UI 모듈들 -->
+        <script defer src="./scripts/modules/ui/template-loader.js"></script>
+        <script defer src="./scripts/modules/ui/navigation.js"></script>
     </head>
     <body>
         <div class="app-container">
@@ -44,13 +54,13 @@
                         <div class="search-container">
                             <input type="text" id="search-input" class="search-input" placeholder="단어 검색..." />
                             <button class="search-btn" id="search-execute-btn">
-                                <span class="nav-icon"><img src="./icon/search_black_icon.png" alt="검색" /></span>
+                                <span class="nav-icon"><img src="./assets/icons/search_black_icon.png" alt="검색" /></span>
                             </button>
                         </div>
                     </div>
                     <div class="botton-search">
                         <button class="nav-btn nav-search" id="search-btn">
-                            <span class="nav-icon"><img src="./icon/momo-logo.png" alt="설정" /></span>
+                            <span class="nav-icon"><img src="./assets/icons/momo-logo.png" alt="설정" /></span>
                             <!-- <span class="nav-label">검색</span> -->
                         </button>
                     </div>

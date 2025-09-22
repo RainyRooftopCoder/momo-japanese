@@ -1,0 +1,136 @@
+<div class="vocabulary-container">
+    <!-- 개인 단어장 헤더 -->
+    <section class="vocabulary-header">
+        <h1 class="page-title">📝 개인 단어장</h1>
+        <p class="page-subtitle">나만의 단어장을 만들고 관리하세요</p>
+
+        <!-- 통계 요약 -->
+        <div class="vocab-stats">
+            <div class="stat-item">
+                <span class="stat-number" id="total-bookmarks">0</span>
+                <span class="stat-label">즐겨찾기</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="need-review">0</span>
+                <span class="stat-label">복습 필요</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="mastered">0</span>
+                <span class="stat-label">완전 암기</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 필터 및 검색 -->
+    <section class="vocabulary-filters">
+        <div class="filter-row">
+            <select class="filter-select" id="level-filter">
+                <option value="">모든 레벨</option>
+                <option value="n5">N5</option>
+                <option value="n4">N4</option>
+                <option value="n3">N3</option>
+                <option value="n2">N2</option>
+                <option value="n1">N1</option>
+            </select>
+
+            <select class="filter-select" id="pos-filter">
+                <option value="">모든 품사</option>
+                <option value="명사">명사</option>
+                <option value="동사">동사</option>
+                <option value="형용사">형용사</option>
+                <option value="부사">부사</option>
+            </select>
+
+            <select class="filter-select" id="status-filter">
+                <option value="">모든 상태</option>
+                <option value="new">새로 추가</option>
+                <option value="learning">학습 중</option>
+                <option value="review">복습 필요</option>
+                <option value="mastered">완전 암기</option>
+            </select>
+        </div>
+
+        <div class="search-row">
+            <input type="text" class="vocab-search" id="vocab-search" placeholder="단어 검색...">
+            <button class="search-btn" id="vocab-search-btn">🔍</button>
+        </div>
+    </section>
+
+    <!-- 태그 관리 -->
+    <section class="tag-management">
+        <h3 class="section-subtitle">🏷️ 나의 태그</h3>
+        <div class="tag-container" id="user-tags">
+            <!-- 사용자 정의 태그들이 여기에 표시 -->
+        </div>
+        <button class="add-tag-btn" id="add-tag-btn">+ 태그 추가</button>
+    </section>
+
+    <!-- 단어 목록 -->
+    <section class="vocabulary-list">
+        <div class="list-header">
+            <h3 class="section-subtitle">📚 내 단어장</h3>
+            <div class="list-controls">
+                <button class="sort-btn" id="sort-date">최근순</button>
+                <button class="sort-btn" id="sort-alpha">가나다순</button>
+                <button class="sort-btn" id="sort-level">레벨순</button>
+            </div>
+        </div>
+
+        <div class="word-list" id="vocabulary-word-list">
+            <!-- 단어 카드들이 여기에 동적으로 로드 -->
+            <div class="empty-state">
+                <div class="empty-icon">📝</div>
+                <h4>아직 저장된 단어가 없습니다</h4>
+                <p>공부하면서 단어를 즐겨찾기에 추가해보세요!</p>
+                <button class="goto-study-btn">공부하러 가기</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 단어 카드 템플릿 -->
+    <template id="word-card-template">
+        <div class="word-card" data-word-id="">
+            <div class="word-main">
+                <div class="word-japanese"></div>
+                <div class="word-reading"></div>
+                <div class="word-korean"></div>
+            </div>
+            <div class="word-meta">
+                <span class="word-level"></span>
+                <span class="word-pos"></span>
+                <span class="word-status"></span>
+            </div>
+            <div class="word-tags">
+                <!-- 태그들이 여기에 표시 -->
+            </div>
+            <div class="word-memo">
+                <textarea class="memo-input" placeholder="개인 메모..."></textarea>
+            </div>
+            <div class="word-actions">
+                <button class="action-btn review-btn" title="복습하기">🔄</button>
+                <button class="action-btn edit-btn" title="편집하기">✏️</button>
+                <button class="action-btn remove-btn" title="제거하기">🗑️</button>
+                <button class="action-btn audio-btn" title="발음 듣기">🔊</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- 복습 스케줄 -->
+    <section class="review-schedule">
+        <h3 class="section-subtitle">📅 복습 스케줄</h3>
+        <div class="schedule-grid">
+            <div class="schedule-item">
+                <div class="schedule-date">오늘</div>
+                <div class="schedule-count" id="today-review">0개</div>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-date">내일</div>
+                <div class="schedule-count" id="tomorrow-review">0개</div>
+            </div>
+            <div class="schedule-item">
+                <div class="schedule-date">이번 주</div>
+                <div class="schedule-count" id="week-review">0개</div>
+            </div>
+        </div>
+    </section>
+</div>
