@@ -7,11 +7,13 @@ class ThreeStepNavigation {
         this.currentMainCategory = '';
         this.currentSubCategory = '';
         this.screens = {
+            home: 'homeScreen',
             main: 'mainCategoryScreen',
             sub: 'subCategoryScreen',
             word: 'wordScreen',
             character: 'characterScreen',
             searchResults: 'searchResultsScreen',
+            myVocabulary: 'myVocabularyScreen',
         };
         this.isInitialized = false;
 
@@ -32,7 +34,7 @@ class ThreeStepNavigation {
             this.bindEvents();
 
             // 첫 화면 표시
-            this.showScreen('main');
+            this.showScreen('home');
 
             this.isInitialized = true;
             console.log('Three-Step Navigation initialized successfully');
@@ -103,15 +105,83 @@ class ThreeStepNavigation {
         await renderTemplate('header-container', 'components/header');
 
         // 화면 템플릿들 렌더링
-        const templates = ['main-category-screen', 'sub-category-screen', 'word-screen', 'search-results-screen'];
+        const templates = ['home', 'main-category-screen', 'sub-category-screen', 'word-screen', 'search-results-screen'];
 
         let combinedHTML = '';
         for (const template of templates) {
-            const html = await loadTemplate(template);
-            combinedHTML += html;
+            console.log(`Loading template: ${template}`);
+            try {
+                const html = await loadTemplate(template);
+                console.log(`Template ${template} loaded, length: ${html.length}`);
+                combinedHTML += html;
+            } catch (error) {
+                console.error(`Failed to load template ${template}:`, error);
+            }
         }
 
-        mainContent.innerHTML = combinedHTML;
+        // 기존에 있는 화면들은 보존하고 새로운 것만 추가
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = combinedHTML;
+
+        const existingScreenIds = ['homeScreen', 'mainCategoryScreen', 'subCategoryScreen'];
+
+        // 기존에 있는 화면들은 템플릿에서 제거
+        existingScreenIds.forEach(screenId => {
+            const existingScreen = document.getElementById(screenId);
+            const newScreen = tempContainer.querySelector(`#${screenId}`);
+
+            if (existingScreen && newScreen) {
+                console.log(`Preserving existing ${screenId}`);
+                newScreen.remove();
+            }
+        });
+
+        // 나머지 새로운 화면들만 추가
+        const children = Array.from(tempContainer.children);
+        children.forEach(child => {
+            console.log('Adding screen:', child.id);
+            mainContent.appendChild(child);
+        });
+
+        // 홈 화면이 제대로 로드되었는지 확인
+        const homeScreen = document.getElementById('homeScreen');
+        console.log('Home screen after template load:', !!homeScreen);
+        if (homeScreen) {
+            console.log('Home screen HTML length:', homeScreen.innerHTML.length);
+        } else {
+            console.warn('Home screen not found after template load, creating fallback');
+            // 홈 화면이 없으면 직접 생성
+            const fallbackHomeScreen = document.createElement('div');
+            fallbackHomeScreen.id = 'homeScreen';
+            fallbackHomeScreen.className = 'screen';
+            fallbackHomeScreen.innerHTML = `
+                <div class="home-container">
+                    <section class="welcome-section">
+                        <h1 class="welcome-title">안녕하세요! 🌸</h1>
+                        <p class="welcome-subtitle">오늘도 일본어 공부를 시작해보세요</p>
+                    </section>
+                    <section class="quick-start">
+                        <h2 class="section-title">🚀 빠른 시작</h2>
+                        <div class="quick-actions">
+                            <button class="quick-btn" data-action="random-study">
+                                <div class="quick-icon">📚</div>
+                                <span>단어 학습</span>
+                            </button>
+                            <button class="quick-btn" data-action="quiz">
+                                <div class="quick-icon">🎯</div>
+                                <span>퀴즈</span>
+                            </button>
+                            <button class="quick-btn" data-action="review">
+                                <div class="quick-icon">🔄</div>
+                                <span>복습</span>
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            `;
+            mainContent.insertBefore(fallbackHomeScreen, mainContent.firstChild);
+            console.log('Fallback home screen created');
+        }
 
         // Character screen 컨테이너 미리 생성
         const characterScreen = document.createElement('div');
@@ -120,13 +190,15 @@ class ThreeStepNavigation {
         mainContent.appendChild(characterScreen);
 
         console.log('All templates rendered successfully');
+        console.log('Main content HTML:', mainContent.innerHTML.length, 'characters');
 
         // 템플릿 로드 완료 이벤트 발생
         window.dispatchEvent(new CustomEvent('templatesLoaded'));
 
-        // 템플릿 렌더링 후 스와이프 이벤트 다시 바인딩
+        // 템플릿 렌더링 후 이벤트 다시 바인딩
         setTimeout(() => {
             this.bindSwipeEvents();
+            this.bindEvents(); // 모든 이벤트 다시 바인딩
         }, 100);
     }
 
@@ -134,12 +206,22 @@ class ThreeStepNavigation {
      * 이벤트 바인딩
      */
     bindEvents() {
-        // 첫번째 화면 - 큰 카테고리 버튼들
-        document.querySelectorAll('[data-category]').forEach((btn) => {
+        // 홈 화면 빠른 시작 버튼들 (중복 바인딩 방지)
+        document.querySelectorAll('[data-action]:not([data-bound])').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                const action = e.target.closest('[data-action]').dataset.action;
+                this.handleQuickAction(action);
+            });
+            btn.setAttribute('data-bound', 'true');
+        });
+
+        // 첫번째 화면 - 큰 카테고리 버튼들 (중복 바인딩 방지)
+        document.querySelectorAll('[data-category]:not([data-bound])').forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 this.currentMainCategory = e.target.dataset.category;
                 this.showSubCategories(this.currentMainCategory);
             });
+            btn.setAttribute('data-bound', 'true');
         });
 
         // 뒤로가기 버튼들 (backToSubBtn만 유지)
@@ -151,8 +233,9 @@ class ThreeStepNavigation {
             });
         }
 
-        // 스와이프 이벤트 바인딩
+        // 스와이프 이벤트 바인딩 (모든 화면)
         this.bindSwipeEvents();
+        this.bindAllScreenSwipeEvents();
 
         // 하단 네비게이션 이벤트 바인딩
         this.bindBottomNavEvents();
@@ -161,6 +244,210 @@ class ThreeStepNavigation {
         this.bindSearchEvents();
 
         console.log('Navigation events bound successfully');
+    }
+
+    /**
+     * 홈 화면 빠른 시작 액션 처리
+     */
+    handleQuickAction(action) {
+        console.log('Quick action:', action);
+
+        switch (action) {
+            case 'random-study':
+                // 랜덤 단어 학습 - 메인 카테고리 화면으로 이동
+                this.showScreen('main');
+                break;
+            case 'quiz':
+                // 홈 대시보드의 퀴즈 기능 호출
+                if (window.homeDashboard) {
+                    window.homeDashboard.handleQuickAction('quiz');
+                } else {
+                    this.showToast('🎯 퀴즈 기능은 추후 업데이트 예정입니다!');
+                }
+                break;
+            case 'review':
+                // 홈 대시보드의 복습 기능 호출
+                if (window.homeDashboard) {
+                    window.homeDashboard.handleQuickAction('review');
+                } else {
+                    this.showToast('🔄 복습 기능은 추후 업데이트 예정입니다!');
+                }
+                break;
+            case 'my-vocabulary':
+                // 나의 단어장 기능 호출
+                if (window.homeDashboard) {
+                    window.homeDashboard.handleQuickAction('my-vocabulary');
+                } else {
+                    this.showToast('📖 나의 단어장 기능을 로드할 수 없습니다!');
+                }
+                break;
+            default:
+                console.warn('Unknown quick action:', action);
+        }
+    }
+
+    /**
+     * 모든 화면에 스와이프 이벤트 바인딩
+     */
+    bindAllScreenSwipeEvents() {
+        // 메인 카테고리 화면 (홈으로 돌아가기)
+        this.bindScreenSwipeBack('mainCategoryScreen', 'home');
+
+        // 서브 카테고리 화면 (홈으로 돌아가기)
+        this.bindScreenSwipeBack('subCategoryScreen', 'home');
+
+        console.log('All screen swipe events bound');
+    }
+
+    /**
+     * 특정 화면에 뒤로가기 스와이프 바인딩
+     */
+    bindScreenSwipeBack(screenId, targetScreen) {
+        const screen = document.getElementById(screenId);
+        if (!screen) {
+            console.log(`Screen ${screenId} not found for swipe binding`);
+            return;
+        }
+
+        // 이미 바인딩된 경우 중복 방지
+        if (screen.dataset.swipeBackBound) {
+            console.log(`Swipe already bound for ${screenId}`);
+            return;
+        }
+
+        let startX = 0;
+        let startY = 0;
+        let isSwipingHorizontally = false;
+
+        console.log(`Binding swipe back events to ${screenId} -> ${targetScreen}`);
+
+        // 터치 시작
+        screen.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isSwipingHorizontally = false;
+        }, { passive: true });
+
+        // 터치 이동
+        screen.addEventListener('touchmove', (e) => {
+            if (!startX || !startY) return;
+
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = currentX - startX;
+            const diffY = currentY - startY;
+
+            // 왼쪽에서 오른쪽 스와이프만 허용 (뒤로가기)
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10 && diffX > 0) {
+                isSwipingHorizontally = true;
+                e.preventDefault();
+
+                // 시각적 피드백
+                const movePercent = Math.min(diffX / 150, 0.3);
+                const opacity = 1 - movePercent;
+
+                screen.style.transform = `translateX(${diffX * 0.2}px)`;
+                screen.style.opacity = opacity;
+            }
+        }, { passive: false });
+
+        // 터치 종료
+        screen.addEventListener('touchend', (e) => {
+            if (!startX || !startY) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const diffX = endX - startX;
+
+            // 화면 원래 상태로 복원
+            screen.style.transform = '';
+            screen.style.opacity = '';
+            screen.style.transition = 'all 0.3s ease';
+
+            setTimeout(() => {
+                screen.style.transition = '';
+            }, 300);
+
+            // 스와이프 처리 (왼쪽→오른쪽만)
+            if (isSwipingHorizontally && diffX > 50) {
+                console.log(`Swiping right on ${screenId} - going to ${targetScreen}`);
+                this.showScreen(targetScreen);
+            }
+
+            // 초기화
+            startX = 0;
+            startY = 0;
+            isSwipingHorizontally = false;
+        }, { passive: true });
+
+        // 터치 취소
+        screen.addEventListener('touchcancel', (e) => {
+            screen.style.transform = '';
+            screen.style.opacity = '';
+            startX = 0;
+            startY = 0;
+            isSwipingHorizontally = false;
+        }, { passive: true });
+
+        // 마우스 이벤트도 추가 (데스크탑 테스트용)
+        let mouseStartX = 0;
+        let isMouseSwiping = false;
+
+        screen.addEventListener('mousedown', (e) => {
+            mouseStartX = e.clientX;
+            isMouseSwiping = true;
+            e.preventDefault();
+        });
+
+        screen.addEventListener('mousemove', (e) => {
+            if (!isMouseSwiping) return;
+
+            const diffX = e.clientX - mouseStartX;
+            if (diffX > 10) {
+                // 시각적 피드백
+                const movePercent = Math.min(diffX / 150, 0.3);
+                const opacity = 1 - movePercent;
+
+                screen.style.transform = `translateX(${diffX * 0.2}px)`;
+                screen.style.opacity = opacity;
+            }
+        });
+
+        screen.addEventListener('mouseup', (e) => {
+            if (!isMouseSwiping) return;
+
+            const diffX = e.clientX - mouseStartX;
+
+            // 화면 원래 상태로 복원
+            screen.style.transform = '';
+            screen.style.opacity = '';
+            screen.style.transition = 'all 0.3s ease';
+
+            setTimeout(() => {
+                screen.style.transition = '';
+            }, 300);
+
+            // 스와이프 처리
+            if (diffX > 80) {
+                console.log(`Mouse swiping right on ${screenId} - going to ${targetScreen}`);
+                this.showScreen(targetScreen);
+            }
+
+            isMouseSwiping = false;
+            mouseStartX = 0;
+        });
+
+        screen.addEventListener('mouseleave', (e) => {
+            if (isMouseSwiping) {
+                screen.style.transform = '';
+                screen.style.opacity = '';
+                isMouseSwiping = false;
+                mouseStartX = 0;
+            }
+        });
+
+        // 바인딩 완료 표시
+        screen.dataset.swipeBackBound = 'true';
+        console.log(`Swipe back events bound to ${screenId}`);
     }
 
     /**
@@ -296,10 +583,10 @@ class ThreeStepNavigation {
         // 최소 스와이프 거리
         const minSwipeDistance = 50;
 
-        // 왼쪽에서 오른쪽 스와이프만 처리 (첫 번째 화면으로)
+        // 왼쪽에서 오른쪽 스와이프만 처리 (홈 화면으로)
         if (deltaX > minSwipeDistance) {
-            console.log('Swiping right on sub screen - going back to main screen');
-            this.showScreen('main');
+            console.log('Swiping right on sub screen - going back to home screen');
+            this.showScreen('home');
         }
     }
 
@@ -327,11 +614,20 @@ class ThreeStepNavigation {
         const targetScreen = document.getElementById(targetScreenId);
 
         console.log(`Looking for screen: ${screenName} -> ${targetScreenId}`);
-        console.log(`Target screen found:`, targetScreen);
+        console.log(`Target screen found:`, !!targetScreen);
+        if (!targetScreen) {
+            console.error(`Available screens:`, Object.keys(this.screens).map(key => ({
+                key,
+                id: this.screens[key],
+                exists: !!document.getElementById(this.screens[key])
+            })));
+        }
 
         if (targetScreen) {
             targetScreen.classList.add('active');
             console.log(`Added 'active' class to ${targetScreenId}`);
+            console.log(`Target screen classes: ${targetScreen.className}`);
+            console.log(`Target screen display style: ${window.getComputedStyle(targetScreen).display}`);
 
             // 스크롤 위치를 상단으로 리셋
             this.resetScreenScroll(targetScreen);
@@ -449,7 +745,7 @@ class ThreeStepNavigation {
         // 검색 결과 화면의 뒤로가기 버튼
         if (backToMainBtn) {
             backToMainBtn.addEventListener('click', () => {
-                this.showScreen('main');
+                this.showScreen('home');
             });
         }
 
@@ -588,9 +884,9 @@ class ThreeStepNavigation {
 
         // 왼쪽에서 오른쪽 스와이프만 처리 (이전 화면으로)
         if (deltaX > minSwipeDistance) {
-            console.log('Swiping right - going back to main screen');
-            // 메인 화면으로 돌아가기
-            this.showScreen('main');
+            console.log('Swiping right - going back to home screen');
+            // 홈 화면으로 돌아가기
+            this.showScreen('home');
         }
     }
 
@@ -2134,12 +2430,19 @@ class ThreeStepNavigation {
     async showSubCategories(mainCategory) {
         console.log('showSubCategories called with:', mainCategory);
 
+        // 먼저 서브 카테고리 화면으로 전환
+        this.showScreen('sub');
+
+        // DOM이 업데이트될 시간을 주기 위해 약간 대기
+        await new Promise(resolve => setTimeout(resolve, 100));
+
         const subCategoryButtons = document.getElementById('subCategoryButtons');
 
         console.log('subCategoryButtons:', subCategoryButtons);
 
         if (!subCategoryButtons) {
-            console.error('Sub category buttons not found');
+            console.error('Sub category buttons not found, available elements:');
+            console.log('Available elements with IDs:', Array.from(document.querySelectorAll('[id]')).map(el => el.id));
             return;
         }
 
@@ -2368,7 +2671,7 @@ class ThreeStepNavigation {
         const homeBtn = document.getElementById('home-btn');
         if (homeBtn) {
             homeBtn.addEventListener('click', () => {
-                this.showScreen('main');
+                this.showScreen('home');
                 this.updateNavButtons('home');
             });
         }
@@ -2495,25 +2798,26 @@ class ThreeStepNavigation {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, initializing navigation...');
 
-    // WordAppV3가 완전히 초기화될 때까지 기다림
+    // 즉시 네비게이션 초기화 (DB 없어도 UI는 먼저 보여줌)
+    console.log('Initializing navigation immediately...');
+    window.navigation = new ThreeStepNavigation();
+
+    // WordAppV3는 백그라운드에서 초기화
     const waitForWordApp = async () => {
         let attempts = 0;
         while ((!window.wordAppV3 || !window.wordAppV3.dbManager || !window.wordAppV3.dbManager.db) && attempts < 100) {
-            console.log(`Waiting for WordAppV3 initialization... (${attempts + 1}/100)`);
+            console.log(`Background: Waiting for WordAppV3 initialization... (${attempts + 1}/100)`);
             await new Promise((resolve) => setTimeout(resolve, 100));
             attempts++;
         }
 
         if (window.wordAppV3 && window.wordAppV3.dbManager && window.wordAppV3.dbManager.db) {
-            console.log('WordAppV3 ready, starting navigation initialization...');
-            window.navigation = new ThreeStepNavigation();
+            console.log('WordAppV3 ready - navigation already initialized');
         } else {
-            console.error('Failed to wait for WordAppV3 initialization');
-            // 그래도 네비게이션은 초기화 (DB 없어도 UI는 작동해야 함)
-            window.navigation = new ThreeStepNavigation();
+            console.error('WordAppV3 initialization failed, but navigation is working');
         }
     };
 
-    // 2초 후에 시작
-    setTimeout(waitForWordApp, 2000);
+    // 백그라운드에서 WordApp 대기
+    setTimeout(waitForWordApp, 1000);
 });

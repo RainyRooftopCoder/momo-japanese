@@ -1,37 +1,46 @@
 /* Glassmorphism Japanese Word Learning App - Apple Style */
 
-/* Root Variables - Glassmorphism Theme */
+/* Root Variables - Clean Modern Theme */
 :root {
-    /* Glassmorphism Colors - Softer */
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    --glass-shadow-hover: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+    /* Point Colors - Pink Gradient */
+    --point-primary: #fd79a8;
+    --point-secondary: #fab1a0;
+    --point-tertiary: #ffeaa7;
+    --point-gradient: linear-gradient(335deg, #fd79a8 0%, #fab1a0 50%, #ffeaa7 100%);
+    --point-gradient-soft: linear-gradient(
+        335deg,
+        rgba(253, 121, 168, 0.1) 0%,
+        rgba(250, 177, 160, 0.1) 50%,
+        rgba(255, 234, 167, 0.1) 100%
+    );
 
-    /* Background Gradient - Soft Warm Peach Tones */
-    --bg-gradient: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%);
-    --bg-secondary: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-    --bg-tertiary: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #fafafa;
+    --bg-tertiary: #f5f5f5;
 
-    /* Text Colors - Better Contrast */
-    --text-primary: rgba(60, 60, 60, 0.9);
-    --text-secondary: rgba(80, 80, 80, 0.7);
-    --text-accent: rgba(40, 40, 40, 0.85);
-    --text-light: rgba(255, 255, 255, 0.95);
-    --text-dark: rgba(30, 30, 30, 0.9);
+    /* Text Colors */
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-tertiary: #718096;
+    --text-light: #ffffff;
+    --text-dark: #1a202c;
 
-    /* Glass Elements */
-    --glass-backdrop: blur(8px);
-    --glass-card: rgba(255, 255, 255, 0.2);
-    --glass-card-hover: rgba(255, 255, 255, 0.3);
+    /* Border Colors */
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e0;
+    --border-dark: #a0aec0;
 
-    /* Accent Colors - Soft Pastels */
-    --accent-primary: rgba(200, 230, 255, 0.6);
-    --accent-secondary: rgba(230, 200, 255, 0.6);
-    --accent-tertiary: rgba(250, 208, 196, 0.4);
-    --accent-quaternary: rgba(255, 209, 255, 0.4);
-    --accent-success: rgba(152, 251, 152, 0.4);
-    --accent-warning: rgba(255, 218, 185, 0.4);
+    /* Shadow Colors */
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-dark: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+    /* Accent Colors */
+    --accent-success: #48bb78;
+    --accent-warning: #ed8936;
+    --accent-error: #f56565;
+    --accent-info: #4299e1;
 
     /* Font Sizes - Adjusted */
     --font-xl: 4.1rem; /* 1.6배 키움 (2.56 * 1.6) */
@@ -54,8 +63,7 @@
 
 body {
     font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg-gradient) !important;
-    background-attachment: fixed;
+    background: var(--bg-primary) !important;
     color: var(--text-primary);
     line-height: 1.6;
     margin: 0;
@@ -64,19 +72,13 @@ body {
 }
 
 html {
-    background: var(--bg-gradient) !important;
+    background: var(--bg-primary) !important;
     min-height: 100vh;
 }
 
-/* Floating background elements */
+/* Remove floating background elements */
 body::before {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    display: none;
     background-size: 50px 50px;
     animation: float 20s linear infinite;
     z-index: -1;
@@ -107,21 +109,16 @@ body::before {
 }
 
 .main-content {
-    background: none !important;
+    background: var(--bg-primary) !important;
+    padding: 2.8rem 0.75rem 1.5rem 0.75rem;
 }
 
-/* Header Styles - Glassmorphism */
+/* Header Styles - Point Gradient */
 .header {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: var(--glass-backdrop);
-    -webkit-backdrop-filter: var(--glass-backdrop);
-    border: 1px solid var(--glass-border);
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    box-shadow: var(--glass-shadow);
-    color: var(--text-dark);
-    /* padding: 1.2rem 1rem; */
+    background: var(--point-gradient);
+    border: none;
+    box-shadow: var(--shadow-medium);
+    color: var(--text-light);
     position: fixed;
     top: 0;
     left: 0;
@@ -214,32 +211,31 @@ body::before {
 
 /* Header Download Button */
 .header-download-btn {
-    background: var(--accent-quaternary);
-    backdrop-filter: var(--glass-backdrop);
-    -webkit-backdrop-filter: var(--glass-backdrop);
-    border: 1px solid rgba(255, 209, 255, 0.3);
-    color: var(--text-dark);
-    padding: 0.7rem 1rem;
-    border-radius: var(--radius-lg);
-    font-size: var(--font-xs);
+    background: var(--bg-primary);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-primary);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     white-space: nowrap;
     display: none; /* 기본적으로 숨김 - 단어장 화면에서만 표시 */
     align-items: center;
     gap: 0.5rem;
-    box-shadow: 0 4px 16px 0 rgba(255, 209, 255, 0.3);
+    box-shadow: var(--shadow-light);
     position: absolute;
-    right: 0;
+    right: 1rem;
     top: 50%;
     transform: translateY(-50%);
 }
 
 .header-download-btn:hover {
-    background: rgba(255, 209, 255, 0.5);
+    background: rgba(255, 255, 255, 0.9);
     transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 6px 20px 0 rgba(255, 209, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: var(--shadow-medium);
 }
 
 .header-download-btn:active {
@@ -253,7 +249,7 @@ body::before {
 /* Main Content */
 .main-content {
     flex: 1;
-    padding: 4rem 1rem 1rem 1rem; /* 상단에 헤더 높이만큼 여백 추가 */
+    padding: 2.8rem 0.75rem 1.5rem 0.75rem; /* 상단에 헤더 높이만큼 여백 추가 */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -269,7 +265,7 @@ body::before {
     -webkit-backdrop-filter: var(--glass-backdrop);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
-    box-shadow: var(--glass-shadow);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
     padding: 2.5rem 2rem;
     display: flex;
     flex-direction: column;
@@ -292,7 +288,7 @@ body::before {
 
 .word-card:hover {
     /* 터치/호버 시 확대 효과 제거 */
-    box-shadow: var(--glass-shadow-hover);
+    box-shadow: 0 16px 56px rgba(31, 38, 135, 0.5);
     background: var(--glass-card-hover);
 }
 
@@ -319,6 +315,401 @@ body::before {
     width: 60px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+}
+
+/* 단어 저장 책갈피 스타일 */
+.bookmark-container {
+    position: absolute;
+    top: -2rem;
+    left: 15px;
+    z-index: 10;
+}
+
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+    transform-origin: center top;
+}
+
+.bookmark-btn:hover {
+    transform: scale(1.1);
+}
+
+.bookmark-btn:active {
+    transform: scale(0.95);
+}
+
+.bookmark-shape {
+    width: 35px;
+    height: 50px;
+    background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 2px 10px rgba(189, 189, 189, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.bookmark-shape::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 17.5px solid transparent;
+    border-right: 17.5px solid transparent;
+    border-top: 15px solid;
+    border-image: var(--point-gradient) 1;
+}
+
+.bookmark-shape::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    right: 0;
+    height: 15px;
+    background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.bookmark-icon {
+    font-size: 1.2rem;
+    color: #666;
+    position: relative;
+    z-index: 2;
+    margin-top: 2px;
+}
+
+.bookmark-btn.saved .bookmark-shape {
+    background: var(--point-gradient);
+    box-shadow: 0 2px 10px rgba(253, 121, 168, 0.3);
+}
+
+.bookmark-btn.saved .bookmark-shape::before {
+    background: var(--point-gradient);
+}
+
+.bookmark-btn.saved .bookmark-icon {
+    color: white;
+}
+
+.bookmark-btn.saved .bookmark-icon {
+    content: '✓';
+}
+
+.bookmark-btn:hover .bookmark-shape {
+    box-shadow: 0 4px 15px rgba(189, 189, 189, 0.4);
+}
+
+.bookmark-btn.saved:hover .bookmark-shape {
+    box-shadow: 0 4px 15px rgba(253, 121, 168, 0.4);
+}
+
+/* 하단 저장 버튼 스타일 */
+.word-save-action {
+    margin: 1.5rem -2rem 0 -2rem;
+    /* padding: 1rem 2rem 0 2rem; */
+    border-top: 1px solid var(--glass-border);
+    width: calc(100% + 4rem);
+}
+
+.word-save-btn {
+    width: 100%;
+    background: var(--point-gradient);
+    border: 2px solid var(--point-gradient);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+/* .word-save-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--point-gradient);
+    transition: all 0.3s ease;
+    z-index: 1;
+    opacity: 0;
+} */
+
+.word-save-btn:hover::before {
+    left: 0;
+    opacity: 1;
+}
+
+.word-save-btn:hover {
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(253, 121, 168, 0.3);
+}
+
+.word-save-btn:active {
+    transform: translateY(0);
+}
+
+.save-btn-icon,
+.save-btn-text {
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.save-btn-icon {
+    font-size: 1.2rem;
+}
+
+.word-save-btn.saved {
+    background: var(--point-gradient);
+    color: white;
+    border-color: var(--point-gradient);
+}
+
+.word-save-btn.saved::before {
+    opacity: 1;
+    left: 0;
+}
+
+.word-save-btn.saved .save-btn-icon {
+    transform: scale(1.2);
+}
+
+.word-save-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 나의 단어장 화면 스타일 */
+.my-vocabulary-screen {
+    padding: 1rem;
+    position: relative;
+}
+
+/* 뒤로가기 버튼 스타일 */
+.my-vocabulary-screen .back-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(253, 121, 168, 0.1);
+    border: 1px solid rgba(253, 121, 168, 0.3);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    z-index: 10;
+}
+
+.my-vocabulary-screen .back-btn:hover {
+    background: rgba(253, 121, 168, 0.2);
+    border-color: rgba(253, 121, 168, 0.5);
+    transform: translateX(-2px);
+}
+
+.my-vocabulary-screen .back-btn:active {
+    transform: translateX(0);
+}
+
+.my-vocabulary-screen .back-icon {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.my-vocabulary-screen .back-text {
+    font-weight: 600;
+}
+
+.my-vocab-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(253, 121, 168, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(253, 121, 168, 0.1);
+}
+
+.my-vocab-header .screen-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.vocab-stats {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.vocabulary-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.vocabulary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.vocab-word-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(253, 121, 168, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.vocab-word-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(253, 121, 168, 0.15);
+}
+
+.vocab-word-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.vocab-word-main {
+    flex: 1;
+}
+
+.vocab-hanja {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.vocab-pronunciation {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.vocab-hiragana {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.vocab-speech-btn {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.vocab-speech-btn:hover {
+    background: rgba(253, 121, 168, 0.1);
+}
+
+.vocab-meaning {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.vocab-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-end;
+}
+
+.vocab-remove-btn {
+    background: #e74c3c;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
+    color: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.vocab-remove-btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+.vocab-saved-date {
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+    opacity: 0.7;
+}
+
+.vocab-meta {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(253, 121, 168, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vocab-jlpt-level {
+    background: var(--point-gradient);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
 }
 
 /* Hanja Block */
@@ -434,6 +825,9 @@ body::before {
     flex-direction: column;
     gap: 1rem;
     padding-top: 1.5rem;
+    margin: 0 -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     justify-content: center;
 }
 
@@ -676,12 +1070,12 @@ body::before {
     }
 
     .main-content {
-        padding: 4rem 0.75rem 1.5rem 0.75rem; /* 상단 여백 유지 */
+        padding: 2.8rem 0.75rem 1.5rem 0.75rem; /* 상단 여백 유지 */
         gap: 2rem;
     }
 
     .word-card {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1.5rem 0rem 1.5rem;
         min-height: 480px;
         max-width: 380px;
     }
@@ -740,7 +1134,7 @@ body::before {
     }
 
     .main-content {
-        padding: 4rem 0.5rem 1rem 0.5rem; /* 작은 화면에서 헤더 높이에 맞춰 조정 */
+        padding: 2.8rem 0.75rem 1.5rem 0.75rem; /* 작은 화면에서 헤더 높이에 맞춰 조정 */
     }
 
     .word-card {

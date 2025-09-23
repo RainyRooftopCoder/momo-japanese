@@ -18,6 +18,7 @@ class TemplateLoader {
             'practice': 'pages/practice',
             'vocabulary': 'pages/vocabulary',
             'settings': 'pages/settings',
+            'my-vocabulary': 'pages/my-vocabulary',
 
             // 기존 페이지들
             'main-category-screen': 'pages/main-category-screen',

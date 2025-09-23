@@ -18,7 +18,7 @@ class IndexedDBManagerV3 {
     constructor() {
         // 데이터베이스 기본 설정
         this.dbName = 'JLPTWordDB_V3'; // 데이터베이스 이름
-        this.dbVersion = 3; // 버전 번호 (스키마 변경 시 증가)
+        this.dbVersion = 4; // 버전 번호 (스키마 변경 시 증가) - myVocabulary 스토어 추가
         this.db = null; // 데이터베이스 연결 객체
 
         // 통합된 카테고리 시스템 - 미리 정의된 카테고리들
@@ -126,6 +126,21 @@ class IndexedDBManagerV3 {
             searchHistoryStore.createIndex('searchedAt', 'searchedAt', { unique: false }); // 검색 날짜별
 
             console.log('Created searchHistory object store');
+        }
+
+        // 5. MyVocabulary Store (나의 단어장) - 사용자가 저장한 단어들
+        if (!this.db.objectStoreNames.contains('myVocabulary')) {
+            const myVocabularyStore = this.db.createObjectStore('myVocabulary', {
+                keyPath: 'id'
+            });
+
+            // 나의 단어장 인덱스
+            myVocabularyStore.createIndex('savedAt', 'savedAt', { unique: false }); // 저장 날짜별
+            myVocabularyStore.createIndex('hanja', 'hanja', { unique: false }); // 한자별
+            myVocabularyStore.createIndex('hiragana', 'hiragana', { unique: false }); // 히라가나별
+            myVocabularyStore.createIndex('jlptLevel', 'jlptLevel', { unique: false }); // JLPT 레벨별
+
+            console.log('Created myVocabulary object store');
         }
     }
 
@@ -875,7 +890,7 @@ class IndexedDBManagerV3 {
         if (!this.db) throw new Error('Database not initialized');
 
         // 모든 스토어에 대한 쓰기 트랜잭션
-        const transaction = this.db.transaction(['words', 'categories', 'viewedWords', 'searchHistory'], 'readwrite');
+        const transaction = this.db.transaction(['words', 'categories', 'viewedWords', 'searchHistory', 'myVocabulary'], 'readwrite');
 
         try {
             // 모든 스토어의 데이터 삭제
@@ -883,6 +898,7 @@ class IndexedDBManagerV3 {
             await this.promisifyRequest(transaction.objectStore('categories').clear());
             await this.promisifyRequest(transaction.objectStore('viewedWords').clear());
             await this.promisifyRequest(transaction.objectStore('searchHistory').clear());
+            await this.promisifyRequest(transaction.objectStore('myVocabulary').clear());
 
             console.log('All data cleared from IndexedDB');
             return true;
@@ -890,6 +906,135 @@ class IndexedDBManagerV3 {
             console.error('Error clearing data:', error);
             throw error;
         }
+    }
+
+    /**
+     * 나의 단어장 기능 - 단어 저장
+     * @param {Object} wordData - 저장할 단어 데이터
+     * @returns {Promise<boolean>} 저장 성공 여부
+     */
+    async saveToMyVocabulary(wordData) {
+        if (!this.db) throw new Error('Database not initialized');
+
+        try {
+            const transaction = this.db.transaction(['myVocabulary'], 'readwrite');
+            const store = transaction.objectStore('myVocabulary');
+
+            const savedWord = {
+                ...wordData,
+                savedAt: new Date().toISOString(),
+                id: `${wordData.hanja}_${wordData.hiragana}_${Date.now()}`
+            };
+
+            await this.promisifyRequest(store.add(savedWord));
+            console.log('Word saved to my vocabulary:', savedWord);
+            return true;
+        } catch (error) {
+            console.error('Error saving word to my vocabulary:', error);
+            return false;
+        }
+    }
+
+    /**
+     * 나의 단어장에서 단어 제거
+     * @param {string} wordId - 제거할 단어 ID
+     * @returns {Promise<boolean>} 제거 성공 여부
+     */
+    async removeFromMyVocabulary(wordId) {
+        if (!this.db) throw new Error('Database not initialized');
+
+        try {
+            const transaction = this.db.transaction(['myVocabulary'], 'readwrite');
+            const store = transaction.objectStore('myVocabulary');
+
+            await this.promisifyRequest(store.delete(wordId));
+            console.log('Word removed from my vocabulary:', wordId);
+            return true;
+        } catch (error) {
+            console.error('Error removing word from my vocabulary:', error);
+            return false;
+        }
+    }
+
+    /**
+     * 나의 단어장 전체 조회
+     * @returns {Promise<Array>} 저장된 단어 목록
+     */
+    async getMyVocabulary() {
+        if (!this.db) throw new Error('Database not initialized');
+
+        try {
+            const transaction = this.db.transaction(['myVocabulary'], 'readonly');
+            const store = transaction.objectStore('myVocabulary');
+            const index = store.index('savedAt');
+
+            const words = await this.promisifyRequest(index.getAll());
+            return words.reverse(); // 최신 저장 순으로 정렬
+        } catch (error) {
+            console.error('Error getting my vocabulary:', error);
+            return [];
+        }
+    }
+
+    /**
+     * 단어가 나의 단어장에 저장되어 있는지 확인
+     * @param {string} hanja - 한자
+     * @param {string} hiragana - 히라가나
+     * @returns {Promise<boolean>} 저장 여부
+     */
+    async isWordInMyVocabulary(hanja, hiragana) {
+        if (!this.db) throw new Error('Database not initialized');
+
+        try {
+            const transaction = this.db.transaction(['myVocabulary'], 'readonly');
+            const store = transaction.objectStore('myVocabulary');
+
+            const words = await this.promisifyRequest(store.getAll());
+            return words.some(word => word.hanja === hanja && word.hiragana === hiragana);
+        } catch (error) {
+            console.error('Error checking word in my vocabulary:', error);
+            return false;
+        }
+    }
+
+    /**
+     * 데이터베이스 삭제 및 재생성
+     * 스키마 변경 시 사용
+     */
+    async deleteAndRecreateDatabase() {
+        console.log('Deleting and recreating database...');
+
+        // 기존 연결 종료
+        if (this.db) {
+            this.db.close();
+            this.db = null;
+        }
+
+        return new Promise((resolve, reject) => {
+            const deleteRequest = indexedDB.deleteDatabase(this.dbName);
+
+            deleteRequest.onerror = () => {
+                console.error('Error deleting database:', deleteRequest.error);
+                reject(deleteRequest.error);
+            };
+
+            deleteRequest.onsuccess = async () => {
+                console.log('Database deleted successfully');
+                try {
+                    await this.init();
+                    console.log('Database recreated successfully');
+                    resolve(this.db);
+                } catch (error) {
+                    console.error('Error recreating database:', error);
+                    reject(error);
+                }
+            };
+
+            deleteRequest.onblocked = () => {
+                console.warn('Database deletion blocked - please close other tabs');
+                reject(new Error('Database deletion blocked'));
+            };
+        });
     }
 
     /**
@@ -907,3 +1052,20 @@ class IndexedDBManagerV3 {
 
 // 전역 스코프에 노출하여 다른 스크립트에서 사용 가능하도록
 window.IndexedDBManagerV3 = IndexedDBManagerV3;
+
+// 개발자 도구에서 수동으로 데이터베이스 재생성할 수 있는 함수
+window.recreateDatabase = async function() {
+    if (window.wordAppV3 && window.wordAppV3.dbManager) {
+        try {
+            await window.wordAppV3.dbManager.deleteAndRecreateDatabase();
+            console.log('Database recreated successfully from console');
+            return true;
+        } catch (error) {
+            console.error('Error recreating database from console:', error);
+            return false;
+        }
+    } else {
+        console.error('Database manager not available');
+        return false;
+    }
+};

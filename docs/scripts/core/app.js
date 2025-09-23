@@ -721,9 +721,16 @@ class WordLearningAppV3 {
                 isSwipingHorizontally = false;
                 isTap = true;
 
-                // 음성 버튼 터치 감지
+                // 음성 버튼 및 저장 버튼 터치 감지
                 const target = e.target;
-                isSpeechButtonTouch = target && (target.classList.contains('speech-btn') || target.closest('.speech-btn'));
+                isSpeechButtonTouch = target && (
+                    target.classList.contains('speech-btn') ||
+                    target.closest('.speech-btn') ||
+                    target.classList.contains('bookmark-btn') ||
+                    target.closest('.bookmark-btn') ||
+                    target.classList.contains('word-save-btn') ||
+                    target.closest('.word-save-btn')
+                );
 
                 console.log('Touch start:', this.startX, this.startY, 'Speech button:', isSpeechButtonTouch);
             },
@@ -856,6 +863,132 @@ class WordLearningAppV3 {
                 e.stopPropagation();
                 this.speakExample2();
             });
+        }
+    }
+
+    /**
+     * 단어 저장 버튼 이벤트 바인딩
+     * @param {Object} currentWord - 현재 표시중인 단어 데이터
+     */
+    bindSaveWordEvents(currentWord) {
+        // 상단 책갈피 버튼
+        const saveWordBtn = document.getElementById('saveWordBtn');
+        if (saveWordBtn) {
+            // 기존 이벤트 리스너 제거 (중복 방지)
+            const newSaveBtn = saveWordBtn.cloneNode(true);
+            saveWordBtn.parentNode.replaceChild(newSaveBtn, saveWordBtn);
+
+            // 새로운 이벤트 리스너 추가
+            newSaveBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+
+                console.log('Bookmark save button clicked');
+                await this.saveCurrentWordToVocabulary(currentWord, newSaveBtn, 'bookmark');
+            }, true);
+        }
+
+        // 하단 전체 너비 저장 버튼
+        const bottomSaveBtn = document.getElementById('bottomSaveWordBtn');
+        if (bottomSaveBtn) {
+            // 기존 이벤트 리스너 제거 (중복 방지)
+            const newBottomSaveBtn = bottomSaveBtn.cloneNode(true);
+            bottomSaveBtn.parentNode.replaceChild(newBottomSaveBtn, bottomSaveBtn);
+
+            // 새로운 이벤트 리스너 추가
+            newBottomSaveBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+
+                console.log('Bottom save button clicked');
+                await this.saveCurrentWordToVocabulary(currentWord, newBottomSaveBtn, 'bottom');
+            }, true);
+        }
+    }
+
+    /**
+     * 현재 단어를 나의 단어장에 저장
+     * @param {Object} wordData - 저장할 단어 데이터
+     * @param {HTMLElement} btnElement - 저장 버튼 요소
+     * @param {string} buttonType - 버튼 타입 ('bookmark' 또는 'bottom')
+     */
+    async saveCurrentWordToVocabulary(wordData, btnElement, buttonType = 'bookmark') {
+        try {
+            if (!window.MyVocabularyUI) {
+                console.error('MyVocabularyUI not available');
+                alert('단어 저장 기능을 사용할 수 없습니다.');
+                return;
+            }
+
+            // 버튼 비활성화 (중복 클릭 방지)
+            btnElement.disabled = true;
+            let originalIcon, originalText;
+
+            if (buttonType === 'bookmark') {
+                originalIcon = btnElement.querySelector('.bookmark-icon').textContent;
+            } else {
+                originalIcon = btnElement.querySelector('.save-btn-icon').textContent;
+                originalText = btnElement.querySelector('.save-btn-text').textContent;
+                btnElement.querySelector('.save-btn-text').textContent = '저장 중...';
+            }
+
+            const vocabUI = new window.MyVocabularyUI();
+            const success = await vocabUI.saveWordToVocabulary({
+                hanja: wordData.hanja,
+                hiragana: wordData.hiragana,
+                meaning: wordData.mean,
+                jlptLevel: wordData.jlptLevel,
+                partOfSpeech: wordData.partOfSpeech,
+                themes: wordData.themes,
+                jpExample1: wordData.jpExample1,
+                koExample1: wordData.koExample1,
+                jpExample2: wordData.jpExample2,
+                koExample2: wordData.koExample2
+            });
+
+            if (success) {
+                // 저장 성공 시 버튼 상태 변경
+                btnElement.classList.add('saved');
+
+                if (buttonType === 'bookmark') {
+                    btnElement.querySelector('.bookmark-icon').textContent = '✓';
+                } else {
+                    btnElement.querySelector('.save-btn-icon').textContent = '✓';
+                    btnElement.querySelector('.save-btn-text').textContent = '저장 완료!';
+                }
+
+                // 2초 후 원래 상태로 복원
+                setTimeout(() => {
+                    btnElement.classList.remove('saved');
+
+                    if (buttonType === 'bookmark') {
+                        btnElement.querySelector('.bookmark-icon').textContent = originalIcon;
+                    } else {
+                        btnElement.querySelector('.save-btn-icon').textContent = originalIcon;
+                        btnElement.querySelector('.save-btn-text').textContent = originalText;
+                    }
+
+                    btnElement.disabled = false;
+                }, 2000);
+            } else {
+                // 저장 실패 시 버튼 복원
+                if (buttonType === 'bottom') {
+                    btnElement.querySelector('.save-btn-text').textContent = originalText;
+                }
+                btnElement.disabled = false;
+            }
+
+        } catch (error) {
+            console.error('Error saving word:', error);
+            alert('단어 저장 중 오류가 발생했습니다.');
+
+            // 오류 시 버튼 복원
+            if (buttonType === 'bottom' && originalText) {
+                btnElement.querySelector('.save-btn-text').textContent = originalText;
+            }
+            btnElement.disabled = false;
         }
     }
 
@@ -1201,6 +1334,9 @@ class WordLearningAppV3 {
 
         // 음성 버튼 이벤트 다시 바인딩 (단어가 변경될 때마다)
         this.bindSpeechEvents();
+
+        // 단어 저장 버튼 이벤트 바인딩
+        this.bindSaveWordEvents(currentWord);
 
         console.log('Word display updated successfully');
     }
