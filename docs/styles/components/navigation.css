@@ -72,7 +72,7 @@
 .quick-actions {
     display: flex;
     gap: 0.8rem;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
@@ -163,99 +163,6 @@
     padding: 0;
 }
 
-/* 오늘의 학습 현황 - 리스트 형태 */
-.today-stats {
-    /* margin-bottom은 collapsible-section에서 처리 */
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.stats-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-top: 0.5rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.stat-item {
-    padding: 0;
-}
-
-.stat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #374151;
-}
-
-.stat-value {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #1f2937;
-}
-
-/* 프로그레스 바 스타일 */
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: #f3f4f6;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-}
-
-.progress-fill {
-    height: 100%;
-    border-radius: 4px;
-    transition: width 0.8s ease-in-out;
-    position: relative;
-}
-
-.words-progress {
-    background: var(--accent-info);
-}
-
-.practice-progress {
-    background: var(--accent-success);
-}
-
-/* 세로 구분선 */
-.stat-item:not(:last-child) {
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid var(--border-light);
-}
-
-/* 모바일 반응형 */
-@media (max-width: 480px) {
-    .stats-list {
-        max-width: 100%;
-        gap: 1rem;
-    }
-
-    .stat-header {
-        margin-bottom: 0.4rem;
-    }
-
-    .stat-label,
-    .stat-value {
-        font-size: 0.8rem;
-    }
-
-    .progress-bar {
-        height: 6px;
-    }
-}
-
 /* 주간 학습 그래프 */
 .weekly-chart {
     /* margin-bottom은 collapsible-section에서 처리 */
@@ -267,7 +174,7 @@
 .chart-container {
     border: 1px solid var(--border-light);
     border-radius: 8px;
-    padding: 1rem;
+    /* padding: 1rem; */
     min-height: 150px;
     display: flex;
     align-items: center;
@@ -332,7 +239,7 @@
     display: flex !important;
     flex-direction: column;
     gap: 1rem;
-    padding: 2rem;
+    /* padding: 2rem; */
     max-width: 500px;
     margin: 0 auto;
     width: 100%;
@@ -392,9 +299,20 @@
     min-width: 120px;
 }
 
-/* 화면 제목 스타일 - 사용하지 않음 */
+/* 화면 제목 스타일 - 기본적으로 숨김 */
 .screen-title {
     display: none;
+}
+
+/* 나의 단어장 화면에서만 제목 표시 */
+#myVocabularyScreen .screen-title {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin: 1rem 0 1.5rem 0;
+    padding: 0.5rem;
 }
 
 /* 뒤로가기 버튼 */
@@ -508,6 +426,15 @@
     margin-top: 20px;
 }
 
+.section {
+    margin-top: 1rem;
+}
+
+.form-selector,
+.noun-display {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
 /* 데스크톱 반응형 */
 @media (min-width: 768px) {
     .category-button {
@@ -563,6 +490,9 @@
     justify-content: flex-start !important;
     position: relative;
     color: #000;
+    overflow-y: auto;
+    height: 100%;
+    min-height: 100vh;
 }
 
 .word-screen * {

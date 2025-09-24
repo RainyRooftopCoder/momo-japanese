@@ -11,7 +11,6 @@ class HomeDashboard {
     }
 
     init() {
-        this.updateTodayStats();
         this.renderWeeklyChart();
         this.setupQuickActions();
         this.renderRecentBadges();
@@ -22,12 +21,7 @@ class HomeDashboard {
     getStudyData() {
         const today = new Date().toISOString().split('T')[0];
         const demoData = {
-            today: {
-                words: 15,
-                practice: 3,
-                streak: 7
-            },
-            weekly: [8, 12, 5, 15, 10, 7, 15] // 최근 7일 (월-일)
+            weekly: [8, 12, 5, 15, 10, 7, 15], // 최근 7일 (월-일)
         };
 
         const saved = localStorage.getItem('studyData');
@@ -48,7 +42,7 @@ class HomeDashboard {
             { id: 'streak_7', name: '7일 연속', icon: '⭐', earned: true, date: '2024-01-21T16:45:00Z' },
             { id: 'words_50', name: '단어 50개', icon: '📚', earned: false, date: null },
             { id: 'words_100', name: '단어 100개', icon: '💎', earned: false, date: null },
-            { id: 'practice_10', name: '연습 10회', icon: '💪', earned: false, date: null }
+            { id: 'practice_10', name: '연습 10회', icon: '💪', earned: false, date: null },
         ];
 
         const saved = localStorage.getItem('badges');
@@ -60,46 +54,6 @@ class HomeDashboard {
         return JSON.parse(saved);
     }
 
-    // 오늘의 학습 현황 업데이트
-    updateTodayStats() {
-        const todayWordsEl = document.getElementById('today-words');
-        const todayPracticeEl = document.getElementById('today-practice');
-        const streakDaysEl = document.getElementById('streak-days');
-
-        if (todayWordsEl) {
-            this.animateNumber(todayWordsEl, this.studyData.today.words);
-        }
-        if (todayPracticeEl) {
-            this.animateNumber(todayPracticeEl, this.studyData.today.practice);
-        }
-        if (streakDaysEl) {
-            this.animateNumber(streakDaysEl, this.studyData.today.streak);
-        }
-    }
-
-    // 숫자 애니메이션
-    animateNumber(element, targetValue) {
-        const duration = 1000;
-        const startValue = 0;
-        const startTime = performance.now();
-
-        const animate = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-
-            // easeOutQuart 이징 함수
-            const easeProgress = 1 - Math.pow(1 - progress, 4);
-            const currentValue = Math.round(startValue + (targetValue - startValue) * easeProgress);
-
-            element.textContent = currentValue;
-
-            if (progress < 1) {
-                requestAnimationFrame(animate);
-            }
-        };
-
-        requestAnimationFrame(animate);
-    }
 
     // 주간 학습 그래프 렌더링
     renderWeeklyChart() {
@@ -110,10 +64,11 @@ class HomeDashboard {
         const maxValue = Math.max(...this.studyData.weekly, 1);
 
         chartContainer.innerHTML = `
-            <div style="display: flex; align-items: end; justify-content: space-around; height: 100%; padding: 1rem;">
-                ${this.studyData.weekly.map((value, index) => {
-                    const height = (value / maxValue) * 80; // 최대 80% 높이
-                    return `
+            <div style="display: flex; align-items: end; justify-content: space-between; width: 100%; height: 100%; padding: 1rem;">
+                ${this.studyData.weekly
+                    .map((value, index) => {
+                        const height = (value / maxValue) * 80; // 최대 80% 높이
+                        return `
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                             <div class="chart-bar"
                                  style="height: ${height}%; width: 30px;
@@ -130,7 +85,8 @@ class HomeDashboard {
                             </span>
                         </div>
                     `;
-                }).join('')}
+                    })
+                    .join('')}
             </div>
         `;
     }
@@ -168,16 +124,16 @@ class HomeDashboard {
         alert('복습 기능은 곧 추가될 예정입니다! 🔄');
     }
 
-    // 나의 단어장 표시
+    // 나의 단어장 표시 (다중 단어장 시스템)
     showMyVocabulary() {
-        console.log('showMyVocabulary called');
+        console.log('showMyVocabulary called - opening vocabulary list');
         console.log('MyVocabularyUI available:', !!window.MyVocabularyUI);
 
         if (window.MyVocabularyUI) {
             console.log('Creating MyVocabularyUI instance...');
             const vocabUI = new window.MyVocabularyUI();
-            console.log('Calling showMyVocabulary...');
-            vocabUI.showMyVocabulary();
+            console.log('Calling showMyVocabulary (vocabulary list screen)...');
+            vocabUI.showMyVocabulary(); // 이제 단어장 목록 화면을 보여줌
         } else {
             console.error('MyVocabularyUI not found');
             alert('나의 단어장 기능을 로드할 수 없습니다.');
@@ -190,7 +146,7 @@ class HomeDashboard {
         if (!badgesContainer) return;
 
         const recentBadges = this.badges
-            .filter(badge => badge.earned)
+            .filter((badge) => badge.earned)
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 3);
 
@@ -199,12 +155,16 @@ class HomeDashboard {
             return;
         }
 
-        badgesContainer.innerHTML = recentBadges.map(badge => `
+        badgesContainer.innerHTML = recentBadges
+            .map(
+                (badge) => `
             <div class="badge-item" title="${badge.name} - ${new Date(badge.date).toLocaleDateString()}">
                 <div class="badge-icon">${badge.icon}</div>
                 <div class="badge-name">${badge.name}</div>
             </div>
-        `).join('');
+        `
+            )
+            .join('');
     }
 
     // 학습 진행 시 데이터 업데이트
@@ -258,11 +218,11 @@ class HomeDashboard {
             { id: 'streak_7', condition: streak >= 7 },
             { id: 'words_50', condition: totalWords >= 50 },
             { id: 'words_100', condition: totalWords >= 100 },
-            { id: 'practice_10', condition: totalPractice >= 10 }
+            { id: 'practice_10', condition: totalPractice >= 10 },
         ];
 
-        badgeChecks.forEach(check => {
-            const badge = this.badges.find(b => b.id === check.id);
+        badgeChecks.forEach((check) => {
+            const badge = this.badges.find((b) => b.id === check.id);
             if (badge && !badge.earned && check.condition) {
                 badge.earned = true;
                 badge.date = new Date().toISOString();

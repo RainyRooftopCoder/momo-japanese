@@ -927,11 +927,21 @@ class WordLearningAppV3 {
             let originalIcon, originalText;
 
             if (buttonType === 'bookmark') {
-                originalIcon = btnElement.querySelector('.bookmark-icon').textContent;
+                const iconElement = btnElement.querySelector('.bookmark-icon');
+                originalIcon = iconElement ? iconElement.textContent : '🔖';
+                // 데이터 속성에 원본 상태 저장
+                btnElement.setAttribute('data-original-icon', originalIcon);
             } else {
-                originalIcon = btnElement.querySelector('.save-btn-icon').textContent;
-                originalText = btnElement.querySelector('.save-btn-text').textContent;
-                btnElement.querySelector('.save-btn-text').textContent = '저장 중...';
+                const iconElement = btnElement.querySelector('.save-btn-icon');
+                const textElement = btnElement.querySelector('.save-btn-text');
+                originalIcon = iconElement ? iconElement.textContent : '📚';
+                originalText = textElement ? textElement.textContent : '나의 단어장에 저장';
+
+                // 데이터 속성에 원본 상태 저장
+                btnElement.setAttribute('data-original-icon', originalIcon);
+                btnElement.setAttribute('data-original-text', originalText);
+
+                if (textElement) textElement.textContent = '저장 중...';
             }
 
             const vocabUI = new window.MyVocabularyUI();
@@ -949,34 +959,71 @@ class WordLearningAppV3 {
             });
 
             if (success) {
+                console.log('Word saved successfully, updating button state');
+
                 // 저장 성공 시 버튼 상태 변경
                 btnElement.classList.add('saved');
 
                 if (buttonType === 'bookmark') {
-                    btnElement.querySelector('.bookmark-icon').textContent = '✓';
+                    const iconElement = btnElement.querySelector('.bookmark-icon');
+                    if (iconElement) iconElement.textContent = '✓';
                 } else {
-                    btnElement.querySelector('.save-btn-icon').textContent = '✓';
-                    btnElement.querySelector('.save-btn-text').textContent = '저장 완료!';
+                    const iconElement = btnElement.querySelector('.save-btn-icon');
+                    const textElement = btnElement.querySelector('.save-btn-text');
+                    if (iconElement) iconElement.textContent = '✓';
+                    if (textElement) textElement.textContent = '저장 완료!';
                 }
 
                 // 2초 후 원래 상태로 복원
                 setTimeout(() => {
+                    console.log('Restoring button to original state');
                     btnElement.classList.remove('saved');
 
+                    // 데이터 속성에서 원본 상태 복원
+                    const savedIcon = btnElement.getAttribute('data-original-icon');
+                    const savedText = btnElement.getAttribute('data-original-text');
+
                     if (buttonType === 'bookmark') {
-                        btnElement.querySelector('.bookmark-icon').textContent = originalIcon;
+                        const iconElement = btnElement.querySelector('.bookmark-icon');
+                        if (iconElement && savedIcon) {
+                            iconElement.textContent = savedIcon;
+                        }
                     } else {
-                        btnElement.querySelector('.save-btn-icon').textContent = originalIcon;
-                        btnElement.querySelector('.save-btn-text').textContent = originalText;
+                        const iconElement = btnElement.querySelector('.save-btn-icon');
+                        const textElement = btnElement.querySelector('.save-btn-text');
+                        if (iconElement && savedIcon) {
+                            iconElement.textContent = savedIcon;
+                        }
+                        if (textElement && savedText) {
+                            textElement.textContent = savedText;
+                        }
                     }
 
+                    // 데이터 속성 정리
+                    btnElement.removeAttribute('data-original-icon');
+                    btnElement.removeAttribute('data-original-text');
+
                     btnElement.disabled = false;
+                    console.log('Button restored successfully');
                 }, 2000);
             } else {
+                console.log('Word save failed, restoring button');
                 // 저장 실패 시 버튼 복원
-                if (buttonType === 'bottom') {
-                    btnElement.querySelector('.save-btn-text').textContent = originalText;
+                const savedIcon = btnElement.getAttribute('data-original-icon');
+                const savedText = btnElement.getAttribute('data-original-text');
+
+                if (buttonType === 'bookmark' && savedIcon) {
+                    const iconElement = btnElement.querySelector('.bookmark-icon');
+                    if (iconElement) iconElement.textContent = savedIcon;
+                } else if (buttonType === 'bottom' && savedText) {
+                    const textElement = btnElement.querySelector('.save-btn-text');
+                    if (textElement) textElement.textContent = savedText;
                 }
+
+                // 데이터 속성 정리
+                btnElement.removeAttribute('data-original-icon');
+                btnElement.removeAttribute('data-original-text');
+
                 btnElement.disabled = false;
             }
 
@@ -985,9 +1032,24 @@ class WordLearningAppV3 {
             alert('단어 저장 중 오류가 발생했습니다.');
 
             // 오류 시 버튼 복원
-            if (buttonType === 'bottom' && originalText) {
-                btnElement.querySelector('.save-btn-text').textContent = originalText;
+            console.log('Error occurred, restoring button');
+            const savedIcon = btnElement.getAttribute('data-original-icon');
+            const savedText = btnElement.getAttribute('data-original-text');
+
+            if (buttonType === 'bookmark' && savedIcon) {
+                const iconElement = btnElement.querySelector('.bookmark-icon');
+                if (iconElement) iconElement.textContent = savedIcon;
+            } else if (buttonType === 'bottom' && savedText) {
+                const iconElement = btnElement.querySelector('.save-btn-icon');
+                const textElement = btnElement.querySelector('.save-btn-text');
+                if (iconElement && savedIcon) iconElement.textContent = savedIcon;
+                if (textElement && savedText) textElement.textContent = savedText;
             }
+
+            // 데이터 속성 정리
+            btnElement.removeAttribute('data-original-icon');
+            btnElement.removeAttribute('data-original-text');
+
             btnElement.disabled = false;
         }
     }

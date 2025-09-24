@@ -60,23 +60,23 @@ class ParticleStudyApp {
      */
     setupDefaultData() {
         this.particleData = {
-            title: "기본 조사 활용",
-            description: "일본어의 주요 조사들과 그 기능을 학습합니다",
+            title: '기본 조사 활용',
+            description: '일본어의 주요 조사들과 그 기능을 학습합니다',
             particles: [
                 {
-                    particle: "は",
-                    reading: "wa",
-                    function: "주격 조사 (주제)",
-                    description: "문장의 주제나 화제를 나타낸다.",
+                    particle: 'は',
+                    reading: 'wa',
+                    function: '주격 조사 (주제)',
+                    description: '문장의 주제나 화제를 나타낸다.',
                     examples: [
                         {
-                            sentence: "私は学生です。",
-                            reading: "わたしはがくせいです。",
-                            translation: "나는 학생입니다."
-                        }
-                    ]
-                }
-            ]
+                            sentence: '私は学生です。',
+                            reading: 'わたしはがくせいです。',
+                            translation: '나는 학생입니다.',
+                        },
+                    ],
+                },
+            ],
         };
     }
 
@@ -112,20 +112,24 @@ class ParticleStudyApp {
         selectorContainer.innerHTML = `
             <div class="particle-selector">
                 <div class="selector-header">
-                    <h3>조사 선택</h3>
+                    <h3>활용 형태 선택</h3>
                     <button class="info-modal-btn" data-action="open-info-modal">
                         <span class="info-icon">ℹ️</span>
                         <span class="info-text">설명</span>
                     </button>
                 </div>
                 <div class="particle-buttons">
-                    ${this.particleData.particles.map((particle, index) => `
+                    ${this.particleData.particles
+                        .map(
+                            (particle, index) => `
                         <button class="particle-btn ${index === this.currentParticleIndex ? 'active' : ''}"
                                 data-index="${index}">
                             <div class="particle-char">${particle.particle}</div>
                             <div class="particle-reading">${particle.reading}</div>
                         </button>
-                    `).join('')}
+                    `
+                        )
+                        .join('')}
                 </div>
             </div>
         `;
@@ -158,14 +162,24 @@ class ParticleStudyApp {
                 <div class="particle-explanation">
                     <h4>기능 설명</h4>
                     <p>${currentParticle.description}</p>
-                    ${currentParticle.usage ? `<p class="usage-note"><strong>사용법:</strong> ${currentParticle.usage}</p>` : ''}
+                    ${
+                        currentParticle.usage
+                            ? `<p class="usage-note"><strong>사용법:</strong> ${currentParticle.usage}</p>`
+                            : ''
+                    }
                 </div>
 
                 <div class="example-display">
                     <h4>예문</h4>
                     <div class="example-card">
-                        <div class="example-sentence">${this.highlightParticle(currentExample.sentence, currentParticle.particle)}</div>
-                        <div class="example-reading">${this.highlightParticle(currentExample.reading, currentParticle.reading)}</div>
+                        <div class="example-sentence">${this.highlightParticle(
+                            currentExample.sentence,
+                            currentParticle.particle
+                        )}</div>
+                        <div class="example-reading">${this.highlightParticle(
+                            currentExample.reading,
+                            currentParticle.reading
+                        )}</div>
                         <div class="example-translation">${currentExample.translation}</div>
                         ${currentExample.note ? `<div class="example-note">💡 ${currentExample.note}</div>` : ''}
                     </div>
@@ -180,7 +194,6 @@ class ParticleStudyApp {
     highlightParticle(text, particle) {
         return text.replace(new RegExp(particle, 'g'), `<span class="highlighted-particle">${particle}</span>`);
     }
-
 
     /**
      * 이벤트 바인딩
@@ -209,14 +222,20 @@ class ParticleStudyApp {
             }
 
             // 정보 모달 버튼 이벤트
-            if (particleStudyScreen.contains(e.target) && e.target.closest('.info-modal-btn[data-action="open-info-modal"]')) {
+            if (
+                particleStudyScreen.contains(e.target) &&
+                e.target.closest('.info-modal-btn[data-action="open-info-modal"]')
+            ) {
                 console.log('Particle Study Info modal button clicked');
                 e.preventDefault();
                 this.openInfoModal();
             }
 
             // 모달 닫기 버튼 이벤트
-            if (particleStudyScreen.contains(e.target) && e.target.closest('.modal-close-btn[data-action="close-info-modal"]')) {
+            if (
+                particleStudyScreen.contains(e.target) &&
+                e.target.closest('.modal-close-btn[data-action="close-info-modal"]')
+            ) {
                 console.log('Particle Study Modal close button clicked');
                 e.preventDefault();
                 this.closeInfoModal();
@@ -254,9 +273,9 @@ class ParticleStudyApp {
     updateParticleSelector() {
         const particleBtns = document.querySelectorAll('.particle-btn');
         particleBtns.forEach((btn, index) => {
-            btn.classList.remove('show');
+            btn.classList.remove('active');
             if (index === this.currentParticleIndex) {
-                btn.classList.add('show');
+                btn.classList.add('active');
             }
         });
     }
@@ -314,68 +333,80 @@ class ParticleStudyApp {
         if (!particleDisplay) return;
 
         // 터치 시작
-        particleDisplay.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-            isSwipingHorizontally = false;
-            isSwiping = false;
-        }, { passive: true });
+        particleDisplay.addEventListener(
+            'touchstart',
+            (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwipingHorizontally = false;
+                isSwiping = false;
+            },
+            { passive: true }
+        );
 
         // 터치 이동
-        particleDisplay.addEventListener('touchmove', (e) => {
-            if (!startX || !startY) return;
+        particleDisplay.addEventListener(
+            'touchmove',
+            (e) => {
+                if (!startX || !startY) return;
 
-            const currentX = e.touches[0].clientX;
-            const currentY = e.touches[0].clientY;
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
 
-            const diffX = Math.abs(currentX - startX);
-            const diffY = Math.abs(currentY - startY);
+                const diffX = Math.abs(currentX - startX);
+                const diffY = Math.abs(currentY - startY);
 
-            // 수평 스와이프 감지
-            if (diffX > diffY && diffX > 10) {
-                isSwipingHorizontally = true;
-                isSwiping = true;
-                e.preventDefault();
-            } else if (diffY > 10) {
-                // 수직 스크롤 감지
-                isSwiping = true;
-            }
-        }, { passive: false });
+                // 수평 스와이프 감지
+                if (diffX > diffY && diffX > 10) {
+                    isSwipingHorizontally = true;
+                    isSwiping = true;
+                    e.preventDefault();
+                } else if (diffY > 10) {
+                    // 수직 스크롤 감지
+                    isSwiping = true;
+                }
+            },
+            { passive: false }
+        );
 
         // 터치 종료
-        particleDisplay.addEventListener('touchend', (e) => {
-            if (!startX || !startY) return;
+        particleDisplay.addEventListener(
+            'touchend',
+            (e) => {
+                if (!startX || !startY) return;
 
-            if (isSwipingHorizontally) {
-                const endX = e.changedTouches[0].clientX;
-                const diffX = startX - endX;
+                if (isSwipingHorizontally) {
+                    const endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
 
-                // 최소 스와이프 거리 (뒤로가기만)
-                if (Math.abs(diffX) > 50 && diffX < 0) {
-                    // 왼쪽에서 오른쪽 스와이프 (뒤로가기)
-                    window.threeStepNavigation?.showScreen('sub');
+                    // 최소 스와이프 거리 (뒤로가기만)
+                    if (Math.abs(diffX) > 50 && diffX < 0) {
+                        // 왼쪽에서 오른쪽 스와이프 (뒤로가기)
+                        window.threeStepNavigation?.showScreen('sub');
+                    }
+                } else if (!isSwiping) {
+                    // 단순 터치 (스와이프가 아닌 경우) - 터치 위치에 따라 이전/다음
+                    const endX = e.changedTouches[0].clientX;
+                    const displayRect = particleDisplay.getBoundingClientRect();
+                    const centerX = displayRect.left + displayRect.width / 2;
+
+                    if (endX < centerX) {
+                        // 왼쪽 터치 - 이전 예문
+                        this.showPreviousExample();
+                    } else {
+                        // 오른쪽 터치 - 다음 예문
+                        this.showNextExample();
+                    }
                 }
-            } else if (!isSwiping) {
-                // 단순 터치 (스와이프가 아닌 경우) - 터치 위치에 따라 이전/다음
-                const endX = e.changedTouches[0].clientX;
-                const displayRect = particleDisplay.getBoundingClientRect();
-                const centerX = displayRect.left + displayRect.width / 2;
 
-                if (endX < centerX) {
-                    // 왼쪽 터치 - 이전 예문
-                    this.showPreviousExample();
-                } else {
-                    // 오른쪽 터치 - 다음 예문
-                    this.showNextExample();
-                }
-            }
-
-            // 초기화
-            startX = 0;
-            startY = 0;
-            isSwipingHorizontally = false;
-            isSwiping = false;
-        }, { passive: true });
+                // 초기화
+                startX = 0;
+                startY = 0;
+                isSwipingHorizontally = false;
+                isSwiping = false;
+            },
+            { passive: true }
+        );
     }
 
     /**

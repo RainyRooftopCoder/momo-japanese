@@ -265,7 +265,7 @@ body::before {
     -webkit-backdrop-filter: var(--glass-backdrop);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    box-shadow: 0 8px 32px rgba(105, 106, 128, 0.37);
     padding: 2.5rem 2rem;
     display: flex;
     flex-direction: column;
@@ -284,12 +284,6 @@ body::before {
     right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-}
-
-.word-card:hover {
-    /* 터치/호버 시 확대 효과 제거 */
-    box-shadow: 0 16px 56px rgba(31, 38, 135, 0.5);
-    background: var(--glass-card-hover);
 }
 
 /* Upper Section - Word Info */
@@ -355,7 +349,7 @@ body::before {
     transition: all 0.3s ease;
 }
 
-.bookmark-shape::after {
+/* .bookmark-shape::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -366,7 +360,7 @@ body::before {
     border-right: 17.5px solid transparent;
     border-top: 15px solid;
     border-image: var(--point-gradient) 1;
-}
+} */
 
 .bookmark-shape::before {
     content: '';
@@ -829,6 +823,7 @@ body::before {
     padding-left: 2rem;
     padding-right: 2rem;
     justify-content: center;
+    overflow-y: auto;
 }
 
 .example-block {
@@ -2152,7 +2147,7 @@ body::before {
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     padding: 40px 20px;
-    box-shadow: var(--glass-shadow);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2), 0 15px 40px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2234,7 +2229,7 @@ body::before {
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
     padding: 20px;
-    box-shadow: var(--glass-shadow);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2), 0 15px 40px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
 }
 

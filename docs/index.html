@@ -42,19 +42,19 @@
 
         <!-- 접기/펼치기 기능 -->
         <script>
-        function toggleSection(sectionId) {
-            const section = document.querySelector('.' + sectionId).closest('.collapsible-section');
-            const content = document.getElementById(sectionId + '-content');
-            const icon = section.querySelector('.toggle-icon');
+            function toggleSection(sectionId) {
+                const section = document.querySelector('.' + sectionId).closest('.collapsible-section');
+                const content = document.getElementById(sectionId + '-content');
+                const icon = section.querySelector('.toggle-icon');
 
-            section.classList.toggle('collapsed');
+                section.classList.toggle('collapsed');
 
-            if (section.classList.contains('collapsed')) {
-                icon.textContent = '▶';
-            } else {
-                icon.textContent = '▼';
+                if (section.classList.contains('collapsed')) {
+                    icon.textContent = '▶';
+                } else {
+                    icon.textContent = '▼';
+                }
             }
-        }
         </script>
     </head>
     <body>
@@ -73,34 +73,12 @@
                             <p class="welcome-subtitle">오늘도 일본어 공부를 시작해보세요</p>
                         </section>
 
-                        <!-- 오늘의 학습 현황 -->
-                        <section class="today-stats collapsible-section">
-                            <div class="section-header" onclick="toggleSection('today-stats')">
-                                <h2 class="section-title">📊 오늘의 학습 현황</h2>
-                                <span class="toggle-icon">▼</span>
-                            </div>
-                            <div class="section-content" id="today-stats-content">
-                                <div class="stats-list">
-                                    <div class="stat-item">
-                                        <div class="stat-header">
-                                            <span class="stat-label">📚 학습한 단어</span>
-                                            <span class="stat-value"><span id="today-words">0</span> / 30개</span>
-                                        </div>
-                                        <div class="progress-bar">
-                                            <div class="progress-fill words-progress" style="width: 0%"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="stat-item">
-                                        <div class="stat-header">
-                                            <span class="stat-label">✅ 연습 완료</span>
-                                            <span class="stat-value"><span id="today-practice">0</span> / 5회</span>
-                                        </div>
-                                        <div class="progress-bar">
-                                            <div class="progress-fill practice-progress" style="width: 0%"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- 최근 획득 뱃지 -->
+                        <section class="recent-badges">
+                            <h2 class="section-title">🏆 최근 획득 뱃지</h2>
+                            <div class="badges-container" id="recent-badges">
+                                <!-- 뱃지들이 여기에 표시됩니다 -->
+                                <div class="no-badges">아직 획득한 뱃지가 없습니다</div>
                             </div>
                         </section>
 
@@ -108,7 +86,7 @@
                         <section class="weekly-chart collapsible-section">
                             <div class="section-header" onclick="toggleSection('weekly-chart')">
                                 <h2 class="section-title">📈 주간 학습 현황</h2>
-                                <span class="toggle-icon">▼</span>
+                                <!-- <span class="toggle-icon">▼</span> -->
                             </div>
                             <div class="section-content" id="weekly-chart-content">
                                 <div class="chart-container" id="weekly-chart">
@@ -119,29 +97,20 @@
 
                         <!-- 빠른 시작 -->
                         <section class="quick-start">
-                            <h2 class="section-title">🚀 빠른 시작</h2>
+                            <!-- <h2 class="section-title">🚀 빠른 시작</h2> -->
                             <div class="quick-actions">
                                 <button class="quick-btn" data-action="random-study">
                                     <div class="quick-icon">📚</div>
-                                    <span>단어 학습</span>
+                                    <span>학습</span>
                                 </button>
                                 <button class="quick-btn" data-action="quiz">
                                     <div class="quick-icon">🎯</div>
-                                    <span>퀴즈</span>
+                                    <span>연습</span>
                                 </button>
                                 <button class="quick-btn" data-action="my-vocabulary">
                                     <div class="quick-icon">📖</div>
                                     <span>나의 단어장</span>
                                 </button>
-                            </div>
-                        </section>
-
-                        <!-- 최근 획득 뱃지 -->
-                        <section class="recent-badges">
-                            <h2 class="section-title">🏆 최근 획득 뱃지</h2>
-                            <div class="badges-container" id="recent-badges">
-                                <!-- 뱃지들이 여기에 표시됩니다 -->
-                                <div class="no-badges">아직 획득한 뱃지가 없습니다</div>
                             </div>
                         </section>
                     </div>
@@ -207,7 +176,9 @@
                         <div class="search-container">
                             <input type="text" id="search-input" class="search-input" placeholder="단어 검색..." />
                             <button class="search-btn" id="search-execute-btn">
-                                <span class="nav-icon"><img src="./assets/icons/search_black_icon.png" alt="검색" /></span>
+                                <span class="nav-icon"
+                                    ><img src="./assets/icons/search_black_icon.png" alt="검색"
+                                /></span>
                             </button>
                         </div>
                     </div>

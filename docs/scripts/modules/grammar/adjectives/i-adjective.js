@@ -276,9 +276,9 @@ class IAdjectiveApp {
     updateFormSelector() {
         const formBtns = document.querySelectorAll('.form-btn');
         formBtns.forEach(btn => {
-            btn.classList.remove('show');
+            btn.classList.remove('active');
             if (btn.dataset.form === this.selectedForm) {
-                btn.classList.add('show');
+                btn.classList.add('active');
             }
         });
     }

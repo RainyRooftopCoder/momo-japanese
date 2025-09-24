@@ -1,67 +1,45 @@
 <div id="homeScreen" class="screen">
-<div class="home-container">
-    <!-- 상단 인사말 -->
-    <section class="welcome-section">
-        <h1 class="welcome-title">안녕하세요! 🌸</h1>
-        <p class="welcome-subtitle">오늘도 일본어 공부를 시작해보세요</p>
-    </section>
+    <div class="home-container">
+        <!-- 상단 인사말 -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">안녕하세요! 🌸</h1>
+            <p class="welcome-subtitle">오늘도 일본어 공부를 시작해보세요</p>
+        </section>
 
-    <!-- 오늘의 학습 현황 -->
-    <section class="today-stats">
-        <h2 class="section-title">📊 오늘의 학습 현황</h2>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number" id="today-words">0</div>
-                <div class="stat-label">학습한 단어</div>
-                <div class="stat-progress">목표: 30개</div>
+        <!-- 주간 학습 그래프 -->
+        <section class="weekly-chart">
+            <h2 class="section-title">📈 주간 학습 현황</h2>
+            <div class="chart-container" id="weekly-chart">
+                <!-- 차트가 여기에 렌더링됩니다 -->
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="today-practice">0</div>
-                <div class="stat-label">연습 완료</div>
-                <div class="stat-progress">목표: 5회</div>
+        </section>
+
+        <!-- 빠른 시작 -->
+        <section class="quick-start">
+            <!-- <h2 class="section-title">🚀 빠른 시작</h2> -->
+            <div class="quick-actions">
+                <button class="quick-btn" data-action="random-study">
+                    <div class="quick-icon">📚</div>
+                    <span>단어 학습</span>
+                </button>
+                <button class="quick-btn" data-action="quiz">
+                    <div class="quick-icon">🎯</div>
+                    <span>퀴즈</span>
+                </button>
+                <button class="quick-btn" data-action="review">
+                    <div class="quick-icon">🔄</div>
+                    <span>복습</span>
+                </button>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="streak-days">0</div>
-                <div class="stat-label">연속 학습</div>
-                <div class="stat-progress">🔥 연속 기록</div>
+        </section>
+
+        <!-- 최근 획득 뱃지 -->
+        <section class="recent-badges">
+            <h2 class="section-title">🏆 최근 획득 뱃지</h2>
+            <div class="badges-container" id="recent-badges">
+                <!-- 뱃지들이 여기에 표시됩니다 -->
+                <div class="no-badges">아직 획득한 뱃지가 없습니다</div>
             </div>
-        </div>
-    </section>
-
-    <!-- 주간 학습 그래프 -->
-    <section class="weekly-chart">
-        <h2 class="section-title">📈 주간 학습 현황</h2>
-        <div class="chart-container" id="weekly-chart">
-            <!-- 차트가 여기에 렌더링됩니다 -->
-        </div>
-    </section>
-
-    <!-- 빠른 시작 -->
-    <section class="quick-start">
-        <h2 class="section-title">🚀 빠른 시작</h2>
-        <div class="quick-actions">
-            <button class="quick-btn" data-action="random-study">
-                <div class="quick-icon">📚</div>
-                <span>단어 학습</span>
-            </button>
-            <button class="quick-btn" data-action="quiz">
-                <div class="quick-icon">🎯</div>
-                <span>퀴즈</span>
-            </button>
-            <button class="quick-btn" data-action="review">
-                <div class="quick-icon">🔄</div>
-                <span>복습</span>
-            </button>
-        </div>
-    </section>
-
-    <!-- 최근 획득 뱃지 -->
-    <section class="recent-badges">
-        <h2 class="section-title">🏆 최근 획득 뱃지</h2>
-        <div class="badges-container" id="recent-badges">
-            <!-- 뱃지들이 여기에 표시됩니다 -->
-            <div class="no-badges">아직 획득한 뱃지가 없습니다</div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 </div>
