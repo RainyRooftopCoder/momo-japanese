@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="./styles/components/navigation.css" />
         <link rel="stylesheet" href="./styles/components/modal.css" />
         <link rel="stylesheet" href="./styles/pages/home.css" />
+        <link rel="stylesheet" href="./styles/pages/practice.css" />
 
         <!-- Core JavaScript 파일들 -->
         <script defer src="./scripts/core/database.js"></script>
@@ -39,6 +40,7 @@
         <script defer src="./scripts/modules/ui/navigation.js"></script>
         <script defer src="./scripts/modules/ui/home-dashboard.js"></script>
         <script defer src="./scripts/modules/ui/my-vocabulary.js"></script>
+        <script defer src="./scripts/modules/ui/practice.js"></script>
 
         <!-- 접기/펼치기 기능 -->
         <script>
@@ -103,7 +105,7 @@
                                     <div class="quick-icon">📚</div>
                                     <span>학습</span>
                                 </button>
-                                <button class="quick-btn" data-action="quiz">
+                                <button class="quick-btn" data-action="practice">
                                     <div class="quick-icon">🎯</div>
                                     <span>연습</span>
                                 </button>
@@ -163,6 +165,14 @@
                         <div class="vocabulary-list" id="vocabularyList">
                             <!-- 동적으로 생성됨 -->
                         </div>
+                    </div>
+                </div>
+
+                <!-- 연습 화면 -->
+                <div class="screen practice-screen" id="practiceScreen">
+                    <!-- 연습 컨테이너 (practice.html 내용이 여기에 로드됨) -->
+                    <div class="practice-container">
+                        <!-- 연습 내용이 JavaScript로 동적으로 생성됨 -->
                     </div>
                 </div>
 

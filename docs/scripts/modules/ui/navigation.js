@@ -14,6 +14,7 @@ class ThreeStepNavigation {
             character: 'characterScreen',
             searchResults: 'searchResultsScreen',
             myVocabulary: 'myVocabularyScreen',
+            practice: 'practiceScreen',
         };
         this.isInitialized = false;
 
@@ -224,12 +225,19 @@ class ThreeStepNavigation {
             btn.setAttribute('data-bound', 'true');
         });
 
-        // 뒤로가기 버튼들 (backToSubBtn만 유지)
+        // 뒤로가기 버튼들
         const backToSubBtn = document.getElementById('backToSubBtn');
+        const vocabBackBtn = document.getElementById('vocabBackBtn');
 
         if (backToSubBtn) {
             backToSubBtn.addEventListener('click', () => {
                 this.showScreen('sub');
+            });
+        }
+
+        if (vocabBackBtn) {
+            vocabBackBtn.addEventListener('click', () => {
+                this.showScreen('home');
             });
         }
 
@@ -263,6 +271,14 @@ class ThreeStepNavigation {
                     window.homeDashboard.handleQuickAction('quiz');
                 } else {
                     this.showToast('🎯 퀴즈 기능은 추후 업데이트 예정입니다!');
+                }
+                break;
+            case 'practice':
+                // 연습 화면으로 이동
+                this.showScreen('practice');
+                // 연습 화면 초기화
+                if (window.initPracticeScreen) {
+                    setTimeout(() => window.initPracticeScreen(), 100);
                 }
                 break;
             case 'review':

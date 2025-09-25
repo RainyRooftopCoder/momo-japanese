@@ -22,6 +22,11 @@ class HomeDashboard {
         const today = new Date().toISOString().split('T')[0];
         const demoData = {
             weekly: [8, 12, 5, 15, 10, 7, 15], // 최근 7일 (월-일)
+            today: {
+                words: 0,
+                practice: 0,
+                streak: 0
+            }
         };
 
         const saved = localStorage.getItem('studyData');
@@ -31,7 +36,16 @@ class HomeDashboard {
             return demoData;
         }
 
-        return JSON.parse(saved);
+        const data = JSON.parse(saved);
+        // today 데이터가 없는 경우 기본값 추가
+        if (!data.today) {
+            data.today = {
+                words: 0,
+                practice: 0,
+                streak: 0
+            };
+        }
+        return data;
     }
 
     // 뱃지 데이터 가져오기
@@ -105,6 +119,10 @@ class HomeDashboard {
                 // 퀴즈 모드로 이동
                 this.showQuizOptions();
                 break;
+            case 'review':
+                // 연습 모드로 이동
+                this.startReviewMode();
+                break;
             case 'my-vocabulary':
                 // 나의 단어장으로 이동
                 this.showMyVocabulary();
@@ -120,8 +138,17 @@ class HomeDashboard {
 
     // 복습 모드 시작
     startReviewMode() {
-        // 간단한 알림으로 구현
-        alert('복습 기능은 곧 추가될 예정입니다! 🔄');
+        console.log('Starting review mode - navigating to practice screen');
+        if (window.navigation) {
+            window.navigation.showScreen('practice');
+            // 연습 화면 초기화
+            if (window.initPracticeScreen) {
+                setTimeout(() => window.initPracticeScreen(), 100);
+            }
+        } else {
+            console.error('Navigation not available');
+            alert('연습 기능을 로드할 수 없습니다.');
+        }
     }
 
     // 나의 단어장 표시 (다중 단어장 시스템)
@@ -165,6 +192,23 @@ class HomeDashboard {
         `
             )
             .join('');
+    }
+
+    // 오늘의 학습 통계 업데이트
+    updateTodayStats() {
+        // 홈 화면에 오늘의 통계를 표시하는 요소가 있다면 여기서 업데이트
+        // 현재는 콘솔에 로그만 출력
+        console.log('Today stats updated:', this.studyData.today);
+
+        // 향후 오늘의 통계를 표시하는 UI 요소가 추가되면 여기서 업데이트
+        const todayStatsElement = document.getElementById('today-stats');
+        if (todayStatsElement) {
+            todayStatsElement.innerHTML = `
+                <div>오늘 학습한 단어: ${this.studyData.today.words}개</div>
+                <div>오늘 연습 횟수: ${this.studyData.today.practice}회</div>
+                <div>연속 학습 일수: ${this.studyData.today.streak}일</div>
+            `;
+        }
     }
 
     // 학습 진행 시 데이터 업데이트
