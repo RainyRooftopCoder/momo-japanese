@@ -1357,8 +1357,10 @@ body::before {
     align-items: center;
     justify-content: center;
     width: 14%;
-    backdrop-filter: var(--glass-backdrop);
-    -webkit-backdrop-filter: var(--glass-backdrop);
+    background: rgba(255, 255, 255, 0.15); /* 더 투명하게 */
+    backdrop-filter: blur(8px);
+    /* backdrop-filter: var(--glass-backdrop); */
+    /* -webkit-backdrop-filter: var(--glass-backdrop); */
     border: none !important;
     border-radius: 4rem;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
