@@ -15,6 +15,7 @@ class ThreeStepNavigation {
             searchResults: 'searchResultsScreen',
             myVocabulary: 'myVocabularyScreen',
             practice: 'practiceScreen',
+            settings: 'settingsScreen',
         };
         this.isInitialized = false;
 
@@ -83,7 +84,7 @@ class ThreeStepNavigation {
                         console.error(`Element ${elementId} not found after ${maxAttempts} attempts`);
                         console.log('Available elements with IDs:');
                         const allElements = document.querySelectorAll('[id]');
-                        allElements.forEach(el => console.log(`- ${el.id}`));
+                        allElements.forEach((el) => console.log(`- ${el.id}`));
                         // 요소를 찾지 못해도 콜백 실행 (fallback)
                         callback();
                     }
@@ -106,7 +107,13 @@ class ThreeStepNavigation {
         await renderTemplate('header-container', 'components/header');
 
         // 화면 템플릿들 렌더링
-        const templates = ['home', 'main-category-screen', 'sub-category-screen', 'word-screen', 'search-results-screen'];
+        const templates = [
+            'home',
+            'main-category-screen',
+            'sub-category-screen',
+            'word-screen',
+            'search-results-screen',
+        ];
 
         let combinedHTML = '';
         for (const template of templates) {
@@ -127,7 +134,7 @@ class ThreeStepNavigation {
         const existingScreenIds = ['homeScreen', 'mainCategoryScreen', 'subCategoryScreen'];
 
         // 기존에 있는 화면들은 템플릿에서 제거
-        existingScreenIds.forEach(screenId => {
+        existingScreenIds.forEach((screenId) => {
             const existingScreen = document.getElementById(screenId);
             const newScreen = tempContainer.querySelector(`#${screenId}`);
 
@@ -139,7 +146,7 @@ class ThreeStepNavigation {
 
         // 나머지 새로운 화면들만 추가
         const children = Array.from(tempContainer.children);
-        children.forEach(child => {
+        children.forEach((child) => {
             console.log('Adding screen:', child.id);
             mainContent.appendChild(child);
         });
@@ -338,71 +345,87 @@ class ThreeStepNavigation {
         console.log(`Binding swipe back events to ${screenId} -> ${targetScreen}`);
 
         // 터치 시작
-        screen.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-            isSwipingHorizontally = false;
-        }, { passive: true });
+        screen.addEventListener(
+            'touchstart',
+            (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
 
         // 터치 이동
-        screen.addEventListener('touchmove', (e) => {
-            if (!startX || !startY) return;
+        screen.addEventListener(
+            'touchmove',
+            (e) => {
+                if (!startX || !startY) return;
 
-            const currentX = e.touches[0].clientX;
-            const currentY = e.touches[0].clientY;
-            const diffX = currentX - startX;
-            const diffY = currentY - startY;
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const diffX = currentX - startX;
+                const diffY = currentY - startY;
 
-            // 왼쪽에서 오른쪽 스와이프만 허용 (뒤로가기)
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10 && diffX > 0) {
-                isSwipingHorizontally = true;
-                e.preventDefault();
+                // 왼쪽에서 오른쪽 스와이프만 허용 (뒤로가기)
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10 && diffX > 0) {
+                    isSwipingHorizontally = true;
+                    e.preventDefault();
 
-                // 시각적 피드백
-                const movePercent = Math.min(diffX / 150, 0.3);
-                const opacity = 1 - movePercent;
+                    // 시각적 피드백
+                    const movePercent = Math.min(diffX / 150, 0.3);
+                    const opacity = 1 - movePercent;
 
-                screen.style.transform = `translateX(${diffX * 0.2}px)`;
-                screen.style.opacity = opacity;
-            }
-        }, { passive: false });
+                    screen.style.transform = `translateX(${diffX * 0.2}px)`;
+                    screen.style.opacity = opacity;
+                }
+            },
+            { passive: false }
+        );
 
         // 터치 종료
-        screen.addEventListener('touchend', (e) => {
-            if (!startX || !startY) return;
+        screen.addEventListener(
+            'touchend',
+            (e) => {
+                if (!startX || !startY) return;
 
-            const endX = e.changedTouches[0].clientX;
-            const diffX = endX - startX;
+                const endX = e.changedTouches[0].clientX;
+                const diffX = endX - startX;
 
-            // 화면 원래 상태로 복원
-            screen.style.transform = '';
-            screen.style.opacity = '';
-            screen.style.transition = 'all 0.3s ease';
+                // 화면 원래 상태로 복원
+                screen.style.transform = '';
+                screen.style.opacity = '';
+                screen.style.transition = 'all 0.3s ease';
 
-            setTimeout(() => {
-                screen.style.transition = '';
-            }, 300);
+                setTimeout(() => {
+                    screen.style.transition = '';
+                }, 300);
 
-            // 스와이프 처리 (왼쪽→오른쪽만)
-            if (isSwipingHorizontally && diffX > 50) {
-                console.log(`Swiping right on ${screenId} - going to ${targetScreen}`);
-                this.showScreen(targetScreen);
-            }
+                // 스와이프 처리 (왼쪽→오른쪽만)
+                if (isSwipingHorizontally && diffX > 50) {
+                    console.log(`Swiping right on ${screenId} - going to ${targetScreen}`);
+                    this.showScreen(targetScreen);
+                }
 
-            // 초기화
-            startX = 0;
-            startY = 0;
-            isSwipingHorizontally = false;
-        }, { passive: true });
+                // 초기화
+                startX = 0;
+                startY = 0;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
 
         // 터치 취소
-        screen.addEventListener('touchcancel', (e) => {
-            screen.style.transform = '';
-            screen.style.opacity = '';
-            startX = 0;
-            startY = 0;
-            isSwipingHorizontally = false;
-        }, { passive: true });
+        screen.addEventListener(
+            'touchcancel',
+            (e) => {
+                screen.style.transform = '';
+                screen.style.opacity = '';
+                startX = 0;
+                startY = 0;
+                isSwipingHorizontally = false;
+            },
+            { passive: true }
+        );
 
         // 마우스 이벤트도 추가 (데스크탑 테스트용)
         let mouseStartX = 0;
@@ -632,11 +655,14 @@ class ThreeStepNavigation {
         console.log(`Looking for screen: ${screenName} -> ${targetScreenId}`);
         console.log(`Target screen found:`, !!targetScreen);
         if (!targetScreen) {
-            console.error(`Available screens:`, Object.keys(this.screens).map(key => ({
-                key,
-                id: this.screens[key],
-                exists: !!document.getElementById(this.screens[key])
-            })));
+            console.error(
+                `Available screens:`,
+                Object.keys(this.screens).map((key) => ({
+                    key,
+                    id: this.screens[key],
+                    exists: !!document.getElementById(this.screens[key]),
+                }))
+            );
         }
 
         if (targetScreen) {
@@ -669,6 +695,15 @@ class ThreeStepNavigation {
             setTimeout(() => {
                 this.bindSearchSwipeEvents();
             }, 100);
+        }
+
+        // 설정 화면인 경우 초기화 및 스와이프 이벤트 바인딩
+        if (screenName === 'settings') {
+            setTimeout(() => {
+                this.initializeSettingsDirectly();
+                // 스와이프 뒤로가기 이벤트 바인딩
+                this.bindSettingsSwipeEvents();
+            }, 200);
         }
 
         console.log(`Switched to screen: ${screenName}`);
@@ -728,6 +763,9 @@ class ThreeStepNavigation {
         } else if (screenName === 'character') {
             // 문자 학습 화면: 선택된 문자 타입
             title = this.currentSubCategory || '일본어 문자';
+        } else if (screenName === 'settings') {
+            // 설정 화면
+            title = '⚙️ 설정';
         }
 
         appTitle.textContent = title;
@@ -1211,7 +1249,6 @@ class ThreeStepNavigation {
 
             // 뒤로가기 스와이프 이벤트 바인딩
             this.bindParticleSwipeEvents(characterScreen);
-
         } catch (error) {
             console.error('Error loading particle screen:', error);
         }
@@ -2450,7 +2487,7 @@ class ThreeStepNavigation {
         this.showScreen('sub');
 
         // DOM이 업데이트될 시간을 주기 위해 약간 대기
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 100));
 
         const subCategoryButtons = document.getElementById('subCategoryButtons');
 
@@ -2458,7 +2495,10 @@ class ThreeStepNavigation {
 
         if (!subCategoryButtons) {
             console.error('Sub category buttons not found, available elements:');
-            console.log('Available elements with IDs:', Array.from(document.querySelectorAll('[id]')).map(el => el.id));
+            console.log(
+                'Available elements with IDs:',
+                Array.from(document.querySelectorAll('[id]')).map((el) => el.id)
+            );
             return;
         }
 
@@ -2692,11 +2732,11 @@ class ThreeStepNavigation {
             });
         }
 
-        // 검색 버튼 (중앙)
+        // 검색 버튼 (중앙) - 설정 화면으로 연결
         const searchBtn = document.getElementById('search-btn');
         if (searchBtn) {
             searchBtn.addEventListener('click', () => {
-                this.showSearchModal();
+                this.showScreen('settings');
                 this.updateNavButtons('search');
             });
         }
@@ -2798,6 +2838,730 @@ class ThreeStepNavigation {
                 toast.remove();
             }
         }, 3000);
+    }
+
+    /**
+     * 설정 화면 직접 초기화
+     */
+    initializeSettingsDirectly() {
+        console.log('Initializing settings directly...');
+
+        // 설정 로드
+        const loadSettings = () => {
+            const saved = localStorage.getItem('appSettings');
+            const defaults = {
+                chartDisplayMode: 'count',
+                badgeNotifications: true,
+                speechRate: 1.0,
+                lastUpdateDate: new Date().toISOString().split('T')[0],
+            };
+            if (!saved) {
+                localStorage.setItem('appSettings', JSON.stringify(defaults));
+                return defaults;
+            }
+            return { ...defaults, ...JSON.parse(saved) };
+        };
+
+        // 설정 저장
+        const saveSettings = (settings) => {
+            localStorage.setItem('appSettings', JSON.stringify(settings));
+        };
+
+        // 현재 설정 로드
+        const currentSettings = loadSettings();
+
+        // UI 업데이트
+        const chartModeSelect = document.getElementById('chart-display-mode');
+        if (chartModeSelect) {
+            chartModeSelect.value = currentSettings.chartDisplayMode;
+        }
+
+        const badgeToggle = document.getElementById('badge-notifications');
+        if (badgeToggle) {
+            badgeToggle.checked = currentSettings.badgeNotifications;
+        }
+
+        const speechRateSlider = document.getElementById('speech-rate');
+        const speechRateValue = document.getElementById('speech-rate-value');
+        if (speechRateSlider && speechRateValue) {
+            speechRateSlider.value = currentSettings.speechRate;
+            speechRateValue.textContent = currentSettings.speechRate.toFixed(1) + 'x';
+        }
+
+        // 이벤트 바인딩
+        this.bindSettingsEvents(currentSettings, saveSettings);
+        console.log('Settings initialized directly with events bound');
+    }
+
+    /**
+     * 설정 이벤트 바인딩
+     */
+    bindSettingsEvents(settings, saveSettings) {
+        console.log('Binding settings events...');
+
+        // 기존 이벤트 리스너 제거를 위해 새로운 이벤트 핸들러 생성
+        const buttons = ['reset-learning-data', 'reset-badge-data', 'reset-all-data', 'show-data-info'];
+
+        buttons.forEach((buttonId) => {
+            const btn = document.getElementById(buttonId);
+            if (btn) {
+                // 기존 이벤트 리스너 제거
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
+                console.log(`Button ${buttonId} found and cloned`);
+            } else {
+                console.log(`Button ${buttonId} not found`);
+            }
+        });
+
+        // 통계 표시 방식 변경
+        const chartModeSelect = document.getElementById('chart-display-mode');
+        if (chartModeSelect) {
+            const newSelect = chartModeSelect.cloneNode(true);
+            chartModeSelect.parentNode.replaceChild(newSelect, chartModeSelect);
+            newSelect.addEventListener('change', (e) => {
+                console.log('Chart mode changed to:', e.target.value);
+                settings.chartDisplayMode = e.target.value;
+                saveSettings(settings);
+                if (window.homeDashboard) {
+                    window.homeDashboard.renderWeeklyChart();
+                }
+                this.showToast('차트 표시 방식이 변경되었습니다');
+            });
+        }
+
+        // 뱃지 알림 토글
+        const badgeToggle = document.getElementById('badge-notifications');
+        if (badgeToggle) {
+            const newToggle = badgeToggle.cloneNode(true);
+            badgeToggle.parentNode.replaceChild(newToggle, badgeToggle);
+            newToggle.addEventListener('change', (e) => {
+                console.log('Badge notifications changed to:', e.target.checked);
+                settings.badgeNotifications = e.target.checked;
+                saveSettings(settings);
+                this.showToast(e.target.checked ? '뱃지 알림이 켜졌습니다' : '뱃지 알림이 꺼졌습니다');
+            });
+        }
+
+        // 발음 속도 슬라이더
+        const speechRateSlider = document.getElementById('speech-rate');
+        const speechRateValue = document.getElementById('speech-rate-value');
+        if (speechRateSlider && speechRateValue) {
+            const newSlider = speechRateSlider.cloneNode(true);
+            speechRateSlider.parentNode.replaceChild(newSlider, speechRateSlider);
+            newSlider.addEventListener('input', (e) => {
+                const rate = parseFloat(e.target.value);
+                speechRateValue.textContent = rate.toFixed(1) + 'x';
+                settings.speechRate = rate;
+                saveSettings(settings);
+                window.globalSpeechRate = rate;
+                console.log('Speech rate changed to:', rate);
+            });
+        }
+
+        // 학습 데이터 리셋
+        const resetLearningBtn = document.getElementById('reset-learning-data');
+        if (resetLearningBtn) {
+            resetLearningBtn.addEventListener('click', (e) => {
+                console.log('Reset learning data button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                if (confirm('정말로 학습 데이터를 초기화하시겠습니까?\n주간 학습 현황이 모두 삭제됩니다.')) {
+                    console.log('Resetting learning data...');
+                    localStorage.removeItem('learningActivity');
+                    if (window.homeDashboard) {
+                        window.homeDashboard.studyData = window.homeDashboard.getStudyData();
+                        window.homeDashboard.renderWeeklyChart();
+                    }
+                    this.showToast('학습 데이터가 초기화되었습니다');
+                    console.log('Learning data reset complete');
+                }
+            });
+        }
+
+        // 뱃지 데이터 초기화
+        const resetBadgeBtn = document.getElementById('reset-badge-data');
+        if (resetBadgeBtn) {
+            resetBadgeBtn.addEventListener('click', (e) => {
+                console.log('Reset badge data button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                if (confirm('정말로 뱃지 데이터를 초기화하시겠습니까?\n획득한 모든 뱃지가 삭제됩니다.')) {
+                    console.log('Resetting badge data...');
+                    localStorage.removeItem('badges');
+                    if (window.homeDashboard) {
+                        window.homeDashboard.badges = window.homeDashboard.getBadges();
+                        window.homeDashboard.renderRecentBadges();
+                    }
+                    this.showToast('뱃지 데이터가 초기화되었습니다');
+                    console.log('Badge data reset complete');
+                }
+            });
+        }
+
+        // 전체 데이터 초기화
+        const resetAllBtn = document.getElementById('reset-all-data');
+        if (resetAllBtn) {
+            resetAllBtn.addEventListener('click', (e) => {
+                console.log('Reset all data button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                if (
+                    confirm(
+                        '⚠️ 경고 ⚠️\n\n정말로 모든 데이터를 초기화하시겠습니까?\n\n삭제될 데이터:\n- 주간 학습 현황\n- 획득한 뱃지\n- 나의 단어장\n- 앱 설정\n\n이 작업은 되돌릴 수 없습니다!'
+                    )
+                ) {
+                    console.log('Resetting all data...');
+                    localStorage.removeItem('learningActivity');
+                    localStorage.removeItem('badges');
+                    localStorage.removeItem('vocabularyGroups');
+                    localStorage.removeItem('appSettings');
+
+                    if (window.homeDashboard) {
+                        window.homeDashboard.studyData = window.homeDashboard.getStudyData();
+                        window.homeDashboard.badges = window.homeDashboard.getBadges();
+                        window.homeDashboard.renderWeeklyChart();
+                        window.homeDashboard.renderRecentBadges();
+                    }
+                    this.showToast('모든 데이터가 초기화되었습니다');
+                    console.log('All data reset complete');
+
+                    // 설정 화면 다시 초기화
+                    setTimeout(() => this.initializeSettingsDirectly(), 1000);
+                }
+            });
+        }
+
+        // 데이터 정보 보기
+        const showDataInfoBtn = document.getElementById('show-data-info');
+        if (showDataInfoBtn) {
+            showDataInfoBtn.addEventListener('click', (e) => {
+                console.log('Show data info button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                this.showDataInfo();
+            });
+        }
+
+        // 뱃지 현황 보기
+        const showBadgeStatusBtn = document.getElementById('show-badge-status');
+        if (showBadgeStatusBtn) {
+            // 기존 이벤트 리스너 제거
+            const newBtn = showBadgeStatusBtn.cloneNode(true);
+            showBadgeStatusBtn.parentNode.replaceChild(newBtn, showBadgeStatusBtn);
+
+            newBtn.addEventListener('click', (e) => {
+                console.log('Show badge status button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                this.showBadgeStatusModal();
+            });
+        }
+
+        console.log('Settings events binding complete');
+    }
+
+    /**
+     * 뱃지 현황 모달 표시
+     */
+    showBadgeStatusModal() {
+        // 이미 모달이 열려있는지 확인
+        if (document.querySelector('[data-badge-modal]')) {
+            console.log('Badge modal already open');
+            return;
+        }
+
+        // 뱃지 데이터 가져오기
+        const badges = this.getBadgesData();
+        const earnedCount = badges.filter((b) => b.earned).length;
+
+        // 모달 생성
+        const modal = document.createElement('div');
+        modal.setAttribute('data-badge-modal', 'true');
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            animation: modalFadeIn 0.3s ease-out;
+        `;
+
+        modal.innerHTML = `
+            <div style="
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 20px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                position: relative;
+            ">
+                <!-- 헤더 -->
+                <div style="
+                    padding: 1.5rem 2rem;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    backdrop-filter: blur(20px);
+                    border-radius: 20px 20px 0 0;
+                ">
+                    <div>
+                        <h2 style="
+                            color: #2c3e50;
+                            margin: 0;
+                            font-size: 1.5rem;
+                            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                        ">🏆 뱃지 현황</h2>
+                    </div>
+                    <button id="closeBadgeModal" style="
+                        background: rgba(255, 255, 255, 0.2);
+                        border: none;
+                        border-radius: 50%;
+                        width: 40px;
+                        height: 40px;
+                        color: white;
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    ">✕</button>
+                </div>
+
+                <!-- 뱃지 그리드 -->
+                <div style="
+                    padding: 2rem;
+                    background: rgba(255, 255, 255, 0.95);
+                ">
+                    <div style="
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                        gap: 1.5rem;
+                        justify-items: center;
+                    ">
+                        ${badges.map((badge) => this.renderBadgeItem(badge)).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // 모달 이벤트 바인딩
+        const closeBtn = modal.querySelector('#closeBadgeModal');
+        const closeBadgeModal = () => {
+            modal.style.animation = 'modalFadeOut 0.3s ease-in forwards';
+            setTimeout(() => {
+                if (modal.parentNode) {
+                    modal.parentNode.removeChild(modal);
+                }
+            }, 300);
+        };
+
+        closeBtn.addEventListener('click', closeBadgeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeBadgeModal();
+            }
+        });
+
+        document.body.appendChild(modal);
+
+        // CSS 애니메이션 추가
+        this.addModalAnimations();
+    }
+
+    /**
+     * 뱃지 아이템 렌더링
+     */
+    renderBadgeItem(badge) {
+        const isEarned = badge.earned;
+        const earnedDate = badge.date ? new Date(badge.date).toLocaleDateString() : '';
+
+        return `
+            <div style="
+                text-align: center;
+                padding: 1rem;
+                border-radius: 16px;
+                background: ${isEarned ? 'rgba(255, 215, 0, 0.1)' : 'rgba(200, 200, 200, 0.3)'};
+                border: 2px solid ${isEarned ? 'rgba(255, 215, 0, 0.5)' : 'rgba(150, 150, 150, 0.3)'};
+                transition: all 0.3s ease;
+                ${!isEarned ? 'filter: grayscale(100%) opacity(0.6);' : ''}
+                position: relative;
+            ">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">
+                    ${badge.icon || '🏆'}
+                </div>
+                <div style="
+                    color: ${isEarned ? '#2c3e50' : '#777'};
+                    font-weight: ${isEarned ? 'bold' : 'normal'};
+                    font-size: 0.9rem;
+                    margin-bottom: 0.3rem;
+                ">${badge.name || '뱃지'}</div>
+                <div style="
+                    color: ${isEarned ? '#555' : '#999'};
+                    font-size: 0.75rem;
+                    line-height: 1.2;
+                ">${badge.description || '설명 없음'}</div>
+                ${
+                    isEarned && earnedDate
+                        ? `
+                    <div style="
+                        color: #f39c12;
+                        font-size: 0.7rem;
+                        margin-top: 0.5rem;
+                    ">📅 ${earnedDate}</div>
+                `
+                        : ''
+                }
+                ${
+                    isEarned
+                        ? `
+                    <div style="
+                        position: absolute;
+                        top: -5px;
+                        right: -5px;
+                        background: #FFD700;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 0.8rem;
+                    ">✓</div>
+                `
+                        : ''
+                }
+            </div>
+        `;
+    }
+
+    /**
+     * 뱃지 데이터 가져오기
+     */
+    getBadgesData() {
+        if (window.homeDashboard && typeof window.homeDashboard.getBadges === 'function') {
+            return window.homeDashboard.getBadges();
+        }
+
+        // 기본 뱃지 데이터
+        const defaultBadges = [
+            {
+                id: 'first_word',
+                name: '첫 단어',
+                description: '첫 번째 단어 저장',
+                icon: '🎯',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'first_practice',
+                name: '첫 연습',
+                description: '첫 번째 연습 완료',
+                icon: '🌱',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'vocabulary_5',
+                name: '단어 수집가',
+                description: '단어 5개 저장',
+                icon: '📝',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'vocabulary_20',
+                name: '단어 마니아',
+                description: '단어 20개 저장',
+                icon: '📚',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'vocabulary_50',
+                name: '단어 박사',
+                description: '단어 50개 저장',
+                icon: '💎',
+                earned: false,
+                date: null,
+            },
+            { id: 'practice_5', name: '연습생', description: '연습 5회 완료', icon: '💪', earned: false, date: null },
+            {
+                id: 'practice_20',
+                name: '연습 마스터',
+                description: '연습 20회 완료',
+                icon: '🏆',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'daily_active',
+                name: '일일 활동',
+                description: '하루에 5개 이상 활동',
+                icon: '☀️',
+                earned: false,
+                date: null,
+            },
+            { id: 'streak_3', name: '연속 3일', description: '3일 연속 학습', icon: '🔥', earned: false, date: null },
+            {
+                id: 'streak_7',
+                name: '연속 7일',
+                description: '일주일 연속 학습',
+                icon: '⭐',
+                earned: false,
+                date: null,
+            },
+        ];
+
+        const saved = localStorage.getItem('badges');
+        if (!saved) {
+            return defaultBadges;
+        }
+
+        const badges = JSON.parse(saved);
+        return [...defaultBadges, ...badges.filter((b) => !defaultBadges.find((d) => d.id === b.id))];
+    }
+
+    /**
+     * 모달 애니메이션 CSS 추가
+     */
+    addModalAnimations() {
+        if (!document.getElementById('modal-animations')) {
+            const style = document.createElement('style');
+            style.id = 'modal-animations';
+            style.textContent = `
+                @keyframes modalFadeIn {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.9);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+                @keyframes modalFadeOut {
+                    from {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: scale(0.9);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    /**
+     * 데이터 정보 표시
+     */
+    showDataInfo() {
+        const learningData = JSON.parse(localStorage.getItem('learningActivity') || '{"dailyActivities":{}}');
+        const badges = JSON.parse(localStorage.getItem('badges') || '[]');
+        const vocabularyGroups = JSON.parse(localStorage.getItem('vocabularyGroups') || '[]');
+
+        const totalDays = Object.keys(learningData.dailyActivities || {}).length;
+        const totalActivities = Object.values(learningData.dailyActivities || {}).reduce(
+            (total, day) => total + (day.words || 0) + (day.practice || 0) + (day.vocabulary || 0),
+            0
+        );
+        const earnedBadges = badges.filter((b) => b.earned).length;
+        const totalWords = vocabularyGroups.reduce((total, group) => total + (group.words?.length || 0), 0);
+
+        const getDataSize = (key) => {
+            const data = localStorage.getItem(key);
+            if (!data) return '0 B';
+            const bytes = new Blob([data]).size;
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return Math.round(bytes / 1024) + ' KB';
+            return Math.round(bytes / 1048576) + ' MB';
+        };
+
+        const info = `📊 학습 데이터 현황
+
+📅 학습 일수: ${totalDays}일
+🎯 총 학습 활동: ${totalActivities}회
+🏆 획득 뱃지: ${earnedBadges}/${badges.length}개
+📚 저장된 단어: ${totalWords}개
+📂 단어장: ${vocabularyGroups.length}개
+
+💾 데이터 크기:
+- 학습 활동: ${getDataSize('learningActivity')}
+- 뱃지: ${getDataSize('badges')}
+- 단어장: ${getDataSize('vocabularyGroups')}
+- 설정: ${getDataSize('appSettings')}`;
+
+        alert(info);
+    }
+
+    /**
+     * 설정 화면 스와이프 이벤트 바인딩
+     */
+    bindSettingsSwipeEvents() {
+        const settingsScreen = document.getElementById('settingsScreen');
+        if (!settingsScreen) return;
+
+        let startX = null;
+        let startY = null;
+        let startTime = null;
+
+        // 기존 이벤트 리스너 제거 (중복 방지)
+        settingsScreen.removeEventListener('touchstart', this.settingsSwipeStart);
+        settingsScreen.removeEventListener('touchend', this.settingsSwipeEnd);
+
+        // 터치 시작
+        this.settingsSwipeStart = (e) => {
+            // 버튼이나 input 요소를 터치한 경우 스와이프 시작하지 않음
+            const target = e.target;
+            if (
+                target.tagName === 'BUTTON' ||
+                target.tagName === 'INPUT' ||
+                target.closest('button') ||
+                target.closest('input') ||
+                target.closest('.setting-btn') ||
+                target.closest('.setting-toggle')
+            ) {
+                console.log('Touch started on interactive element - not starting swipe');
+                return;
+            }
+
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            startTime = Date.now();
+            console.log('Settings swipe start:', {
+                startX,
+                startY,
+                startTime,
+                target: target.tagName,
+                targetId: target.id,
+            });
+        };
+
+        // 터치 끝
+        this.settingsSwipeEnd = (e) => {
+            if (startX === null || startY === null || startTime === null) return;
+
+            const touch = e.changedTouches[0];
+            const endX = touch.clientX;
+            const endY = touch.clientY;
+            const endTime = Date.now();
+
+            const deltaX = endX - startX;
+            const deltaY = endY - startY;
+            const deltaTime = endTime - startTime;
+
+            console.log('Settings swipe end:', {
+                deltaX,
+                deltaY,
+                deltaTime,
+                startX,
+                endX,
+                threshold: Math.abs(deltaX) > 50,
+                rightSwipe: deltaX > 50,
+                verticalCheck: Math.abs(deltaY) < 100,
+                timeCheck: deltaTime < 500,
+                target: e.target.tagName,
+                targetId: e.target.id,
+            });
+
+            // 버튼이나 input 요소를 터치한 경우 스와이프 무시
+            const target = e.target;
+            if (
+                target.tagName === 'BUTTON' ||
+                target.tagName === 'INPUT' ||
+                target.closest('button') ||
+                target.closest('input') ||
+                target.closest('.setting-btn') ||
+                target.closest('.setting-toggle')
+            ) {
+                console.log('Touch on interactive element - ignoring swipe');
+                startX = null;
+                startY = null;
+                startTime = null;
+                return;
+            }
+
+            // 짧은 터치 (탭)인 경우 스와이프 무시
+            if (Math.abs(deltaX) < 30 && Math.abs(deltaY) < 30) {
+                console.log('Short touch detected - ignoring swipe');
+                startX = null;
+                startY = null;
+                startTime = null;
+                return;
+            }
+
+            // 오른쪽 스와이프 감지 (뒤로가기)
+            if (
+                deltaX > 50 && // 오른쪽으로 50px 이상
+                Math.abs(deltaY) < 100 && // 세로 이동은 100px 미만
+                deltaTime < 500 // 500ms 이내
+            ) {
+                console.log('Settings right swipe detected - going back to home');
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+                this.showScreen('home');
+                this.updateNavButtons('home');
+            }
+
+            // 초기화
+            startX = null;
+            startY = null;
+            startTime = null;
+        };
+
+        // 이벤트 리스너 등록
+        settingsScreen.addEventListener('touchstart', this.settingsSwipeStart, { passive: false });
+        settingsScreen.addEventListener('touchend', this.settingsSwipeEnd, { passive: false });
+
+        console.log('Settings swipe events bound successfully');
+    }
+
+    /**
+     * 설정 화면 로드 및 초기화
+     */
+    async loadSettingsScreen() {
+        try {
+            const settingsScreen = document.getElementById('settingsScreen');
+            if (!settingsScreen) {
+                console.error('Settings screen container not found');
+                return;
+            }
+
+            // 설정 템플릿 로드
+            if (!settingsScreen.innerHTML.trim()) {
+                console.log('Loading settings template...');
+                const settingsHTML = await loadTemplate('pages/settings');
+                settingsScreen.innerHTML = settingsHTML;
+                console.log('Settings template loaded successfully');
+            }
+
+            // 설정 초기화 (설정 모듈이 로드되었다면)
+            if (typeof initSettings === 'function') {
+                setTimeout(() => {
+                    initSettings();
+                    console.log('Settings initialized');
+                }, 100);
+            }
+        } catch (error) {
+            console.error('Failed to load settings screen:', error);
+        }
     }
 
     /**

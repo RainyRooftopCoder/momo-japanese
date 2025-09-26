@@ -1,137 +1,83 @@
 <div class="settings-container">
     <!-- 설정 헤더 -->
     <section class="settings-header">
-        <h1 class="page-title">⚙️ 설정</h1>
-        <p class="page-subtitle">앱을 나에게 맞게 설정해보세요</p>
+        <p class="page-subtitle">앱 설정을 변경하여 더 나은 학습 경험을 만들어보세요</p>
     </section>
 
-    <!-- 학습 설정 -->
+    <!-- 학습 관련 설정 -->
     <section class="settings-group">
-        <h2 class="group-title">🎯 학습 설정</h2>
+        <h2 class="group-title">📊 학습 관련 설정</h2>
 
         <div class="setting-item">
-            <label class="setting-label">일일 학습 목표</label>
-            <select class="setting-select" id="daily-goal">
-                <option value="10">10개 단어</option>
-                <option value="20" selected>20개 단어</option>
-                <option value="30">30개 단어</option>
-                <option value="50">50개 단어</option>
-            </select>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">학습 시간 목표</label>
-            <select class="setting-select" id="time-goal">
-                <option value="15">15분</option>
-                <option value="30" selected>30분</option>
-                <option value="60">1시간</option>
-                <option value="120">2시간</option>
-            </select>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">복습 알림</label>
-            <div class="setting-toggle">
-                <input type="checkbox" id="review-notification" checked>
-                <label for="review-notification" class="toggle-label"></label>
+            <div class="setting-info">
+                <div class="setting-name">통계 표시 방식</div>
+                <div class="setting-desc">차트에서 활동을 어떻게 표시할지 선택</div>
             </div>
-        </div>
-    </section>
-
-    <!-- 음성/오디오 설정 -->
-    <section class="settings-group">
-        <h2 class="group-title">🔊 음성 설정</h2>
-
-        <div class="setting-item">
-            <label class="setting-label">음성 속도</label>
-            <select class="setting-select" id="speech-rate">
-                <option value="0.7">느림</option>
-                <option value="1.0" selected>보통</option>
-                <option value="1.3">빠름</option>
-            </select>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">음성 성별</label>
-            <select class="setting-select" id="speech-voice">
-                <option value="female" selected>여성</option>
-                <option value="male">남성</option>
-            </select>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">발음 반복 횟수</label>
-            <select class="setting-select" id="pronunciation-repeat">
-                <option value="1" selected>1회</option>
-                <option value="2">2회</option>
-                <option value="3">3회</option>
-            </select>
-        </div>
-    </section>
-
-    <!-- 화면 설정 -->
-    <section class="settings-group">
-        <h2 class="group-title">🎨 화면 설정</h2>
-
-        <div class="setting-item">
-            <label class="setting-label">테마</label>
-            <select class="setting-select" id="app-theme">
-                <option value="light">라이트</option>
-                <option value="dark">다크</option>
-                <option value="glassmorphism" selected>글래스모피즘</option>
-            </select>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">폰트 크기</label>
-            <select class="setting-select" id="font-size">
-                <option value="small">작게</option>
-                <option value="medium" selected>보통</option>
-                <option value="large">크게</option>
-            </select>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">색상 테마</label>
-            <select class="setting-select" id="color-theme">
-                <option value="blue" selected>파란색</option>
-                <option value="green">초록색</option>
-                <option value="purple">보라색</option>
-                <option value="pink">분홍색</option>
-            </select>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">애니메이션 효과</label>
-            <div class="setting-toggle">
-                <input type="checkbox" id="animations" checked>
-                <label for="animations" class="toggle-label"></label>
-            </div>
-        </div>
-    </section>
-
-    <!-- 알림 설정 -->
-    <section class="settings-group">
-        <h2 class="group-title">🔔 알림 설정</h2>
-
-        <div class="setting-item">
-            <label class="setting-label">일일 학습 알림</label>
-            <input type="time" class="setting-input" id="daily-reminder" value="20:00">
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">복습 알림</label>
-            <div class="setting-toggle">
-                <input type="checkbox" id="review-alerts" checked>
-                <label for="review-alerts" class="toggle-label"></label>
+            <div class="setting-control">
+                <select id="chart-display-mode" class="setting-select">
+                    <option value="count">개수로 표시</option>
+                    <option value="time">시간으로 표시</option>
+                </select>
             </div>
         </div>
 
         <div class="setting-item">
-            <label class="setting-label">연속 학습 격려</label>
-            <div class="setting-toggle">
-                <input type="checkbox" id="streak-encouragement" checked>
-                <label for="streak-encouragement" class="toggle-label"></label>
+            <div class="setting-info">
+                <div class="setting-name">학습 데이터 리셋</div>
+                <div class="setting-desc">주간 학습 현황 데이터를 초기화합니다</div>
+            </div>
+            <div class="setting-control">
+                <button id="reset-learning-data" class="setting-btn danger">데이터 리셋</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 뱃지 시스템 설정 -->
+    <section class="settings-group">
+        <h2 class="group-title">🏆 뱃지 시스템 설정</h2>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <div class="setting-name">뱃지 획득 알림</div>
+                <div class="setting-desc">새 뱃지를 획득했을 때 알림을 표시합니다</div>
+            </div>
+            <div class="setting-control">
+                <label class="setting-toggle">
+                    <input type="checkbox" id="badge-notifications" checked />
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <div class="setting-name">뱃지 데이터 초기화</div>
+                <div class="setting-desc">획득한 모든 뱃지를 초기화합니다</div>
+            </div>
+            <div class="setting-control">
+                <button id="reset-badge-data" class="setting-btn danger">뱃지 초기화</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 음성/발음 설정 -->
+    <section class="settings-group">
+        <h2 class="group-title">🔊 음성/발음 설정</h2>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <div class="setting-name">발음 속도</div>
+                <div class="setting-desc">음성 재생 속도를 조절합니다</div>
+            </div>
+            <div class="setting-control">
+                <div class="setting-range">
+                    <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1" class="range-slider" />
+                    <div class="range-values">
+                        <span>느림</span>
+                        <span id="speech-rate-value">1.0x</span>
+                        <span>빠름</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -141,41 +87,23 @@
         <h2 class="group-title">💾 데이터 관리</h2>
 
         <div class="setting-item">
-            <label class="setting-label">학습 데이터 백업</label>
-            <button class="setting-btn" id="backup-data">백업 다운로드</button>
+            <div class="setting-info">
+                <div class="setting-name">모든 학습 기록 초기화</div>
+                <div class="setting-desc">주간 현황, 뱃지 등 모든 데이터를 삭제합니다</div>
+            </div>
+            <div class="setting-control">
+                <button id="reset-all-data" class="setting-btn danger">전체 초기화</button>
+            </div>
         </div>
 
         <div class="setting-item">
-            <label class="setting-label">데이터 복원</label>
-            <input type="file" class="setting-file" id="restore-data" accept=".json">
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">모든 데이터 초기화</label>
-            <button class="setting-btn danger" id="reset-data">초기화</button>
-        </div>
-    </section>
-
-    <!-- 통계 설정 -->
-    <section class="settings-group">
-        <h2 class="group-title">📊 통계 설정</h2>
-
-        <div class="setting-item">
-            <label class="setting-label">통계 표시 기간</label>
-            <select class="setting-select" id="stats-period">
-                <option value="week" selected>1주일</option>
-                <option value="month">1개월</option>
-                <option value="all">전체</option>
-            </select>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">그래프 타입</label>
-            <select class="setting-select" id="chart-type">
-                <option value="bar" selected>막대 그래프</option>
-                <option value="line">선 그래프</option>
-                <option value="donut">도넛 그래프</option>
-            </select>
+            <div class="setting-info">
+                <div class="setting-name">데이터 현황</div>
+                <div class="setting-desc">저장된 학습 데이터 정보를 확인합니다</div>
+            </div>
+            <div class="setting-control">
+                <button id="show-data-info" class="setting-btn">정보 보기</button>
+            </div>
         </div>
     </section>
 
@@ -183,24 +111,10 @@
     <section class="settings-group">
         <h2 class="group-title">ℹ️ 앱 정보</h2>
 
-        <div class="setting-item">
-            <label class="setting-label">버전</label>
-            <span class="setting-value">v3.0.0</span>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">개발자</label>
-            <span class="setting-value">MOMO Team</span>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">사용법 튜토리얼</label>
-            <button class="setting-btn" id="show-tutorial">보기</button>
-        </div>
-
-        <div class="setting-item">
-            <label class="setting-label">피드백 보내기</label>
-            <button class="setting-btn" id="send-feedback">보내기</button>
+        <div class="app-info">
+            <div class="app-name">모모의 일본어</div>
+            <div class="app-version">버전 1.0.0</div>
+            <div class="app-desc">일본어 학습을 위한 종합 앱</div>
         </div>
     </section>
 </div>

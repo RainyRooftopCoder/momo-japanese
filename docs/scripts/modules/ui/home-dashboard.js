@@ -13,94 +13,462 @@ class HomeDashboard {
     init() {
         this.renderWeeklyChart();
         this.setupQuickActions();
+
+        // 뱃지 확인 및 렌더링
+        this.checkAndAwardBadges();
         this.renderRecentBadges();
+
         this.startLiveUpdates();
     }
 
     // 학습 데이터 가져오기 (로컬스토리지 기반)
     getStudyData() {
         const today = new Date().toISOString().split('T')[0];
-        const demoData = {
-            weekly: [8, 12, 5, 15, 10, 7, 15], // 최근 7일 (월-일)
-            today: {
-                words: 0,
-                practice: 0,
-                streak: 0
-            }
-        };
 
-        const saved = localStorage.getItem('studyData');
+        const saved = localStorage.getItem('learningActivity');
         if (!saved) {
-            // 첫 방문시 데모 데이터로 시작
-            localStorage.setItem('studyData', JSON.stringify(demoData));
-            return demoData;
+            // 첫 방문시 빈 데이터로 시작
+            const initialData = {
+                dailyActivities: {},
+                lastUpdateDate: today,
+            };
+            localStorage.setItem('learningActivity', JSON.stringify(initialData));
+            return this.generateWeeklyData(initialData, today);
         }
 
         const data = JSON.parse(saved);
-        // today 데이터가 없는 경우 기본값 추가
-        if (!data.today) {
-            data.today = {
+        return this.generateWeeklyData(data, today);
+    }
+
+    // 최근 7일 학습 데이터 생성
+    generateWeeklyData(data, today) {
+        const weeklyData = [];
+        const todayDate = new Date(today);
+
+        // 지난 7일 데이터 생성 (월요일부터 시작)
+        for (let i = 6; i >= 0; i--) {
+            const date = new Date(todayDate);
+            date.setDate(todayDate.getDate() - i);
+            const dateStr = date.toISOString().split('T')[0];
+
+            const dayActivity = data.dailyActivities[dateStr];
+            const totalActivities = dayActivity
+                ? (dayActivity.words || 0) + (dayActivity.practice || 0) + (dayActivity.vocabulary || 0)
+                : 0;
+
+            weeklyData.push(totalActivities);
+        }
+
+        return {
+            weekly: weeklyData,
+            today: data.dailyActivities[today] || { words: 0, practice: 0, vocabulary: 0, streak: 0 },
+        };
+    }
+
+    // 학습 활동 기록
+    recordLearningActivity(type, count = 1) {
+        const today = new Date().toISOString().split('T')[0];
+        const saved = localStorage.getItem('learningActivity');
+        const data = saved ? JSON.parse(saved) : { dailyActivities: {} };
+
+        if (!data.dailyActivities[today]) {
+            data.dailyActivities[today] = {
                 words: 0,
                 practice: 0,
-                streak: 0
+                vocabulary: 0,
+                streak: 0,
             };
         }
-        return data;
+
+        // 활동 타입에 따라 카운트 증가
+        switch (type) {
+            case 'word_study':
+                data.dailyActivities[today].words += count;
+                break;
+            case 'practice_complete':
+                data.dailyActivities[today].practice += count;
+                break;
+            case 'vocabulary_save':
+                data.dailyActivities[today].vocabulary += count;
+                break;
+        }
+
+        data.lastUpdateDate = today;
+        localStorage.setItem('learningActivity', JSON.stringify(data));
+
+        // 실시간으로 차트 업데이트
+        this.studyData = this.getStudyData();
+        this.renderWeeklyChart();
+
+        // 뱃지 확인 및 부여
+        this.checkAndAwardBadges();
+
+        console.log(`Recorded ${type} activity:`, count);
     }
 
     // 뱃지 데이터 가져오기
     getBadges() {
-        const demoBadges = [
-            { id: 'first_word', name: '첫 단어', icon: '🎯', earned: true, date: '2024-01-15T09:30:00Z' },
-            { id: 'streak_3', name: '3일 연속', icon: '🔥', earned: true, date: '2024-01-17T14:20:00Z' },
-            { id: 'streak_7', name: '7일 연속', icon: '⭐', earned: true, date: '2024-01-21T16:45:00Z' },
-            { id: 'words_50', name: '단어 50개', icon: '📚', earned: false, date: null },
-            { id: 'words_100', name: '단어 100개', icon: '💎', earned: false, date: null },
-            { id: 'practice_10', name: '연습 10회', icon: '💪', earned: false, date: null },
+        const defaultBadges = [
+            {
+                id: 'first_word',
+                name: '첫 단어',
+                description: '첫 번째 단어 저장',
+                icon: '🎯',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'first_practice',
+                name: '첫 연습',
+                description: '첫 번째 연습 완료',
+                icon: '🌱',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'vocabulary_5',
+                name: '단어 수집가',
+                description: '단어 5개 저장',
+                icon: '📝',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'vocabulary_20',
+                name: '단어 마니아',
+                description: '단어 20개 저장',
+                icon: '📚',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'vocabulary_50',
+                name: '단어 박사',
+                description: '단어 50개 저장',
+                icon: '💎',
+                earned: false,
+                date: null,
+            },
+            { id: 'practice_5', name: '연습생', description: '연습 5회 완료', icon: '💪', earned: false, date: null },
+            {
+                id: 'practice_20',
+                name: '연습 마스터',
+                description: '연습 20회 완료',
+                icon: '🏆',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'daily_active',
+                name: '일일 활동',
+                description: '하루에 5개 이상 활동',
+                icon: '☀️',
+                earned: false,
+                date: null,
+            },
+            { id: 'streak_3', name: '연속 3일', description: '3일 연속 학습', icon: '🔥', earned: false, date: null },
+            {
+                id: 'streak_7',
+                name: '연속 7일',
+                description: '일주일 연속 학습',
+                icon: '⭐',
+                earned: false,
+                date: null,
+            },
         ];
 
         const saved = localStorage.getItem('badges');
         if (!saved) {
-            localStorage.setItem('badges', JSON.stringify(demoBadges));
-            return demoBadges;
+            localStorage.setItem('badges', JSON.stringify(defaultBadges));
+            return defaultBadges;
         }
 
         return JSON.parse(saved);
     }
 
+    // 뱃지 획득 조건 확인 및 새 뱃지 부여
+    checkAndAwardBadges() {
+        const badges = this.getBadges();
+        const learningData = JSON.parse(localStorage.getItem('learningActivity') || '{"dailyActivities":{}}');
+        const today = new Date().toISOString().split('T')[0];
+
+        // 총 활동 계산
+        const totalVocabulary = this.getTotalActivities(learningData, 'vocabulary');
+        const totalPractice = this.getTotalActivities(learningData, 'practice');
+        const todayTotal = this.getTodayTotal(learningData, today);
+        const streak = this.getCurrentStreak(learningData);
+
+        let newBadges = [];
+
+        // 뱃지 조건 확인
+        const badgeConditions = [
+            { id: 'first_word', condition: totalVocabulary >= 1 },
+            { id: 'first_practice', condition: totalPractice >= 1 },
+            { id: 'vocabulary_5', condition: totalVocabulary >= 5 },
+            { id: 'vocabulary_20', condition: totalVocabulary >= 20 },
+            { id: 'vocabulary_50', condition: totalVocabulary >= 50 },
+            { id: 'practice_5', condition: totalPractice >= 5 },
+            { id: 'practice_20', condition: totalPractice >= 20 },
+            { id: 'daily_active', condition: todayTotal >= 5 },
+            { id: 'streak_3', condition: streak >= 3 },
+            { id: 'streak_7', condition: streak >= 7 },
+        ];
+
+        badgeConditions.forEach(({ id, condition }) => {
+            const badge = badges.find((b) => b.id === id);
+            if (badge && !badge.earned && condition) {
+                badge.earned = true;
+                badge.date = new Date().toISOString();
+                newBadges.push(badge);
+            }
+        });
+
+        // 새 뱃지가 있으면 저장하고 알림
+        if (newBadges.length > 0) {
+            localStorage.setItem('badges', JSON.stringify(badges));
+            this.showBadgeNotification(newBadges);
+            this.renderRecentBadges(); // 뱃지 영역 업데이트
+        }
+
+        return badges;
+    }
+
+    // 총 활동 수 계산
+    getTotalActivities(data, type) {
+        return Object.values(data.dailyActivities || {}).reduce((total, day) => total + (day[type] || 0), 0);
+    }
+
+    // 오늘 총 활동 수 계산
+    getTodayTotal(data, today) {
+        const todayData = data.dailyActivities[today];
+        if (!todayData) return 0;
+        return (todayData.words || 0) + (todayData.practice || 0) + (todayData.vocabulary || 0);
+    }
+
+    // 현재 연속 학습일 계산
+    getCurrentStreak(data) {
+        const today = new Date();
+        let streak = 0;
+
+        for (let i = 0; i < 30; i++) {
+            // 최대 30일 검사
+            const checkDate = new Date(today);
+            checkDate.setDate(today.getDate() - i);
+            const dateStr = checkDate.toISOString().split('T')[0];
+
+            const dayData = data.dailyActivities[dateStr];
+            const dayTotal = dayData ? (dayData.words || 0) + (dayData.practice || 0) + (dayData.vocabulary || 0) : 0;
+
+            if (dayTotal > 0) {
+                streak++;
+            } else {
+                break;
+            }
+        }
+
+        return streak;
+    }
+
+    // 뱃지 획득 알림 표시
+    showBadgeNotification(newBadges) {
+        // 설정에서 뱃지 알림이 활성화되어 있는지 확인
+        const settings = JSON.parse(localStorage.getItem('appSettings') || '{"badgeNotifications": true}');
+        if (!settings.badgeNotifications) {
+            return; // 알림이 비활성화되어 있으면 표시하지 않음
+        }
+
+        newBadges.forEach((badge) => {
+            // 간단한 알림 (나중에 더 예쁘게 만들 수 있음)
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 1.2rem 1.8rem;
+                border-radius: 16px;
+                box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5), 0 8px 25px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: badgeSlideIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+                font-size: 0.9rem;
+                max-width: 350px;
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+            `;
+
+            // 뱃지 데이터 검증
+            const badgeIcon = badge.icon || '🏆';
+            const badgeName = badge.name || '뱃지';
+            const badgeDescription = badge.description || '설명 없음';
+
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                    <div style="
+                        font-size: 2.2rem;
+                        background: rgba(255, 255, 255, 0.25);
+                        border-radius: 50%;
+                        width: 55px;
+                        height: 55px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.2);
+                    ">${badgeIcon}</div>
+                    <div style="flex: 1;">
+                        <div style="
+                            font-weight: bold;
+                            font-size: 1.1rem;
+                            margin-bottom: 6px;
+                            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                        ">🎉 새 뱃지 획득!</div>
+                        <div style="
+                            opacity: 0.95;
+                            font-size: 0.9rem;
+                            line-height: 1.4;
+                            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+                        ">
+                            <strong style="font-size: 1rem;">${badgeName}</strong><br>
+                            <span style="opacity: 0.8;">${badgeDescription}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            // 4초 후 제거
+            setTimeout(() => {
+                notification.style.animation = 'badgeSlideOut 0.5s ease-in forwards';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 500);
+            }, 4000);
+        });
+
+        // CSS 애니메이션 추가
+        if (!document.getElementById('badge-animations')) {
+            const style = document.createElement('style');
+            style.id = 'badge-animations';
+            style.textContent = `
+                @keyframes badgeSlideIn {
+                    0% {
+                        transform: translateX(120%) scale(0.8);
+                        opacity: 0;
+                    }
+                    60% {
+                        transform: translateX(-10%) scale(1.05);
+                        opacity: 0.9;
+                    }
+                    100% {
+                        transform: translateX(0) scale(1);
+                        opacity: 1;
+                    }
+                }
+                @keyframes badgeSlideOut {
+                    from {
+                        transform: translateX(0) scale(1);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(120%) scale(0.8);
+                        opacity: 0;
+                    }
+                }
+                @keyframes badgeBounce {
+                    0%, 20%, 50%, 80%, 100% {
+                        transform: scale(1);
+                    }
+                    40% {
+                        transform: scale(1.2);
+                    }
+                    60% {
+                        transform: scale(1.1);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
 
     // 주간 학습 그래프 렌더링
     renderWeeklyChart() {
         const chartContainer = document.getElementById('weekly-chart');
         if (!chartContainer) return;
 
+        // 설정에서 표시 모드 가져오기
+        const settings = JSON.parse(localStorage.getItem('appSettings') || '{"chartDisplayMode":"count"}');
+        const isTimeMode = settings.chartDisplayMode === 'time';
+
         const weekDays = ['월', '화', '수', '목', '금', '토', '일'];
-        const maxValue = Math.max(...this.studyData.weekly, 1);
+
+        // 시간 모드일 때는 각 활동을 평균 5분으로 계산
+        const displayValues = isTimeMode
+            ? this.studyData.weekly.map(count => count * 5) // 각 활동을 5분으로 계산
+            : this.studyData.weekly;
+
+        const maxValue = Math.max(...displayValues, 1);
+
+        // 시간 포맷팅 함수
+        const formatTime = (minutes) => {
+            if (minutes < 60) return `${minutes}분`;
+            const hours = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return mins > 0 ? `${hours}시간 ${mins}분` : `${hours}시간`;
+        };
 
         chartContainer.innerHTML = `
-            <div style="display: flex; align-items: end; justify-content: space-between; width: 100%; height: 100%; padding: 1rem;">
-                ${this.studyData.weekly
-                    .map((value, index) => {
-                        const height = (value / maxValue) * 80; // 최대 80% 높이
-                        return `
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-                            <div class="chart-bar"
-                                 style="height: ${height}%; width: 30px;
-                                        background: linear-gradient(180deg, var(--accent-tertiary), var(--accent-secondary));
-                                        border-radius: 4px 4px 0 0;
-                                        transition: all 0.3s ease;
-                                        cursor: pointer;"
-                                 title="${weekDays[index]}: ${value}개 학습"
-                                 onmouseover="this.style.transform='scaleY(1.1)'"
-                                 onmouseout="this.style.transform='scaleY(1)'">
+            <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+                <div style="display: flex; align-items: end; justify-content: space-between; width: 100%; height: 120px; padding: 1rem; margin-bottom: 0.5rem;">
+                    ${displayValues
+                        .map((value, index) => {
+                            const originalCount = this.studyData.weekly[index];
+                            const height = Math.max((value / maxValue) * 100, 5); // 최소 5px 높이
+                            const isToday = index === 6; // 마지막이 오늘
+                            const displayText = isTimeMode
+                                ? (value > 0 ? formatTime(value) : '0분')
+                                : value.toString();
+
+                            return `
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; height: 100%;">
+                                <span style="font-size: 0.65rem; color: var(--text-tertiary); margin-bottom: auto; text-align: center; line-height: 1.2;">
+                                    ${displayText}
+                                </span>
+                                <div class="chart-bar"
+                                     style="height: ${height}px; width: 28px; min-height: 5px;
+                                            background: ${
+                                                isToday
+                                                    ? 'linear-gradient(180deg, #fab1a0, #e17055)'
+                                                    : originalCount > 0
+                                                    ? 'linear-gradient(180deg, #74b9ff, #0984e3)'
+                                                    : 'linear-gradient(180deg, #ddd, #bbb)'
+                                            };
+                                            border-radius: 4px 4px 0 0;
+                                            transition: all 0.3s ease;
+                                            cursor: pointer;
+                                            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"
+                                     title="${weekDays[index]}: ${isTimeMode ? formatTime(value) : `${originalCount}개 활동`} ${isToday ? '(오늘)' : ''}"
+                                     onmouseover="this.style.transform='scaleY(1.1)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.2)'"
+                                     onmouseout="this.style.transform='scaleY(1)'; this.style.boxShadow='0 2px 8px rgba(0, 0, 0, 0.1)'">
+                                </div>
+                                <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: ${
+                                    isToday ? '600' : '500'
+                                }; margin-top: 0.2rem;">
+                                    ${weekDays[index]}
+                                </span>
                             </div>
-                            <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 500;">
-                                ${weekDays[index]}
-                            </span>
-                        </div>
-                    `;
-                    })
-                    .join('')}
+                        `;
+                        })
+                        .join('')}
+                </div>
+                <div style="text-align: center; font-size: 0.8rem; color: var(--text-secondary);">
+                    ${isTimeMode
+                        ? `총 ${formatTime(displayValues.reduce((a, b) => a + b, 0))} 학습 시간`
+                        : `총 ${this.studyData.weekly.reduce((a, b) => a + b, 0)}개 학습 활동`
+                    }
+                </div>
             </div>
         `;
     }
@@ -172,26 +540,72 @@ class HomeDashboard {
         const badgesContainer = document.getElementById('recent-badges');
         if (!badgesContainer) return;
 
-        const recentBadges = this.badges
-            .filter((badge) => badge.earned)
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
-            .slice(0, 3);
+        // 최신 뱃지 데이터 가져오기
+        const badges = this.getBadges();
+        const earnedBadges = badges.filter((badge) => badge.earned);
+        const recentBadges = earnedBadges.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 2); // 최대 2개만 표시
 
         if (recentBadges.length === 0) {
-            badgesContainer.innerHTML = '<div class="no-badges">아직 획득한 뱃지가 없습니다</div>';
+            badgesContainer.innerHTML = `
+                <div class="no-badges">
+                    <div style="opacity: 0.6; text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏆</div>
+                        <div>학습을 시작하면 뱃지를 획득할 수 있어요!</div>
+                    </div>
+                </div>
+            `;
             return;
         }
 
-        badgesContainer.innerHTML = recentBadges
-            .map(
-                (badge) => `
-            <div class="badge-item" title="${badge.name} - ${new Date(badge.date).toLocaleDateString()}">
-                <div class="badge-icon">${badge.icon}</div>
-                <div class="badge-name">${badge.name}</div>
+        badgesContainer.innerHTML = `
+            <div style="display: flex; gap: 1.2rem; justify-content: center; align-items: center;">
+                ${recentBadges
+                    .map(
+                        (badge) => `
+                        <div class="badge-item" title="${badge.description} (${new Date(
+                            badge.date
+                        ).toLocaleDateString()})" style="
+                            text-align: center;
+                            padding: 0.8rem;
+                            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+                            border: 2px solid rgba(255, 215, 0, 0.3);
+                            border-radius: 12px;
+                            position: relative;
+                            transition: transform 0.2s ease;
+                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            <div class="badge-icon" style="
+                                font-size: 2rem;
+                                margin-bottom: 0.4rem;
+                                filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+                            ">${badge.icon}</div>
+                            <div class="badge-name" style="
+                                font-size: 0.8rem;
+                                text-align: center;
+                                font-weight: 600;
+                                color: var(--text-primary);
+                            ">${badge.name}</div>
+                            <div style="
+                                position: absolute;
+                                top: -8px;
+                                right: -8px;
+                                background: #FFD700;
+                                border-radius: 50%;
+                                width: 16px;
+                                height: 16px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 0.7rem;
+                                color: #333;
+                                font-weight: bold;
+                                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                            ">✓</div>
+                        </div>
+                    `
+                    )
+                    .join('')}
             </div>
-        `
-            )
-            .join('');
+        `;
     }
 
     // 오늘의 학습 통계 업데이트
@@ -279,6 +693,12 @@ class HomeDashboard {
 
     // 뱃지 획득 알림
     showBadgeNotification(badge) {
+        // 설정에서 뱃지 알림이 활성화되어 있는지 확인
+        const settings = JSON.parse(localStorage.getItem('appSettings') || '{"badgeNotifications": true}');
+        if (!settings.badgeNotifications) {
+            return; // 알림이 비활성화되어 있으면 표시하지 않음
+        }
+
         // 간단한 알림 구현
         const notification = document.createElement('div');
         notification.style.cssText = `
@@ -295,11 +715,15 @@ class HomeDashboard {
             animation: slideIn 0.3s ease-out;
         `;
 
+        // 뱃지 데이터 검증
+        const badgeIcon = badge.icon || '🏆';
+        const badgeName = badge.name || '뱃지';
+
         notification.innerHTML = `
             <div style="text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 0.5rem;">${badge.icon}</div>
-                <div style="font-weight: 600; color: var(--text-primary);">뱃지 획득!</div>
-                <div style="font-size: 0.9rem; color: var(--text-secondary);">${badge.name}</div>
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">${badgeIcon}</div>
+                <div style="font-weight: 600; color: var(--text-primary);">🎉 뱃지 획득!</div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">${badgeName}</div>
             </div>
         `;
 

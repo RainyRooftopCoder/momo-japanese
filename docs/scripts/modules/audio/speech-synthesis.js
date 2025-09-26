@@ -92,8 +92,9 @@ class SpeechSynthesisManager {
                     utterance.lang = 'ja-JP';
                 }
 
-                // 음성 설정
-                utterance.rate = options.rate || 0.8;  // 조금 느리게
+                // 음성 설정 (전역 설정에서 속도 가져오기)
+                const globalRate = window.globalSpeechRate || this.getGlobalSpeechRate() || 1.0;
+                utterance.rate = options.rate || globalRate;
                 utterance.pitch = options.pitch || 1.0;
                 utterance.volume = options.volume || 1.0;
 
@@ -151,6 +152,19 @@ class SpeechSynthesisManager {
     }
 
     /**
+     * 전역 음성 속도 설정 가져오기
+     */
+    getGlobalSpeechRate() {
+        try {
+            const settings = JSON.parse(localStorage.getItem('appSettings') || '{}');
+            return settings.speechRate || 1.0;
+        } catch (error) {
+            console.warn('Failed to load speech rate from settings:', error);
+            return 1.0;
+        }
+    }
+
+    /**
      * 단어 음성 출력 (히라가나 우선)
      * @param {Object} word - 단어 객체
      */
@@ -165,7 +179,8 @@ class SpeechSynthesisManager {
         }
 
         console.log('Speaking word:', textToSpeak);
-        return this.speak(textToSpeak, { rate: 0.7 });
+        // 전역 설정 사용 (options.rate가 없으면 자동으로 전역 설정 사용)
+        return this.speak(textToSpeak);
     }
 
     /**
@@ -176,7 +191,8 @@ class SpeechSynthesisManager {
         if (!sentence) return Promise.reject('No sentence provided');
 
         console.log('Speaking sentence:', sentence);
-        return this.speak(sentence, { rate: 0.6 });
+        // 전역 설정 사용 (options.rate가 없으면 자동으로 전역 설정 사용)
+        return this.speak(sentence);
     }
 
     /**

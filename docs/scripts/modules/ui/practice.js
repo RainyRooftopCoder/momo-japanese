@@ -307,6 +307,21 @@ class Practice {
     }
 
     /**
+     * 연습 컨테이너 생성
+     */
+    createPracticeContainer() {
+        const practiceScreen = document.getElementById('practiceScreen');
+        if (!practiceScreen) {
+            console.error('Practice screen not found');
+            return;
+        }
+
+        // 기존 내용 모두 지우고 연습 컨테이너 생성
+        practiceScreen.innerHTML = '<div class="practice-container"></div>';
+        console.log('Practice container created');
+    }
+
+    /**
      * 연습 모드 시작
      */
     async startPracticeMode(mode) {
@@ -321,6 +336,9 @@ class Practice {
             streak: 0,
             bestStreak: 0,
         };
+
+        // 연습 컨테이너 생성
+        this.createPracticeContainer();
 
         // 모드별 문제 생성
         switch (mode) {
@@ -1692,6 +1710,12 @@ class Practice {
 
         // 홈 대시보드 통계 업데이트
         this.updateDashboardStats();
+
+        // 학습 활동 기록
+        if (window.homeDashboard && this.totalQuestions > 0) {
+            window.homeDashboard.recordLearningActivity('practice_complete', 1);
+        }
+
         this.currentMode = null;
 
         // 화면 상단으로 스크롤
@@ -1949,7 +1973,7 @@ class Practice {
         let startY = 0;
         let startTime = 0;
         const threshold = 100; // 최소 스와이프 거리
-        const maxTime = 300; // 최대 스와이프 시간 (ms)
+        const maxTime = 500; // 최대 스와이프 시간 (ms) - 300에서 500으로 증가
         const maxVerticalDistance = 100; // 수직 이동 허용 범위
 
         // 터치 시작
@@ -1960,6 +1984,7 @@ class Practice {
             startX = touch.clientX;
             startY = touch.clientY;
             startTime = Date.now();
+            console.log('Touch start:', { startX, startY, startTime });
         };
 
         // 터치 끝
@@ -1975,12 +2000,26 @@ class Practice {
             const deltaY = endY - startY;
             const deltaTime = endTime - startTime;
 
+            // 디버깅 로그 추가
+            console.log('Touch end:', {
+                startX, startY, endX, endY,
+                deltaX, deltaY, deltaTime,
+                threshold, maxVerticalDistance, maxTime,
+                conditions: {
+                    deltaXCheck: deltaX > threshold,
+                    deltaYCheck: Math.abs(deltaY) < maxVerticalDistance,
+                    timeCheck: deltaTime < maxTime
+                }
+            });
+
             // 오른쪽으로 스와이프 (뒤로가기) - 조건 완화
             if (deltaX > threshold && Math.abs(deltaY) < maxVerticalDistance && deltaTime < maxTime) {
                 // startX 조건 제거하여 어디서든 스와이프 가능
 
                 console.log('Swipe back detected, going back to practice menu');
-                e.preventDefault();
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
                 this.goBackToPracticeMenu();
             }
         };
@@ -2019,7 +2058,7 @@ class Practice {
 
         // 이벤트 리스너 추가
         practiceScreen.addEventListener('touchstart', handleTouchStart.bind(this), { passive: true });
-        practiceScreen.addEventListener('touchend', handleTouchEnd.bind(this), { passive: true });
+        practiceScreen.addEventListener('touchend', handleTouchEnd.bind(this));
 
         // 데스크톱 테스트용 마우스 이벤트
         practiceScreen.addEventListener('mousedown', handleMouseDown.bind(this));
@@ -2029,18 +2068,29 @@ class Practice {
     }
 
     /**
-     * 연습 메뉴로 돌아가기
+     * 연습 메뉴로 돌아가기 (상황에 따라 홈 또는 연습 메뉴)
      */
     goBackToPracticeMenu() {
-        // 연습 중인 경우 확인
+        console.log('goBackToPracticeMenu called', {
+            currentMode: this.currentMode,
+            questionsLength: this.currentQuestions?.length || 0
+        });
+
+        // 연습 중인 경우 - 연습 메뉴로 돌아가기
         if (this.currentMode && this.currentQuestions.length > 0) {
+            console.log('Practice in progress, showing confirmation');
             if (confirm('연습을 중단하고 연습 메뉴로 돌아가시겠습니까?')) {
+                console.log('User confirmed, navigating to practice menu');
                 this.currentMode = null;
                 this.currentQuestions = [];
                 this.navigateToPracticeMenu();
+            } else {
+                console.log('User cancelled navigation');
             }
         } else {
-            this.navigateToPracticeMenu();
+            // 연습 메뉴(카테고리 선택) 화면에서는 홈으로 이동
+            console.log('In practice menu, navigating to home');
+            this.navigateToHome();
         }
     }
 
@@ -2048,18 +2098,51 @@ class Practice {
      * 연습 메뉴로 네비게이션
      */
     navigateToPracticeMenu() {
-        // 연습 세션만 리셋 (화면 내용은 유지)
+        console.log('navigateToPracticeMenu called');
+        console.log('Current mode:', this.currentMode);
+        console.log('Is in practice session:', !!(this.currentMode && this.currentQuestions.length > 0));
+
+        // 연습 세션 상태 확인
+        const practiceContainer = document.querySelector('.practice-container');
+        console.log('Practice container exists:', !!practiceContainer);
+
+        // 연습 세션만 리셋
+        console.log('Resetting session...');
         this.resetSession();
+
         // 다른 화면 오염 방지
+        console.log('Cleaning up other screens...');
         this.cleanupOtherScreens();
 
-        // 연습 메뉴 화면 다시 로드
-        this.init();
+        // 연습 메뉴 화면 다시 로드 (원본 HTML 내용 복원)
+        console.log('Reinitializing practice screen with menu...');
+        this.loadPracticeMenu();
+    }
 
-        if (window.navigation) {
-            window.navigation.showScreen('practice');
-        } else {
-            console.error('Navigation not available');
+    /**
+     * 연습 메뉴 로드 (원본 HTML 복원)
+     */
+    async loadPracticeMenu() {
+        const practiceScreen = document.getElementById('practiceScreen');
+        if (!practiceScreen) {
+            console.error('Practice screen not found');
+            return;
+        }
+
+        try {
+            // 템플릿 로더를 통해 원본 연습 메뉴 HTML 로드
+            if (window.templateLoader) {
+                const practiceHTML = await window.templateLoader.loadTemplate('pages/practice');
+                practiceScreen.innerHTML = practiceHTML;
+                console.log('Practice menu loaded successfully');
+
+                // 이벤트 리스너만 다시 바인딩 (init 대신 setupEventListeners만 호출)
+                this.setupEventListeners();
+            } else {
+                console.error('TemplateLoader not available');
+            }
+        } catch (error) {
+            console.error('Error loading practice menu:', error);
         }
     }
 
@@ -2067,15 +2150,47 @@ class Practice {
      * 홈 화면으로 네비게이션
      */
     navigateToHome() {
-        // 연습 세션만 리셋 (화면 내용은 유지)
+        console.log('navigateToHome called');
+
+        // 연습 세션 완전 초기화 (화면 내용도 초기화)
         this.resetSession();
-        // 다른 화면 오염 방지
         this.cleanupOtherScreens();
 
+        // 연습 화면을 초기 상태로 복원
+        this.resetPracticeScreen();
+
         if (window.navigation) {
+            console.log('Calling navigation.showScreen("home")');
             window.navigation.showScreen('home');
         } else {
             console.error('Navigation not available');
+        }
+    }
+
+    /**
+     * 연습 화면을 초기 상태로 복원
+     */
+    async resetPracticeScreen() {
+        const practiceScreen = document.getElementById('practiceScreen');
+        if (!practiceScreen) {
+            console.error('Practice screen not found');
+            return;
+        }
+
+        try {
+            // 템플릿 로더를 통해 원본 연습 메뉴 HTML 로드
+            if (window.templateLoader) {
+                const practiceHTML = await window.templateLoader.loadTemplate('pages/practice');
+                practiceScreen.innerHTML = practiceHTML;
+                console.log('Practice screen reset to initial state');
+
+                // 이벤트 리스너 다시 바인딩
+                this.setupEventListeners();
+            } else {
+                console.error('TemplateLoader not available');
+            }
+        } catch (error) {
+            console.error('Error resetting practice screen:', error);
         }
     }
 

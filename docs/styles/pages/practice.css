@@ -7,8 +7,9 @@
     position: relative;
     padding: 1.5rem 0;
     background: var(--bg-primary);
-    height: 100vh;
-    overflow-y: auto;
+    height: auto;
+    min-height: calc(100vh - 120px);
+    overflow: visible;
     display: none;
     flex-direction: column;
 }
@@ -37,6 +38,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    overflow: visible;
 }
 
 /* 연습 헤더 */

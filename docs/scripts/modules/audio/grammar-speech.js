@@ -88,7 +88,7 @@ class GrammarSpeechAddon {
                     speechBtn.textContent = '🔈';
                 }
 
-                await window.speechManager.speak(textToSpeak, { rate: 0.7 });
+                await window.speechManager.speak(textToSpeak);
 
                 console.log('Word speech completed');
             } catch (error) {
@@ -138,7 +138,7 @@ class GrammarSpeechAddon {
                     speechBtn.textContent = '🔈';
                 }
 
-                await window.speechManager.speak(textToSpeak, { rate: 0.7 });
+                await window.speechManager.speak(textToSpeak);
 
                 console.log(`${formType} form speech completed`);
             } catch (error) {

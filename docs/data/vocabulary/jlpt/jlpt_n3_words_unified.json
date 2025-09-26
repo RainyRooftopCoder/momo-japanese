@@ -8793,16 +8793,16 @@
         "id": 2587,
         "hanja": "テスト",
         "hiragana": "テスト",
-        "mean": "テスト",
+        "mean": "테스트",
         "partOfSpeech": "명사",
         "themes": ["일상"],
         "jlptLevel": "N3",
         "difficulty": 4,
         "frequency": 50,
         "jpExample1": "テストについて話します。",
-        "koExample1": "テスト에 대해 이야기합니다.",
+        "koExample1": "테스트에 대해 이야기합니다.",
         "jpExample2": "テストが重要です。",
-        "koExample2": "テスト이 중요합니다."
+        "koExample2": "테스트이 중요합니다."
     },
     {
         "id": 2588,

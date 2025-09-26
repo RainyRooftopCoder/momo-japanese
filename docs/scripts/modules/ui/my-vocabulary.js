@@ -470,14 +470,18 @@ class MyVocabularyUI {
                 <div class="example-item">
                     <div class="example-jp">
                         <span>${word.example1 || word.jpExample1 || '明日は友達と映画を見る約束があります。'}</span>
-                        <button class="example-speech-btn" data-text="${word.example1 || word.jpExample1 || '明日は友達と映画を見る約束があります。'}" title="예문 음성">🔊</button>
+                        <button class="example-speech-btn" data-text="${
+                            word.example1 || word.jpExample1 || '明日は友達と映画を見る約束があります。'
+                        }" title="예문 음성">🔊</button>
                     </div>
                     <div class="example-ko">${word.koExample1 || '내일은 친구와 영화를 보기로 약속이 있어요.'}</div>
                 </div>
                 <div class="example-item">
                     <div class="example-jp">
                         <span>${word.example2 || word.jpExample2 || '約束の時間に遅れないようにしてください。'}</span>
-                        <button class="example-speech-btn" data-text="${word.example2 || word.jpExample2 || '約束の時間に遅れないようにしてください。'}" title="예문 음성">🔊</button>
+                        <button class="example-speech-btn" data-text="${
+                            word.example2 || word.jpExample2 || '約束の時間に遅れないようにしてください。'
+                        }" title="예문 음성">🔊</button>
                     </div>
                     <div class="example-ko">${word.koExample2 || '약속 시간에 늦지 않도록 해주세요.'}</div>
                 </div>
@@ -512,7 +516,6 @@ class MyVocabularyUI {
             });
         }
 
-
         // 예문 토글 버튼
         const toggleBtn = cardElement.querySelector('.examples-toggle-btn');
         if (toggleBtn) {
@@ -524,7 +527,7 @@ class MyVocabularyUI {
 
         // 예문 발음 버튼들
         const exampleSpeechBtns = cardElement.querySelectorAll('.example-speech-btn');
-        exampleSpeechBtns.forEach(btn => {
+        exampleSpeechBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const text = btn.getAttribute('data-text');
@@ -581,7 +584,6 @@ class MyVocabularyUI {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" id="vocabModalCancelBtn">취소</button>
                         <button class="btn btn-primary" id="vocabModalSaveBtn">${groupId ? '수정' : '생성'}</button>
                     </div>
                 </div>
@@ -809,6 +811,11 @@ class MyVocabularyUI {
         group.updatedAt = new Date().toISOString();
         this.saveVocabularyGroups();
 
+        // 학습 활동 기록
+        if (window.homeDashboard) {
+            window.homeDashboard.recordLearningActivity('vocabulary_save', 1);
+        }
+
         return true;
     }
 
@@ -866,12 +873,6 @@ class MyVocabularyUI {
                                     )
                                     .join('')}
                             </div>
-                            <div class="create-new-vocab">
-                                <button class="create-new-vocab-btn" id="createNewVocabBtn">
-                                    <span class="create-new-icon">+</span>
-                                    <span>새 단어장 만들기</span>
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -891,7 +892,6 @@ class MyVocabularyUI {
     bindVocabularySelectionEvents(wordData, resolveCallback) {
         const modal = document.getElementById('vocabSelectionModal');
         const closeBtn = document.getElementById('vocabSelectionCloseBtn');
-        const createNewBtn = document.getElementById('createNewVocabBtn');
 
         // 모달 닫기
         const closeModal = (result = false) => {
@@ -925,14 +925,6 @@ class MyVocabularyUI {
             });
         });
 
-        // 새 단어장 만들기
-        if (createNewBtn) {
-            createNewBtn.addEventListener('click', () => {
-                closeModal(false);
-                // 새 단어장 생성 모달을 띄우고, 생성 후 해당 단어장에 저장
-                this.createNewVocabularyAndSave(wordData);
-            });
-        }
 
         // ESC 키로 모달 닫기
         const handleKeyDown = (e) => {
@@ -948,32 +940,108 @@ class MyVocabularyUI {
      * 새 단어장 생성 후 단어 저장
      */
     async createNewVocabularyAndSave(wordData) {
-        // 단어장 이름 입력 모달
-        const name = prompt('새 단어장 이름을 입력하세요:');
-        if (!name || !name.trim()) {
-            return false;
-        }
+        return new Promise((resolve) => {
+            // 컴팩트한 단어장 이름 입력 모달 생성
+            const modalHtml = `
+                <div class="modal vocab-modal vocab-modal-compact show" id="newVocabModal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>새 단어장 만들기</h3>
+                            <button class="modal-close-btn" id="newVocabCloseBtn">
+                                <img src="./assets/icons/close_white_icon.png" alt="닫기" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                                <span style="display: none;">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <label for="newVocabNameInput">단어장 이름</label>
+                                <input type="text" id="newVocabNameInput" placeholder="단어장 이름을 입력하세요" maxlength="50" autofocus>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" id="newVocabCancelBtn">취소</button>
+                            <button class="btn btn-primary" id="newVocabCreateBtn">생성</button>
+                        </div>
+                    </div>
+                </div>
+            `;
 
-        // 새 단어장 생성
-        const newGroup = {
-            id: this.generateId(),
-            name: name.trim(),
-            words: [],
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-        };
+            // 모달을 body에 추가
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
 
-        this.vocabularyGroups.push(newGroup);
-        this.saveVocabularyGroups();
+            const modal = document.getElementById('newVocabModal');
+            const closeBtn = document.getElementById('newVocabCloseBtn');
+            const cancelBtn = document.getElementById('newVocabCancelBtn');
+            const createBtn = document.getElementById('newVocabCreateBtn');
+            const nameInput = document.getElementById('newVocabNameInput');
 
-        // 새 단어장에 단어 저장
-        const success = await this.saveWordToGroup(newGroup.id, wordData);
+            // 모달 닫기 함수
+            const closeModal = async (shouldCreate = false) => {
+                if (modal) {
+                    modal.remove();
+                }
 
-        if (success) {
-            alert(`"${newGroup.name}" 단어장에 단어가 저장되었습니다.`);
-        }
+                if (!shouldCreate) {
+                    resolve(false);
+                    return;
+                }
 
-        return success;
+                const name = nameInput.value.trim();
+                if (!name) {
+                    resolve(false);
+                    return;
+                }
+
+                // 새 단어장 생성
+                const newGroup = {
+                    id: this.generateId(),
+                    name: name,
+                    words: [],
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                };
+
+                this.vocabularyGroups.push(newGroup);
+                this.saveVocabularyGroups();
+
+                // 새 단어장에 단어 저장
+                const success = await this.saveWordToGroup(newGroup.id, wordData);
+
+                if (success) {
+                    alert(`"${newGroup.name}" 단어장에 단어가 저장되었습니다.`);
+                }
+
+                resolve(success);
+            };
+
+            // 이벤트 바인딩
+            closeBtn?.addEventListener('click', () => closeModal(false));
+            cancelBtn?.addEventListener('click', () => closeModal(false));
+            createBtn?.addEventListener('click', () => closeModal(true));
+
+            // Enter 키로 생성
+            nameInput?.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    closeModal(true);
+                }
+            });
+
+            // ESC 키로 모달 닫기
+            const handleKeyDown = (e) => {
+                if (e.key === 'Escape') {
+                    document.removeEventListener('keydown', handleKeyDown);
+                    closeModal(false);
+                }
+            };
+            document.addEventListener('keydown', handleKeyDown);
+
+            // 모달 외부 클릭시 닫기
+            modal?.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(false);
+                }
+            });
+        });
     }
 
     /**
@@ -988,7 +1056,7 @@ class MyVocabularyUI {
             // SpeechSynthesisManager가 있으면 사용
             if (this.speechSynthesis && typeof this.speechSynthesis.speak === 'function') {
                 console.log('Using SpeechSynthesisManager');
-                this.speechSynthesis.speak(text).catch(error => {
+                this.speechSynthesis.speak(text).catch((error) => {
                     console.error('SpeechSynthesisManager error:', error);
                     this.fallbackSpeech(text);
                 });
