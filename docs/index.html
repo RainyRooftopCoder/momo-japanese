@@ -5,6 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>JLPT 단어장 V3 - Template 기반</title>
 
+        <!-- PWA 관련 메타태그들 -->
+        <meta name="description" content="일본어 학습을 위한 종합 PWA 앱" />
+        <meta name="theme-color" content="#4285f4" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="모모 일본어" />
+        <meta name="msapplication-TileColor" content="#4285f4" />
+        <meta name="msapplication-TileImage" content="./assets/icons/pwa-192x192.png" />
+
+        <!-- PWA 매니페스트 -->
+        <link rel="manifest" href="./manifest.json" />
+
+        <!-- PWA 아이콘들 -->
+        <link rel="icon" href="./assets/icons/momo_logo.png" />
+        <link rel="apple-touch-icon" href="./assets/icons/pwa-192x192.png" />
+        <link rel="apple-touch-icon" sizes="192x192" href="./assets/icons/pwa-192x192.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="./assets/icons/pwa-512x512.png" />
+
         <!-- CSS 파일들 -->
         <link rel="stylesheet" href="./styles/base/reset.css" />
         <link rel="stylesheet" href="./styles/base/variables.css" />
@@ -58,6 +77,60 @@
                 } else {
                     icon.textContent = '▼';
                 }
+            }
+        </script>
+
+        <!-- PWA 서비스 워커 등록 -->
+        <script>
+            // 서비스 워커 지원 확인 및 등록
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker
+                        .register('./sw.js')
+                        .then(function (registration) {
+                            console.log('ServiceWorker 등록 성공:', registration.scope);
+
+                            // 업데이트 확인
+                            registration.addEventListener('updatefound', () => {
+                                const newWorker = registration.installing;
+                                if (newWorker) {
+                                    newWorker.addEventListener('statechange', () => {
+                                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                            // 새 버전 사용 가능 알림
+                                            if (confirm('새 버전이 사용 가능합니다. 업데이트하시겠습니까?')) {
+                                                window.location.reload();
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        })
+                        .catch(function (error) {
+                            console.log('ServiceWorker 등록 실패:', error);
+                        });
+                });
+
+                // PWA 설치 프롬프트 처리
+                let deferredPrompt;
+
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    // 기본 설치 프롬프트 방지
+                    e.preventDefault();
+                    deferredPrompt = e;
+
+                    // 설치 버튼 표시 (필요시)
+                    showInstallButton();
+                });
+
+                function showInstallButton() {
+                    // 설치 버튼을 표시하는 로직
+                    console.log('PWA 설치 가능');
+                }
+
+                // 앱이 설치된 후
+                window.addEventListener('appinstalled', (evt) => {
+                    console.log('PWA가 성공적으로 설치되었습니다');
+                });
             }
         </script>
     </head>
@@ -362,7 +435,7 @@
                     </div>
                     <div class="botton-search">
                         <button class="nav-btn nav-search" id="search-btn">
-                            <span class="nav-icon"><img src="./assets/icons/momo-logo.png" alt="설정" /></span>
+                            <span class="nav-icon"><img src="./assets/icons/momo_logo.png" alt="설정" /></span>
                             <!-- <span class="nav-label">검색</span> -->
                         </button>
                     </div>
