@@ -813,7 +813,8 @@ class MyVocabularyUI {
 
         // 학습 활동 기록
         if (window.homeDashboard) {
-            window.homeDashboard.recordLearningActivity('vocabulary_save', 1);
+            // 단어장 저장은 즉시 활동이므로 기본 시간(5초) 할당
+            window.homeDashboard.recordLearningActivity('vocabulary_save', 5000, 1);
         }
 
         return true;

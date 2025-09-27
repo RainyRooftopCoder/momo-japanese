@@ -152,6 +152,31 @@
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* === Glassmorphism 변수 === */
+
+    /* Glass 배경 */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-backdrop: blur(10px);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+    --glass-card-hover: rgba(255, 255, 255, 0.15);
+
+    /* Accent 색상 */
+    --accent-primary: var(--color-primary);
+    --accent-secondary: var(--color-secondary);
+    --accent-tertiary: rgba(74, 144, 226, 0.1);
+
+    /* 텍스트 색상 */
+    --text-primary: var(--color-gray-900);
+    --text-secondary: var(--color-gray-600);
+    --text-tertiary: var(--color-gray-500);
+    --text-on-accent: var(--color-white);
+
+    /* 배경 색상 */
+    --bg-primary: var(--color-white);
+    --bg-secondary: var(--color-gray-50);
+    --bg-tertiary: var(--color-gray-100);
+
     /* === Z-Index === */
 
     --z-auto: auto;

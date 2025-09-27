@@ -63,6 +63,7 @@
 
 /* 연습 모드 그룹 */
 .practice-modes {
+    width: 95%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 0.5rem;

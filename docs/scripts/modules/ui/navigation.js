@@ -993,6 +993,12 @@ class ThreeStepNavigation {
         // 검색 결과 화면으로 전환
         this.showScreen('searchResults');
 
+        // 배경색 강제 적용
+        const searchScreen = document.getElementById('searchResultsScreen');
+        if (searchScreen) {
+            searchScreen.style.background = '#f8f9fa';
+        }
+
         // 검색 정보 업데이트
         const searchQuery = document.getElementById('searchQuery');
         const searchStats = document.getElementById('searchStats');
@@ -1018,6 +1024,9 @@ class ThreeStepNavigation {
             if (noResults) noResults.style.display = 'none';
             if (searchResultsList) {
                 searchResultsList.style.display = 'flex';
+                searchResultsList.style.background = 'rgba(255, 255, 255, 0.1)';
+                searchResultsList.style.borderRadius = '12px';
+                searchResultsList.style.padding = '1rem';
                 this.renderSearchResults(results);
             }
         }

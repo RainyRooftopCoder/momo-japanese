@@ -17,8 +17,8 @@ class IndexedDBManagerV3 {
      */
     constructor() {
         // 데이터베이스 기본 설정
-        this.dbName = 'JLPTWordDB_V3'; // 데이터베이스 이름
-        this.dbVersion = 4; // 버전 번호 (스키마 변경 시 증가) - myVocabulary 스토어 추가
+        this.dbName = 'JLPTWordDB_V4'; // 데이터베이스 이름 (캐시 문제 해결)
+        this.dbVersion = 1; // 새로운 DB이므로 버전 1부터 시작
         this.db = null; // 데이터베이스 연결 객체
 
         // 통합된 카테고리 시스템 - 미리 정의된 카테고리들
@@ -34,7 +34,12 @@ class IndexedDBManagerV3 {
      * IndexedDB 초기화
      * @returns {Promise} 데이터베이스 연결 Promise
      */
-    async init() {
+    async init(retryCount = 0) {
+        if (retryCount > 2) {
+            console.error('Too many database initialization retries, giving up');
+            throw new Error('Database initialization failed after multiple attempts');
+        }
+
         return new Promise((resolve, reject) => {
             // IndexedDB 열기 요청
             const request = indexedDB.open(this.dbName, this.dbVersion);
@@ -42,7 +47,42 @@ class IndexedDBManagerV3 {
             // 오류 발생 시 처리
             request.onerror = () => {
                 console.error('IndexedDB open error:', request.error);
-                reject(request.error);
+                console.error('Error name:', request.error?.name);
+                console.error('Error message:', request.error?.message);
+
+                // VersionError인 경우 즉시 데이터베이스 삭제
+                console.log('Force deleting database due to error...');
+
+                // 이전 버전 데이터베이스들도 삭제
+                const oldDbs = ['JLPTWordDB_V3', 'JLPTWordDB_V2', 'JLPTWordDB'];
+                oldDbs.forEach(dbName => {
+                    try {
+                        indexedDB.deleteDatabase(dbName);
+                        console.log(`Deleted old database: ${dbName}`);
+                    } catch (e) {
+                        console.log(`Could not delete ${dbName}:`, e);
+                    }
+                });
+
+                // 현재 데이터베이스 삭제
+                const deleteRequest = indexedDB.deleteDatabase(this.dbName);
+
+                deleteRequest.onsuccess = () => {
+                    console.log('Old database deleted successfully');
+                    // 새로운 데이터베이스로 다시 시도
+                    setTimeout(() => {
+                        console.log(`Retrying database initialization... (attempt ${retryCount + 1})`);
+                        this.init(retryCount + 1).then(resolve).catch(reject);
+                    }, 500);
+                };
+
+                deleteRequest.onerror = () => {
+                    console.error('Failed to delete old database, but continuing...');
+                    setTimeout(() => {
+                        console.log(`Retrying database initialization anyway... (attempt ${retryCount + 1})`);
+                        this.init(retryCount + 1).then(resolve).catch(reject);
+                    }, 500);
+                };
             };
 
             // 성공적으로 열렸을 때 처리
@@ -141,6 +181,32 @@ class IndexedDBManagerV3 {
             myVocabularyStore.createIndex('jlptLevel', 'jlptLevel', { unique: false }); // JLPT 레벨별
 
             console.log('Created myVocabulary object store');
+        }
+
+        // 6. LearningStats Store (학습 통계) - 일별 학습 시간과 활동 기록
+        if (!this.db.objectStoreNames.contains('learningStats')) {
+            const learningStatsStore = this.db.createObjectStore('learningStats', {
+                keyPath: 'date' // 날짜를 기본 키로 사용 (YYYY-MM-DD 형식)
+            });
+
+            // 학습 통계 인덱스
+            learningStatsStore.createIndex('totalTime', 'totalTime', { unique: false }); // 총 학습 시간별
+            learningStatsStore.createIndex('totalActivities', 'totalActivities', { unique: false }); // 총 활동 수별
+
+            console.log('Created learningStats object store');
+        }
+
+        // 7. Badges Store (뱃지 시스템) - 사용자 뱃지 획득 기록
+        if (!this.db.objectStoreNames.contains('badges')) {
+            const badgesStore = this.db.createObjectStore('badges', {
+                keyPath: 'id'
+            });
+
+            // 뱃지 인덱스
+            badgesStore.createIndex('earnedAt', 'earnedAt', { unique: false }); // 획득 날짜별
+            badgesStore.createIndex('badgeType', 'badgeType', { unique: false }); // 뱃지 타입별
+
+            console.log('Created badges object store');
         }
     }
 
@@ -998,6 +1064,228 @@ class IndexedDBManagerV3 {
     }
 
     /**
+     * 뱃지 저장
+     * @param {string} badgeType - 뱃지 타입 ('first_word', 'study_streak', 'word_master', etc.)
+     * @param {string} title - 뱃지 제목
+     * @param {string} description - 뱃지 설명
+     * @param {string} icon - 뱃지 아이콘 (이모지 또는 아이콘명)
+     */
+    async saveBadge(badgeType, title, description, icon) {
+        if (!this.db) throw new Error('Database not initialized');
+
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['badges'], 'readwrite');
+            const store = transaction.objectStore('badges');
+
+            const badge = {
+                id: `${badgeType}_${Date.now()}`,
+                badgeType: badgeType,
+                title: title,
+                description: description,
+                icon: icon,
+                earnedAt: new Date().toISOString()
+            };
+
+            const request = store.add(badge);
+
+            request.onsuccess = () => {
+                console.log(`Badge earned: ${title}`);
+                resolve(badge);
+            };
+
+            request.onerror = () => {
+                console.error('Error saving badge:', request.error);
+                reject(request.error);
+            };
+        });
+    }
+
+    /**
+     * 뱃지 목록 조회
+     * @returns {Promise<Array>} 뱃지 목록
+     */
+    async getBadges() {
+        if (!this.db) throw new Error('Database not initialized');
+
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['badges'], 'readonly');
+            const store = transaction.objectStore('badges');
+            const request = store.getAll();
+
+            request.onsuccess = () => {
+                resolve(request.result || []);
+            };
+
+            request.onerror = () => {
+                console.error('Error getting badges:', request.error);
+                reject(request.error);
+            };
+        });
+    }
+
+    /**
+     * 특정 타입의 뱃지 확인
+     * @param {string} badgeType - 뱃지 타입
+     * @returns {Promise<boolean>} 뱃지 보유 여부
+     */
+    async hasBadge(badgeType) {
+        if (!this.db) throw new Error('Database not initialized');
+
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['badges'], 'readonly');
+            const store = transaction.objectStore('badges');
+            const index = store.index('badgeType');
+            const request = index.getAll(badgeType);
+
+            request.onsuccess = () => {
+                resolve(request.result.length > 0);
+            };
+
+            request.onerror = () => {
+                console.error('Error checking badge:', request.error);
+                reject(request.error);
+            };
+        });
+    }
+
+    /**
+     * 학습 통계 기록 (시간 기반)
+     * @param {string} type - 활동 타입 ('word_study', 'practice_complete', 'vocabulary_save')
+     * @param {number} timeSpent - 소요 시간 (초 단위)
+     * @param {number} count - 활동 횟수 (기본값: 1)
+     */
+    async recordLearningActivity(type, timeSpent = 0, count = 1) {
+        try {
+            const today = new Date().toISOString().split('T')[0];
+            const transaction = this.db.transaction(['learningStats'], 'readwrite');
+            const store = transaction.objectStore('learningStats');
+
+            // 오늘 날짜의 통계 데이터 가져오기
+            let todayStats = await this.promisifyRequest(store.get(today));
+
+            if (!todayStats) {
+                // 첫 기록인 경우 초기 데이터 생성
+                todayStats = {
+                    date: today,
+                    activities: {
+                        word_study: { count: 0, timeMinutes: 0 },
+                        practice_complete: { count: 0, timeMinutes: 0 },
+                        vocabulary_save: { count: 0, timeMinutes: 0 }
+                    },
+                    totalActivities: 0,
+                    totalTime: 0 // 분 단위
+                };
+            }
+
+            // 활동 타입별 데이터 업데이트
+            if (todayStats.activities[type]) {
+                todayStats.activities[type].count += count;
+                todayStats.activities[type].timeMinutes += Math.round(timeSpent / 1000 / 60); // 밀리초 → 초 → 분으로 변환
+            }
+
+            // 총합 계산
+            todayStats.totalActivities = Object.values(todayStats.activities)
+                .reduce((sum, activity) => sum + activity.count, 0);
+            todayStats.totalTime = Object.values(todayStats.activities)
+                .reduce((sum, activity) => sum + activity.timeMinutes, 0);
+
+            // 업데이트된 데이터 저장
+            await this.promisifyRequest(store.put(todayStats));
+
+            console.log(`Learning activity recorded: ${type}, ${Math.round(timeSpent/1000/60)}분, ${count}회`);
+            return todayStats;
+
+        } catch (error) {
+            console.error('Error recording learning activity:', error);
+            throw error;
+        }
+    }
+
+    /**
+     * 주간 학습 통계 가져오기
+     * @returns {Object} 최근 7일간의 학습 데이터
+     */
+    async getWeeklyLearningStats() {
+        try {
+            const weeklyData = [];
+            const today = new Date();
+
+            // 최근 7일 데이터 조회
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date(today);
+                date.setDate(today.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+
+                const transaction = this.db.transaction(['learningStats'], 'readonly');
+                const store = transaction.objectStore('learningStats');
+                const dayStats = await this.promisifyRequest(store.get(dateStr));
+
+                if (dayStats) {
+                    weeklyData.push({
+                        date: dateStr,
+                        activities: dayStats.totalActivities,
+                        timeMinutes: dayStats.totalTime,
+                        breakdown: dayStats.activities
+                    });
+                } else {
+                    weeklyData.push({
+                        date: dateStr,
+                        activities: 0,
+                        timeMinutes: 0,
+                        breakdown: {
+                            word_study: { count: 0, timeMinutes: 0 },
+                            practice_complete: { count: 0, timeMinutes: 0 },
+                            vocabulary_save: { count: 0, timeMinutes: 0 }
+                        }
+                    });
+                }
+            }
+
+            return {
+                weekly: weeklyData,
+                today: weeklyData[6] // 마지막이 오늘
+            };
+
+        } catch (error) {
+            console.error('Error getting weekly learning stats:', error);
+            throw error;
+        }
+    }
+
+    /**
+     * 오늘의 학습 통계 가져오기
+     * @returns {Object} 오늘의 학습 데이터
+     */
+    async getTodayLearningStats() {
+        try {
+            const today = new Date().toISOString().split('T')[0];
+            const transaction = this.db.transaction(['learningStats'], 'readonly');
+            const store = transaction.objectStore('learningStats');
+
+            const todayStats = await this.promisifyRequest(store.get(today));
+
+            if (!todayStats) {
+                return {
+                    date: today,
+                    activities: {
+                        word_study: { count: 0, timeMinutes: 0 },
+                        practice_complete: { count: 0, timeMinutes: 0 },
+                        vocabulary_save: { count: 0, timeMinutes: 0 }
+                    },
+                    totalActivities: 0,
+                    totalTime: 0
+                };
+            }
+
+            return todayStats;
+
+        } catch (error) {
+            console.error('Error getting today learning stats:', error);
+            throw error;
+        }
+    }
+
+    /**
      * 데이터베이스 삭제 및 재생성
      * 스키마 변경 시 사용
      */
@@ -1068,4 +1356,19 @@ window.recreateDatabase = async function() {
         console.error('Database manager not available');
         return false;
     }
+};
+
+// 개발자 도구에서 데이터베이스 삭제할 수 있는 함수
+window.deleteJLPTDatabase = function() {
+    console.log('Deleting JLPT database...');
+    const deleteRequest = indexedDB.deleteDatabase('JLPTWordDB_V4');
+
+    deleteRequest.onsuccess = () => {
+        console.log('Database deleted successfully. Please refresh the page.');
+        alert('데이터베이스가 삭제되었습니다. 페이지를 새로고침해주세요.');
+    };
+
+    deleteRequest.onerror = () => {
+        console.error('Failed to delete database:', deleteRequest.error);
+    };
 };

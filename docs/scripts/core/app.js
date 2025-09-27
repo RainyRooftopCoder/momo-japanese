@@ -45,6 +45,9 @@ class WordLearningAppV3 {
                 await this.dbManager.init();
                 console.log('IndexedDB V3 initialized');
 
+                // 전역으로 설정
+                window.dbManager = this.dbManager;
+
                 // 샘플 데이터 로드
                 await this.loadSampleData();
                 console.log('Sample data loaded');
@@ -58,6 +61,12 @@ class WordLearningAppV3 {
                 console.log('Statistics updated');
             } catch (dbError) {
                 console.error('Database initialization failed:', dbError);
+                console.error('DB Error name:', dbError?.name);
+                console.error('DB Error message:', dbError?.message);
+
+                // 사용자에게 정보 제공
+                console.log('Falling back to basic UI without database functionality');
+
                 // DB 없이도 동작하도록 기본 UI 설정
                 this.setupBasicUI();
             }
@@ -101,7 +110,8 @@ class WordLearningAppV3 {
         // 기본 필터 생성
         this.createAllFilters();
 
-        alert('데이터베이스 초기화에 실패했지만 기본 기능은 사용할 수 있습니다.');
+        console.log('Using fallback mode - some features may be limited');
+        // alert는 제거하여 사용자 경험 개선
     }
 
     /**

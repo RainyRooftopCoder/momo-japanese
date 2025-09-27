@@ -1,0 +1,146 @@
+/* 스플래시 화면 스타일 */
+#splashScreen.splash-screen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    /* background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%) !important; */
+    background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #fd79a8 100%) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 99999 !important;
+    overflow: hidden !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.splash-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-container {
+    position: relative;
+}
+
+.splash-logo {
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+    transform: translateY(-300px);
+    animation: dropAndBounce 1s ease-out forwards;
+}
+
+.app-name {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.7s ease-out 1s forwards;
+    font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic', 'Meiryo', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 로고 떨어지고 튀는 애니메이션 - 바닥에 부딪히는 느낌 */
+@keyframes dropAndBounce {
+    0% {
+        opacity: 1;
+        transform: translateY(-300px) scale(1);
+        animation-timing-function: ease-in;
+    }
+    /* 첫 번째 바닥 충돌 */
+    50% {
+        transform: translateY(0px) scale(1.2, 0.8);
+        animation-timing-function: ease-out;
+    }
+    /* 첫 번째 튀어오름 */
+    65% {
+        transform: translateY(-40px) scale(1.05, 1.05);
+        animation-timing-function: ease-in;
+    }
+    /* 두 번째 바닥 충돌 */
+    75% {
+        transform: translateY(0px) scale(1.1, 0.9);
+        animation-timing-function: ease-out;
+    }
+    /* 두 번째 튀어오름 */
+    85% {
+        transform: translateY(-15px) scale(1.02, 1.02);
+        animation-timing-function: ease-in;
+    }
+    /* 세 번째 작은 바닥 충돌 */
+    92% {
+        transform: translateY(0px) scale(1.05, 0.95);
+        animation-timing-function: ease-out;
+    }
+    /* 작은 튀어오름 */
+    96% {
+        transform: translateY(-5px) scale(1.01, 1.01);
+        animation-timing-function: ease-in;
+    }
+    /* 최종 안착 */
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1, 1);
+    }
+}
+
+/* 앱 이름 페이드인 애니메이션 */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 스플래시 화면 페이드아웃 */
+#splashScreen.fade-out {
+    animation: fadeOut 0.8s ease-out forwards !important;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+    }
+    100% {
+        opacity: 0 !important;
+        transform: scale(1.1) !important;
+        visibility: hidden !important;
+    }
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .splash-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .app-name {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .app-name {
+        font-size: 24px;
+    }
+}
+
+/* 앱 컨테이너는 기본적으로 표시 (JavaScript에서 제어) */

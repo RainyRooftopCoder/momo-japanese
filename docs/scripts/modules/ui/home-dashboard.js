@@ -5,105 +5,93 @@
 
 class HomeDashboard {
     constructor() {
-        this.studyData = this.getStudyData();
+        this.studyData = null;
         this.badges = this.getBadges();
         this.init();
     }
 
-    init() {
+    async init() {
+        // 학습 데이터 비동기 로드
+        this.studyData = await this.getStudyData();
+
         this.renderWeeklyChart();
         this.setupQuickActions();
 
-        // 뱃지 확인 및 렌더링
-        this.checkAndAwardBadges();
+        // 뱃지 확인 및 렌더링 (새로운 데이터 구조 사용)
+        this.checkBadges();
         this.renderRecentBadges();
 
         this.startLiveUpdates();
     }
 
-    // 학습 데이터 가져오기 (로컬스토리지 기반)
-    getStudyData() {
-        const today = new Date().toISOString().split('T')[0];
+    // 학습 데이터 가져오기 (IndexedDB 기반)
+    async getStudyData() {
+        try {
+            // Database manager가 준비될 때까지 기다리기
+            if (!window.dbManager) {
+                console.log('Waiting for database manager...');
+                await this.waitForDatabaseManager();
+            }
 
-        const saved = localStorage.getItem('learningActivity');
-        if (!saved) {
-            // 첫 방문시 빈 데이터로 시작
-            const initialData = {
-                dailyActivities: {},
-                lastUpdateDate: today,
+            const weeklyStats = await window.dbManager.getWeeklyLearningStats();
+            return {
+                weekly: weeklyStats.weekly.map(day => day.activities), // 개수 데이터
+                weeklyTime: weeklyStats.weekly.map(day => day.timeMinutes), // 시간 데이터
+                today: weeklyStats.today
             };
-            localStorage.setItem('learningActivity', JSON.stringify(initialData));
-            return this.generateWeeklyData(initialData, today);
-        }
 
-        const data = JSON.parse(saved);
-        return this.generateWeeklyData(data, today);
+        } catch (error) {
+            console.error('Error getting study data:', error);
+            return this.getEmptyWeeklyData();
+        }
     }
 
-    // 최근 7일 학습 데이터 생성
-    generateWeeklyData(data, today) {
-        const weeklyData = [];
-        const todayDate = new Date(today);
+    // Database manager가 준비될 때까지 기다리는 함수
+    async waitForDatabaseManager(maxWait = 5000) {
+        const startTime = Date.now();
 
-        // 지난 7일 데이터 생성 (월요일부터 시작)
-        for (let i = 6; i >= 0; i--) {
-            const date = new Date(todayDate);
-            date.setDate(todayDate.getDate() - i);
-            const dateStr = date.toISOString().split('T')[0];
-
-            const dayActivity = data.dailyActivities[dateStr];
-            const totalActivities = dayActivity
-                ? (dayActivity.words || 0) + (dayActivity.practice || 0) + (dayActivity.vocabulary || 0)
-                : 0;
-
-            weeklyData.push(totalActivities);
+        while (!window.dbManager && (Date.now() - startTime) < maxWait) {
+            await new Promise(resolve => setTimeout(resolve, 100));
         }
 
+        if (!window.dbManager) {
+            throw new Error('Database manager not available after waiting');
+        }
+    }
+
+    // 빈 주간 데이터 생성
+    getEmptyWeeklyData() {
         return {
-            weekly: weeklyData,
-            today: data.dailyActivities[today] || { words: 0, practice: 0, vocabulary: 0, streak: 0 },
+            weekly: new Array(7).fill(0),
+            weeklyTime: new Array(7).fill(0),
+            today: { activities: 0, timeMinutes: 0 }
         };
     }
 
-    // 학습 활동 기록
-    recordLearningActivity(type, count = 1) {
-        const today = new Date().toISOString().split('T')[0];
-        const saved = localStorage.getItem('learningActivity');
-        const data = saved ? JSON.parse(saved) : { dailyActivities: {} };
+    // 학습 활동 기록 (시간 기반)
+    async recordLearningActivity(type, timeSpent = 0, count = 1) {
+        try {
+            // Database manager가 준비될 때까지 기다리기
+            if (!window.dbManager) {
+                console.log('Waiting for database manager for recording...');
+                await this.waitForDatabaseManager();
+            }
 
-        if (!data.dailyActivities[today]) {
-            data.dailyActivities[today] = {
-                words: 0,
-                practice: 0,
-                vocabulary: 0,
-                streak: 0,
-            };
+            // IndexedDB에 실제 시간과 함께 기록
+            await window.dbManager.recordLearningActivity(type, timeSpent, count);
+
+            // 실시간으로 차트 업데이트
+            this.studyData = await this.getStudyData();
+            this.renderWeeklyChart();
+
+            // 뱃지 확인 및 부여 (새로운 데이터 구조 사용)
+            this.checkBadges();
+
+            console.log(`Learning activity recorded: ${type}, time: ${Math.round(timeSpent/1000/60)}분, count: ${count}`);
+
+        } catch (error) {
+            console.error('Error recording learning activity:', error);
         }
-
-        // 활동 타입에 따라 카운트 증가
-        switch (type) {
-            case 'word_study':
-                data.dailyActivities[today].words += count;
-                break;
-            case 'practice_complete':
-                data.dailyActivities[today].practice += count;
-                break;
-            case 'vocabulary_save':
-                data.dailyActivities[today].vocabulary += count;
-                break;
-        }
-
-        data.lastUpdateDate = today;
-        localStorage.setItem('learningActivity', JSON.stringify(data));
-
-        // 실시간으로 차트 업데이트
-        this.studyData = this.getStudyData();
-        this.renderWeeklyChart();
-
-        // 뱃지 확인 및 부여
-        this.checkAndAwardBadges();
-
-        console.log(`Recorded ${type} activity:`, count);
     }
 
     // 뱃지 데이터 가져오기
@@ -130,6 +118,14 @@ class HomeDashboard {
                 name: '단어 수집가',
                 description: '단어 5개 저장',
                 icon: '📝',
+                earned: false,
+                date: null,
+            },
+            {
+                id: 'vocabulary_10',
+                name: '단어 탐험가',
+                description: '단어 10개 저장',
+                icon: '🔍',
                 earned: false,
                 date: null,
             },
@@ -398,18 +394,26 @@ class HomeDashboard {
         const chartContainer = document.getElementById('weekly-chart');
         if (!chartContainer) return;
 
+        // studyData가 준비되지 않은 경우 빈 차트 표시
+        if (!this.studyData || !this.studyData.weekly) {
+            chartContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-tertiary);">데이터 로딩 중...</div>';
+            return;
+        }
+
         // 설정에서 표시 모드 가져오기
         const settings = JSON.parse(localStorage.getItem('appSettings') || '{"chartDisplayMode":"count"}');
         const isTimeMode = settings.chartDisplayMode === 'time';
 
         const weekDays = ['월', '화', '수', '목', '금', '토', '일'];
 
-        // 시간 모드일 때는 각 활동을 평균 5분으로 계산
+        // 시간 모드일 때는 실제 시간 데이터 사용, 없으면 빈 배열로 초기화
         const displayValues = isTimeMode
-            ? this.studyData.weekly.map(count => count * 5) // 각 활동을 5분으로 계산
-            : this.studyData.weekly;
+            ? (this.studyData.weeklyTime || new Array(7).fill(0)) // 실제 시간 데이터 사용
+            : (this.studyData.weekly || new Array(7).fill(0));
 
-        const maxValue = Math.max(...displayValues, 1);
+        // 배열인지 확인하고 안전하게 maxValue 계산
+        const safeDisplayValues = Array.isArray(displayValues) ? displayValues : new Array(7).fill(0);
+        const maxValue = Math.max(...safeDisplayValues, 1);
 
         // 시간 포맷팅 함수
         const formatTime = (minutes) => {
@@ -422,9 +426,9 @@ class HomeDashboard {
         chartContainer.innerHTML = `
             <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
                 <div style="display: flex; align-items: end; justify-content: space-between; width: 100%; height: 120px; padding: 1rem; margin-bottom: 0.5rem;">
-                    ${displayValues
+                    ${safeDisplayValues
                         .map((value, index) => {
-                            const originalCount = this.studyData.weekly[index];
+                            const originalCount = (this.studyData.weekly && this.studyData.weekly[index]) || 0;
                             const height = Math.max((value / maxValue) * 100, 5); // 최소 5px 높이
                             const isToday = index === 6; // 마지막이 오늘
                             const displayText = isTimeMode
@@ -630,16 +634,41 @@ class HomeDashboard {
         const today = new Date().toISOString().split('T')[0];
         const now = new Date();
 
-        // 오늘 데이터 업데이트
-        if (type === 'words') {
-            this.studyData.today.words += amount;
-        } else if (type === 'practice') {
-            this.studyData.today.practice += amount;
+        // studyData가 없거나 today가 없으면 초기화
+        if (!this.studyData || !this.studyData.today) {
+            console.warn('StudyData not initialized, skipping update');
+            return;
+        }
+
+        // 오늘 데이터 업데이트 - 새로운 데이터 구조에 맞게 수정
+        if (type === 'words' || type === 'vocabulary_save') {
+            // breakdown 구조 확인 후 업데이트
+            if (!this.studyData.today.breakdown) {
+                this.studyData.today.breakdown = {
+                    word_study: { count: 0, timeMinutes: 0 },
+                    practice_complete: { count: 0, timeMinutes: 0 },
+                    vocabulary_save: { count: 0, timeMinutes: 0 }
+                };
+            }
+            this.studyData.today.breakdown.vocabulary_save.count += amount;
+            this.studyData.today.activities += amount;
+        } else if (type === 'practice' || type === 'practice_complete') {
+            if (!this.studyData.today.breakdown) {
+                this.studyData.today.breakdown = {
+                    word_study: { count: 0, timeMinutes: 0 },
+                    practice_complete: { count: 0, timeMinutes: 0 },
+                    vocabulary_save: { count: 0, timeMinutes: 0 }
+                };
+            }
+            this.studyData.today.breakdown.practice_complete.count += amount;
+            this.studyData.today.activities += amount;
         }
 
         // 주간 데이터 업데이트 (오늘은 배열의 마지막 요소)
         const dayIndex = 6; // 일요일 = 0, 토요일 = 6
-        this.studyData.weekly[dayIndex] += amount;
+        if (this.studyData.weekly && this.studyData.weekly[dayIndex] !== undefined) {
+            this.studyData.weekly[dayIndex] += amount;
+        }
 
         // 연속 학습 일수 계산 (간단한 버전)
         this.updateStreak();
@@ -658,32 +687,63 @@ class HomeDashboard {
 
     // 연속 학습 일수 업데이트
     updateStreak() {
-        // 간단한 구현: 오늘 학습한 단어가 있으면 연속 일수 유지/증가
-        if (this.studyData.today.words > 0) {
-            this.studyData.today.streak = Math.max(this.studyData.today.streak, 1);
+        // 간단한 구현: 오늘 학습 활동이 있으면 연속 일수 유지/증가
+        if (this.studyData.today.activities > 0) {
+            // streak 속성이 없으면 초기화
+            if (!this.studyData.today.streak) {
+                this.studyData.today.streak = 1;
+            } else {
+                this.studyData.today.streak = Math.max(this.studyData.today.streak, 1);
+            }
         }
     }
 
     // 뱃지 획득 체크
     checkBadges() {
-        const totalWords = this.studyData.today.words;
-        const totalPractice = this.studyData.today.practice;
-        const streak = this.studyData.today.streak;
+        if (!this.studyData || !this.studyData.today) {
+            return;
+        }
+
+        const totalWords = this.studyData.today.breakdown?.vocabulary_save?.count || 0;
+        const totalPractice = this.studyData.today.breakdown?.practice_complete?.count || 0;
+        const totalActivities = this.studyData.today.activities || 0;
+        const streak = this.studyData.today.streak || 0;
 
         const badgeChecks = [
             { id: 'first_word', condition: totalWords >= 1 },
+            { id: 'vocabulary_5', condition: totalWords >= 5 },
+            { id: 'vocabulary_10', condition: totalWords >= 10 },
+            { id: 'vocabulary_20', condition: totalWords >= 20 },
+            { id: 'vocabulary_50', condition: totalWords >= 50 },
+            { id: 'first_practice', condition: totalPractice >= 1 },
+            { id: 'practice_5', condition: totalPractice >= 5 },
+            { id: 'practice_10', condition: totalPractice >= 10 },
             { id: 'streak_3', condition: streak >= 3 },
             { id: 'streak_7', condition: streak >= 7 },
-            { id: 'words_50', condition: totalWords >= 50 },
-            { id: 'words_100', condition: totalWords >= 100 },
-            { id: 'practice_10', condition: totalPractice >= 10 },
+            { id: 'active_learner', condition: totalActivities >= 20 },
         ];
 
-        badgeChecks.forEach((check) => {
+        badgeChecks.forEach(async (check) => {
             const badge = this.badges.find((b) => b.id === check.id);
             if (badge && !badge.earned && check.condition) {
                 badge.earned = true;
                 badge.date = new Date().toISOString();
+
+                // IndexedDB에 뱃지 저장
+                try {
+                    if (window.dbManager) {
+                        await window.dbManager.saveBadge(
+                            check.id,
+                            badge.name,
+                            badge.description,
+                            badge.icon
+                        );
+                        console.log(`Badge awarded: ${badge.name}`);
+                    }
+                } catch (error) {
+                    console.error('Error saving badge to database:', error);
+                }
+
                 this.showBadgeNotification(badge);
             }
         });
@@ -796,15 +856,28 @@ document.head.appendChild(style);
 // 전역 객체로 등록
 window.HomeDashboard = HomeDashboard;
 
-// 홈 화면이 표시될 때 초기화
-function initHomeDashboard() {
+// 홈 화면이 표시될 때 초기화 (Database manager 준비 후)
+async function initHomeDashboard() {
     if (document.querySelector('.home-container') && !window.homeDashboard) {
         console.log('Initializing home dashboard...');
-        window.homeDashboard = new HomeDashboard();
 
-        // 개발자 도구에서 테스트할 수 있도록 전역 함수 제공
-        window.testStudy = () => window.homeDashboard.simulateStudy();
-        window.resetDashboard = () => window.homeDashboard.resetData();
+        // Database manager가 준비될 때까지 기다리기
+        let attempts = 0;
+        while (!window.dbManager && attempts < 50) { // 5초 대기
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+        }
+
+        if (window.dbManager) {
+            window.homeDashboard = new HomeDashboard();
+
+            // 개발자 도구에서 테스트할 수 있도록 전역 함수 제공
+            window.testStudy = () => window.homeDashboard.simulateStudy();
+            window.resetDashboard = () => window.homeDashboard.resetData();
+        } else {
+            console.error('Database manager not ready, retrying in 1 second...');
+            setTimeout(initHomeDashboard, 1000);
+        }
     }
 }
 

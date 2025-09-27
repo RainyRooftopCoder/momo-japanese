@@ -1711,9 +1711,10 @@ class Practice {
         // 홈 대시보드 통계 업데이트
         this.updateDashboardStats();
 
-        // 학습 활동 기록
+        // 학습 활동 기록 (실제 소요 시간과 함께)
         if (window.homeDashboard && this.totalQuestions > 0) {
-            window.homeDashboard.recordLearningActivity('practice_complete', 1);
+            const timeSpent = Date.now() - this.startTime; // 밀리초
+            window.homeDashboard.recordLearningActivity('practice_complete', timeSpent, 1);
         }
 
         this.currentMode = null;
@@ -1829,6 +1830,12 @@ class Practice {
             }
 
             const dayStats = todayStats[today];
+
+            // modesPlayed가 배열이면 Set으로 변환
+            if (Array.isArray(dayStats.modesPlayed)) {
+                dayStats.modesPlayed = new Set(dayStats.modesPlayed);
+            }
+
             dayStats.sessions += 1;
             dayStats.totalQuestions += sessionData.totalQuestions;
             dayStats.correctAnswers += sessionData.correctAnswers;
