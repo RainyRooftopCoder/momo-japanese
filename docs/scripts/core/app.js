@@ -8,9 +8,9 @@
  * - 실시간 통계 업데이트
  */
 
-class WordLearningAppV3 {
+class WordLearningAppV4 {
     constructor() {
-        this.dbManager = new IndexedDBManagerV3();
+        this.dbManager = new IndexedDBManagerV4();
         this.selectedFilters = {}; // { jlptLevel: 'N5', partOfSpeech: '명사', theme: '날씨' }
         this.selectedWords = [];
         this.currentWordIndex = 0;
@@ -40,10 +40,18 @@ class WordLearningAppV3 {
             this.bindEvents();
             console.log('Events bound successfully');
 
+            // V3 데이터베이스 강제 삭제 먼저 실행
+            try {
+                console.log('🧹 앱 초기화 시 V3 데이터베이스 정리...');
+                await this.dbManager.forceDeleteOldDatabases();
+            } catch (error) {
+                console.log('V3 삭제 중 오류 (계속 진행):', error);
+            }
+
             // IndexedDB 초기화 시도
             try {
                 await this.dbManager.init();
-                console.log('IndexedDB V3 initialized');
+                console.log('IndexedDB V4 initialized');
 
                 // 전역으로 설정
                 window.dbManager = this.dbManager;
@@ -71,7 +79,7 @@ class WordLearningAppV3 {
                 this.setupBasicUI();
             }
 
-            console.log('WordLearningAppV3 initialized successfully');
+            console.log('WordLearningAppV4 initialized successfully');
         } catch (error) {
             console.error('Critical initialization failed:', error);
             console.error('Error stack:', error.stack);
@@ -125,11 +133,6 @@ class WordLearningAppV3 {
             const existingWordCount = await this.dbManager.getTotalWordCount();
             console.log('Existing word count:', existingWordCount);
 
-            // 강제로 새 데이터 로드 (600개 N5 단어 업데이트를 위해)
-            // if (existingWordCount > 0) {
-            //     console.log('Data already exists, skipping load');
-            //     return;
-            // }
 
             // N5 데이터 로드
             console.log('Fetching N5 data...');
@@ -259,7 +262,20 @@ class WordLearningAppV3 {
      */
     async initializeUI() {
         try {
+            // 데이터베이스 완전 초기화 대기
+            console.log('⏳ 데이터베이스 초기화 완료 대기 중...');
+            let retryCount = 0;
+            while ((!this.dbManager.db || !this.dbManager.isInitialized) && retryCount < 10) {
+                await new Promise(resolve => setTimeout(resolve, 500));
+                retryCount++;
+            }
+
+            if (!this.dbManager.db) {
+                throw new Error('Database initialization timeout');
+            }
+
             // 사용 가능한 카테고리 정보 조회
+            console.log('📊 카테고리 정보 조회 중...');
             this.availableCategories = await this.dbManager.getAvailableCategories();
 
             // 모든 필터 버튼 생성 (UI 요소가 있을 때만)
@@ -1638,5 +1654,5 @@ class WordLearningAppV3 {
 
 // 앱 초기화
 document.addEventListener('DOMContentLoaded', () => {
-    window.wordAppV3 = new WordLearningAppV3();
+    window.wordAppV4 = new WordLearningAppV4();
 });

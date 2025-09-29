@@ -8,10 +8,10 @@
  */
 
 /**
- * IndexedDB 매니저 클래스 V3
+ * IndexedDB 매니저 클래스 V4
  * JLPT 일본어 단어 학습 앱을 위한 로컬 데이터베이스 관리
  */
-class IndexedDBManagerV3 {
+class IndexedDBManagerV4 {
     /**
      * 생성자 - 데이터베이스 설정 초기화
      */
@@ -20,6 +20,7 @@ class IndexedDBManagerV3 {
         this.dbName = 'JLPTWordDB_V4'; // 데이터베이스 이름 (캐시 문제 해결)
         this.dbVersion = 1; // 새로운 DB이므로 버전 1부터 시작
         this.db = null; // 데이터베이스 연결 객체
+        this.isInitialized = false; // 초기화 완료 플래그
 
         // 통합된 카테고리 시스템 - 미리 정의된 카테고리들
         this.jlptLevels = ['n1', 'n2', 'n3', 'n4', 'n5']; // JLPT 레벨 목록
@@ -53,16 +54,8 @@ class IndexedDBManagerV3 {
                 // VersionError인 경우 즉시 데이터베이스 삭제
                 console.log('Force deleting database due to error...');
 
-                // 이전 버전 데이터베이스들도 삭제
-                const oldDbs = ['JLPTWordDB_V3', 'JLPTWordDB_V2', 'JLPTWordDB'];
-                oldDbs.forEach(dbName => {
-                    try {
-                        indexedDB.deleteDatabase(dbName);
-                        console.log(`Deleted old database: ${dbName}`);
-                    } catch (e) {
-                        console.log(`Could not delete ${dbName}:`, e);
-                    }
-                });
+                // 이전 버전 데이터베이스들을 강력하게 삭제 (비동기 실행)
+                this.forceDeleteOldDatabases().catch(console.error);
 
                 // 현재 데이터베이스 삭제
                 const deleteRequest = indexedDB.deleteDatabase(this.dbName);
@@ -88,7 +81,8 @@ class IndexedDBManagerV3 {
             // 성공적으로 열렸을 때 처리
             request.onsuccess = () => {
                 this.db = request.result; // 데이터베이스 객체 저장
-                console.log('IndexedDB V3 opened successfully');
+                this.isInitialized = true; // 초기화 완료 플래그 설정
+                console.log('IndexedDB V4 opened successfully');
                 resolve(this.db);
             };
 
@@ -532,6 +526,18 @@ class IndexedDBManagerV3 {
      */
     async getAvailableCategories() {
         if (!this.db) throw new Error('Database not initialized');
+
+        // 버전 변경 트랜잭션이 진행 중인지 확인
+        try {
+            const transaction = this.db.transaction(['categories'], 'readonly');
+        } catch (error) {
+            if (error.name === 'InvalidStateError') {
+                console.log('⏳ 데이터베이스 버전 변경 중... 대기 후 재시도');
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                return this.getAvailableCategories(); // 재시도
+            }
+            throw error;
+        }
 
         const transaction = this.db.transaction(['categories'], 'readonly');
         const store = transaction.objectStore('categories');
@@ -1336,16 +1342,124 @@ class IndexedDBManagerV3 {
             console.log('IndexedDB V3 connection closed');
         }
     }
+
+    /**
+     * 이전 버전 데이터베이스들을 강력하게 삭제
+     */
+    async forceDeleteOldDatabases() {
+        console.log('🗑️ 이전 버전 데이터베이스 강제 삭제 시작...');
+
+        // 기존 데이터베이스 목록 확인
+        try {
+            if (indexedDB.databases) {
+                const existingDbs = await indexedDB.databases();
+                console.log('📋 기존 데이터베이스 목록:', existingDbs.map(db => db.name));
+            }
+        } catch (e) {
+            console.log('데이터베이스 목록 조회 실패:', e);
+        }
+
+        // 이전 버전들 삭제
+        const oldDbs = ['JLPTWordDB_V3', 'JLPTWordDB_V2', 'JLPTWordDB'];
+
+        for (const dbName of oldDbs) {
+            try {
+                console.log(`🗑️ ${dbName} 삭제 시도...`);
+                const deleteRequest = indexedDB.deleteDatabase(dbName);
+
+                await new Promise((resolve, reject) => {
+                    deleteRequest.onsuccess = () => {
+                        console.log(`✅ ${dbName} 삭제 성공`);
+                        resolve();
+                    };
+
+                    deleteRequest.onerror = () => {
+                        console.log(`❌ ${dbName} 삭제 실패:`, deleteRequest.error);
+                        resolve(); // 실패해도 계속 진행
+                    };
+
+                    deleteRequest.onblocked = () => {
+                        console.log(`⚠️ ${dbName} 삭제 차단됨 (다른 탭에서 사용 중))`);
+                        resolve(); // 차단되어도 계속 진행
+                    };
+                });
+
+            } catch (error) {
+                console.log(`❌ ${dbName} 삭제 중 예외:`, error);
+            }
+        }
+
+        // 브라우저 캐시도 강제 삭제
+        await this.forceClearBrowserCache();
+
+        console.log('✅ 이전 버전 데이터베이스 강제 삭제 완료');
+    }
+
+    /**
+     * 브라우저 캐시 강제 삭제
+     */
+    async forceClearBrowserCache() {
+        try {
+            console.log('🧹 브라우저 캐시 강제 삭제 시도...');
+
+            // Service Worker 캐시 삭제
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                console.log('📦 기존 캐시 목록:', cacheNames);
+
+                for (const cacheName of cacheNames) {
+                    if (cacheName.includes('momo-japanese')) {
+                        console.log(`🗑️ 캐시 ${cacheName} 삭제 중...`);
+                        await caches.delete(cacheName);
+                        console.log(`✅ 캐시 ${cacheName} 삭제 완료`);
+                    }
+                }
+            }
+
+            // Service Worker 재등록 강제
+            if ('serviceWorker' in navigator) {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for (const registration of registrations) {
+                    console.log('🔄 Service Worker 재등록 중...');
+                    await registration.unregister();
+                    console.log('✅ Service Worker 해제 완료');
+                }
+            }
+
+            console.log('✅ 브라우저 캐시 강제 삭제 완료');
+
+        } catch (error) {
+            console.log('❌ 브라우저 캐시 삭제 실패:', error);
+        }
+    }
 }
 
 // 전역 스코프에 노출하여 다른 스크립트에서 사용 가능하도록
-window.IndexedDBManagerV3 = IndexedDBManagerV3;
+window.IndexedDBManagerV4 = IndexedDBManagerV4;
+
+// 개발자 도구에서 수동으로 V3 데이터베이스 삭제할 수 있는 함수
+window.forceDeleteV3Database = async function() {
+    console.log('🗑️ 수동으로 V3 데이터베이스 강제 삭제...');
+    if (window.wordAppV4 && window.wordAppV4.dbManager) {
+        try {
+            await window.wordAppV4.dbManager.forceDeleteOldDatabases();
+            console.log('✅ V3 데이터베이스 수동 삭제 완료');
+            return true;
+        } catch (error) {
+            console.error('❌ V3 데이터베이스 수동 삭제 실패:', error);
+            return false;
+        }
+    } else {
+        console.error('❌ 데이터베이스 매니저를 찾을 수 없습니다');
+        return false;
+    }
+};
 
 // 개발자 도구에서 수동으로 데이터베이스 재생성할 수 있는 함수
 window.recreateDatabase = async function() {
-    if (window.wordAppV3 && window.wordAppV3.dbManager) {
+    if (window.wordAppV4 && window.wordAppV4.dbManager) {
         try {
-            await window.wordAppV3.dbManager.deleteAndRecreateDatabase();
+            await window.wordAppV4.dbManager.deleteAndRecreateDatabase();
             console.log('Database recreated successfully from console');
             return true;
         } catch (error) {

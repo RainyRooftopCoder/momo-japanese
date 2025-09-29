@@ -29,8 +29,8 @@ class Practice {
      */
     initializeReferences() {
         // DB 매니저 참조
-        if (window.wordAppV3 && window.wordAppV3.dbManager) {
-            this.dbManager = window.wordAppV3.dbManager;
+        if (window.wordAppV4 && window.wordAppV4.dbManager) {
+            this.dbManager = window.wordAppV4.dbManager;
         } else if (window.dbManager) {
             this.dbManager = window.dbManager;
         }
@@ -49,7 +49,6 @@ class Practice {
      * 연습 화면 초기화
      */
     async init() {
-        console.log('Initializing practice module...');
         await this.loadVocabularyData();
         await this.loadPracticeTemplate();
         this.setupEventListeners();
@@ -64,7 +63,6 @@ class Practice {
             // 연습 화면이 활성화된 상태에서만 템플릿 로드
             const practiceScreen = document.getElementById('practiceScreen');
             if (!practiceScreen || !practiceScreen.classList.contains('active')) {
-                console.log('Practice screen not active, skipping template load');
                 return;
             }
 
@@ -78,7 +76,6 @@ class Practice {
             if (window.templateLoader) {
                 const content = await window.templateLoader.loadTemplate('pages/practice');
                 container.innerHTML = content;
-                console.log('Practice template loaded successfully');
             } else {
                 console.warn('Template loader not available, loading practice template directly');
                 const response = await fetch('./templates/pages/practice.html');
@@ -164,7 +161,6 @@ class Practice {
             } else {
                 this.vocabularyGroups = [];
             }
-            console.log('Loaded vocabulary groups:', this.vocabularyGroups.length);
         } catch (error) {
             console.error('Error loading vocabulary data:', error);
             this.vocabularyGroups = this.getDemoVocabulary();
@@ -318,14 +314,12 @@ class Practice {
 
         // 기존 내용 모두 지우고 연습 컨테이너 생성
         practiceScreen.innerHTML = '<div class="practice-container"></div>';
-        console.log('Practice container created');
     }
 
     /**
      * 연습 모드 시작
      */
     async startPracticeMode(mode) {
-        console.log('Starting practice mode:', mode);
         this.currentMode = mode;
         this.score = 0;
         this.currentQuestionIndex = 0;
@@ -1622,9 +1616,7 @@ class Practice {
         // 다음 문제 버튼에 직접 이벤트 리스너 추가
         const nextButton = container.querySelector('.next-question-btn');
         if (nextButton) {
-            console.log('Next button found, adding click listener');
             nextButton.addEventListener('click', (e) => {
-                console.log('Next button clicked!', e);
                 e.preventDefault();
                 e.stopPropagation();
                 this.nextQuestion();
@@ -1638,9 +1630,7 @@ class Practice {
      * 다음 문제로 이동
      */
     nextQuestion() {
-        console.log('Moving to next question. Current index:', this.currentQuestionIndex);
         this.currentQuestionIndex++;
-        console.log('New question index:', this.currentQuestionIndex, 'Total:', this.totalQuestions);
         this.showQuestion();
         // 화면 상단으로 스크롤
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1802,7 +1792,6 @@ class Practice {
             // 오늘의 연습 통계 업데이트
             this.updateTodayPracticeStats(sessionData);
 
-            console.log('Practice session saved:', sessionData);
         } catch (error) {
             console.error('Error saving practice session:', error);
         }
@@ -2023,7 +2012,6 @@ class Practice {
             if (deltaX > threshold && Math.abs(deltaY) < maxVerticalDistance && deltaTime < maxTime) {
                 // startX 조건 제거하여 어디서든 스와이프 가능
 
-                console.log('Swipe back detected, going back to practice menu');
                 if (e.cancelable) {
                     e.preventDefault();
                 }
@@ -2058,7 +2046,6 @@ class Practice {
             if (deltaX > threshold && Math.abs(deltaY) < maxVerticalDistance && deltaTime < maxTime * 2) {
                 // 마우스는 시간을 더 여유롭게
 
-                console.log('Mouse swipe back detected, going to home');
                 this.goBackToHome();
             }
         };
@@ -2071,32 +2058,23 @@ class Practice {
         practiceScreen.addEventListener('mousedown', handleMouseDown.bind(this));
         practiceScreen.addEventListener('mouseup', handleMouseUp.bind(this));
 
-        console.log('Swipe back gesture initialized for practice screen');
     }
 
     /**
      * 연습 메뉴로 돌아가기 (상황에 따라 홈 또는 연습 메뉴)
      */
     goBackToPracticeMenu() {
-        console.log('goBackToPracticeMenu called', {
-            currentMode: this.currentMode,
-            questionsLength: this.currentQuestions?.length || 0
-        });
 
         // 연습 중인 경우 - 연습 메뉴로 돌아가기
         if (this.currentMode && this.currentQuestions.length > 0) {
-            console.log('Practice in progress, showing confirmation');
             if (confirm('연습을 중단하고 연습 메뉴로 돌아가시겠습니까?')) {
-                console.log('User confirmed, navigating to practice menu');
                 this.currentMode = null;
                 this.currentQuestions = [];
                 this.navigateToPracticeMenu();
             } else {
-                console.log('User cancelled navigation');
             }
         } else {
             // 연습 메뉴(카테고리 선택) 화면에서는 홈으로 이동
-            console.log('In practice menu, navigating to home');
             this.navigateToHome();
         }
     }
@@ -2105,24 +2083,17 @@ class Practice {
      * 연습 메뉴로 네비게이션
      */
     navigateToPracticeMenu() {
-        console.log('navigateToPracticeMenu called');
-        console.log('Current mode:', this.currentMode);
-        console.log('Is in practice session:', !!(this.currentMode && this.currentQuestions.length > 0));
 
         // 연습 세션 상태 확인
         const practiceContainer = document.querySelector('.practice-container');
-        console.log('Practice container exists:', !!practiceContainer);
 
         // 연습 세션만 리셋
-        console.log('Resetting session...');
         this.resetSession();
 
         // 다른 화면 오염 방지
-        console.log('Cleaning up other screens...');
         this.cleanupOtherScreens();
 
         // 연습 메뉴 화면 다시 로드 (원본 HTML 내용 복원)
-        console.log('Reinitializing practice screen with menu...');
         this.loadPracticeMenu();
     }
 
@@ -2141,7 +2112,6 @@ class Practice {
             if (window.templateLoader) {
                 const practiceHTML = await window.templateLoader.loadTemplate('pages/practice');
                 practiceScreen.innerHTML = practiceHTML;
-                console.log('Practice menu loaded successfully');
 
                 // 이벤트 리스너만 다시 바인딩 (init 대신 setupEventListeners만 호출)
                 this.setupEventListeners();
@@ -2157,7 +2127,6 @@ class Practice {
      * 홈 화면으로 네비게이션
      */
     navigateToHome() {
-        console.log('navigateToHome called');
 
         // 연습 세션 완전 초기화 (화면 내용도 초기화)
         this.resetSession();
@@ -2167,7 +2136,6 @@ class Practice {
         this.resetPracticeScreen();
 
         if (window.navigation) {
-            console.log('Calling navigation.showScreen("home")');
             window.navigation.showScreen('home');
         } else {
             console.error('Navigation not available');
@@ -2189,7 +2157,6 @@ class Practice {
             if (window.templateLoader) {
                 const practiceHTML = await window.templateLoader.loadTemplate('pages/practice');
                 practiceScreen.innerHTML = practiceHTML;
-                console.log('Practice screen reset to initial state');
 
                 // 이벤트 리스너 다시 바인딩
                 this.setupEventListeners();
@@ -2205,7 +2172,6 @@ class Practice {
      * 연습 세션 리셋 (화면 내용 유지)
      */
     resetSession() {
-        console.log('Resetting practice session...');
 
         // 현재 모드 및 진행상황만 리셋
         this.currentMode = null;
@@ -2224,7 +2190,6 @@ class Practice {
      * 다른 화면 오염 정리 (연습 화면 제외)
      */
     cleanupOtherScreens() {
-        console.log('Cleaning up practice content from other screens...');
 
         // 다른 화면에 있을 수 있는 practice-container만 정리
         const allPracticeContainers = document.querySelectorAll('.practice-container');
@@ -2232,7 +2197,6 @@ class Practice {
             // 연습 화면이 아닌 곳에 있는 컨테이너만 정리
             if (!container.closest('#practiceScreen')) {
                 container.innerHTML = '';
-                console.log('Cleaned practice content from non-practice screen');
             }
         });
     }
@@ -2241,7 +2205,6 @@ class Practice {
      * 완전 정리 (모든 내용 제거) - 필요시에만 사용
      */
     cleanup() {
-        console.log('Full cleanup of practice screen...');
 
         this.resetSession();
 
@@ -2264,7 +2227,6 @@ function initPractice() {
     const practiceContainer = document.querySelector('#practiceScreen .practice-container');
 
     if (practiceScreen && practiceScreen.classList.contains('active') && practiceContainer && !window.practice) {
-        console.log('Initializing practice...');
         window.practice = new Practice();
         window.practice.init();
     }
@@ -2272,7 +2234,6 @@ function initPractice() {
 
 // 연습 화면으로 전환될 때 호출되는 함수
 window.initPracticeScreen = function () {
-    console.log('Practice screen activated, initializing...');
     if (!window.practice) {
         window.practice = new Practice();
         window.practice.init();

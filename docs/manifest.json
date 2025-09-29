@@ -30,22 +30,7 @@
             "purpose": "any"
         }
     ],
-    "screenshots": [
-        {
-            "src": "./assets/screenshots/desktop-home.png",
-            "sizes": "1280x720",
-            "type": "image/png",
-            "form_factor": "wide",
-            "label": "Home screen showing Japanese learning dashboard"
-        },
-        {
-            "src": "./assets/screenshots/mobile-practice.png",
-            "sizes": "360x640",
-            "type": "image/png",
-            "form_factor": "narrow",
-            "label": "Practice screen for vocabulary learning"
-        }
-    ],
+    "screenshots": [],
     "shortcuts": [
         {
             "name": "빠른 학습",

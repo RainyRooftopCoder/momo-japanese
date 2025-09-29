@@ -334,7 +334,6 @@ function initSettings() {
 
 // 설정 화면 표시 시 초기화
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Settings module DOM loaded');
 
     // 설정 화면이 활성화될 때까지 기다렸다가 초기화
     const observer = new MutationObserver((mutations) => {
@@ -342,7 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
                 const settingsScreen = document.getElementById('settingsScreen');
                 if (settingsScreen && settingsScreen.classList.contains('active')) {
-                    console.log('Settings screen activated - initializing');
                     initSettings();
                     observer.disconnect(); // 한 번만 실행
                 }
@@ -353,20 +351,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsScreen = document.getElementById('settingsScreen');
     if (settingsScreen) {
         observer.observe(settingsScreen, { attributes: true });
-        console.log('Settings observer attached');
     } else {
-        console.log('Settings screen not found during DOM load');
     }
 });
 
 // 전역에서 직접 호출 가능하도록 함수 추가
 window.forceInitSettings = function() {
-    console.log('Force initializing settings');
     if (!window.appSettings) {
         window.appSettings = new Settings();
-        console.log('Settings force created');
     } else {
-        console.log('Settings already exists');
     }
 };
 
@@ -375,7 +368,6 @@ window.initGlobalSpeechRate = function() {
     try {
         const settings = JSON.parse(localStorage.getItem('appSettings') || '{"speechRate": 1.0}');
         window.globalSpeechRate = settings.speechRate || 1.0;
-        console.log('Global speech rate initialized:', window.globalSpeechRate);
     } catch (error) {
         console.warn('Failed to load speech rate from settings:', error);
         window.globalSpeechRate = 1.0;

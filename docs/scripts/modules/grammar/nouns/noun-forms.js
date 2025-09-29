@@ -1,196 +1,187 @@
 /**
- * Noun Forms Learning App - 평서체/경어체 명사 활용
+ * Noun Forms App - 명사 활용 학습 (리팩토링 버전)
  *
  * 특징:
- * - 명사의 평서체/경어체 변화 학습
- * - 간단하고 직관적인 인터페이스
- * - 상황별 사용법 설명
+ * - BaseGrammarApp을 상속받아 중복 코드 제거
+ * - 명사의 4가지 활용형 학습
+ * - 실제 예문을 통한 학습
+ * - 컴팩트한 인터페이스
+ * - 터치 네비게이션
  */
 
-class NounFormsApp {
+
+class NounFormsApp extends window.GrammarShared.BaseGrammarApp {
     constructor() {
-        this.formsData = null;
-        this.currentNounIndex = 0;
-        this.selectedForm = '현재 긍정'; // 기본 선택 형태
+        const config = window.GrammarShared.MODULE_CONFIGS.nounForms;
+        super(config);
 
-        this.init();
-    }
-
-    async init() {
-        try {
-            console.log('Initializing Noun Forms App...');
-
-            // 데이터 로드
-            await this.loadFormsData();
-
-            // 이벤트 바인딩
-            this.bindEvents();
-
-            // UI 초기화
-            this.initializeUI();
-
-            console.log('Noun Forms App initialized successfully');
-        } catch (error) {
-            console.error('Error initializing Noun Forms App:', error);
-        }
+        this.nounData = null; // BaseGrammarApp의 data와 동일하지만 명확성을 위해 유지
     }
 
     /**
-     * 명사 활용 데이터 로드
-     */
-    async loadFormsData() {
-        try {
-            const response = await fetch('./data/vocabulary/jlpt/noun_forms_data.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            this.formsData = data[0]; // 기본 명사 활용 데이터
-
-            console.log('Forms data loaded:', this.formsData);
-        } catch (error) {
-            console.error('Error loading forms data:', error);
-            this.setupDefaultData();
-        }
-    }
-
-    /**
-     * 기본 데이터 설정 (파일 로드 실패 시)
-     */
-    setupDefaultData() {
-        this.formsData = {
-            title: "기본 명사 활용",
-            description: "명사를 평서체와 경어체로 활용하는 방법을 학습합니다",
-            forms: [
-                {
-                    formType: "현재 긍정",
-                    casual: "だ",
-                    polite: "です",
-                    description: "현재 상태를 나타내는 긍정형"
-                }
-            ],
-            examples: [
-                {
-                    noun: "学生",
-                    reading: "がくせい",
-                    meaning: "학생",
-                    forms: {
-                        "현재 긍정": {
-                            casual: "学生だ",
-                            polite: "学生です",
-                            translation: "(나는) 학생이다 / (나는) 학생입니다"
-                        }
-                    }
-                }
-            ]
-        };
-    }
-
-    /**
-     * UI 초기화
+     * UI 초기화 (헤더 포함)
      */
     initializeUI() {
-        this.hideHeader(); // 헤더 숨기기
+        this.createHeader();
         this.createFormSelector();
-        this.createNounDisplay();
+        this.createDisplay();
+        this.bindModalEvents();
     }
 
     /**
-     * 헤더 숨기기
+     * 헤더 생성
      */
-    hideHeader() {
-        const headerContainer = document.getElementById('nounFormsHeader');
-        if (headerContainer) {
-            headerContainer.style.display = 'none';
-        }
+    createHeader() {
+        const header = document.getElementById(this.config.headerId);
+        if (!header) return;
+
+        header.innerHTML = `
+            <div class="forms-header">
+                <h1>평서체/경어체 명사 활용</h1>
+                <div class="description">일본어 명사의 다양한 활용형을 학습합니다</div>
+                <div class="explanation">
+                    명사는 평문체와 경어체로 구분되며, 각각 현재/과거, 긍정/부정의 형태가 있습니다.
+                    상황과 관계에 따라 적절한 형태를 선택하여 사용해야 합니다.
+                </div>
+            </div>
+        `;
     }
 
     /**
-     * 활용 형태 선택기 생성
+     * 기본 데이터 설정 (데이터 로드 실패 시 사용)
+     */
+    setupDefaultData() {
+        this.data = this.nounData = [this.config.defaultData];
+    }
+
+    /**
+     * 데이터 로드 후 처리
+     */
+    async loadData() {
+        await super.loadData();
+        // N5 데이터에서 명사만 필터링
+        if (this.data && Array.isArray(this.data)) {
+            this.nounData = this.data.filter(item =>
+                item.partOfSpeech === '명사' ||
+                item.partOfSpeech === '대명사'
+            ).slice(0, 20); // 처음 20개만 사용
+        } else {
+            this.nounData = this.data;
+        }
+        this.data = this.nounData;
+    }
+
+    /**
+     * 폼 선택기 생성
      */
     createFormSelector() {
-        const selectorContainer = document.getElementById('formSelector');
-        if (!selectorContainer) {
-            console.log('Form selector container not found');
-            return;
-        }
+        const formSelector = document.getElementById('formSelector');
+        if (!formSelector) return;
 
-        selectorContainer.innerHTML = `
+        const forms = this.config.forms;
+
+        const html = `
             <div class="form-selector">
                 <div class="selector-header">
-                    <h3>활용 형태 선택</h3>
+                    <h3>명사 활용형 선택</h3>
                     <button class="info-modal-btn" data-action="open-info-modal">
                         <span class="info-icon">ℹ️</span>
                         <span class="info-text">설명</span>
                     </button>
                 </div>
                 <div class="form-buttons">
-                    ${this.formsData.forms.map(form => `
-                        <button class="form-btn ${form.formType === this.selectedForm ? 'active' : ''}"
-                                data-form="${form.formType}">
-                            <div class="form-name">${form.formType}</div>
+                    ${forms
+                        .map(
+                            (form) => `
+                        <button class="form-btn ${form === this.selectedForm ? 'active' : ''}"
+                                data-form="${form}">
+                            <div class="form-name">${form}</div>
                         </button>
-                    `).join('')}
+                    `
+                        )
+                        .join('')}
                 </div>
             </div>
         `;
+
+        formSelector.innerHTML = html;
+
+        // 폼 선택 이벤트 바인딩
+        formSelector.addEventListener('click', (e) => {
+            if (e.target.classList.contains('form-btn') || e.target.closest('.form-btn')) {
+                const btn = e.target.classList.contains('form-btn') ? e.target : e.target.closest('.form-btn');
+                this.selectForm(btn.dataset.form);
+            } else if (e.target.classList.contains('info-modal-btn') || e.target.closest('.info-modal-btn')) {
+                this.openInfoModal();
+            }
+        });
     }
 
     /**
-     * 명사 표시 영역 생성
+     * 명사 디스플레이 생성
+     */
+    createDisplay() {
+        this.createNounDisplay();
+    }
+
+    /**
+     * 명사 디스플레이 생성
      */
     createNounDisplay() {
-        const displayContainer = document.getElementById('nounDisplay');
-        if (!displayContainer) {
-            console.log('Noun display container not found');
+        if (!this.nounData || this.nounData.length === 0) {
+            const display = document.getElementById(this.config.displayId);
+            if (display) {
+                display.innerHTML = '<p>명사 데이터를 불러올 수 없습니다.</p>';
+            }
             return;
         }
 
-        const currentNoun = this.formsData.examples[this.currentNounIndex];
-        const selectedFormData = this.formsData.forms.find(f => f.formType === this.selectedForm);
+        const noun = this.getCurrentItem();
+        if (!noun) return;
 
-        const totalNouns = this.formsData.examples.length;
+        const display = document.getElementById(this.config.displayId);
+        if (!display) return;
 
-        displayContainer.innerHTML = `
+        const indexInfo = this.getIndexInfo();
+        const casualForm = this.getCasualForm(noun, this.selectedForm);
+        const politeForm = this.getPoliteForm(noun, this.selectedForm);
+
+        display.innerHTML = `
             <div class="noun-display">
-                <div class="noun-counter">${this.currentNounIndex + 1}/${totalNouns}</div>
+                <div class="noun-counter">
+                    ${indexInfo.current} / ${indexInfo.total}
+                </div>
+
                 <div class="noun-info">
                     <div class="noun-main">
-                        <span class="noun-kanji">${currentNoun.noun}</span>
-                        <button class="speech-btn speech-noun-btn" title="명사 음성 듣기">🔊</button>
-                        <span class="noun-reading">${currentNoun.reading}</span>
+                        <span class="noun-kanji">${noun.hanja || noun.noun}</span>
+                        <span class="noun-reading">${noun.hiragana || noun.reading}</span>
                     </div>
-                    <div class="noun-meaning">${currentNoun.meaning}</div>
+                    <div class="noun-meaning">${noun.mean || noun.meaning}</div>
+                    <div class="noun-group">명사</div>
                 </div>
 
                 <div class="form-explanation">
                     <h4>${this.selectedForm}</h4>
-                    <p>${selectedFormData.description}</p>
-                    ${selectedFormData.usage ? `<p class="usage-note"><strong>사용법:</strong> ${selectedFormData.usage}</p>` : ''}
+                    <p>${this.getFormDescription(this.selectedForm)}</p>
                 </div>
 
                 <div class="conjugation-display">
                     <div class="conjugation-pair">
                         <div class="casual-form">
-                            <div class="form-label">평문체 (친근한 상황)</div>
-                            <div class="form-text">
-                                ${currentNoun.forms[this.selectedForm].casual}
-                                <button class="speech-btn speech-btn-small speech-casual-btn" title="평문체 음성 듣기">🔊</button>
-                            </div>
-                            <div class="form-korean">${this.getKoreanTranslation(currentNoun.forms[this.selectedForm].casual)}</div>
+                            <div class="form-label">평문체</div>
+                            <div class="form-text">${casualForm}</div>
+                            <div class="form-korean">${this.getCasualMeaning(this.selectedForm)}</div>
                         </div>
                         <div class="polite-form">
-                            <div class="form-label">경어체 (정중한 상황)</div>
-                            <div class="form-text">
-                                ${currentNoun.forms[this.selectedForm].polite}
-                                <button class="speech-btn speech-btn-small speech-polite-btn" title="경어체 음성 듣기">🔊</button>
-                            </div>
-                            <div class="form-korean">${this.getKoreanTranslation(currentNoun.forms[this.selectedForm].polite)}</div>
+                            <div class="form-label">경어체</div>
+                            <div class="form-text">${politeForm}</div>
+                            <div class="form-korean">${this.getPoliteMeaning(this.selectedForm)}</div>
                         </div>
                     </div>
+
                     <div class="translation">
-                        <strong>번역:</strong> ${currentNoun.forms[this.selectedForm].translation}
+                        <strong>한국어:</strong> ${noun.mean || noun.meaning}${this.getKoreanEnding(this.selectedForm)}
                     </div>
                 </div>
             </div>
@@ -198,430 +189,205 @@ class NounFormsApp {
     }
 
     /**
-     * 한글 번역 생성
+     * 평문체 활용형 생성
      */
-    getKoreanTranslation(japaneseForm) {
-        // 명사 부분을 제거하고 활용 부분만 번역
-        const currentNoun = this.formsData.examples[this.currentNounIndex];
-        const nounPart = currentNoun.noun;
-        const conjugationPart = japaneseForm.replace(nounPart, '');
+    getCasualForm(noun, formType) {
+        if (!noun || !(noun.hanja || noun.noun)) return '';
+        const nounText = noun.hanja || noun.noun;
 
-        const translations = {
-            'だ': '이다/다',
-            'です': '입니다',
-            'じゃない': '이/가 아니다',
-            'ではない': '이/가 아니다',
-            'じゃありません': '이/가 아닙니다',
-            'ではありません': '이/가 아닙니다',
-            'だった': '이었다/였다',
-            'でした': '이었습니다/였습니다',
-            'じゃなかった': '이/가 아니었다',
-            'ではなかった': '이/가 아니었다',
-            'じゃありませんでした': '이/가 아니었습니다',
-            'ではありませんでした': '이/가 아니었습니다',
-            'だろう': '일 것이다',
-            'でしょう': '일 것입니다'
-        };
-
-        return `${currentNoun.meaning} + ${translations[conjugationPart] || conjugationPart}`;
-    }
-
-
-    /**
-     * 이벤트 바인딩
-     */
-    bindEvents() {
-        console.log('Binding events for NounFormsApp');
-
-        // 기존 이벤트 리스너 제거 (중복 방지)
-        if (this.clickHandler) {
-            document.removeEventListener('click', this.clickHandler);
+        switch (formType) {
+            case '현재형':
+                return nounText + 'だ';
+            case '과거형':
+                return nounText + 'だった';
+            case '현재 부정형':
+                return nounText + 'じゃない';
+            case '과거 부정형':
+                return nounText + 'じゃなかった';
+            default:
+                return nounText + 'だ';
         }
-
-        // 클릭 이벤트 핸들러
-        this.clickHandler = (e) => {
-            const characterScreen = document.getElementById('characterScreen');
-            const nounFormsScreen = document.getElementById('nounFormsScreen');
-
-            if (!characterScreen || !nounFormsScreen || !characterScreen.contains(nounFormsScreen)) {
-                return;
-            }
-
-            if (e.target.classList.contains('form-btn') || e.target.closest('.form-btn')) {
-                const btn = e.target.classList.contains('form-btn') ? e.target : e.target.closest('.form-btn');
-                const formType = btn.dataset.form;
-                this.selectForm(formType);
-            }
-
-            // 정보 모달 버튼 이벤트
-            if (nounFormsScreen.contains(e.target) && e.target.closest('.info-modal-btn[data-action="open-info-modal"]')) {
-                console.log('Noun Forms Info modal button clicked');
-                e.preventDefault();
-                this.openInfoModal();
-            }
-
-            // 모달 닫기 버튼 이벤트
-            if (nounFormsScreen.contains(e.target) && e.target.closest('.modal-close-btn[data-action="close-info-modal"]')) {
-                console.log('Noun Forms Modal close button clicked');
-                e.preventDefault();
-                this.closeInfoModal();
-            }
-        };
-
-        // 이벤트 리스너 등록
-        document.addEventListener('click', this.clickHandler);
-
-        // 스와이프 네비게이션
-        this.bindSwipeEvents();
-
-        // 키보드 네비게이션
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') this.showPreviousNoun();
-            if (e.key === 'ArrowRight') this.showNextNoun();
-        });
-
-        // 음성 버튼 이벤트
-        this.bindSpeechEvents();
     }
 
     /**
-     * 활용 형태 선택
+     * 경어체 활용형 생성
      */
-    selectForm(formType) {
-        this.selectedForm = formType;
-        this.updateFormSelector();
+    getPoliteForm(noun, formType) {
+        if (!noun || !(noun.hanja || noun.noun)) return '';
+        const nounText = noun.hanja || noun.noun;
+
+        switch (formType) {
+            case '현재형':
+                return nounText + 'です';
+            case '과거형':
+                return nounText + 'でした';
+            case '현재 부정형':
+                return nounText + 'じゃありません';
+            case '과거 부정형':
+                return nounText + 'じゃありませんでした';
+            default:
+                return nounText + 'です';
+        }
+    }
+
+    /**
+     * 평문체 의미
+     */
+    getCasualMeaning(formType) {
+        switch (formType) {
+            case '현재형':
+                return '~이다/~다';
+            case '과거형':
+                return '~이었다/~였다';
+            case '현재 부정형':
+                return '~이 아니다';
+            case '과거 부정형':
+                return '~이 아니었다';
+            default:
+                return '~이다';
+        }
+    }
+
+    /**
+     * 경어체 의미
+     */
+    getPoliteMeaning(formType) {
+        switch (formType) {
+            case '현재형':
+                return '~입니다';
+            case '과거형':
+                return '~이었습니다/~였습니다';
+            case '현재 부정형':
+                return '~이 아닙니다';
+            case '과거 부정형':
+                return '~이 아니었습니다';
+            default:
+                return '~입니다';
+        }
+    }
+
+    /**
+     * 한국어 어미
+     */
+    getKoreanEnding(formType) {
+        switch (formType) {
+            case '현재형':
+                return '이다/입니다';
+            case '과거형':
+                return '이었다/이었습니다';
+            case '현재 부정형':
+                return '이 아니다/이 아닙니다';
+            case '과거 부정형':
+                return '이 아니었다/이 아니었습니다';
+            default:
+                return '이다/입니다';
+        }
+    }
+
+    /**
+     * 폼 선택기 업데이트
+     */
+    updateFormSelector() {
+        const formButtons = document.querySelectorAll('.form-btn');
+        formButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.form === this.selectedForm);
+        });
+    }
+
+    /**
+     * 디스플레이 업데이트
+     */
+    updateDisplay() {
         this.createNounDisplay();
     }
 
     /**
-     * 형태 선택기 업데이트
+     * 형태별 어미 변화 가져오기
      */
-    updateFormSelector() {
-        const formBtns = document.querySelectorAll('.form-btn');
-        formBtns.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.dataset.form === this.selectedForm) {
-                btn.classList.add('active');
-            }
-        });
-    }
-
-    /**
-     * 이전 명사 표시
-     */
-    showPreviousNoun() {
-        if (this.currentNounIndex > 0) {
-            this.currentNounIndex--;
-            this.createNounDisplay();
+    getEndingForForm(noun, formType) {
+        switch (formType) {
+            case '기본형':
+                return '';
+            case '복수형':
+                return 'たち';
+            case '정중형':
+                return 'さん';
+            case '높임형':
+                return '様';
+            default:
+                return '';
         }
     }
 
     /**
-     * 다음 명사 표시
+     * 형태 설명 가져오기
      */
-    showNextNoun() {
-        if (this.currentNounIndex < this.formsData.examples.length - 1) {
-            this.currentNounIndex++;
-            this.createNounDisplay();
-        }
+    getFormDescription(formType) {
+        const descriptions = {
+            '현재형': '현재 상태나 사실을 나타내는 형태',
+            '과거형': '과거의 상태나 사실을 나타내는 형태',
+            '현재 부정형': '현재 상태의 부정을 나타내는 형태',
+            '과거 부정형': '과거 상태의 부정을 나타내는 형태'
+        };
+        return descriptions[formType] || '명사의 기본 형태';
     }
 
     /**
-     * 터치 및 스와이프 이벤트 바인딩
+     * 활용형 읽기 생성
      */
-    bindSwipeEvents() {
-        let startX = 0;
-        let startY = 0;
-        let isSwipingHorizontally = false;
-        let isSwiping = false;
+    getConjugatedReading(noun, formType) {
+        const reading = noun.hiragana || noun.reading;
+        return reading + this.getEndingForForm(noun, formType);
+    }
 
-        const nounDisplay = document.getElementById('nounDisplay');
-        if (!nounDisplay) return;
+    /**
+     * 활용형 의미 생성
+     */
+    getConjugatedMeaning(noun, formType) {
+        const baseMeaning = noun.mean || noun.meaning;
+        const formMeanings = {
+            '기본형': baseMeaning,
+            '복수형': baseMeaning + '들',
+            '정중형': baseMeaning + '님',
+            '높임형': baseMeaning + '님'
+        };
+        return formMeanings[formType] || baseMeaning;
+    }
 
-        // 터치 시작
-        nounDisplay.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-            isSwipingHorizontally = false;
-            isSwiping = false;
-        }, { passive: true });
+    /**
+     * 예문 생성
+     */
+    generateExample(noun, conjugatedForm) {
+        return `${conjugatedForm}です。`;
+    }
 
-        // 터치 이동
-        nounDisplay.addEventListener('touchmove', (e) => {
-            if (!startX || !startY) return;
+    /**
+     * 예문 읽기 생성
+     */
+    generateExampleReading(noun, conjugatedForm) {
+        return `${this.getConjugatedReading(noun, this.selectedForm)}です。`;
+    }
 
-            const currentX = e.touches[0].clientX;
-            const currentY = e.touches[0].clientY;
-
-            const diffX = Math.abs(currentX - startX);
-            const diffY = Math.abs(currentY - startY);
-
-            // 수평 스와이프 감지
-            if (diffX > diffY && diffX > 10) {
-                isSwipingHorizontally = true;
-                isSwiping = true;
-                e.preventDefault();
-            } else if (diffY > 10) {
-                // 수직 스크롤 감지
-                isSwiping = true;
-            }
-        }, { passive: false });
-
-        // 터치 종료
-        nounDisplay.addEventListener('touchend', (e) => {
-            if (!startX || !startY) return;
-
-            if (isSwipingHorizontally) {
-                const endX = e.changedTouches[0].clientX;
-                const diffX = startX - endX;
-
-                // 최소 스와이프 거리 (뒤로가기만)
-                if (Math.abs(diffX) > 50 && diffX < 0) {
-                    // 왼쪽에서 오른쪽 스와이프 (뒤로가기)
-                    window.threeStepNavigation?.showScreen('sub');
-                }
-            } else if (!isSwiping) {
-                // 단순 터치 (스와이프가 아닌 경우) - 터치 위치에 따라 이전/다음
-                const endX = e.changedTouches[0].clientX;
-                const displayRect = nounDisplay.getBoundingClientRect();
-                const centerX = displayRect.left + displayRect.width / 2;
-
-                if (endX < centerX) {
-                    // 왼쪽 터치 - 이전 명사
-                    this.showPreviousNoun();
-                } else {
-                    // 오른쪽 터치 - 다음 명사
-                    this.showNextNoun();
-                }
-            }
-
-            // 초기화
-            startX = 0;
-            startY = 0;
-            isSwipingHorizontally = false;
-            isSwiping = false;
-        }, { passive: true });
+    /**
+     * 예문 의미 생성
+     */
+    generateExampleMeaning(noun, conjugatedForm) {
+        return `${this.getConjugatedMeaning(noun, this.selectedForm)}입니다.`;
     }
 
     /**
      * 정보 모달 열기
      */
     openInfoModal() {
-        const modal = document.getElementById('infoModal');
-        if (modal) {
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden'; // 스크롤 방지
-        }
-    }
-
-    /**
-     * 정보 모달 닫기
-     */
-    closeInfoModal() {
-        const modal = document.getElementById('infoModal');
-        if (modal) {
-            modal.classList.remove('show');
-            document.body.style.overflow = ''; // 스크롤 복원
-        }
-    }
-
-    /**
-     * 모달 외부 클릭 시 닫기
-     */
-    bindModalEvents() {
-        const modal = document.getElementById('infoModal');
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                // 모달 외부(오버레이) 클릭 시 닫기
-                if (e.target === modal) {
-                    this.closeInfoModal();
-                }
-            });
-
-            // ESC 키로 모달 닫기
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('show')) {
-                    this.closeInfoModal();
-                }
-            });
-        }
-    }
-
-    /**
-     * 음성 버튼 이벤트 바인딩
-     */
-    bindSpeechEvents() {
-        // 명사 음성 버튼
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('speech-noun-btn')) {
-                e.preventDefault();
-                e.stopPropagation();
-                this.speakCurrentNoun();
-            } else if (e.target.classList.contains('speech-casual-btn')) {
-                e.preventDefault();
-                e.stopPropagation();
-                this.speakCasualForm();
-            } else if (e.target.classList.contains('speech-polite-btn')) {
-                e.preventDefault();
-                e.stopPropagation();
-                this.speakPoliteForm();
-            }
-        });
-    }
-
-    /**
-     * 현재 명사 음성 재생
-     */
-    async speakCurrentNoun() {
-        if (!this.formsData || !window.speechManager) {
-            console.warn('No data or speech manager not available');
-            return;
-        }
-
-        const speechBtn = document.querySelector('.speech-noun-btn');
-
-        // 이미 재생 중이면 중복 실행 방지
-        if (speechBtn && speechBtn.classList.contains('speaking')) {
-            console.log('Speech already in progress, ignoring click');
-            return;
-        }
-
-        try {
-            const currentNoun = this.formsData.examples[this.currentNounIndex];
-            const textToSpeak = currentNoun.noun;
-
-            // 버튼 상태 변경 및 비활성화
-            if (speechBtn) {
-                speechBtn.classList.add('speaking');
-                speechBtn.textContent = '🔈';
-                speechBtn.disabled = true;
-            }
-
-            await window.speechManager.speak(textToSpeak, { rate: 0.7 });
-
-            console.log('Noun speech completed');
-        } catch (error) {
-            console.error('Error speaking noun:', error);
-            // interrupted 오류가 아닌 경우만 알림 표시
-            if (error !== 'interrupted') {
-                alert('음성 재생에 실패했습니다.');
-            }
-        } finally {
-            // 버튼 상태 복원
-            if (speechBtn) {
-                speechBtn.classList.remove('speaking');
-                speechBtn.textContent = '🔊';
-                speechBtn.disabled = false;
-            }
-        }
-    }
-
-    /**
-     * 평문체 활용형 음성 재생
-     */
-    async speakCasualForm() {
-        if (!this.formsData || !window.speechManager) {
-            console.warn('No data or speech manager not available');
-            return;
-        }
-
-        const speechBtn = document.querySelector('.speech-casual-btn');
-
-        // 이미 재생 중이면 중복 실행 방지
-        if (speechBtn && speechBtn.classList.contains('speaking')) {
-            console.log('Speech already in progress, ignoring click');
-            return;
-        }
-
-        try {
-            const currentNoun = this.formsData.examples[this.currentNounIndex];
-            const formData = currentNoun.forms[this.selectedForm];
-            const textToSpeak = formData.casual;
-
-            // 버튼 상태 변경 및 비활성화
-            if (speechBtn) {
-                speechBtn.classList.add('speaking');
-                speechBtn.textContent = '🔈';
-                speechBtn.disabled = true;
-            }
-
-            await window.speechManager.speak(textToSpeak, { rate: 0.7 });
-
-            console.log('Casual form speech completed');
-        } catch (error) {
-            console.error('Error speaking casual form:', error);
-            // interrupted 오류가 아닌 경우만 알림 표시
-            if (error !== 'interrupted') {
-                alert('음성 재생에 실패했습니다.');
-            }
-        } finally {
-            // 버튼 상태 복원
-            if (speechBtn) {
-                speechBtn.classList.remove('speaking');
-                speechBtn.textContent = '🔊';
-                speechBtn.disabled = false;
-            }
-        }
-    }
-
-    /**
-     * 경어체 활용형 음성 재생
-     */
-    async speakPoliteForm() {
-        if (!this.formsData || !window.speechManager) {
-            console.warn('No data or speech manager not available');
-            return;
-        }
-
-        const speechBtn = document.querySelector('.speech-polite-btn');
-
-        // 이미 재생 중이면 중복 실행 방지
-        if (speechBtn && speechBtn.classList.contains('speaking')) {
-            console.log('Speech already in progress, ignoring click');
-            return;
-        }
-
-        try {
-            const currentNoun = this.formsData.examples[this.currentNounIndex];
-            const formData = currentNoun.forms[this.selectedForm];
-            const textToSpeak = formData.polite;
-
-            // 버튼 상태 변경 및 비활성화
-            if (speechBtn) {
-                speechBtn.classList.add('speaking');
-                speechBtn.textContent = '🔈';
-                speechBtn.disabled = true;
-            }
-
-            await window.speechManager.speak(textToSpeak, { rate: 0.7 });
-
-            console.log('Polite form speech completed');
-        } catch (error) {
-            console.error('Error speaking polite form:', error);
-            // interrupted 오류가 아닌 경우만 알림 표시
-            if (error !== 'interrupted') {
-                alert('음성 재생에 실패했습니다.');
-            }
-        } finally {
-            // 버튼 상태 복원
-            if (speechBtn) {
-                speechBtn.classList.remove('speaking');
-                speechBtn.textContent = '🔊';
-                speechBtn.disabled = false;
-            }
-        }
+        window.GrammarShared.ModalManager.openModal('infoModal');
     }
 }
 
-// 명사 활용 앱 초기화
-let nounFormsApp;
-document.addEventListener('DOMContentLoaded', () => {
-    nounFormsApp = new NounFormsApp();
-
-    // 모달 이벤트 바인딩 (DOM 로드 후)
-    setTimeout(() => {
-        if (nounFormsApp) {
-            nounFormsApp.bindModalEvents();
-        }
-    }, 100);
-});
+// DOM이 로드된 후 앱 초기화
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        window.nounFormsApp = new NounFormsApp();
+    });
+} else {
+    window.nounFormsApp = new NounFormsApp();
+}

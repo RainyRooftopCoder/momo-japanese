@@ -1,4 +1,4 @@
-const CACHE_NAME = 'momo-japanese-v1.0.0';
+const CACHE_NAME = 'momo-japanese-v1.1.0';
 const OFFLINE_URL = './offline.html';
 
 // 캐시할 리소스 목록

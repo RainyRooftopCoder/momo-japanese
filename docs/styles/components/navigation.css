@@ -311,8 +311,6 @@
     font-weight: 700;
     color: var(--text-primary);
     text-align: center;
-    margin: 1rem 0 1.5rem 0;
-    padding: 0.5rem;
 }
 
 /* 뒤로가기 버튼 */
@@ -424,6 +422,10 @@
 /* 서브 카테고리 컨테이너 - 뒤로 버튼과의 간격을 버튼 간격만큼 */
 .sub-category-container {
     margin-top: 20px;
+}
+
+.app-screen {
+    width: 100%;
 }
 
 .section {

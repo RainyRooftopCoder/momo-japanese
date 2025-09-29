@@ -19,6 +19,7 @@
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     box-shadow: var(--glass-shadow);
+    margin-top: 1rem;
     padding: 1rem;
     text-align: center;
     position: relative;
@@ -102,7 +103,7 @@
 }
 
 /* Quick Start Section */
-.quick-start {
+/* .quick-start {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-backdrop);
     -webkit-backdrop-filter: var(--glass-backdrop);
@@ -110,7 +111,7 @@
     border-radius: var(--radius-xl);
     box-shadow: var(--glass-shadow);
     padding: 0.75rem 0;
-}
+} */
 
 .quick-actions {
     /* display: grid; */
@@ -360,6 +361,7 @@
 
 /* 단어장 목록 헤더 */
 .vocab-list-header {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

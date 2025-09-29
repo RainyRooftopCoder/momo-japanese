@@ -809,21 +809,6 @@ class HomeDashboard {
         }, 60000);
     }
 
-    // 테스트용 메서드들
-    simulateStudy() {
-        this.updateStudyProgress('words', Math.floor(Math.random() * 5) + 1);
-        this.updateStudyProgress('practice', 1);
-    }
-
-    resetData() {
-        localStorage.removeItem('studyData');
-        localStorage.removeItem('badges');
-        this.studyData = this.getStudyData();
-        this.badges = this.getBadges();
-        this.updateTodayStats();
-        this.renderWeeklyChart();
-        this.renderRecentBadges();
-    }
 }
 
 // CSS 애니메이션 추가
@@ -871,9 +856,6 @@ async function initHomeDashboard() {
         if (window.dbManager) {
             window.homeDashboard = new HomeDashboard();
 
-            // 개발자 도구에서 테스트할 수 있도록 전역 함수 제공
-            window.testStudy = () => window.homeDashboard.simulateStudy();
-            window.resetDashboard = () => window.homeDashboard.resetData();
         } else {
             console.error('Database manager not ready, retrying in 1 second...');
             setTimeout(initHomeDashboard, 1000);

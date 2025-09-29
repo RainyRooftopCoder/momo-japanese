@@ -20,8 +20,8 @@ class MyVocabularyUI {
      */
     initializeReferences() {
         // 전역 객체 참조
-        if (window.wordAppV3 && window.wordAppV3.dbManager) {
-            this.dbManager = window.wordAppV3.dbManager;
+        if (window.wordAppV4 && window.wordAppV4.dbManager) {
+            this.dbManager = window.wordAppV4.dbManager;
         } else if (window.dbManager) {
             this.dbManager = window.dbManager;
         }
@@ -29,13 +29,10 @@ class MyVocabularyUI {
         // 음성 합성 모듈 초기화
         if (window.speechManager) {
             this.speechSynthesis = window.speechManager;
-            console.log('Using speechManager');
         } else if (window.SpeechSynthesisManager) {
             this.speechSynthesis = new window.SpeechSynthesisManager();
-            console.log('Created new SpeechSynthesisManager');
         } else if (window.speechSynthesis) {
             this.speechSynthesis = window.speechSynthesis;
-            console.log('Using browser speechSynthesis');
         }
     }
 
@@ -44,7 +41,6 @@ class MyVocabularyUI {
      */
     async showMyVocabulary() {
         try {
-            console.log('Showing vocabulary list screen...');
 
             // 참조 재초기화 (음성 모듈 포함)
             this.initializeReferences();
@@ -278,7 +274,6 @@ class MyVocabularyUI {
                 // 기존 단일 단어장 데이터 마이그레이션
                 await this.migrateOldVocabularyData();
             }
-            console.log('Loaded vocabulary groups:', this.vocabularyGroups.length);
         } catch (error) {
             console.error('Error loading vocabulary groups:', error);
             this.vocabularyGroups = [];
@@ -309,7 +304,6 @@ class MyVocabularyUI {
                 };
                 this.vocabularyGroups = [defaultGroup];
                 this.saveVocabularyGroups();
-                console.log('Migrated old vocabulary data to default group');
             } else {
                 this.vocabularyGroups = [];
             }
@@ -686,7 +680,6 @@ class MyVocabularyUI {
         this.saveVocabularyGroups();
         this.renderVocabularyGroups();
 
-        console.log('Created new vocabulary group:', name);
     }
 
     /**
@@ -709,7 +702,6 @@ class MyVocabularyUI {
                 }
             }
 
-            console.log('Updated vocabulary group:', newName);
         }
     }
 
@@ -742,7 +734,6 @@ class MyVocabularyUI {
             this.renderVocabularyGroups();
         }
 
-        console.log('Deleted vocabulary group:', group.name);
     }
 
     /**
@@ -775,7 +766,6 @@ class MyVocabularyUI {
             if (vocabularyList) vocabularyList.style.display = 'none';
         }
 
-        console.log('Removed word from group');
     }
 
     /**
@@ -1051,18 +1041,15 @@ class MyVocabularyUI {
     playPronunciation(text) {
         if (!text) return;
 
-        console.log('Playing pronunciation:', text);
 
         try {
             // SpeechSynthesisManager가 있으면 사용
             if (this.speechSynthesis && typeof this.speechSynthesis.speak === 'function') {
-                console.log('Using SpeechSynthesisManager');
                 this.speechSynthesis.speak(text).catch((error) => {
                     console.error('SpeechSynthesisManager error:', error);
                     this.fallbackSpeech(text);
                 });
             } else {
-                console.log('Using fallback speech');
                 this.fallbackSpeech(text);
             }
         } catch (error) {
@@ -1088,8 +1075,8 @@ class MyVocabularyUI {
                 utterance.pitch = 1.0;
                 utterance.volume = 1.0;
 
-                utterance.onstart = () => console.log('Speech started');
-                utterance.onend = () => console.log('Speech ended');
+                utterance.onstart = () => {};
+                utterance.onend = () => {};
                 utterance.onerror = (event) => console.error('Speech error:', event);
 
                 window.speechSynthesis.speak(utterance);

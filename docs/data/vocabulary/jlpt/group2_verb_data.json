@@ -18,28 +18,28 @@
         "usage": "~했다, ~였다"
       },
       {
-        "formType": "부정형",
+        "formType": "현재 부정형",
         "ending": "ない",
         "description": "동작의 부정을 나타냄",
         "usage": "~하지 않다, ~지 않다"
       },
       {
-        "formType": "과거부정형",
+        "formType": "과거 부정형",
         "ending": "なかった",
         "description": "과거 동작의 부정을 나타냄",
         "usage": "~하지 않았다, ~지 않았다"
       },
       {
-        "formType": "ます형",
+        "formType": "정중형",
         "ending": "ます",
         "description": "정중한 현재형",
         "usage": "공식적인 상황에서 사용"
       },
       {
-        "formType": "て형",
-        "ending": "て",
-        "description": "연결형, 진행형, 명령형 등에 사용",
-        "usage": "동작의 연결이나 진행을 나타냄"
+        "formType": "과거 정중형",
+        "ending": "ました",
+        "description": "정중한 과거형",
+        "usage": "공식적인 과거 표현"
       }
     ],
     "examples": [
@@ -66,7 +66,7 @@
             "exampleReading": "きのうすしをたべた。",
             "exampleTranslation": "어제 스시를 먹었다."
           },
-          "부정형": {
+          "현재 부정형": {
             "form": "食べない",
             "reading": "たべない",
             "translation": "먹지 않다",
@@ -74,7 +74,7 @@
             "exampleReading": "やさいをたべない。",
             "exampleTranslation": "야채를 먹지 않는다."
           },
-          "과거부정형": {
+          "과거 부정형": {
             "form": "食べなかった",
             "reading": "たべなかった",
             "translation": "먹지 않았다",
@@ -82,7 +82,7 @@
             "exampleReading": "きのうはなにもたべなかった。",
             "exampleTranslation": "어제는 아무것도 먹지 않았다."
           },
-          "ます형": {
+          "정중형": {
             "form": "食べます",
             "reading": "たべます",
             "translation": "먹습니다",
@@ -90,13 +90,13 @@
             "exampleReading": "まいにちやさいをたべます。",
             "exampleTranslation": "매일 야채를 먹습니다."
           },
-          "て형": {
-            "form": "食べて",
-            "reading": "たべて",
-            "translation": "먹어서",
-            "example": "朝ご飯を食べてください。",
-            "exampleReading": "あさごはんをたべてください。",
-            "exampleTranslation": "아침밥을 드세요."
+          "과거 정중형": {
+            "form": "食べました",
+            "reading": "たべました",
+            "translation": "먹었습니다",
+            "example": "昨日美味しいケーキを食べました。",
+            "exampleReading": "きのうおいしいケーキをたべました。",
+            "exampleTranslation": "어제 맛있는 케이크를 먹었습니다."
           }
         }
       },
@@ -123,7 +123,7 @@
             "exampleReading": "きのうえいがをみた。",
             "exampleTranslation": "어제 영화를 봤다."
           },
-          "부정형": {
+          "현재 부정형": {
             "form": "見ない",
             "reading": "みない",
             "translation": "보지 않다",
@@ -131,7 +131,7 @@
             "exampleReading": "ニュースをみない。",
             "exampleTranslation": "뉴스를 보지 않는다."
           },
-          "과거부정형": {
+          "과거 부정형": {
             "form": "見なかった",
             "reading": "みなかった",
             "translation": "보지 않았다",
@@ -139,7 +139,7 @@
             "exampleReading": "きのうはテレビをみなかった。",
             "exampleTranslation": "어제는 텔레비전을 보지 않았다."
           },
-          "ます형": {
+          "정중형": {
             "form": "見ます",
             "reading": "みます",
             "translation": "봅니다",
@@ -147,13 +147,13 @@
             "exampleReading": "まいにちニュースをみます。",
             "exampleTranslation": "매일 뉴스를 봅니다."
           },
-          "て형": {
-            "form": "見て",
-            "reading": "みて",
-            "translation": "봐서",
-            "example": "この映画を見てください。",
-            "exampleReading": "このえいがをみてください。",
-            "exampleTranslation": "이 영화를 봐주세요."
+          "과거 정중형": {
+            "form": "見ました",
+            "reading": "みました",
+            "translation": "봤습니다",
+            "example": "昨日面白い映画を見ました。",
+            "exampleReading": "きのうおもしろいえいがをみました。",
+            "exampleTranslation": "어제 재미있는 영화를 봤습니다."
           }
         }
       },
@@ -180,7 +180,7 @@
             "exampleReading": "きのうははやくねた。",
             "exampleTranslation": "어제는 일찍 잤다."
           },
-          "부정형": {
+          "현재 부정형": {
             "form": "寝ない",
             "reading": "ねない",
             "translation": "자지 않다",
@@ -188,7 +188,7 @@
             "exampleReading": "きょうはねない。",
             "exampleTranslation": "오늘은 자지 않는다."
           },
-          "과거부정형": {
+          "과거 부정형": {
             "form": "寝なかった",
             "reading": "ねなかった",
             "translation": "자지 않았다",
@@ -196,7 +196,7 @@
             "exampleReading": "きのうはよくねなかった。",
             "exampleTranslation": "어제는 잘 자지 않았다."
           },
-          "ます형": {
+          "정중형": {
             "form": "寝ます",
             "reading": "ねます",
             "translation": "잡니다",
@@ -204,13 +204,13 @@
             "exampleReading": "まいばん10じにねます。",
             "exampleTranslation": "매일 밤 10시에 잡니다."
           },
-          "て형": {
-            "form": "寝て",
-            "reading": "ねて",
-            "translation": "자서",
-            "example": "早く寝てください。",
-            "exampleReading": "はやくねてください。",
-            "exampleTranslation": "일찍 주무세요."
+          "과거 정중형": {
+            "form": "寝ました",
+            "reading": "ねました",
+            "translation": "잤습니다",
+            "example": "昨日は早く寝ました。",
+            "exampleReading": "きのうははやくねました。",
+            "exampleTranslation": "어제는 일찍 잤습니다."
           }
         }
       },
@@ -237,7 +237,7 @@
             "exampleReading": "けさ6じにおきた。",
             "exampleTranslation": "오늘 아침 6시에 일어났다."
           },
-          "부정형": {
+          "현재 부정형": {
             "form": "起きない",
             "reading": "おきない",
             "translation": "일어나지 않다",
@@ -245,7 +245,7 @@
             "exampleReading": "どようびははやくおきない。",
             "exampleTranslation": "토요일은 일찍 일어나지 않는다."
           },
-          "과거부정형": {
+          "과거 부정형": {
             "form": "起きなかった",
             "reading": "おきなかった",
             "translation": "일어나지 않았다",
@@ -253,7 +253,7 @@
             "exampleReading": "きのうはおそくまでおきなかった。",
             "exampleTranslation": "어제는 늦게까지 일어나지 않았다."
           },
-          "ます형": {
+          "정중형": {
             "form": "起きます",
             "reading": "おきます",
             "translation": "일어납니다",
@@ -261,13 +261,13 @@
             "exampleReading": "まいあさ7じにおきます。",
             "exampleTranslation": "매일 아침 7시에 일어납니다."
           },
-          "て형": {
-            "form": "起きて",
-            "reading": "おきて",
-            "translation": "일어나서",
-            "example": "起きてすぐシャワーを浴びる。",
-            "exampleReading": "おきてすぐシャワーをあびる。",
-            "exampleTranslation": "일어나서 곧바로 샤워를 한다."
+          "과거 정중형": {
+            "form": "起きました",
+            "reading": "おきました",
+            "translation": "일어났습니다",
+            "example": "今朝6時に起きました。",
+            "exampleReading": "けさ6じにおきました。",
+            "exampleTranslation": "오늘 아침 6시에 일어났습니다."
           }
         }
       },
@@ -294,7 +294,7 @@
             "exampleReading": "あさはやくいえをでた。",
             "exampleTranslation": "아침 일찍 집을 나갔다."
           },
-          "부정형": {
+          "현재 부정형": {
             "form": "出ない",
             "reading": "でない",
             "translation": "나가지 않다",
@@ -302,7 +302,7 @@
             "exampleReading": "きょうはそとにでない。",
             "exampleTranslation": "오늘은 밖에 나가지 않는다."
           },
-          "과거부정형": {
+          "과거 부정형": {
             "form": "出なかった",
             "reading": "でなかった",
             "translation": "나가지 않았다",
@@ -310,7 +310,7 @@
             "exampleReading": "きのうはいちにちじゅういえからでなかった。",
             "exampleTranslation": "어제는 하루 종일 집에서 나가지 않았다."
           },
-          "ます형": {
+          "정중형": {
             "form": "出ます",
             "reading": "でます",
             "translation": "나갑니다",
@@ -318,13 +318,13 @@
             "exampleReading": "8じにいえをでます。",
             "exampleTranslation": "8시에 집을 나갑니다."
           },
-          "て형": {
-            "form": "出て",
-            "reading": "でて",
-            "translation": "나가서",
-            "example": "家を出て駅に向かう。",
-            "exampleReading": "いえをでてえきにむかう。",
-            "exampleTranslation": "집을 나가서 역으로 향한다."
+          "과거 정중형": {
+            "form": "出ました",
+            "reading": "でました",
+            "translation": "나갔습니다",
+            "example": "昨日早く家を出ました。",
+            "exampleReading": "きのうはやくいえをでました。",
+            "exampleTranslation": "어제 일찍 집을 나갔습니다."
           }
         }
       }
