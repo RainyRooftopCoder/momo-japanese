@@ -297,8 +297,8 @@ class ThreeStepNavigation {
         // 메인 카테고리 화면 (홈으로 돌아가기)
         this.bindScreenSwipeBack('mainCategoryScreen', 'home');
 
-        // 서브 카테고리 화면 (홈으로 돌아가기)
-        this.bindScreenSwipeBack('subCategoryScreen', 'home');
+        // 서브 카테고리 화면 (메인 카테고리로 돌아가기)
+        this.bindScreenSwipeBack('subCategoryScreen', 'main');
 
     }
 
@@ -586,9 +586,9 @@ class ThreeStepNavigation {
         // 최소 스와이프 거리
         const minSwipeDistance = 50;
 
-        // 왼쪽에서 오른쪽 스와이프만 처리 (홈 화면으로)
+        // 왼쪽에서 오른쪽 스와이프만 처리 (메인 카테고리 화면으로)
         if (deltaX > minSwipeDistance) {
-            this.showScreen('home');
+            this.showScreen('main');
         }
     }
 
@@ -753,7 +753,12 @@ class ThreeStepNavigation {
         // 검색 결과 화면의 뒤로가기 버튼
         if (backToMainBtn) {
             backToMainBtn.addEventListener('click', () => {
-                this.showScreen('home');
+                // 이전 화면으로 돌아가기 (메인 카테고리 또는 홈)
+                if (this.currentMainCategory) {
+                    this.showScreen('main');
+                } else {
+                    this.showScreen('home');
+                }
             });
         }
 
@@ -884,8 +889,12 @@ class ThreeStepNavigation {
 
         // 왼쪽에서 오른쪽 스와이프만 처리 (이전 화면으로)
         if (deltaX > minSwipeDistance) {
-            // 홈 화면으로 돌아가기
-            this.showScreen('home');
+            // 이전 화면으로 돌아가기 (메인 카테고리 또는 홈)
+            if (this.currentMainCategory) {
+                this.showScreen('main');
+            } else {
+                this.showScreen('home');
+            }
         }
     }
 

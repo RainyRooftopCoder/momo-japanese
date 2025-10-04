@@ -93,10 +93,11 @@
                     setTimeout(function () {
                         const appContainer = document.querySelector('.app-container');
                         if (appContainer) {
-                            appContainer.style.cssText = 'display: block !important; opacity: 0; transition: opacity 0.5s ease-in';
+                            appContainer.style.cssText =
+                                'display: block !important; opacity: 0; transition: opacity 0.5s ease-in';
 
                             // 짧은 지연 후 페이드인
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 appContainer.style.opacity = '1';
                             }, 50);
                         }
@@ -161,9 +162,10 @@
                             setTimeout(function () {
                                 const appContainer = document.querySelector('.app-container');
                                 if (appContainer) {
-                                    appContainer.style.cssText = 'display: block !important; opacity: 0; transition: opacity 0.4s ease-in';
+                                    appContainer.style.cssText =
+                                        'display: block !important; opacity: 0; transition: opacity 0.4s ease-in';
 
-                                    setTimeout(function() {
+                                    setTimeout(function () {
                                         appContainer.style.opacity = '1';
                                     }, 50);
                                 }
@@ -188,7 +190,7 @@
         <script defer src="./scripts/modules/audio/speech-synthesis.js"></script>
         <script defer src="./scripts/modules/audio/grammar-speech.js"></script>
 
-        <!-- Grammar 공통 모듈 (먼저 로드) -->
+        <!-- Grammar 공유 모듈들 (먼저 로드) -->
         <script defer src="./scripts/modules/grammar/shared/base-grammar-app-global.js"></script>
 
         <!-- Grammar 모듈들 -->
