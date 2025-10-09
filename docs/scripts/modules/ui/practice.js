@@ -203,6 +203,18 @@ class Practice {
             });
         }
 
+        // 주제별 자음 그룹 생성 (비동기 처리 필요)
+        if (categories.themes && Array.isArray(categories.themes) && categories.themes.length > 0) {
+            // 자음 그룹은 별도로 로드됨
+            groups.push({
+                id: 'themes-consonants',
+                name: '주제별 (자음 선택)',
+                type: 'themes-consonants',
+                wordCount: categories.themes.reduce((sum, theme) => sum + theme.count, 0),
+                needsConsonantSelection: true
+            });
+        }
+
         return groups;
     }
 

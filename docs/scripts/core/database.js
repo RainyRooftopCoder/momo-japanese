@@ -572,6 +572,56 @@ class IndexedDBManagerV4 {
     }
 
     /**
+     * 자음별로 주제를 그룹화
+     * @returns {Object} 자음별 주제 그룹 { ㄱ: [...], ㄴ: [...], ... }
+     */
+    async getThemesByConsonant() {
+        if (!this.db) throw new Error('Database not initialized');
+
+        const categories = await this.getAvailableCategories();
+        const themes = categories.themes || [];
+
+        // 자음별 그룹 객체
+        const consonantGroups = {};
+
+        // 한글 초성 추출 함수
+        const getInitialConsonant = (text) => {
+            if (!text || text.length === 0) return '기타';
+
+            const first_char = text[0];
+            const code = first_char.charCodeAt(0);
+
+            // 한글 범위 체크 (가-힣)
+            if (code >= 0xAC00 && code <= 0xD7A3) {
+                // 초성 추출
+                const cho_index = Math.floor((code - 0xAC00) / 588);
+                const cho_list = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+                return cho_list[cho_index];
+            }
+
+            return '기타';
+        };
+
+        // 주제를 자음별로 분류
+        themes.forEach(theme => {
+            const consonant = getInitialConsonant(theme.name);
+
+            if (!consonantGroups[consonant]) {
+                consonantGroups[consonant] = [];
+            }
+
+            consonantGroups[consonant].push(theme);
+        });
+
+        // 각 그룹 내에서 이름순 정렬
+        Object.keys(consonantGroups).forEach(key => {
+            consonantGroups[key].sort((a, b) => a.name.localeCompare(b.name));
+        });
+
+        return consonantGroups;
+    }
+
+    /**
      * 단어를 본 단어로 추가
      * 사용자가 단어를 학습했다고 표시
      *

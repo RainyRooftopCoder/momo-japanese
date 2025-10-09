@@ -24,7 +24,6 @@ class ThreeStepNavigation {
 
     async init() {
         try {
-
             // 템플릿 로드 대기
             await this.waitForTemplateLoader();
 
@@ -62,7 +61,6 @@ class ThreeStepNavigation {
      * DOM 요소가 존재할 때까지 대기 후 콜백 실행
      */
     waitForElementAndInitialize(elementId, callback, maxAttempts = 50) {
-
         // DOM이 완전히 렌더링될 때까지 기다림
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
@@ -182,7 +180,6 @@ class ThreeStepNavigation {
         characterScreen.className = 'screen';
         mainContent.appendChild(characterScreen);
 
-
         // 템플릿 로드 완료 이벤트 발생
         window.dispatchEvent(new CustomEvent('templatesLoaded'));
 
@@ -240,14 +237,12 @@ class ThreeStepNavigation {
 
         // 검색 이벤트 바인딩
         this.bindSearchEvents();
-
     }
 
     /**
      * 홈 화면 빠른 시작 액션 처리
      */
     handleQuickAction(action) {
-
         switch (action) {
             case 'random-study':
                 // 랜덤 단어 학습 - 메인 카테고리 화면으로 이동
@@ -299,7 +294,6 @@ class ThreeStepNavigation {
 
         // 서브 카테고리 화면 (메인 카테고리로 돌아가기)
         this.bindScreenSwipeBack('subCategoryScreen', 'main');
-
     }
 
     /**
@@ -319,7 +313,6 @@ class ThreeStepNavigation {
         let startX = 0;
         let startY = 0;
         let isSwipingHorizontally = false;
-
 
         // 터치 시작
         screen.addEventListener(
@@ -485,7 +478,6 @@ class ThreeStepNavigation {
 
         let isSwipingHorizontally = false;
 
-
         // 터치 시작
         subCategoryScreen.addEventListener(
             'touchstart',
@@ -582,7 +574,6 @@ class ThreeStepNavigation {
     handleSubScreenSwipe() {
         const deltaX = this.endX - this.startX;
 
-
         // 최소 스와이프 거리
         const minSwipeDistance = 50;
 
@@ -663,7 +654,6 @@ class ThreeStepNavigation {
                 this.bindSettingsSwipeEvents();
             }, 200);
         }
-
     }
 
     /**
@@ -683,7 +673,6 @@ class ThreeStepNavigation {
         scrollableElements.forEach((element) => {
             element.scrollTop = 0;
         });
-
     }
 
     /**
@@ -747,7 +736,6 @@ class ThreeStepNavigation {
                     this.performSearch();
                 }
             });
-
         }
 
         // 검색 결과 화면의 뒤로가기 버튼
@@ -785,7 +773,6 @@ class ThreeStepNavigation {
         let endX = 0;
         let endY = 0;
         let isSwipingHorizontally = false;
-
 
         // 터치 시작
         searchResultsScreen.addEventListener(
@@ -882,7 +869,6 @@ class ThreeStepNavigation {
      */
     handleSearchSwipe(startX, endX) {
         const deltaX = endX - startX;
-
 
         // 최소 스와이프 거리
         const minSwipeDistance = 50;
@@ -1071,7 +1057,6 @@ class ThreeStepNavigation {
 
             searchResultsList.appendChild(clone);
         });
-
     }
 
     /**
@@ -1177,7 +1162,6 @@ class ThreeStepNavigation {
      * 조사 화면 표시
      */
     async showParticleScreen() {
-
         try {
             // 템플릿 로드
             const html = await loadTemplate('particle-study');
@@ -1223,7 +1207,6 @@ class ThreeStepNavigation {
         let startX = 0;
         let startY = 0;
         let isSwipingHorizontally = false;
-
 
         // 터치 시작
         screen.addEventListener(
@@ -1294,7 +1277,6 @@ class ThreeStepNavigation {
         let startX = 0;
         let startY = 0;
         let isSwipingHorizontally = false;
-
 
         // 터치 시작
         screen.addEventListener(
@@ -1369,7 +1351,6 @@ class ThreeStepNavigation {
         let startY = 0;
         let isSwipingHorizontally = false;
 
-
         // 터치 시작
         screen.addEventListener(
             'touchstart',
@@ -1435,7 +1416,6 @@ class ThreeStepNavigation {
      * 평서체/경어체 화면 표시
      */
     async showNounFormsScreen() {
-
         try {
             // 템플릿 로드
             const html = await loadTemplate('noun-forms');
@@ -1474,7 +1454,6 @@ class ThreeStepNavigation {
      * い형용사 활용 화면 표시
      */
     async showIAdjectiveScreen() {
-
         try {
             // 템플릿 로드
             const html = await loadTemplate('i-adjective');
@@ -1513,7 +1492,6 @@ class ThreeStepNavigation {
      * な형용사 활용 화면 표시
      */
     async showNaAdjectiveScreen() {
-
         try {
             // 템플릿 로드
             const html = await loadTemplate('na-adjective');
@@ -1592,7 +1570,6 @@ class ThreeStepNavigation {
         let startX = 0;
         let startY = 0;
         let isSwipingHorizontally = false;
-
 
         // 터치 시작
         screen.addEventListener(
@@ -1708,7 +1685,6 @@ class ThreeStepNavigation {
         let startY = 0;
         let isSwipingHorizontally = false;
 
-
         // 터치 시작
         screen.addEventListener(
             'touchstart',
@@ -1823,7 +1799,6 @@ class ThreeStepNavigation {
         let startY = 0;
         let isSwipingHorizontally = false;
 
-
         // 터치 시작
         screen.addEventListener(
             'touchstart',
@@ -1898,7 +1873,6 @@ class ThreeStepNavigation {
         let startY = 0;
         let isSwipingHorizontally = false;
 
-
         // 터치 시작
         screen.addEventListener(
             'touchstart',
@@ -1961,7 +1935,6 @@ class ThreeStepNavigation {
      * 문장 완성 화면 표시
      */
     async showSentenceCompletionScreen() {
-
         try {
             // 템플릿 로드
             const html = await loadTemplate('sentence-completion');
@@ -2007,7 +1980,6 @@ class ThreeStepNavigation {
         let startX = 0;
         let startY = 0;
         let isSwipingHorizontally = false;
-
 
         // 터치 시작
         screen.addEventListener(
@@ -2071,7 +2043,6 @@ class ThreeStepNavigation {
      * 명사 활용 화면 표시 (기존 방식)
      */
     async showNounConjugationScreen() {
-
         try {
             // 템플릿 로드
             const html = await loadTemplate('noun-conjugation');
@@ -2117,7 +2088,6 @@ class ThreeStepNavigation {
         let startX = 0;
         let startY = 0;
         let isSwipingHorizontally = false;
-
 
         // 터치 시작
         screen.addEventListener(
@@ -2181,7 +2151,6 @@ class ThreeStepNavigation {
      * 문자 학습 화면 표시
      */
     async showCharacterScreen(characterType) {
-
         try {
             // 템플릿 매핑
             const templateMap = {
@@ -2196,7 +2165,6 @@ class ThreeStepNavigation {
                 console.error('Unknown character type:', characterType);
                 return;
             }
-
 
             // 템플릿 로드
             const html = await loadTemplate(templateName);
@@ -2245,7 +2213,6 @@ class ThreeStepNavigation {
                 });
             });
         }
-
     }
 
     /**
@@ -2296,7 +2263,6 @@ class ThreeStepNavigation {
             const baseEl = characterScreen.querySelector('.base-character');
             if (baseEl) baseEl.textContent = `← ${extraData.base} + ${char.includes('゛') ? '゛' : '゜'}`;
         }
-
     }
 
     /**
@@ -2306,7 +2272,6 @@ class ThreeStepNavigation {
         let startX = 0;
         let startY = 0;
         let isSwipingHorizontally = false;
-
 
         // 터치 시작
         characterScreen.addEventListener(
@@ -2370,7 +2335,6 @@ class ThreeStepNavigation {
      * 두번째 화면 - 하위 카테고리 표시
      */
     async showSubCategories(mainCategory) {
-
         // 먼저 서브 카테고리 화면으로 전환
         this.showScreen('sub');
 
@@ -2378,7 +2342,6 @@ class ThreeStepNavigation {
         await new Promise((resolve) => setTimeout(resolve, 100));
 
         const subCategoryButtons = document.getElementById('subCategoryButtons');
-
 
         if (!subCategoryButtons) {
             console.error('Sub category buttons not found, available elements:');
@@ -2418,16 +2381,26 @@ class ThreeStepNavigation {
             // subCategoryButtons 자체가 .button-container입니다
             const buttonContainer = subCategoryButtons;
 
-            if (mainCategory === 'partOfSpeech' || mainCategory === 'theme') {
-                // 품사와 주제는 2열 레이아웃
+            if (mainCategory === 'partOfSpeech') {
+                // 품사는 2열 레이아웃
                 buttonContainer.classList.add('two-columns');
+            } else if (mainCategory === 'theme') {
+                // 주제는 자음 선택 UI로 처리
+                buttonContainer.classList.remove('two-columns');
             } else {
                 // N1~N5는 기본 1열 레이아웃
                 buttonContainer.classList.remove('two-columns');
             }
 
             // 버튼 생성
-            this.createSubCategoryButtons(categories, subCategoryButtons);
+            if (mainCategory === 'theme' && categories.type === 'consonants') {
+                // 주제의 경우 자음 선택 UI 표시
+                this.createConsonantButtons(categories.data, subCategoryButtons);
+            } else {
+                // 일반 카테고리 버튼 생성
+                const categoryList = categories.type ? categories.data : categories;
+                this.createSubCategoryButtons(categoryList, subCategoryButtons);
+            }
 
             this.showScreen('sub');
         } catch (error) {
@@ -2476,7 +2449,89 @@ class ThreeStepNavigation {
             });
             container.appendChild(button);
         });
+    }
 
+    /**
+     * 자음 선택 버튼들 생성 (주제 카테고리용)
+     */
+    createConsonantButtons(themesByConsonant, container) {
+        if (!themesByConsonant || Object.keys(themesByConsonant).length === 0) {
+            console.error('No consonant groups provided');
+            container.innerHTML = '<div class="error">주제가 없습니다.</div>';
+            return;
+        }
+
+        // 자음 버튼 컨테이너 생성
+        const consonantContainer = document.createElement('div');
+        consonantContainer.className = 'button-container';
+        consonantContainer.style.cssText =
+            'display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 0.5rem; width: 100%; max-width: 100%; flex-direction: unset !important; box-sizing: border-box; margin: 0 auto; overflow: hidden;';
+
+        // 자음 정렬 (ㄱ, ㄴ, ㄷ, ...)
+        const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', '기타'];
+        const availableConsonants = consonants.filter((c) => themesByConsonant[c] && themesByConsonant[c].length > 0);
+
+        availableConsonants.forEach((consonant) => {
+            const themes = themesByConsonant[consonant];
+            const button = document.createElement('button');
+            button.className = 'category-button';
+            // button.textContent = `${consonant} (${themes.length})`;
+            button.innerHTML = `${consonant}<br><span style="font-size: 0.9em; opacity: 0.8;">(${themes.length})</span>`;
+            button.style.cssText =
+                'font-size: 1.5rem; height: 8vh; min-height: 60px; width: 100% !important; max-width: 100% !important; box-sizing: border-box; margin: 0; padding: 0;';
+
+            button.addEventListener('click', () => {
+                this.showThemesByConsonant(consonant, themes, container);
+            });
+
+            consonantContainer.appendChild(button);
+        });
+
+        container.appendChild(consonantContainer);
+    }
+
+    /**
+     * 선택된 자음의 주제 버튼들 표시
+     */
+    showThemesByConsonant(consonant, themes, container) {
+        // 컨테이너 초기화
+        container.innerHTML = '';
+
+        // 뒤로 가기 버튼 추가
+        // const backButton = document.createElement('button');
+        // backButton.className = 'back-btn';
+        // backButton.textContent = '← 자음 선택';
+        // backButton.addEventListener('click', async () => {
+        //     const categories = await this.getThemesFromDB();
+        //     this.createConsonantButtons(categories.data, container);
+        // });
+        // container.appendChild(backButton);
+
+        // 주제 버튼 컨테이너
+        const themeContainer = document.createElement('div');
+        themeContainer.className = 'button-container two-columns';
+        themeContainer.style.cssText =
+            'display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;';
+
+        // 주제 이름 정렬
+        const sortedThemes = [...themes].sort((a, b) => a.name.localeCompare(b.name));
+
+        sortedThemes.forEach((theme) => {
+            const button = document.createElement('button');
+            button.className = 'category-button';
+            button.innerHTML = `${theme.name}<br><span style="font-size: 0.9em; opacity: 0.8;">(${theme.count})</span>`;
+            button.style.cssText =
+                'font-size: 1.2rem; height: auto; min-height: 60px; width: 100% !important; max-width: 100% !important; box-sizing: border-box; margin: 0; padding: 0.8rem 0.5rem;';
+
+            button.addEventListener('click', () => {
+                this.currentSubCategory = theme.name;
+                this.startWordStudy();
+            });
+
+            themeContainer.appendChild(button);
+        });
+
+        container.appendChild(themeContainer);
     }
 
     /**
@@ -2501,24 +2556,20 @@ class ThreeStepNavigation {
     }
 
     /**
-     * DB에서 주제 목록 가져오기
+     * DB에서 주제 목록 가져오기 (자음별로 그룹화)
      */
     async getThemesFromDB() {
         try {
             if (window.wordAppV4 && window.wordAppV4.dbManager) {
-                const allWords = await window.wordAppV4.dbManager.getWordsByFilter('all');
-                const themeSet = new Set();
-                allWords.forEach((word) => {
-                    if (word.themes && Array.isArray(word.themes)) {
-                        word.themes.forEach((theme) => themeSet.add(theme));
-                    }
-                });
-                return Array.from(themeSet).sort();
+                // 자음별로 그룹화된 주제 목록 가져오기
+                const themesByConsonant = await window.wordAppV4.dbManager.getThemesByConsonant();
+                // 자음 목록을 반환 (1단계: 자음 선택)
+                return { type: 'consonants', data: themesByConsonant };
             }
         } catch (error) {
             console.error('Error getting themes from DB:', error);
         }
-        return ['기본표현', '음식', '교육', '시간', '가족'];
+        return { type: 'simple', data: ['기본표현', '음식', '교육', '시간', '가족'] };
     }
 
     /**
@@ -2579,7 +2630,6 @@ class ThreeStepNavigation {
 
         filterSummary.textContent = summaryText;
         filterSummary.style.display = 'block';
-
     }
 
     /**
@@ -2612,7 +2662,6 @@ class ThreeStepNavigation {
                 this.updateNavButtons('more');
             });
         }
-
     }
 
     /**
@@ -2706,7 +2755,6 @@ class ThreeStepNavigation {
      * 설정 화면 직접 초기화
      */
     initializeSettingsDirectly() {
-
         // 설정 로드
         const loadSettings = () => {
             const saved = localStorage.getItem('appSettings');
@@ -2757,7 +2805,6 @@ class ThreeStepNavigation {
      * 설정 이벤트 바인딩
      */
     bindSettingsEvents(settings, saveSettings) {
-
         // 기존 이벤트 리스너 제거를 위해 새로운 이벤트 핸들러 생성
         const buttons = ['reset-learning-data', 'reset-badge-data', 'reset-all-data', 'show-data-info'];
 
@@ -2900,7 +2947,6 @@ class ThreeStepNavigation {
                 this.showBadgeStatusModal();
             });
         }
-
     }
 
     /**
@@ -3299,7 +3345,6 @@ class ThreeStepNavigation {
             const deltaY = endY - startY;
             const deltaTime = endTime - startTime;
 
-
             // 버튼이나 input 요소를 터치한 경우 스와이프 무시
             const target = e.target;
             if (
@@ -3346,7 +3391,6 @@ class ThreeStepNavigation {
         // 이벤트 리스너 등록
         settingsScreen.addEventListener('touchstart', this.settingsSwipeStart, { passive: false });
         settingsScreen.addEventListener('touchend', this.settingsSwipeEnd, { passive: false });
-
     }
 
     /**
@@ -3388,7 +3432,6 @@ class ThreeStepNavigation {
 
 // DOM 로드 완료 후 네비게이션 초기화
 document.addEventListener('DOMContentLoaded', () => {
-
     // 즉시 네비게이션 초기화 (DB 없어도 UI는 먼저 보여줌)
     window.navigation = new ThreeStepNavigation();
 
