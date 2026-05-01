@@ -258,7 +258,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.2rem 1.5rem;
+    padding: 1rem 1.5rem;
     background: var(--point-gradient);
     border: none;
     border-radius: 12px;
@@ -269,7 +269,7 @@
     color: var(--text-light);
     text-align: center;
     width: 100%;
-    min-height: 50px;
+    min-height: 48px;
     box-sizing: border-box;
     box-shadow: var(--shadow-light);
 }

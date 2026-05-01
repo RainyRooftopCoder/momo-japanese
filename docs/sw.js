@@ -1,10 +1,11 @@
-const CACHE_NAME = 'momo-japanese-v1.1.0';
+const CACHE_NAME = 'momo-japanese-v1.2.0';
 const OFFLINE_URL = './offline.html';
 
 // 캐시할 리소스 목록
 const urlsToCache = [
     './',
     './index.html',
+    './offline.html',
     './manifest.json',
 
     // CSS 파일들
@@ -13,6 +14,7 @@ const urlsToCache = [
     './styles/themes/glassmorphism.css',
     './styles/components/navigation.css',
     './styles/components/modal.css',
+    './styles/components/splash.css',
     './styles/pages/home.css',
     './styles/pages/practice.css',
     './styles/pages/settings.css',
@@ -21,9 +23,16 @@ const urlsToCache = [
     './scripts/core/database.js',
     './scripts/core/app.js',
 
+    // PWA 모듈
+    './scripts/pwa/service-worker-register.js',
+    './scripts/pwa/install-prompt.js',
+
     // Audio 모듈
     './scripts/modules/audio/speech-synthesis.js',
     './scripts/modules/audio/grammar-speech.js',
+
+    // Grammar 공유 모듈들
+    './scripts/modules/grammar/shared/base-grammar-app-global.js',
 
     // Grammar 모듈들
     './scripts/modules/grammar/verbs/group1-verb.js',
@@ -45,6 +54,8 @@ const urlsToCache = [
     './scripts/modules/ui/my-vocabulary.js',
     './scripts/modules/ui/practice.js',
     './scripts/modules/ui/settings.js',
+    './scripts/modules/ui/splash-transition.js',
+    './scripts/modules/ui/collapsible-sections.js',
 
     // 템플릿 파일들
     './templates/components/header.html',
@@ -55,13 +66,27 @@ const urlsToCache = [
     './templates/pages/dakuten-screen.html',
     './templates/pages/youon-screen.html',
 
-    // 데이터 파일들
+    // JLPT 단어 데이터 (N1~N5)
     './data/vocabulary/jlpt/jlpt_n1_words_unified.json',
+    './data/vocabulary/jlpt/jlpt_n2_words_unified.json',
+    './data/vocabulary/jlpt/jlpt_n3_words_unified.json',
     './data/vocabulary/jlpt/jlpt_n4_words_unified.json',
     './data/vocabulary/jlpt/jlpt_n5_words_unified.json',
 
+    // 문법 관련 데이터
+    './data/vocabulary/jlpt/group1_verb_data.json',
+    './data/vocabulary/jlpt/group2_verb_data.json',
+    './data/vocabulary/jlpt/group3_verb_data.json',
+    './data/vocabulary/jlpt/i_adjective_data.json',
+    './data/vocabulary/jlpt/na_adjective_data.json',
+    './data/vocabulary/jlpt/noun_conjugation_patterns.json',
+    './data/vocabulary/jlpt/noun_forms_data.json',
+    './data/vocabulary/jlpt/particle_data.json',
+    './data/vocabulary/jlpt/sentence_completion_exercises.json',
+
     // 아이콘들
     './assets/icons/momo_logo.png',
+    './assets/icons/momo_inapp_logo.png',
     './assets/icons/home_black_icon.png',
     './assets/icons/setting_black_icon.png',
     './assets/icons/search_black_icon.png',
