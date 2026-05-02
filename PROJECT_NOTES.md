@@ -85,14 +85,14 @@ git config --global --add safe.directory D:/J17_DEV/workspace2/momo-japanese
 - ✅ 로컬 정적 서버로 현재 앱 실행 확인 (`python -m http.server 8000`)
 - ✅ `index.html`에서 실제 로드되는 파일 목록 확인
 - ✅ `index.html` 안의 인라인 JavaScript를 별도 파일로 이동:
-  - `scripts/modules/ui/splash-transition.js` - 스플래시 화면 로직
-  - `scripts/modules/ui/collapsible-sections.js` - 섹션 토글
-  - `scripts/pwa/service-worker-register.js` - SW 등록
-  - `scripts/pwa/install-prompt.js` - PWA 설치
+    - `scripts/modules/ui/splash-transition.js` - 스플래시 화면 로직
+    - `scripts/modules/ui/collapsible-sections.js` - 섹션 토글
+    - `scripts/pwa/service-worker-register.js` - SW 등록
+    - `scripts/pwa/install-prompt.js` - PWA 설치
 - ✅ `sw.js` 캐시 목록 완성 (v1.2.0)
-  - N1~N5 전체 데이터 추가
-  - 문법 데이터 파일 추가
-  - 새로운 UI 모듈 추가
+    - N1~N5 전체 데이터 추가
+    - 문법 데이터 파일 추가
+    - 새로운 UI 모듈 추가
 - ✅ `*_bak.json` 백업 파일 정리 (→ `_backup` 폴더로 이동)
 - ✅ 앱 정상 작동 확인
 
@@ -105,53 +105,146 @@ git config --global --add safe.directory D:/J17_DEV/workspace2/momo-japanese
 ### 📝 변경 사항 정리
 
 **파일 추가:**
+
 - `docs/scripts/modules/ui/splash-transition.js` (113줄)
 - `docs/scripts/modules/ui/collapsible-sections.js` (18줄)
 - `docs/scripts/pwa/service-worker-register.js` (35줄)
 - `docs/scripts/pwa/install-prompt.js` (24줄)
 
 **파일 수정:**
+
 - `docs/index.html` - 인라인 스크립트 제거, 새 파일 로드 추가
 - `docs/sw.js` - 캐시 목록 업데이트 (v1.1.0 → v1.2.0)
 
 **폴더 생성:**
+
 - `docs/scripts/pwa/`
 - `docs/data/vocabulary/jlpt/_backup/`
 
 **파일 이동:**
+
 - 5개의 `*_bak.json` 파일 → `_backup` 폴더
 
 ## 2단계: 모바일/태블릿 UI 정리
 
 목표: 웹페이지가 아니라 설치형 앱처럼 보이게 만든다.
 
-할 일:
+### ✅ 완료된 작업
 
-- 모바일 우선 화면 기준 정하기
-- 태블릿용 반응형 레이아웃 정하기
-- 작은 폰, 큰 폰, 태블릿 화면폭에서 주요 화면 확인
-- 일본어/한국어 긴 텍스트가 넘치지 않게 수정
-- 버튼과 터치 영역 크기 개선
-- iOS safe-area 대응
-- 스와이프와 뒤로가기 동작 통일
-- 세로모드 고정 여부 결정
-- 태블릿 가로모드 지원 여부 결정
+- ✅ 메타태그 설정 확인:
+    - `viewport: width=device-width, initial-scale=1.0, viewport-fit=cover` 추가
+    - `apple-mobile-web-app-capable: yes`
+    - `mobile-web-app-capable: yes`
+- ✅ 버튼 터치 영역 개선:
+    - Quick-btn: 최소 높이 48px 설정
+    - Category-button: 최소 높이 48px 설정 (이전 50px)
+    - 실제 버튼 높이: 98px 이상 (충분함)
+- ✅ iOS Safe-Area 대응:
+    - Header: `padding-top: max(env(safe-area-inset-top, 0), 0.5rem)` 추가
+    - Nav-container: bottom safe-area 여백 추가
+    - Main-content: 좌우 safe-area 여백 추가
+    - Header-content: 안전 영역 내 패딩 추가
+
+- ✅ 미디어 쿼리 확인:
+    - ✅ 태블릿 (768px+): 있음
+    - ✅ 모바일 (480px 이하): 있음
+    - ✅ 초소형 폰 (360px 이하): 있음
+
+- ✅ Manifest.json 설정 확인:
+    - `display: standalone` (앱 모드)
+    - `orientation: portrait-primary` (세로 모드 고정)
+
+### ⏳ 남은 작업
+
+- Manifest.json에 PWA 스크린샷 추가 (선택사항, 앱 설치 시 미리보기용)
+- 최종 브라우저 & 실제 기기 테스트
+- 세로 모드 고정 검증 (가로 모드 제한 정상 작동 확인)
+
+### 📝 변경 사항 정리
+
+**파일 수정:**
+
+- `docs/index.html` - viewport에 `viewport-fit=cover` 추가
+- `docs/styles/components/navigation.css` - 버튼 최소 높이 조정
+- `docs/styles/pages/home.css` - quick-btn 높이 및 padding 조정
+- `docs/styles/themes/glassmorphism.css` - safe-area 대응 (header, nav-container, main-content)
 
 ## 3단계: IndexedDB 안정화
 
 목표: IndexedDB는 유지하되, 배포 앱에서 안전하게 동작하게 만든다.
 
-할 일:
+### 📋 현재 상황
 
-- DB 스키마 버전 관리 방식 정하기
-- 앱 버전과 데이터 버전을 분리해서 관리
-- JLPT JSON import는 데이터 버전이 바뀔 때만 실행
-- 앱을 켤 때마다 전체 단어 데이터를 지우고 다시 넣는 구조 제거
-- 기본 사전 데이터와 사용자 데이터를 분리
-- 앱 업데이트 시 나의 단어장/학습 기록이 유지되도록 처리
-- 앱 재실행 후 저장 데이터가 유지되는지 확인
-- Android WebView에서 IndexedDB 동작 확인
-- iOS WKWebView에서 IndexedDB 동작 확인
+**문제점:**
+
+- ❌ 앱 시작 시마다 `clearJLPTLevel('n1'~'n5')` 호출 → 사용자 데이터 손실 위험
+- ❌ 매번 전체 데이터 재로드 (N1~N5 약 7,500개) → 성능 저하
+- ❌ 데이터 버전 관리 없음 → 업데이트 전략 불명확
+- ❌ 앱 버전과 데이터 버전 분리 안 됨
+
+**현재 데이터 로드 흐름:**
+
+```
+app.init()
+  → dbManager.init() (V4 DB 생성)
+  → loadSampleData()
+    → 모든 N1~N5 데이터 fetch
+    → clearJLPTLevel() (기존 데이터 삭제) ← 문제!
+    → saveJLPTWords() (새 데이터 저장)
+```
+
+### ✅ 해야 할 작업
+
+1. **데이터 버전 관리 추가**
+    - localStorage에 `dataVersion` 저장
+    - manifest.json 또는 config에 `DATA_VERSION` 정의
+    - 업데이트 시에만 데이터 재로드
+
+2. **조건부 데이터 로드**
+    - 첫 설치: 모든 데이터 로드
+    - 업데이트: dataVersion이 다를 때만 재로드
+    - 일반 실행: 데이터 유지
+
+3. **사용자 데이터 보호**
+    - 기본 사전 데이터 (words)와 사용자 데이터 (user_vocabulary, statistics) 분리
+    - 데이터 업데이트 시 사용자 데이터 보존
+
+4. **현재 app.js 수정**
+    - loadSampleData() → loadOrUpdateData()로 리팩토링
+    - 버전 체크 로직 추가
+
+### 📝 구현 계획
+
+**1단계: 데이터 버전 관리 시스템 추가**
+
+- CONFIG에 DATA_VERSION = '1.0' 정의
+- localStorage에서 이전 dataVersion 확인
+- 버전 다르면 업데이트, 같으면 스킵
+
+**2단계: loadSampleData() 리팩토링**
+
+- getTotalWordCount() 체크
+- dataVersion 확인
+- 조건부 로드
+
+### ✅ 현재 구현 상태
+
+- `docs/scripts/config/app-config.js`에 데이터 버전 관리 추가 완료
+- `docs/scripts/core/app.js`에 `loadOrUpdateData()` 적용 완료
+- `docs/index.html`에 `app-config.js`가 `app.js`보다 먼저 로드되도록 수정 완료
+- 재실행 시 기존 데이터 유지 동작 확인 완료
+
+### 다음 작업
+
+- 실제 사용자 데이터(나의 단어장, 통계) 보존 확인 테스트
+- `window.APP_CONFIG.isAppUpdated()` 로그를 통해 앱 업데이트 여부 확인
+- Stage 4 Capacitor 감싸기 준비
+
+**3단계: 테스트**
+
+- 첫 실행: 데이터 로드 확인
+- 재실행: 데이터 유지 확인
+- 사용자 단어장 유지 확인
 
 ## 4단계: Capacitor WebView 앱 만들기
 

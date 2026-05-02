@@ -56,9 +56,15 @@ class WordLearningAppV4 {
                 // 전역으로 설정
                 window.dbManager = this.dbManager;
 
-                // 샘플 데이터 로드
-                await this.loadSampleData();
-                console.log('Sample data loaded');
+                // 앱/데이터 버전 체크
+                if (window.APP_CONFIG) {
+                    const appUpdated = window.APP_CONFIG.isAppUpdated();
+                    console.log(`App updated: ${appUpdated ? 'yes' : 'no'} (current ${window.APP_CONFIG.APP_VERSION})`);
+                }
+
+                // 데이터 로드 (버전 관리 적용)
+                await this.loadOrUpdateData();
+                console.log('Data loading completed');
 
                 // UI 초기화
                 await this.initializeUI();
@@ -125,14 +131,102 @@ class WordLearningAppV4 {
     /**
      * 샘플 데이터 로드 (JLPT 레벨별 통합 파일)
      */
+    async loadOrUpdateData() {
+        try {
+            // 앱 설정이 로드되지 않은 경우 처리
+            if (!window.APP_CONFIG) {
+                console.warn('APP_CONFIG not loaded yet, using fallback');
+                await this.loadSampleData(); // 이전 함수로 폴백
+                return;
+            }
+
+            // 🔍 버전 정보 로깅
+            console.log('📦 Checking data version...');
+            window.APP_CONFIG.logVersionInfo();
+
+            // 데이터 로드 필요 여부 판단
+            if (!window.APP_CONFIG.shouldLoadData()) {
+                console.log('✅ Data is up-to-date, skipping reload');
+                const existingCount = await this.dbManager.getTotalWordCount();
+                console.log(`📊 Using existing data: ${existingCount} words in database`);
+                return;
+            }
+
+            console.log(`🔄 Data update needed (strategy: ${window.APP_CONFIG.DATA_LOAD_STRATEGY})`);
+            console.log(`📥 Downloading JLPT data (N1~N5)...`);
+
+            // 데이터베이스에 이미 데이터가 있는지 확인
+            const existingWordCount = await this.dbManager.getTotalWordCount();
+            console.log(`Current word count: ${existingWordCount}`);
+
+            // JLPT 레벨별 데이터 로드 (N5부터 N1까지)
+            const levels = window.APP_CONFIG.JLPT_LEVELS;
+            const dataFiles = window.APP_CONFIG.DATA_FILES;
+            let totalWordsLoaded = 0;
+
+            for (const level of levels) {
+                const filePath = dataFiles[level];
+                console.log(`📥 Fetching ${level.toUpperCase()} data from ${filePath}...`);
+
+                try {
+                    const response = await fetch(filePath);
+                    console.log(`   Response status: ${response.status}`);
+
+                    if (response.ok) {
+                        const words = await response.json();
+                        console.log(`   ✅ Parsed ${words.length} ${level.toUpperCase()} words`);
+
+                        // 샘플 단어 표시
+                        if (words.length > 0) {
+                            console.log(`   Sample: ${JSON.stringify(words[0]).substring(0, 100)}...`);
+                        }
+
+                        // 기존 데이터 삭제 후 새 데이터 추가
+                        await this.dbManager.clearJLPTLevel(level);
+                        await this.dbManager.saveJLPTWords(level, words);
+                        totalWordsLoaded += words.length;
+                        console.log(`   ✅ Saved to database`);
+                    } else {
+                        console.error(`   ❌ Failed to fetch ${level.toUpperCase()} data: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error(`   ❌ Error loading ${level.toUpperCase()} data:`, error);
+                }
+            }
+
+            // 최종 단어 수 확인
+            const finalWordCount = await this.dbManager.getTotalWordCount();
+            console.log(`\n📊 Data loading complete:`);
+            console.log(`   Loaded in this session: ${totalWordsLoaded} words`);
+            console.log(`   Total in database: ${finalWordCount} words`);
+
+            // 데이터 로드 완료 표시 (버전 저장)
+            window.APP_CONFIG.markDataAsLoaded();
+        } catch (error) {
+            console.error('❌ Data loading failed:', error);
+            console.error('Error stack:', error.stack);
+
+            // 폴백: 이전 데이터가 있으면 사용 (데이터 없이 앱이 시작될 수 있도록)
+            const existingCount = await this.dbManager.getTotalWordCount();
+            if (existingCount > 0) {
+                console.log(`⚠️  Using existing data (${existingCount} words) as fallback`);
+            }
+        }
+    }
+
+    /**
+     * 레거시: 이전의 loadSampleData 함수
+     * loadOrUpdateData()로 대체되었지만, 호환성을 위해 유지
+     * @deprecated 대신 loadOrUpdateData() 사용
+     */
     async loadSampleData() {
         try {
+            console.log('⚠️  Using legacy loadSampleData (deprecated, use loadOrUpdateData instead)');
             console.log('Starting sample data loading...');
 
             // 데이터베이스에 이미 데이터가 있는지 확인
             const existingWordCount = await this.dbManager.getTotalWordCount();
             console.log('Existing word count:', existingWordCount);
-
 
             // N5 데이터 로드
             console.log('Fetching N5 data...');
@@ -251,7 +345,6 @@ class WordLearningAppV4 {
             this.bindMobileFABEvents();
             this.bindSwipeEvents();
             this.bindSpeechEvents();
-
         } catch (error) {
             console.error('UI re-initialization failed:', error);
         }
@@ -266,7 +359,7 @@ class WordLearningAppV4 {
             console.log('⏳ 데이터베이스 초기화 완료 대기 중...');
             let retryCount = 0;
             while ((!this.dbManager.db || !this.dbManager.isInitialized) && retryCount < 10) {
-                await new Promise(resolve => setTimeout(resolve, 500));
+                await new Promise((resolve) => setTimeout(resolve, 500));
                 retryCount++;
             }
 
@@ -459,7 +552,7 @@ class WordLearningAppV4 {
                 this.selectedFilters,
                 wordCount,
                 excludeViewed,
-                this.userId
+                this.userId,
             );
 
             if (this.selectedWords.length === 0) {
@@ -749,18 +842,18 @@ class WordLearningAppV4 {
 
                 // 음성 버튼 및 저장 버튼 터치 감지
                 const target = e.target;
-                isSpeechButtonTouch = target && (
-                    target.classList.contains('speech-btn') ||
-                    target.closest('.speech-btn') ||
-                    target.classList.contains('bookmark-btn') ||
-                    target.closest('.bookmark-btn') ||
-                    target.classList.contains('word-save-btn') ||
-                    target.closest('.word-save-btn')
-                );
+                isSpeechButtonTouch =
+                    target &&
+                    (target.classList.contains('speech-btn') ||
+                        target.closest('.speech-btn') ||
+                        target.classList.contains('bookmark-btn') ||
+                        target.closest('.bookmark-btn') ||
+                        target.classList.contains('word-save-btn') ||
+                        target.closest('.word-save-btn'));
 
                 console.log('Touch start:', this.startX, this.startY, 'Speech button:', isSpeechButtonTouch);
             },
-            { passive: true }
+            { passive: true },
         );
 
         // 터치 이동 중
@@ -792,7 +885,7 @@ class WordLearningAppV4 {
                     wordScreen.style.opacity = opacity;
                 }
             },
-            { passive: false }
+            { passive: false },
         );
 
         // 터치 종료
@@ -833,7 +926,7 @@ class WordLearningAppV4 {
                 isTap = false;
                 isSpeechButtonTouch = false;
             },
-            { passive: true }
+            { passive: true },
         );
 
         // 터치 취소
@@ -850,7 +943,7 @@ class WordLearningAppV4 {
                 isTap = false;
                 isSpeechButtonTouch = false;
             },
-            { passive: true }
+            { passive: true },
         );
 
         // 중복 바인딩 방지 마크 설정
@@ -905,14 +998,18 @@ class WordLearningAppV4 {
             saveWordBtn.parentNode.replaceChild(newSaveBtn, saveWordBtn);
 
             // 새로운 이벤트 리스너 추가
-            newSaveBtn.addEventListener('click', async (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
+            newSaveBtn.addEventListener(
+                'click',
+                async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
 
-                console.log('Bookmark save button clicked');
-                await this.saveCurrentWordToVocabulary(currentWord, newSaveBtn, 'bookmark');
-            }, true);
+                    console.log('Bookmark save button clicked');
+                    await this.saveCurrentWordToVocabulary(currentWord, newSaveBtn, 'bookmark');
+                },
+                true,
+            );
         }
 
         // 하단 전체 너비 저장 버튼
@@ -923,14 +1020,18 @@ class WordLearningAppV4 {
             bottomSaveBtn.parentNode.replaceChild(newBottomSaveBtn, bottomSaveBtn);
 
             // 새로운 이벤트 리스너 추가
-            newBottomSaveBtn.addEventListener('click', async (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
+            newBottomSaveBtn.addEventListener(
+                'click',
+                async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
 
-                console.log('Bottom save button clicked');
-                await this.saveCurrentWordToVocabulary(currentWord, newBottomSaveBtn, 'bottom');
-            }, true);
+                    console.log('Bottom save button clicked');
+                    await this.saveCurrentWordToVocabulary(currentWord, newBottomSaveBtn, 'bottom');
+                },
+                true,
+            );
         }
     }
 
@@ -981,7 +1082,7 @@ class WordLearningAppV4 {
                 jpExample1: wordData.jpExample1,
                 koExample1: wordData.koExample1,
                 jpExample2: wordData.jpExample2,
-                koExample2: wordData.koExample2
+                koExample2: wordData.koExample2,
             });
 
             if (success) {
@@ -1052,7 +1153,6 @@ class WordLearningAppV4 {
 
                 btnElement.disabled = false;
             }
-
         } catch (error) {
             console.error('Error saving word:', error);
             alert('단어 저장 중 오류가 발생했습니다.');
@@ -1516,15 +1616,15 @@ class WordLearningAppV4 {
                             </div>
                             <div style="font-size: 0.8rem; color: #666; margin-top: 4px;">
                                 ${word.jlptLevel} · ${word.partOfSpeech} · ${
-                            word.themes ? word.themes.join(', ') : ''
-                        } · 조회수: ${word.viewCount}
+                                    word.themes ? word.themes.join(', ') : ''
+                                } · 조회수: ${word.viewCount}
                             </div>
                         </div>
                         <div style="font-size: 0.8rem; color: #666;">
                             ${new Date(word.viewedAt).toLocaleDateString()}
                         </div>
                     </div>
-                `
+                `,
                     )
                     .join('');
             }

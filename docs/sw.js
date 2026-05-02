@@ -1,4 +1,4 @@
-const CACHE_NAME = 'momo-japanese-v1.2.0';
+const CACHE_NAME = 'momo-japanese-v1.3.0';
 const OFFLINE_URL = './offline.html';
 
 // 캐시할 리소스 목록
@@ -20,12 +20,13 @@ const urlsToCache = [
     './styles/pages/settings.css',
 
     // Core JavaScript 파일들
-    './scripts/core/database.js',
-    './scripts/core/app.js',
+    './scripts/core/database.js?v=1.0.0',
+    './scripts/core/app.js?v=1.0.0',
 
-    // PWA 모듈
-    './scripts/pwa/service-worker-register.js',
-    './scripts/pwa/install-prompt.js',
+    // 설정 파일
+    './scripts/config/app-config.js?v=1.0.0',
+    './scripts/pwa/service-worker-register.js?v=1.0.0',
+    './scripts/pwa/install-prompt.js?v=1.0.0',
 
     // Audio 모듈
     './scripts/modules/audio/speech-synthesis.js',
@@ -116,7 +117,7 @@ self.addEventListener('install', (event) => {
             })
             .catch((error) => {
                 console.error('[SW] 캐시 중 오류 발생:', error);
-            })
+            }),
     );
 });
 
@@ -135,13 +136,13 @@ self.addEventListener('activate', (event) => {
                             console.log('[SW] 이전 캐시 삭제:', cacheName);
                             return caches.delete(cacheName);
                         }
-                    })
+                    }),
                 );
             })
             .then(() => {
                 console.log('[SW] 서비스 워커 활성화 완료');
                 return self.clients.claim();
-            })
+            }),
     );
 });
 
@@ -182,7 +183,7 @@ self.addEventListener('fetch', (event) => {
                         return caches.match(OFFLINE_URL);
                     }
                 });
-        })
+        }),
     );
 });
 

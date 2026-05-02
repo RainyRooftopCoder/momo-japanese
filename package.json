@@ -1,0 +1,22 @@
+{
+    "name": "momo-japanese",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Momo Japanese PWA packaged for Capacitor mobile apps",
+    "scripts": {
+        "cap:init": "npx cap init momo-japanese com.momojapanese.app --web-dir=docs",
+        "cap:add:android": "npx cap add android",
+        "cap:add:ios": "npx cap add ios",
+        "cap:copy": "npx cap copy",
+        "cap:open:android": "npx cap open android",
+        "cap:open:ios": "npx cap open ios"
+    },
+    "dependencies": {
+        "@capacitor/core": "^7.6.2"
+    },
+    "devDependencies": {
+        "@capacitor/cli": "^7.6.2",
+        "@capacitor/android": "^7.6.2",
+        "@capacitor/ios": "^7.6.2"
+    }
+}

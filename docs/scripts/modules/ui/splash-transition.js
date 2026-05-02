@@ -39,8 +39,7 @@ function transitionToApp() {
         setTimeout(function () {
             const appContainer = document.querySelector('.app-container');
             if (appContainer) {
-                appContainer.style.cssText =
-                    'display: block !important; opacity: 0; transition: opacity 0.5s ease-in';
+                appContainer.style.cssText = 'display: block !important; opacity: 0; transition: opacity 0.5s ease-in';
 
                 // 짧은 지연 후 페이드인
                 setTimeout(function () {

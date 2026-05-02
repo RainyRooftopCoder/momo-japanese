@@ -1,0 +1,6 @@
+{
+    "appId": "com.momojapanese.app",
+    "appName": "momo-japanese",
+    "webDir": "docs",
+    "bundledWebRuntime": false
+}

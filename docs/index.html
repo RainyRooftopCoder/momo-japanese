@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
@@ -56,11 +56,14 @@
         <link rel="stylesheet" href="./styles/pages/settings.css" />
 
         <!-- 스플래시 전환 로직 -->
-        <script defer src="./scripts/modules/ui/splash-transition.js"></script>
+        <script defer src="./scripts/modules/ui/splash-transition.js?v=1.0.0"></script>
+
+        <!-- 앱 설정 및 버전 관리 (다른 스크립트보다 먼저 로드) -->
+        <script src="./scripts/config/app-config.js?v=1.0.0"></script>
 
         <!-- Core JavaScript 파일들 -->
-        <script defer src="./scripts/core/database.js"></script>
-        <script defer src="./scripts/core/app.js"></script>
+        <script defer src="./scripts/core/database.js?v=1.0.0"></script>
+        <script defer src="./scripts/core/app.js?v=1.0.0"></script>
 
         <!-- Audio 모듈 -->
         <script defer src="./scripts/modules/audio/speech-synthesis.js"></script>
