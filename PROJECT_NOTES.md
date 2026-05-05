@@ -227,18 +227,23 @@ app.init()
 - dataVersion 확인
 - 조건부 로드
 
-### ✅ 현재 구현 상태
+### ✅ 완료된 작업
 
-- `docs/scripts/config/app-config.js`에 데이터 버전 관리 추가 완료
-- `docs/scripts/core/app.js`에 `loadOrUpdateData()` 적용 완료
-- `docs/index.html`에 `app-config.js`가 `app.js`보다 먼저 로드되도록 수정 완료
-- 재실행 시 기존 데이터 유지 동작 확인 완료
+- `docs/scripts/config/app-config.js` 생성 - 데이터 버전 관리 시스템 완전 구현
+- `docs/scripts/core/app.js`에 `loadOrUpdateData()` 적용
+- `docs/index.html`에 `app-config.js`를 `app.js`보다 먼저 로드
+- 재실행 시 기존 데이터 유지 동작 확인
+- 사용자 데이터 보존 테스트 통과 (나의 단어장 데이터 재로드 후에도 유지)
+- 버전 체크 로직: `shouldLoadData()`, `markDataAsLoaded()`, `isAppUpdated()` 구현
+- 데이터 로드 전략: `'onupdate'` (배포 권장) 설정
+- 캐시 무효화용 쿼리 파라미터 추가 (v=1.0.0)
+- Service Worker 캐시 버전 업데이트 (v1.3.0)
 
-### 다음 작업
+### ✅ Stage 3 검증 결과
 
-- 실제 사용자 데이터(나의 단어장, 통계) 보존 확인 테스트
-- `window.APP_CONFIG.isAppUpdated()` 로그를 통해 앱 업데이트 여부 확인
-- Stage 4 Capacitor 감싸기 준비
+- **첫 실행**: 데이터 로드 ✅ (7500개 단어 저장)
+- **재실행**: 데이터 유지 ✅ (shouldLoadData() = false)
+- **사용자 단어**: 보존 ✅ (테스트 단어 저장 후 새로고침해도 유지)
 
 **3단계: 테스트**
 
@@ -250,20 +255,31 @@ app.init()
 
 목표: 현재 정적 앱을 Android/iOS 앱 프로젝트로 감싼다.
 
-할 일:
+### ✅ 완료된 작업
 
-- `package.json` 추가
-- Capacitor 초기화
-- Android 플랫폼 추가
-- iOS 플랫폼 추가
-- 앱 ID 설정
-- 앱 이름 설정
-- 앱 아이콘/스플래시 설정
-- 정적 웹 파일을 Capacitor web directory로 복사하는 구조 만들기
-- WebView 안에서 IndexedDB 동작 확인
-- WebView 안에서 일본어 음성 재생 확인
+- ✅ `package.json` 생성 (Capacitor 7.6.2, Node 20.x 호환)
+- ✅ `capacitor.config.json` 생성
+    - appId: `com.momojapanese.app`
+    - appName: `Momo Japanese`
+    - webDir: `docs`
+- ✅ `.gitignore` 생성 (android/, ios/, node_modules/ 제외)
+- ✅ `npm install` 완료
+- ✅ `npx cap init` 완료
+- ✅ Android 플랫폼 추가
+    - `android/` 폴더 생성
+    - `docs/` → `android/app/src/main/assets/public/` 웹 자산 복사 완료
+
+### ⏳ 남은 작업
+
+- iOS 플랫폼 추가 (macOS/Xcode 환경 필요)
+- 앱 아이콘/스플래시 설정 (res/ 폴더에 추가)
+- WebView 안에서 다음 확인:
+    - IndexedDB 동작
+    - 일본어 음성 재생
+    - 오프라인 모드 (Service Worker)
 - Android 물리 뒤로가기 버튼 처리
 - 상태바 색상과 safe-area 처리
+- 빌드 및 기기 테스트
 
 ## 5단계: 실제 기기 테스트
 
